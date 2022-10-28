@@ -1,5 +1,5 @@
 import { Navbar, Container, Image } from 'react-bootstrap'
-import ColoredLogo from '@stratego/assets/images/logo-colored.png'
+import ColoredLogo from '@stratego/assets/vectors/logo-colored.svg'
 
 const NavBar: RootComponent = () => {
   return (
