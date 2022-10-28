@@ -1,4 +1,4 @@
-import { type FC, useEffect, useState } from 'react'
+import { type FC, useEffect, useState, PropsWithChildren } from 'react'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import { Col, Container, Row } from 'react-bootstrap'
 import Head from 'next/head'
@@ -6,7 +6,7 @@ import { DEFAULT_PAGE_DESCRIPTION, DEFAULT_TITLE } from '@stratego/helpers/defau
 import NavBar from '@stratego/components/shared/navbar'
 import Footer from '@stratego/components/shared/footer'
 import { getPageTitle } from '@stratego/helpers/text.helper'
-import { useStyleModules } from '@stratego/helpers/styles.helper'
+import classNames from 'classnames'
 
 export type LayoutProps = {
   pageTitle?: string
@@ -14,7 +14,7 @@ export type LayoutProps = {
   useBasicGrid?: boolean
 }
 
-const Layout: FC<LayoutProps> = (props) => {
+const Layout: FC<PropsWithChildren<LayoutProps>> = (props) => {
 
   const { pageTitle, pageDescription, useBasicGrid, children } = props
 
@@ -30,14 +30,14 @@ const Layout: FC<LayoutProps> = (props) => {
   }, [pageDescription])
 
   return (
-    <div className={useStyleModules(LayoutStyles.pageContainer)}>
+    <div className={classNames(LayoutStyles.pageContainer)}>
       <Head>
         <title>{ title }</title>
         <meta name="description" content={ description } />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar />
-      <div className={useStyleModules(LayoutStyles.pageContent)}>
+      <div className={classNames(LayoutStyles.pageContent)}>
         {
           useBasicGrid ?
             <Container>
@@ -47,7 +47,7 @@ const Layout: FC<LayoutProps> = (props) => {
                 </Col>
               </Row>
             </Container> :
-            <>{ children }</>
+            children
         }
       </div>
       <Footer />

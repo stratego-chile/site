@@ -1,14 +1,13 @@
-import type { IsolatedComponent } from '@stratego/types'
 import { Col, Container, Row } from 'react-bootstrap'
 import FooterStyles from '@stratego/styles/modules/Footer.module.sass'
-import { useStyleModules } from '@stratego/helpers/styles.helper'
+import classNames from 'classnames'
 
-const Footer: IsolatedComponent = () => {
+const Footer: RootComponent = () => {
   return (
-    <Container fluid className={useStyleModules(FooterStyles.Container, 'py-2')}>
+    <Container fluid className={classNames(FooterStyles.Container, 'py-2')}>
       <Row>
         <Col className='text-center'>
-          <span>Stratego &reg; { new Date().getFullYear() }</span>
+          <span>{`Stratego S.p.A ® ${new Date().getFullYear()} - Chile`}</span>
         </Col>
       </Row>
     </Container>

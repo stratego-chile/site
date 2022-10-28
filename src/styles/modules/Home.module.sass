@@ -1,0 +1,28 @@
+.wrapper
+  background-blend-mode: hard-light
+  background-size: cover
+  background-position: center
+
+$animationSteps: 20
+$animationDuration: 50
+$animationElementsCount: 100
+$delayBetweenLetters: 0.1
+
+@keyframes anim-text-flow-keys
+    @for $i from 0 through $animationSteps
+      #{percentage($i * (1 / $animationSteps))}
+        color: hsla(random(254), 72, 82, 1)
+
+$totalDelayTime: $animationElementsCount * $delayBetweenLetters
+
+.title
+  backdrop-filter: blur(80px)
+  background: radial-gradient(ellipse at top, rgba(#e14f6e, .2), transparent), radial-gradient(ellipse at bottom, rgba(#f5ca66, .2), transparent)
+  animation-name: anim-text-flow-keys
+  animation-duration: #{$animationDuration}s
+  animation-iteration-count: infinite
+  animation-direction: alternate
+  animation-fill-mode: forwards
+  @for $i from 1 through $animationElementsCount
+    &:nth-of-type(#{$i})
+      animation-delay: #{($i * $delayBetweenLetters) - $totalDelayTime}s

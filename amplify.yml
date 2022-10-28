@@ -1,0 +1,35 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - yarn
+    build:
+      commands:
+        - yarn build
+  artifacts:
+    files:
+        - '**/*'
+    discard-paths: yes
+    baseDirectory: location
+  cache:
+    paths:
+        - node_modules/**/*
+# TODO
+# test:
+#   phases:
+#     preTest:
+#       commands:
+#         - *enter command*
+#     test:
+#       commands:
+#         - *enter command*
+#     postTest:
+#       commands:
+#         - *enter command*
+#   artifacts:
+#     files:
+#         - location
+#         - location
+#     configFilePath: *location*
+#     baseDirectory: *location*
