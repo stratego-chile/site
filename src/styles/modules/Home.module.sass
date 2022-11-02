@@ -13,14 +13,14 @@ $delayBetweenLetters: 0.1
 @keyframes anim-text-flow-keys
     @for $i from 0 through $animationSteps
       #{percentage($i * math.div(1, $animationSteps))}
-        $hue: random(254)
-        color: hsla(math.div($hue * 1%, 1%), 72%, 82%, 1)
+        $hue: random(204)
+        color: hsla(math.div($hue * 1%, 1%), 78%, 64%, 1)
 
 $totalDelayTime: $animationElementsCount * $delayBetweenLetters
 
 .title
   backdrop-filter: blur(80px)
-  background: radial-gradient(ellipse at top, rgba(#e14f6e, .2), transparent), radial-gradient(ellipse at bottom, rgba(#f5ca66, .2), transparent)
+  background: radial-gradient(ellipse at top, rgba(#e14f6e, .4), transparent), radial-gradient(ellipse at bottom, rgba(#f5ca66, .4), transparent)
   animation-name: anim-text-flow-keys
   animation-duration: #{$animationDuration}s
   animation-iteration-count: infinite
@@ -29,3 +29,7 @@ $totalDelayTime: $animationElementsCount * $delayBetweenLetters
   @for $i from 1 through $animationElementsCount
     &:nth-of-type(#{$i})
       animation-delay: #{($i * $delayBetweenLetters) - $totalDelayTime}s
+
+.titleText
+  $shadow-color: rgba(black, .18)
+  text-shadow: 1px 1px 2px $shadow-color, 0 0 1.5em $shadow-color, 0 0 0.4em $shadow-color

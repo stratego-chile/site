@@ -33,7 +33,10 @@ const Home: NextPage = () => {
           'd-flex position-sticky h-100 w-100 justify-content-center',
           HomeStyles.title
         )}>
-          <h1 className="position-absolute top-50 fw-bold">
+          <h1 className={classNames(
+            'position-absolute top-50 fw-bold',
+            HomeStyles.titleText
+          )}>
             Site under construction
             <span className={classNames(!visibleUnderscore && 'invisible')}>_</span>
           </h1>
