@@ -26,7 +26,7 @@ const Home: NextPage = () => {
         )}
         style={{
           height: contentWrapperRef.current?.parentElement?.clientHeight,
-          backgroundImage: `url('/assets/animated/under-construction.gif')`,
+          backgroundImage: `url('https://stratego-public-assets.s3.amazonaws.com/landing/under-construction.gif')`,
         }}
       >
         <div className={classNames(
