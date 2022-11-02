@@ -11,7 +11,7 @@ frontend:
     files:
         - '**/*'
     discard-paths: yes
-    baseDirectory: location
+    baseDirectory: build
   cache:
     paths:
         - node_modules/**/*
