@@ -7,11 +7,12 @@ frontend:
     build:
       commands:
         - yarn build
+        - yarn export
   artifacts:
     files:
         - '**/*'
     discard-paths: yes
-    baseDirectory: build
+    baseDirectory: out
   cache:
     paths:
         - node_modules/**/*

@@ -1,4 +1,4 @@
-import { type FC, useEffect, useState, PropsWithChildren } from 'react'
+import { FC, useEffect, useState, PropsWithChildren } from 'react'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import { Col, Container, Row } from 'react-bootstrap'
 import Head from 'next/head'

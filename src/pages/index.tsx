@@ -1,6 +1,5 @@
 import Layout from '@stratego/components/utils/layout'
-import UnderConstructionAnimation from '@stratego/assets/animated/under-construction.gif'
-import type { NextPage } from 'next'
+import { NextPage } from 'next'
 import { useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 import HomeStyles from '@stratego/styles/modules/Home.module.sass'
@@ -27,7 +26,7 @@ const Home: NextPage = () => {
         )}
         style={{
           height: contentWrapperRef.current?.parentElement?.clientHeight,
-          backgroundImage: `url('${UnderConstructionAnimation.src}')`,
+          backgroundImage: `url('/assets/animated/under-construction.gif')`,
         }}
       >
         <div className={classNames(

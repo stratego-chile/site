@@ -8,7 +8,8 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'src', 'styles')],
   },
-  webpack: (config, _options) => {
+  webpack5: false,
+  webpack: (config) => {
     config.resolve.alias['@stratego'] = path.join(__dirname, 'src')
     return config
   },
