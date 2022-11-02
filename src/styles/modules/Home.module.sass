@@ -1,3 +1,5 @@
+@use 'sass:math'
+
 .wrapper
   background-blend-mode: hard-light
   background-size: cover
@@ -10,8 +12,9 @@ $delayBetweenLetters: 0.1
 
 @keyframes anim-text-flow-keys
     @for $i from 0 through $animationSteps
-      #{percentage($i * (1 / $animationSteps))}
-        color: hsla(random(254), 72, 82, 1)
+      #{percentage($i * math.div(1, $animationSteps))}
+        $hue: random(254)
+        color: hsla(math.div($hue * 1%, 1%), 72%, 82%, 1)
 
 $totalDelayTime: $animationElementsCount * $delayBetweenLetters
 
