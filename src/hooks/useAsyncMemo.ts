@@ -1,5 +1,5 @@
 import {
-  DependencyList,
+  type DependencyList,
   useCallback,
   useState,
   useMemo,

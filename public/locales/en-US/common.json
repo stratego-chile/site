@@ -1,0 +1,7 @@
+{
+  "baseTitle": "stratego",
+  "betaMessage": "site under development",
+  "errors": {
+    "notFound": "resource not found"
+  }
+}
