@@ -1,4 +1,5 @@
 import { DEFAULT_TITLE } from './defaults.helpers'
+import { capitalize} from '@stdlib/string'
 
 export const getPageTitle = (pageTitle: string, baseTitle = DEFAULT_TITLE) => pageTitle
   .trim()
@@ -14,7 +15,7 @@ export const capitalizeText = (text: string, mode: 'simple' | 'full' = 'full') =
       ? char.toUpperCase()
       : char)
     .join(String())
-  : text.charAt(0).toUpperCase().concat(text.substring(1).toLowerCase())
+  : capitalize(text)
 
 export const splitCamelCaseText = (key: string) => Array.from(key)
   .map(char => char === char.toUpperCase() && char.trim() !== String()

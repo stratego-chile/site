@@ -11,24 +11,38 @@
     "cert": "coffee scripts/deploy-cert.coffee"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@popperjs/core": "^2.11.6",
+    "@stdlib/string": "^0.0.14",
     "bootstrap": "^5.2.2",
     "classnames": "^2.3.2",
-    "next": "11.1.4",
-    "react": "17.0.2",
+    "core-js": "^3.26.0",
+    "i18next": "^22.0.4",
+    "language-flag-colors": "^2.1.2",
+    "next": "13.0.2",
+    "next-i18next": "^12.1.0",
+    "react": "18.2.0",
     "react-bootstrap": "^2.5.0",
-    "react-dom": "17.0.2",
-    "react-use": "^17.4.0"
+    "react-dom": "18.2.0",
+    "react-i18next": "^12.0.0",
+    "react-use": "^17.4.0",
+    "uniqid": "^5.4.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@types/react": "17.0.38",
-    "eslint": "7.32.0",
-    "eslint-config-next": "11.1.4",
-    "sass": "^1.55.0",
+    "@types/react": "18.0.25",
+    "@types/uniqid": "^5.3.2",
+    "@types/uuid": "^8.3.4",
+    "eslint": "8.26.0",
+    "eslint-config-next": "13.0.2",
+    "sass": "^1.56.0",
+    "sass-loader": "^13.1.0",
     "typescript": "4.8.4"
   },
   "packageManager": "yarn@3.2.4",
   "optionalDependencies": {
-    "chalk": "4.1.2",
     "coffeescript": "^2.7.0",
     "devcert": "^1.2.2",
     "json5": "^2.2.1"

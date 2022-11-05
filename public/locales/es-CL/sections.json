@@ -1,0 +1,26 @@
+{
+  "home": {
+    "title": "inicio"
+  },
+  "privacyPolicy": {
+    "title": "política de privacidad"
+  },
+  "legal": {
+    "title": "legal"
+  },
+  "security": {
+    "title": "Seguridad",
+    "brandDepartment": "Seguridad de la información",
+    "pages": {
+      "overview": {
+        "title": "Resumen"
+      },
+      "services": {
+        "title": "Servicios"
+      },
+      "products": {
+        "title": "Productos"
+      }
+    }
+  }
+}
