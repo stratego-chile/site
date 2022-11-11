@@ -50,7 +50,7 @@ const SecuritySection: NextPage<WithoutProps> = () => {
     {
       templatePath: currentSection &&
         new URL(
-          (process.env.NODE_ENV === 'development'
+          (process.env.NODE_ENV === 'production'
             ? '/stratego-chile/site-content/main/docs'
             : '').concat(sections[currentSection].template),
           docsSource),
