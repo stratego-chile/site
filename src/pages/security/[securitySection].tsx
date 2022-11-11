@@ -21,7 +21,7 @@ const SecuritySection: NextPage<WithoutProps> = () => {
 
   const docsSource = process.env.NODE_ENV === 'development'
     ? 'https://localhost:3001'
-    : 'https://raw.githubusercontent.com/stratego-chile/info-pages/main'
+    : 'https://raw.githubusercontent.com/stratego-chile/site-content/main/docs'
 
   const sections = useMemo(
     () => ({
