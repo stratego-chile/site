@@ -21,7 +21,7 @@ const SecuritySection: NextPage<WithoutProps> = () => {
 
   const docsSource = process.env.NODE_ENV === 'development'
     ? 'https://localhost:3001'
-    : 'https://raw.githubusercontent.com/stratego-chile/site-content/main/docs'
+    : 'https://raw.githubusercontent.com'
 
   const sections = useMemo(
     () => ({
@@ -48,7 +48,12 @@ const SecuritySection: NextPage<WithoutProps> = () => {
 
   const [content, checked] = useMarkdownTemplate(
     {
-      templatePath: currentSection && new URL(sections[currentSection].template, docsSource),
+      templatePath: currentSection &&
+        new URL(
+          (process.env.NODE_ENV === 'development'
+            ? '/stratego-chile/site-content/main/docs'
+            : '').concat(sections[currentSection].template),
+          docsSource),
       layoutParsers: {
         img: (props) => (
           <div className="my-5" style={{ height: '24rem' }}>
