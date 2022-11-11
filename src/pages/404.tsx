@@ -1,11 +1,11 @@
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { useRouter } from 'next/router'
-import { NextPage } from 'next'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { NextPage } from 'next'
 
-const NotFoundPage: NextPage = () => {
+const NotFoundPage: NextPage<WithoutProps> = () => {
   const router = useRouter()
 
   const title = 'resource not found'

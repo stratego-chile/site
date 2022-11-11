@@ -14,7 +14,7 @@ import Footer from '@stratego/components/shared/footer'
 import { getPageTitle } from '@stratego/helpers/text.helper'
 import classNames from 'classnames'
 import Head from 'next/head'
-import SubNavBar, { type Links } from '../shared/sub-navbar'
+import SubNavBar, { type Links } from '@stratego/components/shared/sub-navbar'
 
 export type LayoutProps = {
   pageTitle?: string
@@ -29,7 +29,7 @@ const Layout: FC<PropsWithChildren<LayoutProps>> = ({
   pageTitle,
   pageDescription,
   brandDepartment,
-  subLinks,
+  subLinks = [],
   defaultGrid,
   showNavigationOptions = false,
   children,
@@ -54,12 +54,18 @@ const Layout: FC<PropsWithChildren<LayoutProps>> = ({
       </Head>
       <NavBar
         showNavigationOptions={showNavigationOptions}
+        theme={subLinks.length > 0 ? 'dark' : 'light'}
         brandDepartment={brandDepartment}
       />
-      {subLinks && (
-        <SubNavBar links={subLinks} />
-      )}
-      <div {...divProps} className={classNames(LayoutStyles.pageContent, divProps.className)}>
+      {subLinks.length > 0 && <SubNavBar links={subLinks} />}
+      <div
+        {...divProps}
+        className={classNames(
+          LayoutStyles.pageContent,
+          divProps.className,
+          defaultGrid && 'py-5'
+        )}
+      >
         {defaultGrid ? (
           <Container>
             <Row>

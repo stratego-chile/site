@@ -79,10 +79,4 @@ declare type Exclusive<T, U> = T | U extends object
 declare interface WithoutProps {
   [key: never]: never
 }
-
-declare type RootComponent = React.FC<WithoutProps>
-
-declare type CustomLazyComponent<
-  InnerComponent extends React.FC<WithoutProps>
-> = React.LazyExoticComponent<InnerComponent>
 //#endregion

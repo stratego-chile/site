@@ -1,39 +1,34 @@
 @use 'sass:map'
+@use 'colors'
 
-@import '~bootstrap/scss/functions'
-@import '~bootstrap/scss/variables'
-@import '~bootstrap/scss/maps'
-@import '~bootstrap/scss/mixins'
-@import '~bootstrap/scss/utilities'
-@import '~bootstrap/scss/utilities/api'
+// # Edit bootstrap variables before importation
+$enable-negative-margins: true
+
+@import ~bootstrap/scss/functions
+@import ~bootstrap/scss/variables
+@import ~bootstrap/scss/maps
+@import ~bootstrap/scss/mixins
+@import ~bootstrap/scss/utilities
+
+$custom-theme-colors: (primary: colors.$custom-primary)
+
+$utilities-text-colors: map-loop($utilities-text, rgba-css-var, '$key', 'text')
+
+$theme-colors: map.merge($theme-colors, $custom-theme-colors)
+
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value')
+
+$placements: (start: 'left', end: 'right', top: 'top', bottom: 'bottom')
 
 @each $breakpoint in map.keys($grid-breakpoints)
   @include media-breakpoint-up($breakpoint)
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints)
+    @each $placement-label, $placement-prop in $placements
+      .border#{$infix}-#{$placement-label}
+        border-#{$placement-prop}: $border-width solid $border-color !important
 
-    .border#{$infix}-top
-      border-top: $border-width solid $border-color !important
-
-    .border#{$infix}-end
-      border-right: $border-width solid $border-color !important
-
-    .border#{$infix}-bottom
-      border-bottom: $border-width solid $border-color !important
-
-    .border#{$infix}-start
-      border-left: $border-width solid $border-color !important
-
-    .border#{$infix}-top-0
-      border-top: 0 !important
-
-    .border#{$infix}-end-0
-      border-right: 0 !important
-
-    .border#{$infix}-bottom-0
-      border-bottom: 0 !important
-
-    .border#{$infix}-start-0
-      border-left: 0 !important
+      .border#{$infix}-#{$placement-label}-0
+        border-#{$placement-prop}: 0 !important
 
     .border#{$infix}-x
       border-left: $border-width solid $border-color !important
@@ -43,5 +38,32 @@
       border-top: $border-width solid $border-color !important
       border-bottom: $border-width solid $border-color !important
 
-// Rewrite and import bootstrap styles
-@import '~bootstrap/scss/bootstrap'
+// # Rewrite and import bootstrap styles
+@import ~bootstrap/scss/utilities/api
+@import ~bootstrap/scss/bootstrap
+
+// # Rewrite some compiled bootstrap styles
+// ## Remove the default colored shadow from the form inputs
+textarea,
+select,
+input[type='file'],
+input[type='text'],
+input[type='checkbox'],
+input[type='password'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='date'],
+input[type='month'],
+input[type='time'],
+input[type='week'],
+input[type='number'],
+input[type='email'],
+input[type='url'],
+input[type='search'],
+input[type='tel'],
+input[type='color'],
+.uneditable-input
+  &:focus
+    outline: none !important
+    box-shadow: inset 0 1px 1px rgba(var(--bs-black, $black), .075), 0 0 2px var(--bs-primary) !important
+    border-color: var(--bs-primary) !important

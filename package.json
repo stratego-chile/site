@@ -19,17 +19,19 @@
     "bootstrap": "^5.2.2",
     "classnames": "^2.3.2",
     "core-js": "^3.26.0",
+    "formik": "^2.2.9",
     "i18next": "^22.0.4",
     "language-flag-colors": "^2.1.2",
     "next": "13.0.2",
     "next-i18next": "^12.1.0",
+    "next-mdx-remote": "^4.2.0",
     "react": "18.2.0",
-    "react-bootstrap": "^2.5.0",
+    "react-bootstrap": "^2.6.0",
     "react-dom": "18.2.0",
     "react-i18next": "^12.0.0",
     "react-use": "^17.4.0",
     "uniqid": "^5.4.0",
-    "uuid": "^9.0.0"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/react": "18.0.25",
@@ -37,10 +39,10 @@
     "@types/uuid": "^8.3.4",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.2",
-    "sass": "^1.56.0",
-    "sass-loader": "^13.1.0",
+    "sass": "^1.56.1",
+    "sass-loader": "^13.2.0",
     "typescript": "4.8.4",
-    "webpack": "^5.74.0"
+    "webpack": "^5.75.0"
   },
   "packageManager": "yarn@3.2.4",
   "optionalDependencies": {
@@ -49,6 +51,6 @@
     "json5": "^2.2.1"
   },
   "volta": {
-    "node": "16.18.0"
+    "node": "16.18.1"
   }
 }

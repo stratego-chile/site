@@ -1,7 +1,11 @@
-.pageContainer
+.expandedContainer
   display: flex
   flex-direction: column
+
+.pageContainer
+  @extend .expandedContainer
   min-height: 100vh
 
 .pageContent
+  @extend .expandedContainer
   flex-grow: 1

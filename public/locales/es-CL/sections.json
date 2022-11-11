@@ -9,17 +9,17 @@
     "title": "legal"
   },
   "security": {
-    "title": "Seguridad",
-    "brandDepartment": "Seguridad de la información",
+    "title": "seguridad",
+    "brandDepartment": "seguridad de la información",
     "pages": {
       "overview": {
-        "title": "Resumen"
+        "title": "resumen"
       },
       "services": {
-        "title": "Servicios"
+        "title": "servicios"
       },
-      "products": {
-        "title": "Productos"
+      "contact": {
+        "title": "contacto"
       }
     }
   }

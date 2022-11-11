@@ -1,5 +1,5 @@
 declare interface ObjectConstructor {
-  keys<T extends object>(o: T): Array<keyof T>
+  keys<T extends object>(o: T): Array<keyof T | string>
 }
 
 interface Array<T> {
