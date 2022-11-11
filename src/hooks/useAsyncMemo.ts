@@ -53,7 +53,7 @@ export const useAsyncMemo = <T = unknown>(
   }, [$promiseFunction, logger])
 
   if (deps.length > RECOMMENDED_DEPS_LENGTH)
-    logger.warn('useDeferredFetch:', 'Too many dependencies')
+    logger.warn('useAsyncMemo:', 'Too many dependencies')
 
   return {
     isLoading,

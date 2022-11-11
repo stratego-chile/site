@@ -20,7 +20,7 @@ const SubNavBar: FC<SubNavBarProps> = ({ links }) => {
       className="sticky-top shadow"
       expand="lg"
     >
-      <Container>
+      <Container className="px-lg-1">
         <Nav>
           {links?.map((link, key) => (
             <Link key={key} href={link.href} passHref legacyBehavior>

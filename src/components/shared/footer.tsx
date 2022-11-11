@@ -20,8 +20,10 @@ import { useLocale } from '@stratego/hooks/useLocale'
 import { useRouter } from 'next/router'
 import availableLocales from '@stratego/locale.middleware'
 import { capitalizeText } from '@stratego/helpers/text.helper'
+import { NextPage } from 'next'
+import classNames from 'classnames'
 
-const Footer: RootComponent = () => {
+const Footer: NextPage<WithoutProps> = () => {
   const { t } = useTranslation(['common'])
 
   const router = useRouter()
@@ -54,20 +56,42 @@ const Footer: RootComponent = () => {
 
   return (
     <Fragment>
-      <div className="border-top">
+      <div className="bg-primary shadow-lg">
         <Container>
-          <Row className="justify-content-center justify-content-lg-between py-5 px-2 mb-2 mb-lg-5 gap-5">
-            <Col xs={12} lg="auto">
+          <Row
+            className={classNames(
+              'd-flex justify-content-center justify-content-lg-between',
+              'pt-5 py-lg-5 mb-2 mb-lg-5 gap-5'
+            )}
+          >
+            <Col xs={12} lg="auto" className="order-2 order-lg-1 text-center text-lg-start">
               <Image
                 fluid
-                className="d-block mx-auto"
+                className="d-block mx-auto mb-2 mb-lg-4"
                 style={{ height: '4rem' }}
-                src={getAssetPath('logo-colored.svg')}
+                src={getAssetPath('logo-white.svg')}
                 alt={t('common:baseTitle')}
               />
+              <address className="text-light">
+                <p>
+                  {((email) => (
+                    <a
+                      className="text-light"
+                      href={`mailto:${email}`}
+                    >
+                      {email}
+                    </a>
+                  ))('contact@stratego.cl')}
+                </p>
+                Padre Mariano 272
+                <br />
+                Oficina 302
+                <br />
+                Providencia, Santiago, Chile
+              </address>
             </Col>
-            <Col xs="auto">
-              <InputGroup className="border rounded">
+            <Col xs="auto" className="order-1 order-lg-2">
+              <InputGroup className="rounded">
                 <InputGroup.Text
                   className="bg-light border-0 gap-2"
                   title={getLanguage(currentLocale)?.nativeName}
@@ -77,7 +101,6 @@ const Footer: RootComponent = () => {
                 <DropdownButton
                   variant="light"
                   title={<FontAwesomeIcon icon={faGlobe} />}
-                  drop="up"
                   align="end"
                 >
                   {availableLocales().map((lang, key) => (
@@ -95,12 +118,12 @@ const Footer: RootComponent = () => {
             </Col>
           </Row>
         </Container>
-        <Navbar variant="light" bg="gray" expand>
-          <Container className="d-grid d-lg-flex justify-content-center justify-content-lg-between">
+        <Navbar variant="dark" bg="transparent" expand>
+          <Container className="d-grid d-lg-flex justify-content-center justify-content-lg-between px-lg-1">
             <Nav>
               <Link href="/" passHref legacyBehavior>
                 <Nav.Link as="a" className="mx-auto">
-                  {new Date().getFullYear()} &reg; Stratego SpA
+                  {new Date().getFullYear()} &reg; Stratego Technologies SpA
                 </Nav.Link>
               </Link>
             </Nav>

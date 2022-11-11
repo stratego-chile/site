@@ -8,6 +8,7 @@ import { capitalizeText } from '@stratego/helpers/text.helper'
 
 type NavBarProps = {
   showNavigationOptions?: boolean
+  theme?: 'light' | 'dark'
   brandDepartment?: string
 }
 
@@ -18,6 +19,7 @@ type NavLinkSpec = {
 
 const NavBar: FC<NavBarProps> = ({
   showNavigationOptions,
+  theme = 'light',
   brandDepartment
 }) => {
   const { t } = useTranslation(['common', 'sections'])
@@ -33,15 +35,13 @@ const NavBar: FC<NavBarProps> = ({
     }
   ]
 
-  // #3838DB
-
   return (
     <Navbar
-      variant={showNavigationOptions ? 'dark' : 'light'}
-      bg={showNavigationOptions ? 'dark' : 'white'}
+      variant={theme}
+      bg={theme}
       expand="lg"
     >
-      <Container>
+      <Container className="px-lg-1">
         <Navbar.Brand className='d-grid d-lg-flex mx-auto fw-bold py-3 px-2 gap-3'>
           <Image
             className="d-block mx-auto"

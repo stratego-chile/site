@@ -13,6 +13,15 @@ const nextConfig = {
     config.resolve.alias['@stratego'] = path.join(__dirname, 'src')
     return config
   },
+  redirects: async () => {
+    return [
+      {
+        source: '/security',
+        destination: '/security/overview',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig

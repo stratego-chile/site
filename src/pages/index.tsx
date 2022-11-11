@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import classNames from 'classnames'
 import HomeStyles from '@stratego/styles/modules/Home.module.sass'
 import { getAssetPath } from '@stratego/helpers/static-resources.helper'
-import { Col, Row } from 'react-bootstrap'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { capitalizeText } from '@stratego/helpers/text.helper'
@@ -25,20 +24,20 @@ const Home: NextPage = () => {
   return (
     <Layout
       pageTitle="Home"
-      className={classNames('d-flex justify-content-center', HomeStyles.wrapper)}
+      showNavigationOptions
+      className={classNames(HomeStyles.wrapper, 'd-flex flex-column')}
       style={{ backgroundImage: `url('${getAssetPath('under-construction.gif')}')` }}
     >
-      <Row className={classNames('align-self-stretch w-100')}>
-        <Col className={classNames(
-          'd-flex h-100 justify-content-center align-items-center',
+      <div className={classNames(
+          'd-inline-flex flex-grow-1 align-items-center justify-content-center',
           HomeStyles.title
-        )}>
-          <h1 className={classNames('fw-bold', HomeStyles.titleText)}>
-            {capitalizeText(t('common:betaMessage'), 'simple')}
-            <span className={classNames(!visibleUnderscore && 'invisible')}>_</span>
-          </h1>
-        </Col>
-      </Row>
+        )}
+      >
+        <h1 className={classNames('fw-bold', HomeStyles.titleText)}>
+          {capitalizeText(t('common:betaMessage'), 'simple')}
+          <span className={classNames(!visibleUnderscore && 'invisible')}>_</span>
+        </h1>
+      </div>
     </Layout>
   )
 }
