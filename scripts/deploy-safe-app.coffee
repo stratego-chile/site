@@ -14,21 +14,20 @@ app = next { dev }
 handle = app.getRequestHandler()
 
 getFile = (fileName) ->
-	fs.readFileSync(
-		path.join(__dirname, '..', certDir, fileName)
-	)
+  fs.readFileSync path.join(__dirname, '..', certDir, fileName)
 
-httpsOptions = {
-	key: getFile 'devcert.key'
-	cert: getFile 'devcert.cert'
-}
+httpsOptions =
+  key: getFile 'devcert.key'
+  cert: getFile 'devcert.cert'
 
 app.prepare().then ->
-	createServer httpsOptions, (req, res) ->
-		handle req, res, (parse req.url, true)
-		return
-	.listen port, (err) ->
-		if err
-			throw err
-		console.log("ready - started server on url: https://localhost:#{port}")
-	return
+  createServer httpsOptions, (req, res) ->
+    handle req, res, (parse req.url, true)
+    return
+  .listen port, (err) ->
+    if err
+      throw err
+    else
+      console.log "ready - started server on url: https://localhost:#{port}"
+    return
+  return
