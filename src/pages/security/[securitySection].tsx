@@ -1,0 +1,117 @@
+import { useRouter } from 'next/router'
+import { useMemo } from 'react'
+import NotFoundError from '@stratego/pages/404'
+import { type GetServerSideProps, type NextPage } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { defaultLocale } from '@stratego/locale.middleware'
+import { useMarkdownTemplate } from '@stratego/hooks/useMarkdownTemplate'
+import { Col, Container, Row, Spinner } from 'react-bootstrap'
+import SecurityLayout from '@stratego/components/content/security/layout'
+import { capitalizeText } from '@stratego/helpers/text.helper'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
+
+const SecuritySection: NextPage<WithoutProps> = () => {
+  const { query } = useRouter()
+
+  const { securitySection } = query
+
+  const { t, i18n } = useTranslation()
+
+  const docsSource = process.env.NODE_ENV === 'development'
+    ? 'https://localhost:3001'
+    : 'https://raw.githubusercontent.com/stratego-chile/info-pages/main'
+
+  const sections = useMemo(
+    () => ({
+      overview: {
+        title: capitalizeText(t('sections:security.pages.overview.title'), 'simple'),
+        template: `/${i18n.language}/security-overview.mdx`,
+      },
+      services: {
+        title: capitalizeText(t('sections:security.pages.services.title'), 'simple'),
+        template: `/${i18n.language}/security-services.mdx`,
+      },
+    }), [i18n, t]
+  )
+
+  const [isSectionDefined, currentSection] = useMemo(
+    () => (
+      (found) => [
+        found,
+        found ? securitySection as keyof typeof sections : undefined,
+      ])
+      (typeof securitySection === 'string' && Object.keys(sections).includes(securitySection)),
+    [securitySection, sections]
+  )
+
+  const [content, checked] = useMarkdownTemplate(
+    {
+      templatePath: currentSection && new URL(sections[currentSection].template, docsSource),
+      layoutParsers: {
+        img: (props) => (
+          <div className="my-5" style={{ height: '24rem' }}>
+            <div
+              style={{
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                backgroundImage: `url(${props.src})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                width: '100%',
+                height: 'inherit',
+              }}
+            />
+          </div>
+        ),
+        a: ({ children, ...props}) => (
+          <a {...props} target="_blank" rel="noopener noreferrer">
+            {children}
+            <sup>
+              <FontAwesomeIcon icon={faUpRightFromSquare} size="sm" />
+            </sup>
+          </a>
+        ),
+      }
+    },
+    [currentSection]
+  )
+
+  return !isSectionDefined || (!content && checked)
+    ? <NotFoundError />
+    : <SecurityLayout
+        title={
+          [
+            sections[currentSection!].title,
+            t('sections:security.brandDepartment')
+          ].join(' - ')
+        }
+      >
+        {isSectionDefined && content && checked && (
+          <Container>
+            <Row>
+              <Col className="py-5">
+                {content}
+              </Col>
+            </Row>
+          </Container>
+        )}
+        {isSectionDefined && !content && !checked && (
+          <Row className="d-flex flex-grow-1 align-content-center">
+            <Col className="text-center">
+              <Spinner />
+            </Col>
+          </Row>
+        )}
+      </SecurityLayout>
+}
+
+export const getServerSideProps: GetServerSideProps<WithoutProps> = async ({ locale }) => ({
+  props: {
+    ...await serverSideTranslations(locale ?? defaultLocale, ['common', 'sections']),
+  },
+})
+
+export default SecuritySection

@@ -1,0 +1,48 @@
+@use 'sass:map'
+@use 'colors'
+
+@import ~bootstrap/scss/functions
+@import ~bootstrap/scss/variables
+
+@mixin colored-text($primary-color, $secondary-color: null)
+  font-family: Poppins, sans-serif
+  font-weight: bold
+  margin: 2rem 0 0.8rem 0
+  @if $secondary-color == null
+    color: $primary-color
+  @else
+    background: linear-gradient(to right, $primary-color, $secondary-color)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+  @media (max-width: map.get($grid-breakpoints, 'lg'))
+    line-height: 1.75rem
+    margin: 1.25rem 0 0.25rem 0
+
+.markdownContainer
+  display: flex
+  flex-direction: column
+  @for $i from 1 through 6
+    h#{$i}
+      @if $i < 3
+        @include colored-text(colors.$custom-primary, colors.$custom-info)
+        font-weight: bolder
+      @else
+        @include colored-text(lighten(#1b1b1b, ($i * 1.5) + 15%))
+        @if $i < 4
+          font-weight: bold
+        @else if $i < 5
+          font-weight: normal
+        @else
+          font-weight: lighter
+  p
+    font-family: Poppins, sans-serif
+    font-weight: 300
+    font-size: 1.5rem
+    text-align: justify
+    word-spacing: 0.1rem
+    line-height: 1.8rem
+    margin: 1rem 0
+    @media (max-width: map.get($grid-breakpoints, 'lg'))
+      font-size: 1rem
+      line-height: 1.25rem
+      margin: 0.25rem 0
