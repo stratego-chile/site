@@ -1,4 +1,4 @@
-declare interface ObjectConstructor {
+interface ObjectConstructor {
   keys<T extends object>(o: T): Array<keyof T | string>
 }
 
