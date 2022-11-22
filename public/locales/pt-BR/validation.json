@@ -1,4 +1,5 @@
 {
   "required": "campo obrigatório",
+  "optional": "opcional",
   "email": "e-mail inválido"
 }

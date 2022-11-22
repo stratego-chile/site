@@ -1,58 +1,25 @@
 import {
   Col,
   Container,
-  Dropdown,
-  DropdownButton,
   Image,
-  InputGroup,
   Nav,
   Navbar,
   Row
 } from 'react-bootstrap'
-import { Fragment, useCallback } from 'react'
+import { Fragment } from 'react'
 import Link from 'next/link'
 import { getAssetPath } from '@stratego/helpers/static-resources.helper'
-import { useTranslation, i18n } from 'next-i18next'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGlobe } from '@fortawesome/free-solid-svg-icons'
-import { getLanguage } from 'language-flag-colors'
-import { useLocale } from '@stratego/hooks/useLocale'
-import { useRouter } from 'next/router'
-import availableLocales from '@stratego/locale.middleware'
+import { useTranslation } from 'next-i18next'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { NextPage } from 'next'
 import classNames from 'classnames'
+import LanguageSelector from './language-selector'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faCode } from '@fortawesome/free-solid-svg-icons'
 
 const Footer: NextPage<WithoutProps> = () => {
   const { t } = useTranslation(['common'])
-
-  const router = useRouter()
-
-  const { pathname, query, asPath } = router
-
-  const { currentLocale, changeLocale } = useLocale()
-
-  const handleLanguageSelection = useCallback(
-    (event: React.MouseEvent<HTMLElement>, lang: string) => {
-      if (event.isTrusted) {
-        if (lang !== currentLocale && i18n) changeLocale(lang).then(() => {
-          router.push({ pathname, query }, asPath, { locale: lang });
-        })
-      }
-    },
-  [currentLocale, changeLocale, router, pathname, query, asPath])
-
-  const getLanguageReferenceContent = (options?: {
-    lang: string
-    mode?: 'label' | 'selector'
-  }) => (
-    (($lang) => (
-      <Fragment>
-        <span>{$lang.flag.emoji}</span>
-        {options?.mode === 'selector' && <span>{$lang.nativeName}</span>}
-      </Fragment>
-    ))(getLanguage(options?.lang ?? currentLocale)!)
-  )
 
   return (
     <Fragment>
@@ -91,30 +58,7 @@ const Footer: NextPage<WithoutProps> = () => {
               </address>
             </Col>
             <Col xs="auto" className="order-1 order-lg-2">
-              <InputGroup className="rounded">
-                <InputGroup.Text
-                  className="bg-light border-0 gap-2"
-                  title={getLanguage(currentLocale)?.nativeName}
-                >
-                  {getLanguageReferenceContent()}
-                </InputGroup.Text>
-                <DropdownButton
-                  variant="light"
-                  title={<FontAwesomeIcon icon={faGlobe} />}
-                  align="end"
-                >
-                  {availableLocales().map((lang, key) => (
-                    <Dropdown.Item
-                      key={key}
-                      href="#"
-                      className="d-flex justify-content-between gap-3"
-                      onClick={(event) => handleLanguageSelection(event, lang)}
-                    >
-                      {getLanguageReferenceContent({ lang, mode: 'selector'})}
-                    </Dropdown.Item>
-                  ))}
-                </DropdownButton>
-              </InputGroup>
+              <LanguageSelector theme="light" />
             </Col>
           </Row>
         </Container>
@@ -135,9 +79,29 @@ const Footer: NextPage<WithoutProps> = () => {
               </Link>
               <Link href="/legal" passHref legacyBehavior>
                 <Nav.Link as="a">
-                {capitalizeText(t('sections:legal.title'), 'simple')}
+                  {capitalizeText(t('sections:legal.title'), 'simple')}
                 </Nav.Link>
               </Link>
+              <Link href="/contact" passHref legacyBehavior>
+                <Nav.Link as="a">
+                  {capitalizeText(t('sections:contact.title'), 'simple')}
+                </Nav.Link>
+              </Link>
+              <Nav.Link
+                href="https://github.com/stratego-chile"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <FontAwesomeIcon icon={faGithub} />
+              </Nav.Link>
+              <Nav.Link
+                href="https://github.com/stratego-chile/site"
+                target="_blank"
+                rel="noreferrer noopener"
+                title={capitalizeText(t('common:seeSourceCode'), 'simple')}
+              >
+                <FontAwesomeIcon icon={faCode} />
+              </Nav.Link>
             </Nav>
           </Container>
         </Navbar>

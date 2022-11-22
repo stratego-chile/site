@@ -1,0 +1,9 @@
+{
+  "title": "Solicitação de contato",
+  "subTitle": "%s %s está tentando entrar em contato",
+  "orgName": "Nome comercial: %s",
+  "email": "Email: %s",
+  "phoneNumber": "Número de telefone: %s %s",
+  "message": "Mensagem:",
+  "footer": "Esta é uma mensagem automática, por favor não responda a este e-mail."
+}

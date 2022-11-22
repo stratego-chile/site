@@ -8,6 +8,36 @@
   "legal": {
     "title": "legal"
   },
+  "contact": {
+    "title": "contacto",
+    "form": {
+      "title": "nos ponemos en contacto?",
+      "subtitle": "Si tienes alguna duda o quieres contactar con nosotros, puedes hacerlo a través del siguiente formulario:",
+      "messages": {
+        "success": "su mensaje ha sido recibido correctamente"
+      },
+      "fields": {
+        "name": {
+          "label": "nombre"
+        },
+        "surname": {
+          "label": "apellido"
+        },
+        "phone": {
+          "label": "teléfono"
+        },
+        "business": {
+          "label": "empresa"
+        },
+        "email": {
+          "label": "correo electrónico"
+        },
+        "message": {
+          "label": "mensaje"
+        }
+      }
+    }
+  },
   "security": {
     "title": "seguridad",
     "brandDepartment": "seguridad de la información",
@@ -17,9 +47,6 @@
       },
       "services": {
         "title": "servicios"
-      },
-      "contact": {
-        "title": "contacto"
       }
     }
   }

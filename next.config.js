@@ -10,8 +10,36 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'src', 'styles')],
   },
   webpack: (config) => {
-    config.resolve.alias['@stratego'] = path.join(__dirname, 'src')
-    return config
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          '@stratego': path.join(__dirname, 'src'),
+        }
+      },
+      plugins: [
+        ...config.plugins,
+      ],
+      module: {
+        ...config.module,
+        rules: [
+          ...config.module.rules,
+          {
+            test: /\.pug$/,
+            loader: '@webdiscus/pug-loader',
+            options: {
+              method: 'compile',
+              embedFilters: {
+                escape: true,
+                markdown: true,
+              },
+            },
+          },
+        ]
+      }
+    }
   },
   redirects: async () => {
     return [
@@ -21,6 +49,11 @@ const nextConfig = {
         permanent: true,
       },
     ]
+  },
+  // Add environment variables to the client
+  env: {
+    PAGES_TEMPLATES_SOURCE: process.env.PAGES_TEMPLATES_SOURCE,
+    CAPTCHA_KEY: process.env.CAPTCHA_KEY,
   },
 }
 

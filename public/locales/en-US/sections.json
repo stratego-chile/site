@@ -8,6 +8,36 @@
   "legal": {
     "title": "legal"
   },
+  "contact": {
+    "title": "contact",
+    "form": {
+      "title": "get in touch",
+      "subtitle": "we are here to help you",
+      "messages": {
+        "success": "your message has been sent successfully"
+      },
+      "fields": {
+        "name": {
+          "label": "name"
+        },
+        "surname": {
+          "label": "surname"
+        },
+        "phone": {
+          "label": "phone"
+        },
+        "business": {
+          "label": "business name"
+        },
+        "email": {
+          "label": "email"
+        },
+        "message": {
+          "label": "message"
+        }
+      }
+    }
+  },
   "security": {
     "title": "security",
     "brandDepartment": "information security",
@@ -17,9 +47,6 @@
       },
       "services": {
         "title": "services"
-      },
-      "contact": {
-        "title": "contact"
       }
     }
   }

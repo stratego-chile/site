@@ -2,6 +2,10 @@ declare interface ObjectConstructor {
   keys<T extends object>(o: T): Array<keyof T | string>
 }
 
+interface String {
+  surround(surroundChar?: string): string
+}
+
 interface Array<T> {
   /**
    * Groups the elements of the calling array according to the string values returned by a provided testing function.

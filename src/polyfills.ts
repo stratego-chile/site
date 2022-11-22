@@ -36,3 +36,19 @@ import 'core-js/features/array/group-to-map'
     }
   }
 })()
+
+// Add `surround` function to String prototype in isolated mode
+;(() => {
+  const surround = 'surround'
+  if (!Object.prototype.hasOwnProperty.call(String, surround)) {
+    Object.defineProperty(String, surround, {
+      enumerable: false,
+      configurable: false,
+      writable: false,
+      value: 'static',
+    })
+    String.prototype[surround] = function (surroundChar = ' ') {
+      return new Array<string>(2).fill(surroundChar).join(this.valueOf())
+    }
+  }
+})()

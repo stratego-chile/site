@@ -1,6 +1,7 @@
 {
   "baseTitle": "stratego",
   "betaMessage": "site em desenvolvimento",
+  "seeSourceCode": "ver código fonte",
   "errors": {
     "notFound": "recurso não encontrado"
   }

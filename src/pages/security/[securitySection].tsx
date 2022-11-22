@@ -7,7 +7,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { defaultLocale } from '@stratego/locale.middleware'
 import { useMarkdownTemplate } from '@stratego/hooks/useMarkdownTemplate'
 import { Col, Container, Row, Spinner } from 'react-bootstrap'
-import SecurityLayout from '@stratego/components/content/security/layout'
+import SecurityLayout from '@stratego/components/security-layout'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
@@ -18,10 +18,6 @@ const SecuritySection: NextPage<WithoutProps> = () => {
   const { securitySection } = query
 
   const { t, i18n } = useTranslation()
-
-  const docsSource = process.env.NODE_ENV === 'development'
-    ? 'https://localhost:3001'
-    : 'https://raw.githubusercontent.com'
 
   const sections = useMemo(
     () => ({
@@ -50,10 +46,12 @@ const SecuritySection: NextPage<WithoutProps> = () => {
     {
       templatePath: currentSection &&
         new URL(
-          (process.env.NODE_ENV === 'production'
-            ? '/stratego-chile/site-content/main/docs'
-            : '').concat(sections[currentSection].template),
-          docsSource),
+          '/stratego-chile/site-content/'
+          .concat(process.env.NODE_ENV === 'production' ? 'main' : 'dev')
+          .concat('/docs/')
+          .concat(sections[currentSection].template.replace(/\/*/i, '')),
+          process.env.PAGES_TEMPLATES_SOURCE,
+        ),
       layoutParsers: {
         img: (props) => (
           <div className="my-5" style={{ height: '24rem' }}>
@@ -84,8 +82,8 @@ const SecuritySection: NextPage<WithoutProps> = () => {
     [currentSection]
   )
 
-  return !isSectionDefined || (!content && checked)
-    ? <NotFoundError />
+  return !isSectionDefined
+    ? (checked ? <NotFoundError /> : null)
     : <SecurityLayout
         title={
           [
