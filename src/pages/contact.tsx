@@ -1,23 +1,21 @@
-import SecurityLayout from '@stratego/components/security-layout'
+import ContactForm from '@stratego/components/forms/contact-form'
+import Layout from '@stratego/components/utils/layout'
+import { capitalizeText } from '@stratego/helpers/text.helper'
 import { defaultLocale } from '@stratego/locale.middleware'
-import { type GetServerSideProps } from 'next'
+import { type GetServerSideProps, type NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Col, Container, Row } from 'react-bootstrap'
-import { capitalizeText } from '@stratego/helpers/text.helper'
-import ContactForm from '@stratego/components/forms/contact-form'
+import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 
-const Contact = () => {
-  const { t } = useTranslation('sections')
+const Contact: NextPage = () => {
+  const { t } = useTranslation()
 
   return (
-    <SecurityLayout
-      title={
-        [
-          capitalizeText(t('sections:contact.title'), 'simple'),
-          t('sections:security.brandDepartment')
-        ].join(' - ')
-      }
+    <Layout
+      className={LayoutStyles.autoFormat}
+      pageTitle={capitalizeText(t('sections:contact.title'), 'simple')}
+      showNavigationOptions
     >
       <Container className="d-flex flex-column gap-5 mb-5 py-5">
         <Row>
@@ -34,7 +32,7 @@ const Contact = () => {
           </Col>
         </Row>
       </Container>
-    </SecurityLayout>
+    </Layout>
   )
 }
 

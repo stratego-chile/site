@@ -1,10 +1,3 @@
-//#region language types
-declare module '*.md' {
-	const value: string
-	export default value
-}
-//#endregion
-
 //#region common types
 declare type TruthyPrimitive = string | number | true | symbol
 

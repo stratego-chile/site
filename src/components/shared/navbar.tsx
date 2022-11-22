@@ -2,9 +2,9 @@ import { getAssetPath } from '@stratego/helpers/static-resources.helper'
 import { type FC, Fragment } from 'react'
 import { Navbar, Container, Image, Nav } from 'react-bootstrap'
 import Link from 'next/link'
-import { capitalize } from '@stdlib/string'
 import { useTranslation } from 'next-i18next'
 import { capitalizeText } from '@stratego/helpers/text.helper'
+import LanguageSelector from './language-selector'
 
 type NavBarProps = {
   showNavigationOptions?: boolean
@@ -59,14 +59,17 @@ const NavBar: FC<NavBarProps> = ({
         {showNavigationOptions && (
           <Fragment>
             <Navbar.Collapse>
-              <Nav className="ms-auto">
+              <Nav className="ms-auto gap-2">
                 {links.map((link, key) => (
                   <Link key={key} href={link.href} passHref legacyBehavior>
                     <Nav.Link as="a">
-                      {capitalize(link.text.toLowerCase())}
+                      {capitalizeText(link.text.toLowerCase(), 'simple')}
                     </Nav.Link>
                   </Link>
                 ))}
+                <Nav.Item className="d-inline-flex align-items-center">
+                  <LanguageSelector theme={brandDepartment ? 'dark' : 'light'} />
+                </Nav.Item>
               </Nav>
             </Navbar.Collapse>
           </Fragment>

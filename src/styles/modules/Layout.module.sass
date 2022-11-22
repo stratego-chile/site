@@ -1,3 +1,10 @@
+@use 'sass:map'
+@use 'mixins'
+@use 'colors'
+
+@import ~bootstrap/scss/functions
+@import ~bootstrap/scss/variables
+
 .expandedContainer
   display: flex
   flex-direction: column
@@ -9,3 +16,30 @@
 .pageContent
   @extend .expandedContainer
   flex-grow: 1
+
+.autoFormat
+  @for $i from 1 through 6
+    h#{$i}
+      @if $i < 3
+        @include mixins.colored-text(colors.$custom-primary, colors.$custom-info)
+        font-weight: bolder
+      @else
+        @include mixins.colored-text(lighten(#1b1b1b, ($i * 1.5) + 15%))
+        @if $i < 4
+          font-weight: bold
+        @else if $i < 5
+          font-weight: normal
+        @else
+          font-weight: lighter
+  p
+    font-family: Poppins, sans-serif
+    font-weight: 300
+    font-size: 1.5rem
+    text-align: justify
+    word-spacing: 0.1rem
+    line-height: 1.8rem
+    margin: 1rem 0
+    @media (max-width: map.get($grid-breakpoints, 'lg'))
+      font-size: 1rem
+      line-height: 1.25rem
+      margin: 0.25rem 0

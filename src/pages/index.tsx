@@ -33,7 +33,7 @@ const Home: NextPage = () => {
           HomeStyles.title
         )}
       >
-        <h1 className={classNames('fw-bold', HomeStyles.titleText)}>
+        <h1 className={classNames('fw-bold custom', HomeStyles.titleText)}>
           {capitalizeText(t('common:betaMessage'), 'simple')}
           <span className={classNames(!visibleUnderscore && 'invisible')}>_</span>
         </h1>

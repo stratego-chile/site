@@ -1,7 +1,7 @@
+import { capitalizeText } from '@stratego/helpers/text.helper'
 import Link from 'next/link'
 import { type FC } from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
-import { capitalize } from '@stdlib/string'
 
 export type Links = Array<{
   href: string
@@ -25,7 +25,7 @@ const SubNavBar: FC<SubNavBarProps> = ({ links }) => {
           {links?.map((link, key) => (
             <Link key={key} href={link.href} passHref legacyBehavior>
               <Nav.Link as="a">
-                {capitalize(link.text.toLowerCase())}
+                {capitalizeText(link.text.toLowerCase(), 'simple')}
               </Nav.Link>
             </Link>
           ))}

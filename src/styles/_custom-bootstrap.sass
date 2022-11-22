@@ -43,6 +43,10 @@ $placements: (start: 'left', end: 'right', top: 'top', bottom: 'bottom')
 @import ~bootstrap/scss/bootstrap
 
 // # Rewrite some compiled bootstrap styles
+.dropdown
+  > &-menu
+    z-index: 1021
+
 // ## Remove the default colored shadow from the form inputs
 textarea,
 select,

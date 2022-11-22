@@ -1,13 +1,13 @@
 import { DEFAULT_TITLE } from './defaults.helpers'
-import { capitalize} from '@stdlib/string'
+import { capitalize } from '@stdlib/string'
 
 export const getPageTitle = (pageTitle: string, baseTitle = DEFAULT_TITLE) => pageTitle
   .trim()
-  .concat(surroundText('-'))
+  .concat('-'.surround())
   .concat(baseTitle)
 
-export const surroundText = (text: string, surroundChar = ' ') =>
-  new Array(2).fill(surroundChar).join(text)
+export const getCountryFlagEmoji = (iso: string) =>
+  iso.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 0x01F1A5))
 
 export const capitalizeText = (text: string, mode: 'simple' | 'full' = 'full') => mode === 'full'
   ? Array.from(text)

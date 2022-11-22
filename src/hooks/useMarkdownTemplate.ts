@@ -1,8 +1,9 @@
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote'
-import { createElement, DependencyList, Fragment, ReactNode, useEffect, useState } from 'react'
+import { createElement, DependencyList, Fragment, ReactNode, useEffect, useMemo, useState } from 'react'
 import { useRemoteContent } from '@stratego/hooks/useRemoteContent'
 import { useAsyncMemo } from '@stratego/hooks/useAsyncMemo'
+import { useTranslation } from 'next-i18next'
 
 interface LoadingState extends Boolean {}
 
@@ -15,11 +16,13 @@ export const useMarkdownTemplate = (
   },
   deps: DependencyList = []
 ): [Content, LoadingState] => {
-  const templatePath = config?.templatePath ?? 'about:blank'
+  const templatePath = useMemo(() => config?.templatePath || 'about:blank', [config?.templatePath])
+
+  const { i18n } = useTranslation()
 
   const [template] = useRemoteContent({
     path: templatePath,
-  }, deps)
+  }, [...deps, i18n])
 
   const [compiledContent, setContent] = useState<Content>(null)
 

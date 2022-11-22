@@ -1,0 +1,18 @@
+@use 'sass:map'
+
+@import ~bootstrap/scss/functions
+@import ~bootstrap/scss/variables
+
+@mixin colored-text($primary-color, $secondary-color: null)
+  font-family: Poppins, sans-serif
+  font-weight: bold
+  margin: 2rem 0 0.8rem 0
+  @if $secondary-color == null
+    color: $primary-color
+  @else
+    background: linear-gradient(to right, $primary-color, $secondary-color)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+  @media (max-width: map.get($grid-breakpoints, 'lg'))
+    line-height: 1.75rem
+    margin: 1.25rem 0 0.25rem 0
