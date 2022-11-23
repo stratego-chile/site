@@ -8,7 +8,7 @@ export const useLocale = (initMode = false) => {
   const { i18n } = useTranslation()
 
   useEffect(() => {
-    if (initMode) i18n.changeLanguage(locale);
+    if (initMode) i18n.changeLanguage(locale)
   }, [locale, i18n, initMode])
 
   return {

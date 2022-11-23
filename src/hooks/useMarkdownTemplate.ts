@@ -1,6 +1,14 @@
 import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote'
-import { createElement, DependencyList, Fragment, ReactNode, useEffect, useMemo, useState } from 'react'
+import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote'
+import {
+  createElement,
+  type DependencyList,
+  Fragment,
+  type ReactNode,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { useRemoteContent } from '@stratego/hooks/useRemoteContent'
 import { useAsyncMemo } from '@stratego/hooks/useAsyncMemo'
 import { useTranslation } from 'next-i18next'
@@ -11,18 +19,24 @@ type Content = ReactNode | null
 
 export const useMarkdownTemplate = (
   config?: {
-    templatePath?: string | URL,
+    templatePath?: string | URL
     layoutParsers?: MDXRemoteProps['components']
   },
   deps: DependencyList = []
 ): [Content, LoadingState] => {
-  const templatePath = useMemo(() => config?.templatePath || 'about:blank', [config?.templatePath])
+  const templatePath = useMemo(
+    () => config?.templatePath || 'about:blank',
+    [config?.templatePath]
+  )
 
   const { i18n } = useTranslation()
 
-  const [template] = useRemoteContent({
-    path: templatePath,
-  }, [...deps, i18n])
+  const [template] = useRemoteContent(
+    {
+      path: templatePath,
+    },
+    [...deps, i18n]
+  )
 
   const [compiledContent, setContent] = useState<Content>(null)
 
@@ -35,20 +49,24 @@ export const useMarkdownTemplate = (
   }, [template])
 
   const { data: compiledTemplate, isLoading } = useAsyncMemo(async () => {
-    return content && await serialize(content)
+    return content && (await serialize(content))
   }, [content])
 
   useEffect(() => {
     if (compiledTemplate) {
-      setContent(createElement(Fragment, {}, createElement(MDXRemote, {
-        ...compiledTemplate,
-        components: { ...config?.layoutParsers }
-      })))
+      setContent(
+        createElement(
+          Fragment,
+          {},
+          createElement(MDXRemote, {
+            ...compiledTemplate,
+            components: { ...config?.layoutParsers },
+          })
+        )
+      )
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [compiledTemplate])
 
-  return [
-    compiledContent,
-    !isLoading,
-  ]
+  return [compiledContent, !isLoading]
 }

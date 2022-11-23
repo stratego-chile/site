@@ -1,5 +1,5 @@
 import Layout from '@stratego/components/utils/layout'
-import { GetServerSideProps, NextPage } from 'next'
+import { type GetServerSideProps, type NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import classNames from 'classnames'
 import HomeStyles from '@stratego/styles/modules/Home.module.sass'
@@ -26,25 +26,35 @@ const Home: NextPage = () => {
       pageTitle="Home"
       showNavigationOptions
       className={classNames(HomeStyles.wrapper, 'd-flex flex-column')}
-      style={{ backgroundImage: `url('${getAssetPath('under-construction.gif')}')` }}
+      style={{
+        backgroundImage: `url('${getAssetPath('under-construction.gif')}')`,
+      }}
     >
-      <div className={classNames(
+      <div
+        className={classNames(
           'd-inline-flex flex-grow-1 align-items-center justify-content-center',
           HomeStyles.title
         )}
       >
         <h1 className={classNames('fw-bold custom', HomeStyles.titleText)}>
           {capitalizeText(t('common:betaMessage'), 'simple')}
-          <span className={classNames(!visibleUnderscore && 'invisible')}>_</span>
+          <span className={classNames(!visibleUnderscore && 'invisible')}>
+            _
+          </span>
         </h1>
       </div>
     </Layout>
   )
 }
 
-export const getServerSideProps: GetServerSideProps<WithoutProps> = async ({ locale }) => ({
+export const getServerSideProps: GetServerSideProps<WithoutProps> = async ({
+  locale,
+}) => ({
   props: {
-    ...await serverSideTranslations(locale ?? defaultLocale, ['common', 'sections']),
+    ...(await serverSideTranslations(locale ?? defaultLocale, [
+      'common',
+      'sections',
+    ])),
   },
 })
 

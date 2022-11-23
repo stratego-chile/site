@@ -9,7 +9,10 @@ type SecurityLayoutProps = {
   title?: string
 }
 
-const SecurityLayout: FC<PropsWithChildren<SecurityLayoutProps>> = ({ title, children }) => {
+const SecurityLayout: FC<PropsWithChildren<SecurityLayoutProps>> = ({
+  title,
+  children,
+}) => {
   const { t } = useTranslation(['sections'])
 
   return (
@@ -19,20 +22,21 @@ const SecurityLayout: FC<PropsWithChildren<SecurityLayoutProps>> = ({ title, chi
       subLinks={[
         {
           href: '/security/overview',
-          text: t('sections:security.pages.overview.title')
+          text: t('sections:security.pages.overview.title'),
         },
         {
           href: '/security/services',
-          text: t('sections:security.pages.services.title')
+          text: t('sections:security.pages.services.title'),
         },
         {
           href: '/security/contact',
-          text: t('sections:contact.title')
-        }
+          text: t('sections:contact.title'),
+        },
       ]}
       showNavigationOptions
       className={classNames(
-        SecurityLayoutStyles.markdownContainer, LayoutStyles.autoFormat
+        SecurityLayoutStyles.markdownContainer,
+        LayoutStyles.autoFormat
       )}
     >
       {children}

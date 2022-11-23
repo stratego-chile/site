@@ -1,5 +1,5 @@
-import { type DependencyList } from "react"
-import { useAsyncMemo } from "./useAsyncMemo"
+import { type DependencyList } from 'react'
+import { useAsyncMemo } from '@stratego/hooks/useAsyncMemo'
 
 interface FinishedFetchState extends Boolean {}
 
@@ -11,10 +11,11 @@ export const useRemoteContent = (
   config: RemoteContentHookConfig,
   deps: DependencyList = []
 ): [ReadableStream<Uint8Array> | null | undefined, FinishedFetchState] => {
-  const { data: result, isLoading } = useAsyncMemo(
-    async () => await fetch(config.path, {
+  const { data: result, isLoading } = useAsyncMemo(async () => {
+    const response = await fetch(config.path, {
       mode: 'cors',
-    }),
-    deps)
+    })
+    return response
+  }, deps)
   return [result?.body, isLoading]
 }
