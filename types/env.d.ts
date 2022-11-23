@@ -6,6 +6,11 @@ declare global {
       // Built-in
       NODE_ENV: 'development' | 'production' | 'test'
 
+      // App content
+      DEFAULT_PAGE_TITLE: string
+      DEFAULT_PAGE_DESCRIPTION: string
+      DEFAULT_ASSETS_SOURCE: string
+
       // Sources base links
       PAGES_TEMPLATES_SOURCE?: string
 
