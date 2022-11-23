@@ -71,6 +71,11 @@ const Footer: NextPage<WithoutProps> = () => {
                   {capitalizeText(t('sections:privacyPolicy.title'), 'simple')}
                 </Nav.Link>
               </Link>
+              <Link href="/cookies" passHref legacyBehavior>
+                <Nav.Link as="a">
+                  {capitalizeText(t('sections:cookies.title'), 'simple')}
+                </Nav.Link>
+              </Link>
               <Link href="/legal" passHref legacyBehavior>
                 <Nav.Link as="a">
                   {capitalizeText(t('sections:legal.title'), 'simple')}

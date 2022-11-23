@@ -5,5 +5,13 @@
   "errors": {
     "notFound": "resource not found",
     "submit": "unexpected error when trying to send your information."
+  },
+  "cookies": {
+    "disclaimer": {
+      "text": "this site uses cookies to allow you to use some features and improve your experience. By continuing to browse the site, you are agreeing to our use of cookies.",
+      "buttons": {
+        "accept": "accept"
+      }
+    }
   }
 }
