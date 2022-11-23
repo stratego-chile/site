@@ -1,10 +1,21 @@
-import dialCodes from '@stratego/data/dialCodes'
-import { capitalizeText, getCountryFlagEmoji } from '@stratego/helpers/text.helper'
+import dialCodes, { DialCodeSpec } from '@stratego/data/dialCodes'
+import {
+  capitalizeText,
+  getCountryFlagEmoji,
+} from '@stratego/helpers/text.helper'
 import { type FormikHelpers, useFormik } from 'formik'
 import { getCountryCode } from 'language-flag-colors'
 import { useTranslation } from 'next-i18next'
 import { useCallback, useEffect, useId, useMemo, useState } from 'react'
-import { Row, Form, Col, InputGroup, Button, Spinner, Alert } from 'react-bootstrap'
+import {
+  Row,
+  Form,
+  Col,
+  InputGroup,
+  Button,
+  Spinner,
+  Alert,
+} from 'react-bootstrap'
 import emojiSupport from 'detect-emoji-support'
 import requester from 'axios'
 import * as yup from 'yup'
@@ -23,10 +34,10 @@ type ContactData = {
 type ContactSubmitResponse =
   | { status: 'OK' }
   | {
-    status: 'ERROR'
-    message: string
-    trace?: any
-  }
+      status: 'ERROR'
+      message: string
+      trace?: any
+    }
 
 const MAX_MESSAGE_LENGTH = 200
 
@@ -56,20 +67,24 @@ const ContactForm = () => {
     name: yup.string().required('validation:required'),
     surname: yup.string().required('validation:required'),
     phonePrefix: yup.string().required('validation:required'),
-    phoneNumber: yup.string().matches(
-      /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-      'validation:invalidPhoneNumber'
-    ).required('validation:required'),
+    phoneNumber: yup
+      .string()
+      .matches(
+        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+        'validation:invalidPhoneNumber'
+      )
+      .required('validation:required'),
     businessName: yup.string().required('validation:required'),
-    email: yup.string().email('validation:email').required('validation:required'),
+    email: yup
+      .string()
+      .email('validation:email')
+      .required('validation:required'),
     message: yup.string(),
   })
 
   const handleSubmission = useCallback(
     (values: ContactData, helpers: FormikHelpers<ContactData>) => {
-      if (!executeRecaptcha) {
-        return
-      }
+      if (!executeRecaptcha) return
 
       executeRecaptcha('enquiryFormSubmit').then((captchaToken) => {
         helpers.setSubmitting(true)
@@ -93,20 +108,22 @@ const ContactForm = () => {
               'Content-Type': 'application/json',
               'Accept-Language': i18n.language,
               Authorization: captchaToken,
-            }
+            },
           })
           .then(({ data }) => {
-            helpers.resetForm()
             setSubmitMessage({
               type: data.status === 'OK' ? 'success' : 'error',
-              text: data.status === 'OK' ? 'sections:contact.form.messages.success' : 'error:submit',
+              text:
+                data.status === 'OK'
+                  ? 'sections:contact.form.messages.success'
+                  : 'common:errors.submit',
             })
           })
           .catch((error) => {
             console.warn(error)
             setSubmitMessage({
               type: 'error',
-              text: 'error:submit',
+              text: 'common:errors.submit',
             })
           })
           .finally(() => {
@@ -114,7 +131,8 @@ const ContactForm = () => {
           })
       })
     },
-  [countryPhonePrefixes, i18n.language, executeRecaptcha])
+    [countryPhonePrefixes, i18n.language, executeRecaptcha]
+  )
 
   const {
     values,
@@ -124,6 +142,8 @@ const ContactForm = () => {
     touched,
     handleChange,
     handleSubmit,
+    initialValues,
+    setTouched,
   } = useFormik<ContactData>({
     initialValues: {
       name: '',
@@ -135,20 +155,43 @@ const ContactForm = () => {
       message: '',
     },
     validationSchema,
-    onSubmit: handleSubmission
+    onSubmit: handleSubmission,
   })
 
-  useEffect(() => {
-    const $dialCodeCountryCode = countryPhonePrefixes.find(
-      ({ iso2 }) => getCountryCode(i18n.language)?.toLowerCase() === iso2.toLowerCase()
+  const getLocaleCountryCode = (
+    prefixes: Array<DialCodeSpec>,
+    locale: string
+  ) => {
+    return prefixes.find(
+      ({ iso2 }) => getCountryCode(locale)?.toLowerCase() === iso2.toLowerCase()
     )?.iso2
-    if ($dialCodeCountryCode) {
-      setValues(($values) => ({
-        ...$values,
-        phonePrefix: $dialCodeCountryCode,
-      }))
+  }
+
+  useEffect(() => {
+    setValues((currentValues) => ({
+      ...currentValues,
+      phonePrefix:
+        getLocaleCountryCode(countryPhonePrefixes, i18n.language) || '',
+    }))
+  }, [countryPhonePrefixes, i18n, setValues])
+
+  useEffect(() => {
+    if (submitMessage?.type === 'success') {
+      setValues({
+        ...initialValues,
+        phonePrefix:
+          getLocaleCountryCode(countryPhonePrefixes, i18n.language) || '',
+      })
+      setTouched({}, false)
     }
-  }, [countryPhonePrefixes, i18n.language, setValues])
+  }, [
+    countryPhonePrefixes,
+    i18n,
+    initialValues,
+    submitMessage,
+    setValues,
+    setTouched,
+  ])
 
   useEffect(() => {
     setEmojisSupport(emojiSupport())
@@ -165,7 +208,10 @@ const ContactForm = () => {
       <Row className="gy-4">
         <Form.Group as={Col} xs={12} lg={6} controlId={nameId}>
           <Form.Label>
-            {capitalizeText(t('sections:contact.form.fields.name.label'), 'simple')}
+            {capitalizeText(
+              t('sections:contact.form.fields.name.label'),
+              'simple'
+            )}
           </Form.Label>
           <Form.Control
             type="text"
@@ -183,7 +229,10 @@ const ContactForm = () => {
         </Form.Group>
         <Form.Group as={Col} xs={12} lg={6} controlId={surnameId}>
           <Form.Label>
-            {capitalizeText(t('sections:contact.form.fields.surname.label'), 'simple')}
+            {capitalizeText(
+              t('sections:contact.form.fields.surname.label'),
+              'simple'
+            )}
           </Form.Label>
           <Form.Control
             type="text"
@@ -201,25 +250,28 @@ const ContactForm = () => {
         </Form.Group>
         <Col xs={12} lg>
           <Form.Label htmlFor={phoneNumberId}>
-            {capitalizeText(t('sections:contact.form.fields.phone.label'), 'simple')}
+            {capitalizeText(
+              t('sections:contact.form.fields.phone.label'),
+              'simple'
+            )}
           </Form.Label>
           <InputGroup>
             <Form.Select
               id={phonePrefixId}
-              aria-label={
-                capitalizeText(t('sections:contact.form.fields.phone.label'), 'simple')
-              }
+              aria-label={capitalizeText(
+                t('sections:contact.form.fields.phone.label'),
+                'simple'
+              )}
               name="phonePrefix"
               onChange={handleChange}
               value={values.phonePrefix}
               disabled={isSubmitting}
             >
-              {countryPhonePrefixes
-                .map(({ dialCode, name, iso2 }, key) => (
-                  <option value={iso2} key={key}>
-                    {`${getCountryFlagEmoji(iso2)} ${name} +${dialCode}`}
-                  </option>
-                ))}
+              {countryPhonePrefixes.map(({ dialCode, name, iso2 }, key) => (
+                <option value={iso2} key={key}>
+                  {`${getCountryFlagEmoji(iso2)} ${name} +${dialCode}`}
+                </option>
+              ))}
             </Form.Select>
             <Form.Control
               id={phoneNumberId}
@@ -234,13 +286,17 @@ const ContactForm = () => {
           </InputGroup>
           {touched.phoneNumber && !!errors.phoneNumber && (
             <Form.Control.Feedback type="invalid">
-              {errors.phoneNumber && capitalizeText(t(errors.phoneNumber), 'simple')}
+              {errors.phoneNumber &&
+                capitalizeText(t(errors.phoneNumber), 'simple')}
             </Form.Control.Feedback>
           )}
         </Col>
         <Form.Group as={Col} xs={12} lg controlId={businessNameId}>
           <Form.Label>
-            {capitalizeText(t('sections:contact.form.fields.business.label'), 'simple')}
+            {capitalizeText(
+              t('sections:contact.form.fields.business.label'),
+              'simple'
+            )}
           </Form.Label>
           <Form.Control
             type="text"
@@ -252,13 +308,17 @@ const ContactForm = () => {
           />
           {touched.businessName && !!errors.businessName && (
             <Form.Control.Feedback type="invalid">
-              {errors.businessName && capitalizeText(t(errors.businessName), 'simple')}
+              {errors.businessName &&
+                capitalizeText(t(errors.businessName), 'simple')}
             </Form.Control.Feedback>
           )}
         </Form.Group>
         <Form.Group as={Col} xs={12} controlId={emailId}>
           <Form.Label>
-            {capitalizeText(t('sections:contact.form.fields.email.label'), 'simple')}
+            {capitalizeText(
+              t('sections:contact.form.fields.email.label'),
+              'simple'
+            )}
           </Form.Label>
           <Form.Control
             name="email"
@@ -276,8 +336,10 @@ const ContactForm = () => {
         </Form.Group>
         <Form.Group as={Col} xs={12} controlId={messageId}>
           <Form.Label>
-            {capitalizeText(t('sections:contact.form.fields.message.label'), 'simple')}
-            {' '}
+            {capitalizeText(
+              t('sections:contact.form.fields.message.label'),
+              'simple'
+            )}{' '}
             <span className="text-muted">
               ({capitalizeText(t('validation:optional'), 'simple')})
             </span>
@@ -320,7 +382,11 @@ const ContactForm = () => {
       <Row className="d-flex justify-content-end mt-4">
         <Col xs={12} lg="auto">
           <Button type="submit" className="text-light" disabled={isSubmitting}>
-            {isSubmitting ? <Spinner size="sm" /> : 'Send'}
+            {isSubmitting ? (
+              <Spinner size="sm" />
+            ) : (
+              capitalizeText(t('sections:contact.form.buttons.submit'))
+            )}
           </Button>
         </Col>
       </Row>
