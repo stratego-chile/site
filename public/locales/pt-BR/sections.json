@@ -35,6 +35,9 @@
         "message": {
           "label": "mensagem"
         }
+      },
+      "buttons": {
+        "submit": "enviar"
       }
     }
   },

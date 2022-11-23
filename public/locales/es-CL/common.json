@@ -3,6 +3,7 @@
   "betaMessage": "sitio en construcción",
   "seeSourceCode": "ver código fuente",
   "errors": {
-    "notFound": "recurso no encontrado"
+    "notFound": "recurso no encontrado",
+    "submit": "error inesperado al intentar enviar su información."
   }
 }
