@@ -13,7 +13,7 @@ specifiers:
   '@types/uniqid': ^5.3.2
   '@types/uuid': ^8.3.4
   '@webdiscus/pug-loader': ^2.9.4
-  axios: ^1.1.3
+  axios: ^1.2.0
   bootstrap: ^5.2.3
   buffer: ^6.0.3
   classnames: ^2.3.2
@@ -21,7 +21,7 @@ specifiers:
   core-js: ^3.26.1
   detect-emoji-support: ^0.1.7
   devcert: ^1.2.2
-  enhanced-resolve: ^5.10.0
+  enhanced-resolve: ^5.11.0
   eslint: 8.26.0
   eslint-config-next: 13.0.2
   formik: ^2.2.9
@@ -54,13 +54,13 @@ dependencies:
   '@fortawesome/react-fontawesome': 0.2.0_z27bm67dtmuyyvss23ckjdrcuy
   '@popperjs/core': 2.11.6
   '@stdlib/string': 0.0.14
-  axios: 1.1.3
+  axios: 1.2.0
   bootstrap: 5.2.3_@popperjs+core@2.11.6
   buffer: 6.0.3
   classnames: 2.3.2
   core-js: 3.26.1
   detect-emoji-support: 0.1.7
-  enhanced-resolve: 5.10.0
+  enhanced-resolve: 5.11.0
   formik: 2.2.9_react@18.2.0
   i18next: 22.0.6
   language-flag-colors: 2.1.2
@@ -87,11 +87,11 @@ devDependencies:
   '@types/react': 18.0.25
   '@types/uniqid': 5.3.2
   '@types/uuid': 8.3.4
-  '@webdiscus/pug-loader': 2.9.4_ozsefjb2jyjitknxqdfgbsnpci
+  '@webdiscus/pug-loader': 2.9.4_mlaqtpnc2rvdhb24at5boa5yxy
   eslint: 8.26.0
   eslint-config-next: 13.0.2_wyqvi574yv7oiwfeinomdzmc3m
   markdown-it: 13.0.1
-  pug-plugin: 4.5.0_ozsefjb2jyjitknxqdfgbsnpci
+  pug-plugin: 4.5.0_mlaqtpnc2rvdhb24at5boa5yxy
   raw-loader: 4.0.2_webpack@5.75.0
   sass: 1.56.1
   sass-loader: 13.2.0_sass@1.56.1+webpack@5.75.0
@@ -1239,7 +1239,7 @@ packages:
       '@xtuc/long': 4.2.2
     dev: true
 
-  /@webdiscus/pug-loader/2.9.4_ozsefjb2jyjitknxqdfgbsnpci:
+  /@webdiscus/pug-loader/2.9.4_mlaqtpnc2rvdhb24at5boa5yxy:
     resolution: {integrity: sha512-XxTLo+bqMqOG4bE4d6t4cSmM8m7DplZ2IXCQ9rADdGdy+0mICB7Q/8DFTGihprNGQSTRiqTaeyohqwCD6klRhA==}
     engines: {node: '>=12.13'}
     peerDependencies:
@@ -1255,7 +1255,7 @@ packages:
         optional: true
     dependencies:
       ansis: 1.5.5
-      enhanced-resolve: 5.10.0
+      enhanced-resolve: 5.11.0
       markdown-it: 13.0.1
       parse5: 7.1.2
       pug: 3.0.2
@@ -1423,8 +1423,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /axios/1.1.3:
-    resolution: {integrity: sha512-00tXVRwKx/FZr/IDVFt4C+f9FYairX517WoGCL6dpOntqLkZofjhu43F/Xl44UOpqa+9sLFDrG/XAnFsUYgkDA==}
+  /axios/1.2.0:
+    resolution: {integrity: sha512-zT7wZyNYu3N5Bu0wuZ6QccIf93Qk1eV8LOewxgjOZFd2DenOs98cJ7+Y6703d0wkaXGY6/nZd4EweJaHz9uzQw==}
     dependencies:
       follow-redirects: 1.15.2
       form-data: 4.0.0
@@ -1849,8 +1849,8 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
-  /enhanced-resolve/5.10.0:
-    resolution: {integrity: sha512-T0yTFjdpldGY8PmuXXR0PyQ1ufZpEGiHVrp7zHKB7jdR4qlmZHhONVM5AQOAWXuF/w3dnHbEQVrNptJgt7F+cQ==}
+  /enhanced-resolve/5.11.0:
+    resolution: {integrity: sha512-0Gcraf7gAJSQoPg+bTSXNhuzAYtXqLc4C011vb8S3B8XUSEkGYNBk20c68X9291VF4vvsCD8SPkr6Mza+DwU+g==}
     engines: {node: '>=10.13.0'}
     dependencies:
       graceful-fs: 4.2.10
@@ -3835,13 +3835,13 @@ packages:
       pug-error: 2.0.0
       token-stream: 1.0.0
 
-  /pug-plugin/4.5.0_ozsefjb2jyjitknxqdfgbsnpci:
+  /pug-plugin/4.5.0_mlaqtpnc2rvdhb24at5boa5yxy:
     resolution: {integrity: sha512-5jarD5zqj3LdCRdijl4KMJNHFCOjli1abwp8AD0TKbP064j24uIn40P5StK1uBsULUn6hgAfwlO6r6OEy4eHgg==}
     engines: {node: '>=14.18.0'}
     peerDependencies:
       webpack: '>=5.32.0'
     dependencies:
-      '@webdiscus/pug-loader': 2.9.4_ozsefjb2jyjitknxqdfgbsnpci
+      '@webdiscus/pug-loader': 2.9.4_mlaqtpnc2rvdhb24at5boa5yxy
       ansis: 1.5.5
       js-beautify: 1.14.7
       json5: 2.2.1
@@ -4743,7 +4743,7 @@ packages:
       acorn-import-assertions: 1.8.0_acorn@8.8.1
       browserslist: 4.21.4
       chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.10.0
+      enhanced-resolve: 5.11.0
       es-module-lexer: 0.9.3
       eslint-scope: 5.1.1
       events: 3.3.0
