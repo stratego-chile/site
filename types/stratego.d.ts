@@ -6,8 +6,8 @@ declare type ResponseBody<T extends Primitive = unknown> = {
   }
 } & T extends NonNullable<T>
   ? {
-    result: T
-  }
+      result: T
+    }
   : {
-    result?: never
-  }
+      result?: never
+    }

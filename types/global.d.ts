@@ -7,7 +7,9 @@ declare type Primitive = TruthyPrimitive | FalsyPrimitive
 //#endregion
 
 //#region generic types
-declare type UnpackedArray<ExpectedArrayItem> = ExpectedArrayItem extends Array<infer ExpectedArrayItemType>
+declare type UnpackedArray<ExpectedArrayItem> = ExpectedArrayItem extends Array<
+  infer ExpectedArrayItemType
+>
   ? ExpectedArrayItemType
   : ExpectedArrayItem
 
