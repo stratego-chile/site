@@ -12,17 +12,17 @@ const Contact = () => {
 
   return (
     <SecurityLayout
-      title={
-        [
-          capitalizeText(t('sections:contact.title'), 'simple'),
-          t('sections:security.brandDepartment')
-        ].join(' - ')
-      }
+      title={[
+        capitalizeText(t('sections:contact.title'), 'simple'),
+        t('sections:security.brandDepartment'),
+      ].join(' - ')}
     >
       <Container className="d-flex flex-column gap-5 mb-5 py-5">
         <Row>
           <Col>
-            <h1>{capitalizeText(t('sections:contact.form.title'), 'simple')}</h1>
+            <h1>
+              {capitalizeText(t('sections:contact.form.title'), 'simple')}
+            </h1>
             <h6 className="fw-normal">
               {capitalizeText(t('sections:contact.form.subtitle'), 'simple')}
             </h6>
@@ -38,9 +38,15 @@ const Contact = () => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<WithoutProps> = async ({ locale }) => ({
+export const getServerSideProps: GetServerSideProps<WithoutProps> = async ({
+  locale,
+}) => ({
   props: {
-    ...await serverSideTranslations(locale ?? defaultLocale, ['common', 'sections', 'validation']),
+    ...(await serverSideTranslations(locale ?? defaultLocale, [
+      'common',
+      'sections',
+      'validation',
+    ])),
   },
 })
 

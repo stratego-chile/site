@@ -1,3 +1,3 @@
-export const DEFAULT_TITLE = 'Stratego'
+export const DEFAULT_TITLE = process.env.DEFAULT_PAGE_TITLE
 
-export const DEFAULT_PAGE_DESCRIPTION = 'Welcome to Stratego Software Solutions'
+export const DEFAULT_PAGE_DESCRIPTION = process.env.DEFAULT_PAGE_DESCRIPTION

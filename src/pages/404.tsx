@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import { NextPage } from 'next'
+import { type NextPage } from 'next'
 
 const NotFoundPage: NextPage<WithoutProps> = () => {
   const router = useRouter()

@@ -52,6 +52,9 @@ const nextConfig = {
   },
   // Add environment variables to the client
   env: {
+    DEFAULT_PAGE_TITLE: process.env.DEFAULT_PAGE_TITLE,
+    DEFAULT_PAGE_DESCRIPTION: process.env.DEFAULT_PAGE_DESCRIPTION,
+    DEFAULT_ASSETS_SOURCE: process.env.DEFAULT_ASSETS_SOURCE,
     PAGES_TEMPLATES_SOURCE: process.env.PAGES_TEMPLATES_SOURCE,
     CAPTCHA_KEY: process.env.CAPTCHA_KEY,
   },

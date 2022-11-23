@@ -23,24 +23,25 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ theme = 'light' }) => {
   const handleLanguageSelection = useCallback(
     (event: React.MouseEvent<HTMLElement>, lang: string) => {
       if (event.isTrusted) {
-        if (lang !== currentLocale && i18n) changeLocale(lang).then(() => {
-          router.push({ pathname, query }, asPath, { locale: lang });
-        })
+        if (lang !== currentLocale && i18n)
+          changeLocale(lang).then(() => {
+            router.push({ pathname, query }, asPath, { locale: lang })
+          })
       }
     },
-  [currentLocale, changeLocale, router, pathname, query, asPath, i18n])
+    [currentLocale, changeLocale, router, pathname, query, asPath, i18n]
+  )
 
   const getLanguageReferenceContent = (options?: {
     lang: string
     mode?: 'label' | 'selector'
-  }) => (
+  }) =>
     (($lang) => (
       <Fragment>
         <span>{$lang.flag.emoji}</span>
         {options?.mode === 'selector' && <span>{$lang.nativeName}</span>}
       </Fragment>
     ))(getLanguage(options?.lang ?? currentLocale)!)
-  )
 
   return (
     <DropdownButton
@@ -57,7 +58,7 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ theme = 'light' }) => {
           className="d-flex justify-content-between gap-3"
           onClick={(event) => handleLanguageSelection(event, lang)}
         >
-          {getLanguageReferenceContent({ lang, mode: 'selector'})}
+          {getLanguageReferenceContent({ lang, mode: 'selector' })}
         </Dropdown.Item>
       ))}
     </DropdownButton>

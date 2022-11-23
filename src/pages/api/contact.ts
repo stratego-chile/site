@@ -15,46 +15,53 @@ const checkCaptchaToken = async (token: string) => {
   destinationURL.searchParams.append('secret', process.env.CAPTCHA_SECRET)
   destinationURL.searchParams.append('response', token)
 
-  const response = await axios.post<{
+  const { data } = await axios.post<{
     success: boolean
     score: number
     action: string
     challenge_ts: string
     hostname: string
     'error-codes'?: string[]
-  }>(destinationURL.toString(), {
+  }>(destinationURL.toString(), undefined, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
+      Accept: 'application/json; charset=utf-8',
     },
   })
 
-  return response.data.success && response.data.score > 0.5
+  return data.success && data.score > 0.5
 }
 
 const handler = async (request: NextApiRequest, response: NextApiResponse) => {
   const captchaToken = request.headers.authorization
 
   if (!ALLOWED_METHODS.includes(request.method!)) {
-    response.status(405).json({ status: 'ERROR', message: 'Method not allowed' })
+    response
+      .status(405)
+      .json({ status: 'ERROR', message: 'Method not allowed' })
   } else {
     if (request.method === 'OPTIONS') {
       response.status(200).end()
     } else if (!captchaToken || !(await checkCaptchaToken(captchaToken))) {
-      response.status(403).json({ status: 'ERROR', message: 'Captcha token invalid' })
+      response
+        .status(403)
+        .json({ status: 'ERROR', message: 'Captcha token invalid' })
     } else {
       try {
         const locale = request.headers['accept-language'] || i18n.defaultLocale
 
-        const translation = (await (async () => {
-          switch (locale) {
-            case 'en-US':
-              return await import('@stratego/mail/i18n/en-US.json')
-            case 'pt-BR':
-              return await import('@stratego/mail/i18n/pt-BR.json')
-            default:
-              return await import('@stratego/mail/i18n/es-CL.json')
-          }
-        })()).default
+        const translation = (
+          await (async () => {
+            switch (locale) {
+              case 'en-US':
+                return await import('@stratego/mail/i18n/en-US.json')
+              case 'pt-BR':
+                return await import('@stratego/mail/i18n/pt-BR.json')
+              default:
+                return await import('@stratego/mail/i18n/es-CL.json')
+            }
+          })()
+        ).default
 
         const {
           businessName,
@@ -85,10 +92,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
               format(translation.email, email),
               format(translation.phoneNumber, phonePrefix, phoneNumber),
             ],
-            content: [
-              translation.message,
-              message,
-            ],
+            content: [translation.message, message],
             footer: translation.footer,
           },
         }

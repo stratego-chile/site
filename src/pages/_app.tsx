@@ -6,7 +6,10 @@ import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 import Head from 'next/head'
 import SSRProvider from 'react-bootstrap/SSRProvider'
 
-const StrategoLandingApp = ({ Component, pageProps }: AppProps<WithoutProps>) => {
+const StrategoLandingApp = ({
+  Component,
+  pageProps,
+}: AppProps<WithoutProps>) => {
   return (
     <SSRProvider>
       <GoogleReCaptchaProvider

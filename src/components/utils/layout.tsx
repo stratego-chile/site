@@ -1,6 +1,6 @@
 import {
   type FC,
-  useEffect, 
+  useEffect,
   useState,
   type PropsWithChildren,
   type DetailedHTMLProps,
@@ -8,7 +8,10 @@ import {
 } from 'react'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import { Col, Container, Row } from 'react-bootstrap'
-import { DEFAULT_PAGE_DESCRIPTION, DEFAULT_TITLE } from '@stratego/helpers/defaults.helpers'
+import {
+  DEFAULT_PAGE_DESCRIPTION,
+  DEFAULT_TITLE,
+} from '@stratego/helpers/defaults.helpers'
 import NavBar from '@stratego/components/shared/navbar'
 import Footer from '@stratego/components/shared/footer'
 import { getPageTitle } from '@stratego/helpers/text.helper'
@@ -69,12 +72,12 @@ const Layout: FC<PropsWithChildren<LayoutProps>> = ({
         {defaultGrid ? (
           <Container>
             <Row>
-              <Col>
-                {children}
-              </Col>
+              <Col>{children}</Col>
             </Row>
           </Container>
-        ) : children}
+        ) : (
+          children
+        )}
       </div>
       <Footer />
     </div>

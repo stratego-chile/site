@@ -20,7 +20,7 @@ type NavLinkSpec = {
 const NavBar: FC<NavBarProps> = ({
   showNavigationOptions,
   theme = 'light',
-  brandDepartment
+  brandDepartment,
 }) => {
   const { t } = useTranslation(['common', 'sections'])
 
@@ -31,18 +31,14 @@ const NavBar: FC<NavBarProps> = ({
     },
     {
       href: '/security',
-      text: t('sections:security.title')
-    }
+      text: t('sections:security.title'),
+    },
   ]
 
   return (
-    <Navbar
-      variant={theme}
-      bg={theme}
-      expand="lg"
-    >
+    <Navbar variant={theme} bg={theme} expand="lg">
       <Container className="px-lg-1">
-        <Navbar.Brand className='d-grid d-lg-flex mx-auto fw-bold py-3 px-2 gap-3'>
+        <Navbar.Brand className="d-grid d-lg-flex mx-auto fw-bold py-3 px-2 gap-3">
           <Image
             className="d-block mx-auto"
             src={getAssetPath('logo-colored.svg')}
@@ -68,7 +64,9 @@ const NavBar: FC<NavBarProps> = ({
                   </Link>
                 ))}
                 <Nav.Item className="d-inline-flex align-items-center">
-                  <LanguageSelector theme={brandDepartment ? 'dark' : 'light'} />
+                  <LanguageSelector
+                    theme={brandDepartment ? 'dark' : 'light'}
+                  />
                 </Nav.Item>
               </Nav>
             </Navbar.Collapse>

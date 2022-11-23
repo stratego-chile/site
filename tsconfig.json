@@ -5,7 +5,11 @@
       "@stratego/*": ["src/*"]
     },
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,6 +27,11 @@
       "types/modules",
     ],
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types/**.d.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "types/**.d.ts"
+  ],
   "exclude": ["node_modules"]
 }

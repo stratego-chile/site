@@ -22,35 +22,45 @@ const SecuritySection: NextPage<WithoutProps> = () => {
   const sections = useMemo(
     () => ({
       overview: {
-        title: capitalizeText(t('sections:security.pages.overview.title'), 'simple'),
+        title: capitalizeText(
+          t('sections:security.pages.overview.title'),
+          'simple'
+        ),
         template: `/${i18n.language}/security-overview.mdx`,
       },
       services: {
-        title: capitalizeText(t('sections:security.pages.services.title'), 'simple'),
+        title: capitalizeText(
+          t('sections:security.pages.services.title'),
+          'simple'
+        ),
         template: `/${i18n.language}/security-services.mdx`,
       },
-    }), [i18n, t]
+    }),
+    [i18n, t]
   )
 
   const [isSectionDefined, currentSection] = useMemo(
-    () => (
-      (found) => [
+    () =>
+      ((found) => [
         found,
-        found ? securitySection as keyof typeof sections : undefined,
-      ])
-      (typeof securitySection === 'string' && Object.keys(sections).includes(securitySection)),
+        found ? (securitySection as keyof typeof sections) : undefined,
+      ])(
+        typeof securitySection === 'string' &&
+          Object.keys(sections).includes(securitySection)
+      ),
     [securitySection, sections]
   )
 
   const [content, checked] = useMarkdownTemplate(
     {
-      templatePath: currentSection &&
+      templatePath:
+        currentSection &&
         new URL(
           '/stratego-chile/site-content/'
-          .concat(process.env.NODE_ENV === 'production' ? 'main' : 'dev')
-          .concat('/docs/')
-          .concat(sections[currentSection].template.replace(/\/*/i, '')),
-          process.env.PAGES_TEMPLATES_SOURCE,
+            .concat(process.env.NODE_ENV === 'production' ? 'main' : 'dev')
+            .concat('/docs/')
+            .concat(sections[currentSection].template.replace(/\/*/i, '')),
+          process.env.PAGES_TEMPLATES_SOURCE
         ),
       layoutParsers: {
         img: (props) => (
@@ -69,7 +79,7 @@ const SecuritySection: NextPage<WithoutProps> = () => {
             />
           </div>
         ),
-        a: ({ children, ...props}) => (
+        a: ({ children, ...props }) => (
           <a {...props} target="_blank" rel="noopener noreferrer">
             {children}
             <sup>
@@ -77,43 +87,48 @@ const SecuritySection: NextPage<WithoutProps> = () => {
             </sup>
           </a>
         ),
-      }
+      },
     },
     [currentSection]
   )
 
-  return !isSectionDefined
-    ? (checked ? <NotFoundError /> : null)
-    : <SecurityLayout
-        title={
-          [
-            sections[currentSection!].title,
-            t('sections:security.brandDepartment')
-          ].join(' - ')
-        }
-      >
-        {isSectionDefined && content && checked && (
-          <Container>
-            <Row>
-              <Col className="py-5">
-                {content}
-              </Col>
-            </Row>
-          </Container>
-        )}
-        {isSectionDefined && !content && !checked && (
-          <Row className="d-flex flex-grow-1 align-content-center">
-            <Col className="text-center">
-              <Spinner />
-            </Col>
+  return !isSectionDefined ? (
+    checked ? (
+      <NotFoundError />
+    ) : null
+  ) : (
+    <SecurityLayout
+      title={[
+        sections[currentSection!].title,
+        t('sections:security.brandDepartment'),
+      ].join(' - ')}
+    >
+      {isSectionDefined && content && checked && (
+        <Container>
+          <Row>
+            <Col className="py-5">{content}</Col>
           </Row>
-        )}
-      </SecurityLayout>
+        </Container>
+      )}
+      {isSectionDefined && !content && !checked && (
+        <Row className="d-flex flex-grow-1 align-content-center">
+          <Col className="text-center">
+            <Spinner />
+          </Col>
+        </Row>
+      )}
+    </SecurityLayout>
+  )
 }
 
-export const getServerSideProps: GetServerSideProps<WithoutProps> = async ({ locale }) => ({
+export const getServerSideProps: GetServerSideProps<WithoutProps> = async ({
+  locale,
+}) => ({
   props: {
-    ...await serverSideTranslations(locale ?? defaultLocale, ['common', 'sections']),
+    ...(await serverSideTranslations(locale ?? defaultLocale, [
+      'common',
+      'sections',
+    ])),
   },
 })
 

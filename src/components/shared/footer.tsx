@@ -1,11 +1,4 @@
-import {
-  Col,
-  Container,
-  Image,
-  Nav,
-  Navbar,
-  Row
-} from 'react-bootstrap'
+import { Col, Container, Image, Nav, Navbar, Row } from 'react-bootstrap'
 import { Fragment } from 'react'
 import Link from 'next/link'
 import { getAssetPath } from '@stratego/helpers/static-resources.helper'
@@ -31,7 +24,11 @@ const Footer: NextPage<WithoutProps> = () => {
               'pt-5 py-lg-5 mb-2 mb-lg-5 gap-5'
             )}
           >
-            <Col xs={12} lg="auto" className="order-2 order-lg-1 text-center text-lg-start">
+            <Col
+              xs={12}
+              lg="auto"
+              className="order-2 order-lg-1 text-center text-lg-start"
+            >
               <Image
                 fluid
                 className="d-block mx-auto mb-2 mb-lg-4"
@@ -42,10 +39,7 @@ const Footer: NextPage<WithoutProps> = () => {
               <address className="text-light">
                 <p>
                   {((email) => (
-                    <a
-                      className="text-light"
-                      href={`mailto:${email}`}
-                    >
+                    <a className="text-light" href={`mailto:${email}`}>
                       {email}
                     </a>
                   ))('contact@stratego.cl')}
