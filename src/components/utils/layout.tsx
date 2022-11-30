@@ -11,19 +11,18 @@ import { Col, Container, Row } from 'react-bootstrap'
 import {
   DEFAULT_PAGE_DESCRIPTION,
   DEFAULT_TITLE,
-} from '@stratego/helpers/defaults.helpers'
-import NavBar from '@stratego/components/shared/navbar'
+} from '@stratego/helpers/defaults.helper'
+import NavBar, { NavLinkSpec } from '@stratego/components/shared/navbar'
 import Footer from '@stratego/components/shared/footer'
 import { getPageTitle } from '@stratego/helpers/text.helper'
 import classNames from 'classnames'
 import Head from 'next/head'
-import SubNavBar, { type Links } from '@stratego/components/shared/sub-navbar'
 
 export type LayoutProps = {
   pageTitle?: string
   pageDescription?: string
   brandDepartment?: string
-  subLinks?: Links
+  subLinks?: Array<NavLinkSpec>
   defaultGrid?: boolean
   showNavigationOptions?: boolean
 } & DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
@@ -57,10 +56,10 @@ const Layout: FC<PropsWithChildren<LayoutProps>> = ({
       </Head>
       <NavBar
         showNavigationOptions={showNavigationOptions}
-        theme={subLinks.length > 0 ? 'dark' : 'light'}
+        theme="deep-dark-blue"
         brandDepartment={brandDepartment}
+        subLinks={subLinks}
       />
-      {subLinks.length > 0 && <SubNavBar links={subLinks} />}
       <div
         {...divProps}
         className={classNames(
