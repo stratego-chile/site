@@ -1,4 +1,4 @@
-import { DEFAULT_TITLE } from './defaults.helpers'
+import { DEFAULT_TITLE } from '@stratego/helpers/defaults.helper'
 import { capitalize } from '@stdlib/string'
 
 export const getPageTitle = (pageTitle: string, baseTitle = DEFAULT_TITLE) =>
