@@ -1,0 +1,23 @@
+@use 'sass:map'
+@use 'colors'
+@use 'mixins'
+
+@import ~bootstrap/scss/functions
+@import ~bootstrap/scss/variables
+
+.brandImage
+  height: 2.2rem
+
+.brandDepartment
+  font-size: .6em
+  align-self: center
+  @media (min-width: map.get($grid-breakpoints, 'lg'))
+    font-size: 1em
+
+.contactNavbar
+  background-color: map.get(colors.$palette, 'dark-blue')
+  transition: background-color 250ms ease
+
+.contactNavBarScrolled
+  backdrop-filter: blur(.5rem)
+  background-color: rgba(map.get(colors.$palette, 'dark-blue'), .75)

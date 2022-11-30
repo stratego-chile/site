@@ -1,34 +1,102 @@
+@use 'sass:map'
 @use 'sass:math'
+@use 'colors'
+@use 'mixins'
 
-.wrapper
-  background-size: cover
-  background-position: center
+@import ~bootstrap/scss/functions
+@import ~bootstrap/scss/variables
 
-$animationSteps: 20
-$animationDuration: 30
-$animationElementsCount: 100
-$delayBetweenLetters: 0.1
+.standardContent
+  position: relative
+  z-index: 20
 
-@keyframes anim-text-flow-keys
-  @for $i from 0 through $animationSteps
-    #{percentage($i * math.div(1, $animationSteps))}
-      $hue: random(250)
-      color: hsla($hue, 70%, 70%, 1)
+.homeWrapper
+  color: var(--bs-light)
+  background: linear-gradient(to bottom, darken(colors.$primary, 5%), darken(colors.$primary, 10%))
+  @mixin relative-text
+    position: relative
+    z-index: 21
+  @for $i from 1 through 6
+    h#{$i}
+      @include relative-text
+  button, p
+    @include relative-text
 
-$totalDelayTime: $animationElementsCount * $delayBetweenLetters
+.banner
+  height: 48rem // Arbitrary value
+  @media (max-width: map.get($grid-breakpoints, 'lg'))
+    height: auto
+  @for $i from 1 through 6
+    h#{$i}
+      font-weight: bolder
+  &::after
+    $background: url(/images/banner-home-0-overlay.png), url(/images/banner-home-0.png)
+    @include mixins.image-overlay($background)
+    z-index: 2
 
-.title
-  backdrop-filter: blur(.8rem)
-  background: radial-gradient(ellipse at top, rgba(#467BCA, .4), transparent), radial-gradient(ellipse at bottom, rgba(#2BCEA1, .25), transparent)
-
-.titleText
+.sectionContent
   $shadow-color: rgba(black, .38)
-  animation-name: anim-text-flow-keys
-  animation-duration: #{$animationDuration}s
-  animation-iteration-count: infinite
-  animation-direction: alternate
-  animation-fill-mode: forwards
-  @for $i from 1 through $animationElementsCount
-    &:nth-of-type(#{$i})
-      animation-delay: #{($i * $delayBetweenLetters) - $totalDelayTime}s
-  text-shadow: 1px 1px 2px $shadow-color, 0 0 2.5em $shadow-color, 0 0 0.4em $shadow-color
+  @extend .standardContent
+  font-family: Poppins, 'Work Sans', sans-serif
+  font-weight: 600
+  font-size: 3.5rem
+  @media (max-width: map.get($grid-breakpoints, 'lg'))
+    font-size: 2rem
+  span
+    transition: color 250ms ease-in-out
+    &:hover
+      color: inherit !important
+
+.sectionContentNegative
+  @extend .sectionContent
+  color: colors.$dark-blue
+
+.floatingBox
+  @extend .standardContent
+  transition: background-color 250ms ease-in-out
+  &:hover
+    background-color: rgba(white, 0.1)
+    cursor: help
+
+.contentAbout
+  @extend .standardContent
+  &::after
+    $background: url(/images/banner-home-1-overlay.png), url(/images/banner-home-1.png)
+    @include mixins.image-overlay($background)
+
+.contrastedContent
+  color: var(--bs-dark)
+
+.contentApproach
+  @extend .standardContent, .contrastedContent
+  @include mixins.image-overlay(url(/images/banner-home-2-overlay-0.svg))
+  background-position-y: 28%
+  position: relative
+  opacity: 1
+  &::before
+    @include mixins.image-overlay(url(/images/banner-home-2-overlay-1.png))
+    opacity: .35
+
+.contentServices
+  @extend .standardContent, .contrastedContent
+  @include mixins.image-overlay(url(/images/banner-home-2-overlay-2.svg))
+  background-position-y: 28%
+  position: relative
+  opacity: 1
+
+.serviceBox
+  position: relative
+  transition: all 350ms ease
+  overflow: hidden
+  backdrop-filter: blur(.5rem)
+  &:hover
+    color: white !important
+    cursor: help
+    &::before
+      top: 0
+  &::before
+    @include mixins.color-overlay(colors.$dark-blue)
+    display: inline-block !important
+    top: 100%
+    margin: 0
+    transition: inherit

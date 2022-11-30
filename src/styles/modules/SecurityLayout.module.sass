@@ -11,10 +11,10 @@
   @for $i from 1 through 6
     h#{$i}
       @if $i < 3
-        @include mixins.colored-text(colors.$custom-primary, colors.$custom-info)
+        @include mixins.colored-text(map.get(colors.$palette, 'primary'), map.get(colors.$palette, 'info'))
         font-weight: bolder
       @else
-        @include mixins.colored-text(lighten(#1b1b1b, ($i * 1.5) + 15%))
+        @include mixins.colored-text(darken(map.get(colors.$palette, 'primary'), $i + 15%))
         @if $i < 4
           font-weight: bold
         @else if $i < 5

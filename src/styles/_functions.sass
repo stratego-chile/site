@@ -1,0 +1,12 @@
+@use 'sass:list'
+@use 'sass:map'
+@use 'sass:meta'
+
+// Adapted to SASS syntax from https://stackoverflow.com/a/66004582/7737346
+@function map-deep-get($map, $keys...)
+   $scope: $map
+   $index: 1
+   @while (meta.type-of($scope) == map) and ($index <= list.length($keys))
+      $scope: map.get($scope, list.nth($keys, $index))
+      $index: $index + 1
+   @return $scope
