@@ -6,6 +6,10 @@ declare global {
       // Built-in
       NODE_ENV: 'development' | 'production' | 'test'
 
+      // App identity
+      BRAND_NAME: string
+      BRAND_JURIDICAL_NAME: string
+
       // App content
       DEFAULT_PAGE_TITLE: string
       DEFAULT_PAGE_DESCRIPTION: string
@@ -27,6 +31,7 @@ declare global {
       CAPTCHA_VERIFIER_API: string
       CAPTCHA_KEY: string
       CAPTCHA_SECRET: string
+      CAPTCHA_MIN_SCORE: string
     }
   }
 }
