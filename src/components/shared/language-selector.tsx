@@ -1,5 +1,5 @@
 import { useLocale } from '@stratego/hooks/useLocale'
-import { getLanguage } from 'language-flag-colors'
+import { getLanguage, getNativeName } from 'language-flag-colors'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import { type FC, Fragment, useCallback } from 'react'
@@ -39,7 +39,13 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ theme = 'light' }) => {
     (($lang) => (
       <Fragment>
         <span>{$lang.flag.emoji}</span>
-        {options?.mode === 'selector' && <span>{$lang.nativeName}</span>}
+        {options?.mode === 'selector' && (
+          <span>
+            {getNativeName(new Intl.Locale($lang.ids.locale).language)}
+            {' - '}
+            {$lang.country}
+          </span>
+        )}
       </Fragment>
     ))(getLanguage(options?.lang ?? currentLocale)!)
 
@@ -55,7 +61,7 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ theme = 'light' }) => {
         <Dropdown.Item
           key={key}
           href="#"
-          className="d-flex justify-content-between gap-3"
+          className="d-flex justify-content-start gap-3"
           onClick={(event) => handleLanguageSelection(event, lang)}
         >
           {getLanguageReferenceContent({ lang, mode: 'selector' })}

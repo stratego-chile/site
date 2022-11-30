@@ -1,6 +1,6 @@
 import '@stratego/polyfills'
 import '@stratego/styles/_global.sass'
-import { AppProps } from 'next/app'
+import { type AppProps } from 'next/app'
 import { appWithTranslation, useTranslation } from 'next-i18next'
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 import Head from 'next/head'
@@ -34,7 +34,6 @@ const StrategoLandingApp = ({
         setCookie('accept-cookies', CookieConsent.ACCEPTED, {
           sameSite: 'strict',
           secure: true,
-          // maxAge: getUnixTime(expires),
           expires,
         })
       }

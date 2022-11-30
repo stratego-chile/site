@@ -2,6 +2,7 @@
   "baseTitle": "stratego",
   "betaMessage": "sitio en construcción",
   "seeSourceCode": "ver código fuente",
+  "learnMore": "ver más",
   "errors": {
     "notFound": "recurso no encontrado",
     "submit": "error inesperado al intentar enviar su información."

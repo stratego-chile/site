@@ -1,6 +1,82 @@
 {
   "home": {
-    "title": "início"
+    "title": "início",
+    "fragments": {
+      "emphasisTitles": {
+        "presentation": {
+          "appendix": "stratego technologies",
+          "title": {
+            "regular": "",
+            "emphasis": "serviços de inovação e segurança"
+          },
+          "subtitle": "na vanguarda da tecnologia, no futuro de sua empresa"
+        },
+        "aboutUs": {
+          "appendix": "nós somos",
+          "title": {
+            "regular": "profissionais",
+            "emphasis": "comprometidos com sua ciber-segurança"
+          },
+          "subtitle": "reforçamos as melhores práticas e padrões para seu negócio"
+        },
+        "modules": {
+          "appendix": "nosso enfoque é simples",
+          "title": {
+            "regular": "a integridade, confidencialidade e disponibilidade de seus dados",
+            "emphasis": "é nossa prioridade"
+          },
+          "subtitle": ""
+        }
+      },
+      "advantages": {
+        "items": {
+          "privacy": {
+            "title": "garantia de privacidade",
+            "description": "não vendemos ou compartilhamos seus dados com terceiros"
+          },
+          "support": {
+            "title": "suporte 24/7",
+            "description": "estamos aqui para ajudá-lo a qualquer momento"
+          },
+          "training": {
+            "title": "formação",
+            "description": "temos uma equipe certificada para lhe proporcionar a melhor experiência"
+          }
+        }
+      },
+      "services": {
+        "title": {
+          "regular": "os serviços",
+          "emphasis": "que você precisa"
+        },
+        "items": {
+          "malwareSecurity": {
+            "title": "malware",
+            "description": "prevenção, detecção e mitigação"
+          },
+          "dataSecurity": {
+            "title": "segurança dos dados",
+            "description": "identificamos seus riscos de dados e fornecemos as melhores soluções para sua proteção"
+          },
+          "cloudSecurity": {
+            "title": "segurança na internet",
+            "description": "identificamos suas vulnerabilidades de rede de espaço de trabalho e de integração de serviços através da internet"
+          },
+          "webSecurity": {
+            "title": "segurança da web",
+            "description": "verificamos os riscos e correções possíveis para seu website e aplicações web para prevenção de ataques"
+          },
+          "databaseSecurity": {
+            "title": "engenharia social",
+            "description": "asseguramos que sua equipe esteja ciente dos riscos de suas práticas no trabalho"
+          },
+          "planning": {
+            "title": "plano de segurança",
+            "description": "nós o ajudamos a planejar e implementar uma forte estratégia de segurança"
+          }
+        }
+      }
+    }
   },
   "privacyPolicy": {
     "title": "política de privacidade"

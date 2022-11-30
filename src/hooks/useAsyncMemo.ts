@@ -18,7 +18,7 @@ export const useAsyncMemo = <T = unknown>(
   promiseFunction: () => Promise<T>,
   deps: DependencyList
 ) => {
-  const [data, setData] = useState<T | undefined>(undefined)
+  const [data, setData] = useState<T>()
   const [errorReason, setErrorReason] = useState<Error>()
   const [isLoading, setLoadingState] = useState(!data && !errorReason)
   const [attempts, setAttempts] = useState(1)

@@ -44,6 +44,11 @@ const nextConfig = {
   redirects: async () => {
     return [
       {
+        source: '/',
+        destination: '/home',
+        permanent: true,
+      },
+      {
         source: '/security',
         destination: '/security/overview',
         permanent: true,
@@ -52,6 +57,8 @@ const nextConfig = {
   },
   // Add environment variables to the client
   env: {
+    BRAND_NAME: process.env.BRAND_NAME,
+    BRAND_JURIDICAL_NAME: process.env.BRAND_JURIDICAL_NAME,
     DEFAULT_PAGE_TITLE: process.env.DEFAULT_PAGE_TITLE,
     DEFAULT_PAGE_DESCRIPTION: process.env.DEFAULT_PAGE_DESCRIPTION,
     DEFAULT_ASSETS_SOURCE: process.env.DEFAULT_ASSETS_SOURCE,

@@ -29,7 +29,7 @@ const checkCaptchaToken = async (token: string) => {
     },
   })
 
-  return data.success && data.score > 0.5
+  return data.success && data.score > parseFloat(process.env.CAPTCHA_MIN_SCORE)
 }
 
 const handler = async (request: NextApiRequest, response: NextApiResponse) => {
@@ -48,7 +48,10 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
         .json({ status: 'ERROR', message: 'Captcha token invalid' })
     } else {
       try {
-        const locale = request.headers['accept-language'] || i18n.defaultLocale
+        const locale =
+          'accept-language' in request.headers
+            ? request.headers['accept-language']!
+            : i18n.defaultLocale
 
         const translation = (
           await (async () => {

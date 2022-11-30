@@ -8,3 +8,4 @@
 # GitHub Linguist Override
 *.cjs linguist-vendored
 *.config.js linguist-vendored
+*.scss linguist-language=Sass

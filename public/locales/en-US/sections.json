@@ -1,6 +1,82 @@
 {
   "home": {
-    "title": "home"
+    "title": "home",
+    "fragments": {
+      "emphasisTitles": {
+        "presentation": {
+          "appendix": "stratego technologies",
+          "title": {
+            "regular": "",
+            "emphasis": "security & innovation services"
+          },
+          "subtitle": "at the edge of technology, in the future of your business"
+        },
+        "aboutUs": {
+          "appendix": "we are",
+          "title": {
+            "regular": "professionals",
+            "emphasis": "committed to your cybersecurity"
+          },
+          "subtitle": "we enforce the best practices and standards for your business"
+        },
+        "modules": {
+          "appendix": "our approach is simple",
+          "title": {
+            "regular": "the integrity, availability and confidentiality of your data",
+            "emphasis": "is our priority"
+          },
+          "subtitle": ""
+        }
+      },
+      "advantages": {
+        "items": {
+          "privacy": {
+            "title": "privacy guarantee",
+            "description": "we do not sell neither share your data to third parties"
+          },
+          "support": {
+            "title": "24/7 support",
+            "description": "we are always here to help you with any issue you may have"
+          },
+          "training": {
+            "title": "training",
+            "description": "we count with a certified team of professionals"
+          }
+        }
+      },
+      "services": {
+        "title": {
+          "regular": "the services",
+          "emphasis": "you need"
+        },
+        "items": {
+          "malwareSecurity": {
+            "title": "malware security",
+            "description": "prevention, detection and response"
+          },
+          "dataSecurity": {
+            "title": "data security",
+            "description": "we identify your data risks and provide the best solutions for its protection"
+          },
+          "cloudSecurity": {
+            "title": "cloud security",
+            "description": "we identify your workspace network and service integrations vulnerabilities through the internet"
+          },
+          "webSecurity": {
+            "title": "web security",
+            "description": "we check the risks and posible fixes for your website and web applications for attacks prevention"
+          },
+          "databaseSecurity": {
+            "title": "social engineering",
+            "description": "we ensure your team is aware of the risks of their practices at work"
+          },
+          "planning": {
+            "title": "strategy & planning",
+            "description": "we help you to plan and implement a strong security strategy"
+          }
+        }
+      }
+    }
   },
   "privacyPolicy": {
     "title": "privacy policy"

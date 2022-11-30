@@ -20,7 +20,7 @@ const NotFoundPage: NextPage<WithoutProps> = () => {
           </span>
           <Button
             className="mx-auto rounded-circle"
-            variant="outline-dark"
+            variant="outline-dark-blue"
             onClick={() => router.back()}
           >
             <FontAwesomeIcon icon={faArrowLeft} />

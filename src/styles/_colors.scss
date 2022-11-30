@@ -1,0 +1,24 @@
+@use 'sass:map';
+
+// Alter Bootstrap color scheme modes
+$primary: #0079E5;
+$info: #02B6F5;
+$success: #2BCEA1;
+
+// Custom dark colors
+$dark-blue: #022447;
+$deep-dark-blue: #001A2E;
+
+// Custom light colors
+$light-gray: #EBEBEB;
+
+// # Define color palette
+$palette: (
+  primary: $primary,
+  info: $info,
+  success: $success,
+  dark-blue: $dark-blue,
+  deep-dark-blue: $deep-dark-blue,
+  light-gray: $light-gray,
+  transparent: transparent,
+);

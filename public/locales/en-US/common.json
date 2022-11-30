@@ -2,6 +2,7 @@
   "baseTitle": "stratego",
   "betaMessage": "site under development",
   "seeSourceCode": "see source code",
+  "learnMore": "learn more",
   "errors": {
     "notFound": "resource not found",
     "submit": "unexpected error when trying to send your information."
