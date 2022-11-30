@@ -10,14 +10,16 @@ import LanguageSelector from './language-selector'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faCode } from '@fortawesome/free-solid-svg-icons'
+import FooterStyles from '@stratego/styles/modules/Footer.module.sass'
+import { contactData } from '@stratego/data/contact'
 
 const Footer: NextPage<WithoutProps> = () => {
   const { t } = useTranslation(['common'])
 
   return (
     <Fragment>
-      <div className="bg-primary shadow-lg">
-        <Container>
+      <div className={FooterStyles.wrapper}>
+        <Container className="bg-transparent">
           <Row
             className={classNames(
               'd-flex justify-content-center justify-content-lg-between',
@@ -34,16 +36,22 @@ const Footer: NextPage<WithoutProps> = () => {
                 className="d-block mx-auto mb-2 mb-lg-4"
                 style={{ height: '4rem' }}
                 src={getAssetPath('logo-white.svg')}
-                alt={t('common:baseTitle')}
+                alt={process.env.BRAND_NAME}
               />
               <address className="text-light">
-                <p>
-                  {((email) => (
-                    <a className="text-light" href={`mailto:${email}`}>
-                      {email}
+                {contactData.map(({ icon, text, linkPrefix }, key) => (
+                  <Link
+                    key={key}
+                    href={`${linkPrefix}:${text.replace(/\ /gi, '')}`}
+                    passHref
+                    legacyBehavior
+                  >
+                    <a className="d-block text-light text-decoration-none mb-4">
+                      <FontAwesomeIcon icon={icon} />
+                      &ensp;{text}
                     </a>
-                  ))('contact@stratego.cl')}
-                </p>
+                  </Link>
+                ))}
                 Padre Mariano 272
                 <br />
                 Oficina 302
@@ -58,14 +66,11 @@ const Footer: NextPage<WithoutProps> = () => {
         </Container>
         <Navbar variant="dark" bg="transparent" expand>
           <Container className="d-grid d-lg-flex justify-content-center justify-content-lg-between px-lg-1">
-            <Nav>
-              <Link href="/" passHref legacyBehavior>
-                <Nav.Link as="a" className="mx-auto">
-                  {new Date().getFullYear()} &reg; Stratego Technologies SpA
-                </Nav.Link>
-              </Link>
-            </Nav>
-            <Nav>
+            <Navbar.Text className="px-2 order-2 order-lg-1">
+              {new Date().getFullYear()} &reg;{' '}
+              {process.env.BRAND_JURIDICAL_NAME}
+            </Navbar.Text>
+            <Nav className="d-block d-lg-flex text-center order-1 order-lg-2">
               <Link href="/privacy-policy" passHref legacyBehavior>
                 <Nav.Link as="a">
                   {capitalizeText(t('sections:privacyPolicy.title'), 'simple')}
@@ -87,6 +92,7 @@ const Footer: NextPage<WithoutProps> = () => {
                 </Nav.Link>
               </Link>
               <Nav.Link
+                className="d-inline-flex d-lg-block"
                 href="https://github.com/stratego-chile"
                 target="_blank"
                 rel="noreferrer noopener"
@@ -94,6 +100,7 @@ const Footer: NextPage<WithoutProps> = () => {
                 <FontAwesomeIcon icon={faGithub} />
               </Nav.Link>
               <Nav.Link
+                className="d-inline-flex d-lg-block"
                 href="https://github.com/stratego-chile/site"
                 target="_blank"
                 rel="noreferrer noopener"
