@@ -75,11 +75,11 @@ const NavBar: FC<NavBarProps> = ({
             {contactData.map(({ icon, text, linkPrefix }, key) => (
               <Nav.Item key={key} className="p-1">
                 <Nav.Link
-                  className="p-0"
+                  className="d-flex p-0 gap-1 align-items-center"
                   href={`${linkPrefix}:${text.replace(/\ /gi, '')}`}
                 >
-                  <FontAwesomeIcon icon={icon} />
-                  &ensp;{text}
+                  <FontAwesomeIcon icon={icon} fixedWidth height="1em" />
+                  {text}
                 </Nav.Link>
               </Nav.Item>
             ))}

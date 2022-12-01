@@ -14,7 +14,7 @@ module.exports = {
   fallbackLng: 'es-CL',
   /** To avoid issues when deploying to some paas (vercel...) */
   localePath: typeof window === 'undefined' ?
-    require('path').resolve('./public/locales') : '/locales',
+    require('path').resolve('.', 'public', 'locales') : '/locales',
   reloadOnPrerender: true,// process.env.NODE_ENV === 'development',
   /**
    * @link https://github.com/i18next/next-i18next#6-advanced-configuration
