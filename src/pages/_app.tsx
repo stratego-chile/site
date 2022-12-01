@@ -10,11 +10,7 @@ import { Button, Col, Container, Offcanvas, Row } from 'react-bootstrap'
 import { useCookies } from 'react-cookie'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { addDays } from 'date-fns'
-
-enum CookieConsent {
-  ACCEPTED = 'accepted',
-  REJECTED = 'rejected',
-}
+import { CookieConsent, usableCookies } from '@stratego/helpers/cookies.helper'
 
 const StrategoLandingApp = ({
   Component,
@@ -25,16 +21,18 @@ const StrategoLandingApp = ({
   const [showCookiesDisclaimer, setCookiesDisclaimerVisibility] =
     useState(false)
 
-  const [cookie, setCookie] = useCookies(['accept-cookies'])
+  const [cookie, setCookie] = useCookies([usableCookies.consent])
 
   const handleCookiesAcceptance = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       if (event.isTrusted) {
-        const expires = addDays(new Date(), 30)
-        setCookie('accept-cookies', CookieConsent.ACCEPTED, {
+        const maxAge = addDays(new Date(), 30).getTime()
+        setCookie(usableCookies.consent, CookieConsent.ACCEPTED, {
+          domain: location.hostname,
+          path: '/',
           sameSite: 'strict',
           secure: true,
-          expires,
+          maxAge,
         })
       }
     },
@@ -42,11 +40,11 @@ const StrategoLandingApp = ({
   )
 
   useEffect(() => {
-    if (!cookie['accept-cookies']) {
+    if (!cookie[usableCookies.consent]) {
       setCookiesDisclaimerVisibility(true)
-    } else if (cookie['accept-cookies'] === CookieConsent.REJECTED) {
+    } else if (cookie[usableCookies.consent] === CookieConsent.REJECTED) {
       setCookiesDisclaimerVisibility(true)
-    } else if (cookie['accept-cookies'] === CookieConsent.ACCEPTED) {
+    } else if (cookie[usableCookies.consent] === CookieConsent.ACCEPTED) {
       setCookiesDisclaimerVisibility(false)
     }
   }, [cookie])
