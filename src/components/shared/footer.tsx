@@ -52,11 +52,20 @@ const Footer: NextPage<WithoutProps> = () => {
                     </a>
                   </Link>
                 ))}
-                Padre Mariano 272
-                <br />
-                Oficina 302
-                <br />
-                Providencia, Santiago, Chile
+                <Link
+                  className="d-flex gap-1 align-items-center text-light text-decoration-none"
+                  href="https://www.openstreetmap.org/way/579051556#map=19/-33.42477/-70.61791"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span>
+                    Padre Mariano 272
+                    <br />
+                    Oficina 302
+                    <br />
+                    Providencia, Santiago, Chile
+                  </span>
+                </Link>
               </address>
             </Col>
             <Col xs="auto" className="order-1 order-lg-2">
@@ -67,7 +76,8 @@ const Footer: NextPage<WithoutProps> = () => {
         <Navbar variant="dark" bg="transparent" expand>
           <Container className="d-grid d-lg-flex justify-content-center justify-content-lg-between px-lg-1">
             <Navbar.Text className="px-2 order-2 order-lg-1">
-              {new Date().getFullYear()} &reg;{' '}
+              {new Date().getFullYear()}
+              {String.fromCharCode(174).surround(' ')}
               {process.env.BRAND_JURIDICAL_NAME}
             </Navbar.Text>
             <Nav className="d-block d-lg-flex text-center order-1 order-lg-2">
