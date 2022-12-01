@@ -33,7 +33,6 @@ const StrategoLandingApp = ({
       if (event.isTrusted) {
         const maxAge = addDays(new Date(), 30).getTime()
         setCookie(usableCookies.consent, CookieConsent.ACCEPTED, {
-          domain: location.hostname,
           path: '/',
           sameSite: 'strict',
           secure: true,
