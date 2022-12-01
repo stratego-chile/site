@@ -46,9 +46,9 @@ const Footer: NextPage<WithoutProps> = () => {
                     passHref
                     legacyBehavior
                   >
-                    <a className="d-block text-light text-decoration-none mb-4">
-                      <FontAwesomeIcon icon={icon} />
-                      &ensp;{text}
+                    <a className="d-flex p-0 mb-4 gap-1 align-items-center text-light text-decoration-none">
+                      <FontAwesomeIcon icon={icon} fixedWidth height="1em" />
+                      {text}
                     </a>
                   </Link>
                 ))}
