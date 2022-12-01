@@ -76,7 +76,8 @@ const Footer: NextPage<WithoutProps> = () => {
         <Navbar variant="dark" bg="transparent" expand>
           <Container className="d-grid d-lg-flex justify-content-center justify-content-lg-between px-lg-1">
             <Navbar.Text className="px-2 order-2 order-lg-1">
-              {new Date().getFullYear()} &reg;{' '}
+              {new Date().getFullYear()}
+              {String.fromCharCode(174).surround(' ')}
               {process.env.BRAND_JURIDICAL_NAME}
             </Navbar.Text>
             <Nav className="d-block d-lg-flex text-center order-1 order-lg-2">
