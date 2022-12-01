@@ -52,11 +52,20 @@ const Footer: NextPage<WithoutProps> = () => {
                     </a>
                   </Link>
                 ))}
-                Padre Mariano 272
-                <br />
-                Oficina 302
-                <br />
-                Providencia, Santiago, Chile
+                <Link
+                  className="d-flex gap-1 align-items-center text-light text-decoration-none"
+                  href="https://www.openstreetmap.org/way/579051556#map=19/-33.42477/-70.61791"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span>
+                    Padre Mariano 272
+                    <br />
+                    Oficina 302
+                    <br />
+                    Providencia, Santiago, Chile
+                  </span>
+                </Link>
               </address>
             </Col>
             <Col xs="auto" className="order-1 order-lg-2">
