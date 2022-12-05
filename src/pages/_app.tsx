@@ -11,6 +11,7 @@ import { Cookies, CookiesProvider, useCookies } from 'react-cookie'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { addDays } from 'date-fns'
 import { CookieConsent, usableCookies } from '@stratego/helpers/cookies.helper'
+import { showConsoleWarnings } from '@stratego/helpers/console.helper'
 
 const StrategoLandingApp = ({
   Component,
@@ -52,6 +53,10 @@ const StrategoLandingApp = ({
       setCookiesDisclaimerVisibility(false)
     }
   }, [cookie])
+
+  useEffect(() => {
+    showConsoleWarnings()
+  }, [])
 
   return (
     <SSRProvider>
