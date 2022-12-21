@@ -13,7 +13,7 @@ import { advantages, services } from '@stratego/data/home-content'
 
 const defaultFigureHeight = '34rem'
 
-const Home: NextPage = () => {
+const Home: NextPage<WithoutProps> = () => {
   const { t } = useTranslation('sections')
 
   return (
