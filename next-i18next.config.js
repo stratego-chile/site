@@ -3,24 +3,26 @@
  * @type {import('next-i18next').UserConfig}
  */
 module.exports = {
-  // https://www.i18next.com/overview/configuration-options#logging
   debug: process.env.NODE_ENV === 'development',
   ns: ['common', 'sections'],
   defaultNS: 'common',
   i18n: {
+    /**
+     * @type {Array<AvailableLocales>}
+     */
     locales: ['es-CL', 'en-US', 'pt-BR'],
+    /**
+     * @type {AvailableLocales}
+     */
     defaultLocale: 'es-CL',
   },
+  /**
+   * @type {AvailableLocales}
+   */
   fallbackLng: 'es-CL',
-  /** To avoid issues when deploying to some paas (vercel...) */
   localePath: typeof window === 'undefined' ?
     require('path').resolve('.', 'public', 'locales') : '/locales',
-  reloadOnPrerender: true,// process.env.NODE_ENV === 'development',
-  /**
-   * @link https://github.com/i18next/next-i18next#6-advanced-configuration
-   */
-  // saveMissing: false,
+  reloadOnPrerender: process.env.NODE_ENV === 'development',
   strictMode: true,
-  // serializeConfig: false,
   react: { useSuspense: false }
 }

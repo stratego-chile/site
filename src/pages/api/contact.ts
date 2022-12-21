@@ -51,10 +51,15 @@ const handler: NextApiHandler<ResponseBody<undefined>> = async (
         .json({ status: 'ERROR', message: 'Captcha token invalid' })
     } else {
       try {
-        const locale =
-          'accept-language' in request.headers
-            ? request.headers['accept-language']!
-            : i18n.defaultLocale
+        const providedLocale =
+          'accept-language' in request.headers &&
+          request.headers['accept-language']!
+
+        const locale: AvailableLocales =
+          providedLocale &&
+          providedLocale in (i18n.locales as Array<AvailableLocales>)
+            ? (providedLocale as AvailableLocales)
+            : (i18n.defaultLocale as AvailableLocales)
 
         const translation = (
           await (async () => {
