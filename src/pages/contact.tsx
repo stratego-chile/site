@@ -8,7 +8,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Col, Container, Row } from 'react-bootstrap'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 
-const Contact: NextPage = () => {
+const Contact: NextPage<WithoutProps> = () => {
   const { t } = useTranslation()
 
   return (

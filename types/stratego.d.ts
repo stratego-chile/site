@@ -1,13 +1,9 @@
-declare type ResponseBody<T extends Primitive = unknown> = {
-  error?: {
-    value: boolean
-    message: string
-    timestamp?: number
-  }
-} & T extends NonNullable<T>
-  ? {
-      result: T
-    }
-  : {
-      result?: never
-    }
+declare type ResponseBody<
+  T extends Primitive = unknown,
+  Status = 'OK' | 'ERROR'
+> = {
+  status: Status
+  message?: string
+  trace?: any
+  result?: Status extends 'OK' ? T : never
+}
