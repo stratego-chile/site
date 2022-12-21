@@ -1,5 +1,5 @@
 import template from '@stratego/mail/templates/contact.pug'
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiHandler } from 'next'
 import BootstrapStyles from '!!raw-loader!bootstrap/dist/css/bootstrap.min.css'
 import mailer, { type SendMailOptions } from 'nodemailer'
 import { i18n } from '@stratego/../next-i18next.config'
@@ -32,7 +32,10 @@ const checkCaptchaToken = async (token: string) => {
   return data.success && data.score > parseFloat(process.env.CAPTCHA_MIN_SCORE)
 }
 
-const handler = async (request: NextApiRequest, response: NextApiResponse) => {
+const handler: NextApiHandler<ResponseBody<undefined>> = async (
+  request,
+  response
+) => {
   const captchaToken = request.headers.authorization
 
   if (!ALLOWED_METHODS.includes(request.method!)) {
