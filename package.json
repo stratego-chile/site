@@ -7,7 +7,9 @@
     "build": "next build",
     "export": "next export",
     "start": "next start",
-    "lint": "next lint",
+    "lint:next": "next lint",
+    "lint:spell": "cspell lint",
+    "lint": "coffee scripts/full-lint.coffee",
     "cert": "coffee scripts/deploy-cert.coffee"
   },
   "dependencies": {
@@ -43,6 +45,8 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@cspell/dict-es-es": "^2.2.3",
+    "@cspell/dict-pt-br": "^2.1.4",
     "@types/nodemailer": "^6.4.7",
     "@types/pug": "^2.0.6",
     "@types/react": "18.0.26",
@@ -51,6 +55,7 @@
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
     "@webdiscus/pug-loader": "^2.9.5",
+    "cspell": "^6.18.0",
     "eslint": "8.30.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
