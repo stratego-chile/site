@@ -1,0 +1,25 @@
+version: "0.2"
+language: en,es,pt-BR
+files:
+  - src/**/*.{tsx,ts,json}
+ignorePaths:
+  - src/data/dialCodes.ts
+dictionaries:
+  - es-es
+  - pt-br
+  - companies
+  - softwareTerms
+  - fonts
+  - npm
+words:
+  - awsapps
+  - devcert
+  - formik
+  - stratego
+  - uniqid
+  - fortawesome
+  - fontawesome
+  - msapplication
+  - Offcanvas
+  - recaptcha
+  - whitesmoke
