@@ -20,6 +20,7 @@ jobs:
     executor: node/default
     description: "Run tests"
     steps:
+      - checkout
       - run:
           name: Check linting
           command: pnpm lint
