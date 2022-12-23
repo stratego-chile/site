@@ -1,12 +1,17 @@
 version: "0.2"
-language: en,es,pt-BR
+language: "en, es, pt-BR"
 files:
   - src/**/*.{tsx,ts,json}
 ignorePaths:
   - src/data/dialCodes.ts
+dictionaryDefinitions:
+  - name: spanish
+    path: ./node_modules/@cspell/dict-es-es/Spanish.trie.gz
+  - name: brazilian-portuguese
+    path: ./node_modules/@cspell/dict-pt-br/pt_BR.trie.gz
 dictionaries:
-  - es-es
-  - pt-br
+  - spanish
+  - brazilian-portuguese
   - companies
   - softwareTerms
   - fonts
