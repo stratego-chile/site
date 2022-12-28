@@ -1,4 +1,7 @@
 {
+  "services": {
+    "title": "servicios"
+  },
   "home": {
     "title": "inicio",
     "fragments": {
