@@ -1,5 +1,6 @@
 import '@stratego/polyfills'
 import '@stratego/styles/_global.sass'
+import '@fortawesome/fontawesome-svg-core/styles.css'
 import { type AppProps } from 'next/app'
 import { appWithTranslation, useTranslation } from 'next-i18next'
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
@@ -12,6 +13,9 @@ import { capitalizeText } from '@stratego/helpers/text.helper'
 import { addDays } from 'date-fns'
 import { CookieConsent, usableCookies } from '@stratego/helpers/cookies.helper'
 import { showConsoleWarnings } from '@stratego/helpers/console.helper'
+import { config as FontAwesomeConfig } from '@fortawesome/fontawesome-svg-core'
+
+FontAwesomeConfig.autoAddCss = false // Prevent icon wrong size on SSR
 
 const StrategoLandingApp = ({
   Component,
@@ -96,7 +100,7 @@ const StrategoLandingApp = ({
                   >
                     <span className="fs-5">
                       {capitalizeText(
-                        t('common:cookies.disclaimer.text'),
+                        t`common:cookies.disclaimer.text`,
                         'simple'
                       )}
                     </span>
@@ -107,7 +111,7 @@ const StrategoLandingApp = ({
                       onClick={handleCookiesAcceptance}
                     >
                       {capitalizeText(
-                        t('common:cookies.disclaimer.buttons.accept'),
+                        t`common:cookies.disclaimer.buttons.accept`,
                         'simple'
                       )}
                     </Button>

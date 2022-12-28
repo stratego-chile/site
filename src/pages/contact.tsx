@@ -14,17 +14,15 @@ const Contact: NextPage<WithoutProps> = () => {
   return (
     <Layout
       className={LayoutStyles.autoFormat}
-      pageTitle={capitalizeText(t('sections:contact.title'), 'simple')}
+      pageTitle={capitalizeText(t`sections:contact.title`, 'simple')}
       showNavigationOptions
     >
       <Container className="d-flex flex-column gap-5 mb-5 py-5">
         <Row>
           <Col>
-            <h1>
-              {capitalizeText(t('sections:contact.form.title'), 'simple')}
-            </h1>
+            <h1>{capitalizeText(t`sections:contact.form.title`, 'simple')}</h1>
             <h6 className="fw-normal">
-              {capitalizeText(t('sections:contact.form.subtitle'), 'simple')}
+              {capitalizeText(t`sections:contact.form.subtitle`, 'simple')}
             </h6>
           </Col>
         </Row>

@@ -12,7 +12,7 @@ import {
   DEFAULT_PAGE_DESCRIPTION,
   DEFAULT_TITLE,
 } from '@stratego/helpers/defaults.helper'
-import NavBar, { NavLinkSpec } from '@stratego/components/shared/navbar'
+import NavBar, { type NavLinkSpec } from '@stratego/components/shared/navbar'
 import Footer from '@stratego/components/shared/footer'
 import { getPageTitle } from '@stratego/helpers/text.helper'
 import classNames from 'classnames'
@@ -56,7 +56,7 @@ const Layout: FC<PropsWithChildren<LayoutProps>> = ({
       </Head>
       <NavBar
         showNavigationOptions={showNavigationOptions}
-        theme="deep-dark-blue"
+        theme="light"
         brandDepartment={brandDepartment}
         subLinks={subLinks}
       />

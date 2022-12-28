@@ -10,19 +10,19 @@
   flex-direction: column
   @for $i from 1 through 6
     h#{$i}
-      @if $i < 3
+      @if $i <= 2
         @include mixins.colored-text(map.get(colors.$palette, 'primary'), map.get(colors.$palette, 'info'))
         font-weight: bolder
       @else
-        @include mixins.colored-text(darken(map.get(colors.$palette, 'primary'), $i + 15%))
-        @if $i < 4
+        @include mixins.colored-text(lighten($dark, $i + 15%))
+        @if $i == 3
           font-weight: bold
-        @else if $i < 5
+        @else if $i == 4
           font-weight: normal
         @else
           font-weight: lighter
   p
-    font-family: Poppins, sans-serif
+    font-family: 'Work Sans', sans-serif
     font-weight: 300
     font-size: 1.5rem
     text-align: justify
