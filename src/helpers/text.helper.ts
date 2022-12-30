@@ -1,5 +1,5 @@
 import { DEFAULT_TITLE } from '@stratego/helpers/defaults.helper'
-import { capitalize } from '@stdlib/string'
+import capitalize from '@stdlib/string/capitalize'
 
 export const getPageTitle = (pageTitle: string, baseTitle = DEFAULT_TITLE) =>
   pageTitle.trim().concat('-'.surround()).concat(baseTitle)

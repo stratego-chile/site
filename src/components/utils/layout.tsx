@@ -7,7 +7,9 @@ import {
   type HTMLAttributes,
 } from 'react'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
-import { Col, Container, Row } from 'react-bootstrap'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 import {
   DEFAULT_PAGE_DESCRIPTION,
   DEFAULT_TITLE,

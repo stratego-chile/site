@@ -1,10 +1,14 @@
 import Layout from '@stratego/components/utils/layout'
-import { defaultLocale } from '@stratego/locale.middleware'
+import { defaultLocale } from '@stratego/locales'
 import classNames from 'classnames'
 import { type GetServerSideProps, type NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import HomeStyles from '@stratego/styles/modules/Home.module.sass'
-import { Button, Col, Container, Image, Row } from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Image from 'react-bootstrap/Image'
+import Row from 'react-bootstrap/Row'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
@@ -74,7 +78,7 @@ const Home: NextPage<WithoutProps> = () => {
                       'simple'
                     )}
                   </p>
-                  <Link href="/security/services" passHref>
+                  <Link href="/services/security/overview" passHref>
                     <Button
                       variant="primary"
                       className="rounded-pill text-light"
@@ -190,14 +194,6 @@ const Home: NextPage<WithoutProps> = () => {
                       'simple'
                     )}
                   </p>
-                  <Link href="/security/overview" passHref>
-                    <Button
-                      variant="info"
-                      className="rounded-pill text-deep-dark-blue"
-                    >
-                      {capitalizeText(t`common:learnMore`, 'simple')}
-                    </Button>
-                  </Link>
                 </Col>
               </Row>
             </Container>
@@ -251,7 +247,7 @@ const Home: NextPage<WithoutProps> = () => {
                       'simple'
                     )}
                   </p>
-                  <Link href="/security/services" passHref>
+                  <Link href="/services/security/about" passHref>
                     <Button className="rounded-pill text-light">
                       {capitalizeText(t`common:learnMore`, 'simple')}
                     </Button>

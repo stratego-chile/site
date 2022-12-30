@@ -21,17 +21,17 @@ const SecurityLayout: FC<PropsWithChildren<SecurityLayoutProps>> = ({
       brandDepartment={t`sections:security.brandDepartment` satisfies string}
       subLinks={[
         {
-          href: '/security/overview',
+          href: '/services/security/overview',
           text: t`sections:security.pages.overview.title`,
           type: 'link',
         },
         {
-          href: '/security/services',
-          text: t`sections:security.pages.services.title`,
+          href: '/services/security/learn-more',
+          text: t`sections:security.pages.learnMore.title`,
           type: 'link',
         },
         {
-          href: '/security/contact',
+          href: '/services/security/contact',
           text: t`sections:contact.title`,
           type: 'link',
         },

@@ -15,6 +15,7 @@ module.exports = {
      * @type {AvailableLocales}
      */
     defaultLocale: 'es-CL',
+    localeDetection: false,
   },
   /**
    * @type {AvailableLocales}

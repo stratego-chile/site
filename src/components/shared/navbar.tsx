@@ -1,13 +1,11 @@
 import { getAssetPath } from '@stratego/helpers/static-resources.helper'
 import { Fragment, useMemo, type FC } from 'react'
-import {
-  Navbar,
-  Container,
-  Image,
-  Nav,
-  NavDropdown,
-  Button,
-} from 'react-bootstrap'
+import Navbar from 'react-bootstrap/Navbar'
+import Container from 'react-bootstrap/Container'
+import Image from 'react-bootstrap/Image'
+import Nav from 'react-bootstrap/Nav'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import Button from 'react-bootstrap/Button'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { capitalizeText } from '@stratego/helpers/text.helper'
@@ -50,7 +48,7 @@ const NavBar: FC<NavBarProps> = ({
         type: 'menu',
         subLinks: [
           {
-            href: '/security/services',
+            href: '/services/security/overview',
             text: t`sections:security.title`,
             type: 'link',
           },
@@ -77,10 +75,10 @@ const NavBar: FC<NavBarProps> = ({
           >
             {link.subLinks.map((subLink, subLinkKey) => (
               <Link
+                key={subLinkKey}
                 href={subLink.href}
                 passHref
                 legacyBehavior
-                key={subLinkKey}
               >
                 <NavDropdown.Item>
                   {capitalizeText(subLink.text.toLowerCase(), 'simple')}

@@ -4,7 +4,7 @@ import BootstrapStyles from '!!raw-loader!bootstrap/dist/css/bootstrap.min.css'
 import mailer, { type SendMailOptions } from 'nodemailer'
 import { i18n } from '@stratego/../next-i18next.config'
 import { type LocalsObject } from 'pug'
-import { format } from '@stdlib/string'
+import format from '@stdlib/string/format'
 import axios from 'axios'
 
 const ALLOWED_METHODS = ['OPTIONS', 'POST']

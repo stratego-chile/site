@@ -1,11 +1,13 @@
 import ContactForm from '@stratego/components/forms/contact-form'
 import Layout from '@stratego/components/utils/layout'
 import { capitalizeText } from '@stratego/helpers/text.helper'
-import { defaultLocale } from '@stratego/locale.middleware'
+import { defaultLocale } from '@stratego/locales'
 import { type GetServerSideProps, type NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { Col, Container, Row } from 'react-bootstrap'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 
 const Contact: NextPage<WithoutProps> = () => {

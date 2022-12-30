@@ -5,12 +5,11 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document'
-import i18nextConfig from '@stratego/../next-i18next.config'
+import { defaultLocale } from '@stratego/locales'
 
 class StrategoDocument extends Document<DocumentProps> {
   render() {
-    const currentLocale =
-      this.props.__NEXT_DATA__.locale ?? i18nextConfig.i18n.defaultLocale
+    const currentLocale = this.props.__NEXT_DATA__.locale ?? defaultLocale
     return (
       <Html lang={currentLocale}>
         <Head>

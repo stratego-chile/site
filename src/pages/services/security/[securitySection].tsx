@@ -3,14 +3,18 @@ import { useMemo } from 'react'
 import { type GetServerSideProps, type NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { defaultLocale } from '@stratego/locale.middleware'
+import { defaultLocale } from '@stratego/locales'
 import { useMarkdownTemplate } from '@stratego/hooks/useMarkdownTemplate'
-import { Col, Container, Row, Spinner } from 'react-bootstrap'
-import SecurityLayout from '@stratego/components/security-layout'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Spinner from 'react-bootstrap/Spinner'
+import SecurityLayout from '@stratego/components/utils/security-layout'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
-import ErrorPage from '@stratego/pages/_error'
+import camelcase from '@stdlib/string/camelcase'
+import ErrorPage from '@stratego/components/utils/error-page'
 
 const SecuritySection: NextPage<WithoutProps> = () => {
   const { query } = useRouter()
@@ -26,14 +30,14 @@ const SecuritySection: NextPage<WithoutProps> = () => {
           t`sections:security.pages.overview.title`,
           'simple'
         ),
-        template: `/${i18n.language}/security-overview.mdx`,
+        template: `/${i18n.language}/security-services.mdx`,
       },
-      services: {
+      learnMore: {
         title: capitalizeText(
-          t`sections:security.pages.services.title`,
+          t`sections:security.pages.learnMore.title`,
           'simple'
         ),
-        template: `/${i18n.language}/security-services.mdx`,
+        template: `/${i18n.language}/security-overview.mdx`,
       },
     }),
     [i18n, t]
@@ -43,10 +47,12 @@ const SecuritySection: NextPage<WithoutProps> = () => {
     () =>
       ((found) => [
         found,
-        found ? (securitySection as keyof typeof sections) : undefined,
+        found
+          ? (camelcase(securitySection as string) as keyof typeof sections)
+          : undefined,
       ])(
         typeof securitySection === 'string' &&
-          Object.keys(sections).includes(securitySection)
+          Object.keys(sections).includes(camelcase(securitySection))
       ),
     [securitySection, sections]
   )
@@ -94,7 +100,7 @@ const SecuritySection: NextPage<WithoutProps> = () => {
 
   return !isSectionDefined ? (
     checked ? (
-      <ErrorPage statusCode={404} />
+      <ErrorPage statusCode={404} showGoBackButton={false} />
     ) : null
   ) : (
     <SecurityLayout
