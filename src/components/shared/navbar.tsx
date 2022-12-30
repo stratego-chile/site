@@ -155,7 +155,11 @@ const NavBar: FC<NavBarProps> = ({
         </Container>
       </Navbar>
       {subLinks.hasItems() && (
-        <Navbar variant="light" bg="light" className="shadow" sticky="top">
+        <Navbar
+          variant="light"
+          className={classNames('shadow', NavbarStyles.subLinksNavbar)}
+          sticky="top"
+        >
           <Container className="px-lg-1 fw-semibold">
             <Nav className="gap-4 row-gap-2">{renderNavLinks(subLinks)}</Nav>
           </Container>
