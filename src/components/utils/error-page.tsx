@@ -1,18 +1,23 @@
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 import { useRouter } from 'next/router'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import { type GetServerSideProps, type NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
-import { defaultLocale } from '@stratego/locale.middleware'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { FC } from 'react'
 
 type ErrorPageProps = {
   statusCode?: number
+  showGoBackButton?: boolean
 }
 
-const ErrorPage: NextPage<ErrorPageProps> = ({ statusCode }) => {
+const ErrorPage: FC<ErrorPageProps> = ({
+  statusCode,
+  showGoBackButton = true,
+}) => {
   const router = useRouter()
 
   const { t } = useTranslation('common')
@@ -32,33 +37,22 @@ const ErrorPage: NextPage<ErrorPageProps> = ({ statusCode }) => {
               )}
             </span>
           </span>
-          <Button
-            className="mx-auto rounded-pill"
-            variant="outline-dark-blue"
-            onClick={() => router.back()}
-          >
-            <span className="fs-6">
-              <FontAwesomeIcon icon={faArrowLeft} fixedWidth size="1x" />
-              &ensp;{capitalizeText(t`common:goBack`, 'simple')}
-            </span>
-          </Button>
+          {showGoBackButton && (
+            <Button
+              className="mx-auto rounded-pill"
+              variant="outline-dark-blue"
+              onClick={() => router.back()}
+            >
+              <span className="fs-6">
+                <FontAwesomeIcon icon={faArrowLeft} fixedWidth size="1x" />
+                &ensp;{capitalizeText(t`common:goBack`, 'simple')}
+              </span>
+            </Button>
+          )}
         </Col>
       </Row>
     </Container>
   )
-}
-
-export const getServerSideProps: GetServerSideProps<WithoutProps> = async ({
-  locale,
-  res,
-}) => {
-  const statusCode = res ? res.statusCode : 404
-  return {
-    props: {
-      statusCode,
-      ...(await serverSideTranslations(locale ?? defaultLocale, ['common'])),
-    },
-  }
 }
 
 export default ErrorPage

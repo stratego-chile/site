@@ -1,5 +1,5 @@
 version: "0.2"
-language: "en, es, pt-BR"
+language: en, es, pt-BR
 files:
   - src/**/*.{tsx,ts,json}
 ignorePaths:
@@ -18,13 +18,16 @@ dictionaries:
   - npm
 words:
   - awsapps
+  - camelcase
   - devcert
-  - formik
-  - stratego
-  - uniqid
-  - fortawesome
   - fontawesome
+  - formik
+  - fortawesome
   - msapplication
   - Offcanvas
+  - pascalcase
   - recaptcha
+  - stratego
+  - uncapitalize
+  - uniqid
   - whitesmoke

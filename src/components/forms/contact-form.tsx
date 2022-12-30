@@ -7,15 +7,13 @@ import { type FormikHelpers, useFormik } from 'formik'
 import { getCountryCode } from 'language-flag-colors'
 import { useTranslation } from 'next-i18next'
 import { useCallback, useEffect, useId, useMemo, useState } from 'react'
-import {
-  Row,
-  Form,
-  Col,
-  InputGroup,
-  Button,
-  Spinner,
-  Alert,
-} from 'react-bootstrap'
+import Row from 'react-bootstrap/Row'
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
+import Spinner from 'react-bootstrap/Spinner'
+import Alert from 'react-bootstrap/Alert'
+import InputGroup from 'react-bootstrap/InputGroup'
 import emojiSupport from 'detect-emoji-support'
 import requester from 'axios'
 import * as yup from 'yup'

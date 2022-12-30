@@ -42,12 +42,12 @@
     "react-dom": "18.2.0",
     "react-google-recaptcha-v3": "^1.10.1",
     "react-i18next": "^12.1.1",
-    "react-use": "^17.4.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
     "@cspell/dict-es-es": "^2.2.3",
     "@cspell/dict-pt-br": "^2.1.4",
+    "@next/bundle-analyzer": "^13.1.1",
     "@types/nodemailer": "^6.4.7",
     "@types/pug": "^2.0.6",
     "@types/react": "18.0.26",

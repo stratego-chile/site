@@ -3,8 +3,8 @@ import { getLanguage, getNativeName } from 'language-flag-colors'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import { type FC, Fragment, useCallback, useId } from 'react'
-import { Dropdown } from 'react-bootstrap'
-import availableLocales from '@stratego/locale.middleware'
+import Dropdown from 'react-bootstrap/Dropdown'
+import { localesList as availableLocales } from '@stratego/locales'
 import classNames from 'classnames'
 
 type LanguageSelectorProps = {
@@ -66,7 +66,7 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({
         {getLanguageReferenceContent()}
       </Dropdown.Toggle>
       <Dropdown.Menu>
-        {availableLocales().map((lang, key) => (
+        {availableLocales.map((lang, key) => (
           <Dropdown.Item
             key={key}
             className="d-flex justify-content-start gap-3"
