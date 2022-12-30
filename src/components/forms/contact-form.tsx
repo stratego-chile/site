@@ -209,7 +209,7 @@ const ContactForm = () => {
         <Form.Group as={Col} xs={12} lg={6} controlId={nameId}>
           <Form.Label>
             {capitalizeText(
-              t('sections:contact.form.fields.name.label'),
+              t`sections:contact.form.fields.name.label`,
               'simple'
             )}
           </Form.Label>
@@ -230,7 +230,7 @@ const ContactForm = () => {
         <Form.Group as={Col} xs={12} lg={6} controlId={surnameId}>
           <Form.Label>
             {capitalizeText(
-              t('sections:contact.form.fields.surname.label'),
+              t`sections:contact.form.fields.surname.label`,
               'simple'
             )}
           </Form.Label>
@@ -251,7 +251,7 @@ const ContactForm = () => {
         <Col xs={12} lg>
           <Form.Label htmlFor={phoneNumberId}>
             {capitalizeText(
-              t('sections:contact.form.fields.phone.label'),
+              t`sections:contact.form.fields.phone.label`,
               'simple'
             )}
           </Form.Label>
@@ -259,7 +259,7 @@ const ContactForm = () => {
             <Form.Select
               id={phonePrefixId}
               aria-label={capitalizeText(
-                t('sections:contact.form.fields.phone.label'),
+                t`sections:contact.form.fields.phone.label`,
                 'simple'
               )}
               name="phonePrefix"
@@ -294,7 +294,7 @@ const ContactForm = () => {
         <Form.Group as={Col} xs={12} lg controlId={businessNameId}>
           <Form.Label>
             {capitalizeText(
-              t('sections:contact.form.fields.business.label'),
+              t`sections:contact.form.fields.business.label`,
               'simple'
             )}
           </Form.Label>
@@ -316,7 +316,7 @@ const ContactForm = () => {
         <Form.Group as={Col} xs={12} controlId={emailId}>
           <Form.Label>
             {capitalizeText(
-              t('sections:contact.form.fields.email.label'),
+              t`sections:contact.form.fields.email.label`,
               'simple'
             )}
           </Form.Label>
@@ -337,11 +337,11 @@ const ContactForm = () => {
         <Form.Group as={Col} xs={12} controlId={messageId}>
           <Form.Label>
             {capitalizeText(
-              t('sections:contact.form.fields.message.label'),
+              t`sections:contact.form.fields.message.label`,
               'simple'
             )}{' '}
             <span className="text-muted">
-              ({capitalizeText(t('validation:optional'), 'simple')})
+              ({capitalizeText(t`validation:optional`, 'simple')})
             </span>
           </Form.Label>
           <Form.Control
@@ -385,7 +385,7 @@ const ContactForm = () => {
             {isSubmitting ? (
               <Spinner size="sm" />
             ) : (
-              capitalizeText(t('sections:contact.form.buttons.submit'))
+              capitalizeText(t`sections:contact.form.buttons.submit`, 'simple')
             )}
           </Button>
         </Col>

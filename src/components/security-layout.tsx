@@ -18,19 +18,22 @@ const SecurityLayout: FC<PropsWithChildren<SecurityLayoutProps>> = ({
   return (
     <Layout
       pageTitle={title}
-      brandDepartment={t('sections:security.brandDepartment') satisfies string}
+      brandDepartment={t`sections:security.brandDepartment` satisfies string}
       subLinks={[
         {
           href: '/security/overview',
-          text: t('sections:security.pages.overview.title'),
+          text: t`sections:security.pages.overview.title`,
+          type: 'link',
         },
         {
           href: '/security/services',
-          text: t('sections:security.pages.services.title'),
+          text: t`sections:security.pages.services.title`,
+          type: 'link',
         },
         {
           href: '/security/contact',
-          text: t('sections:contact.title'),
+          text: t`sections:contact.title`,
+          type: 'link',
         },
       ]}
       showNavigationOptions

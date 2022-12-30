@@ -3,9 +3,13 @@
   "betaMessage": "site under development",
   "seeSourceCode": "see source code",
   "learnMore": "learn more",
+  "goBack": "go back",
+  "contactUs": "contact us",
+  "aboutUs": "about us",
   "errors": {
     "notFound": "resource not found",
-    "submit": "unexpected error when trying to send your information."
+    "submit": "unexpected error when trying to send your information.",
+    "unknown": "unknown server error. please try again later."
   },
   "cookies": {
     "disclaimer": {

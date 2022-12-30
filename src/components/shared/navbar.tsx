@@ -1,6 +1,13 @@
 import { getAssetPath } from '@stratego/helpers/static-resources.helper'
-import { Fragment, useEffect, useState, type FC } from 'react'
-import { Navbar, Container, Image, Nav } from 'react-bootstrap'
+import { Fragment, useMemo, type FC } from 'react'
+import {
+  Navbar,
+  Container,
+  Image,
+  Nav,
+  NavDropdown,
+  Button,
+} from 'react-bootstrap'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { capitalizeText } from '@stratego/helpers/text.helper'
@@ -8,14 +15,13 @@ import LanguageSelector from './language-selector'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import NavbarStyles from '@stratego/styles/modules/Navbar.module.sass'
-import { contactData } from '@stratego/data/contact'
-import { useMeasure } from 'react-use'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
-export type NavLinkSpec = {
-  href: string
+export type NavLinkSpec<NavLinkType = 'link' | 'menu'> = {
   text: string
-}
+} & (NavLinkType extends 'link'
+  ? { href: string; type: 'link' }
+  : { type: 'menu'; subLinks: Array<NavLinkSpec<'link'>> })
 
 type NavBarProps = {
   showNavigationOptions?: boolean
@@ -32,95 +38,116 @@ const NavBar: FC<NavBarProps> = ({
 }) => {
   const { t } = useTranslation(['common', 'sections'])
 
-  const [contactNavbarRef, contactNavbarMeasures] = useMeasure<HTMLDivElement>()
-  const [mainNavbarRef, mainNavbarMeasures] = useMeasure<HTMLDivElement>()
+  const links: Array<NavLinkSpec> = useMemo(
+    () => [
+      {
+        text: t`sections:home.title`,
+        href: '/home',
+        type: 'link',
+      },
+      {
+        text: t`sections:services.title`,
+        type: 'menu',
+        subLinks: [
+          {
+            href: '/security/services',
+            text: t`sections:security.title`,
+            type: 'link',
+          },
+        ],
+      },
+      {
+        text: t`common:aboutUs`,
+        href: '/about-us',
+        type: 'link',
+      },
+    ],
+    [t]
+  )
 
-  const [scrollY, setScrollY] = useState<number>(0)
-
-  const links: Array<NavLinkSpec> = [
-    {
-      href: '/',
-      text: t('sections:home.title'),
-    },
-    {
-      href: '/security',
-      text: t('sections:security.title'),
-    },
-  ]
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  const renderNavLinks = ($links: Array<NavLinkSpec>) => (
+    <Fragment>
+      {$links.map((link, key) =>
+        link.type === 'menu' ? (
+          <NavDropdown
+            key={key}
+            title={capitalizeText(link.text.toLowerCase(), 'simple')}
+            align="end"
+            renderMenuOnMount
+          >
+            {link.subLinks.map((subLink, subLinkKey) => (
+              <Link
+                href={subLink.href}
+                passHref
+                legacyBehavior
+                key={subLinkKey}
+              >
+                <NavDropdown.Item>
+                  {capitalizeText(subLink.text.toLowerCase(), 'simple')}
+                </NavDropdown.Item>
+              </Link>
+            ))}
+          </NavDropdown>
+        ) : (
+          <Link key={key} href={link.href} passHref legacyBehavior>
+            <Nav.Link as="a">
+              {capitalizeText(link.text.toLowerCase(), 'simple')}
+            </Nav.Link>
+          </Link>
+        )
+      )}
+    </Fragment>
+  )
 
   return (
     <Fragment>
       <Navbar
-        ref={contactNavbarRef}
-        variant="dark"
-        className={classNames(
-          'py-0 border border-0 border-bottom',
-          'border-deep-dark-blue',
-          NavbarStyles.contactNavbar,
-          subLinks.hasItems() && 'd-none',
-          scrollY > contactNavbarMeasures.height + mainNavbarMeasures.height &&
-            !subLinks.hasItems() &&
-            NavbarStyles.contactNavBarScrolled
-        )}
-        sticky={!subLinks.hasItems() ? 'top' : undefined}
+        variant="light"
+        bg={theme}
+        expand="lg"
+        className="position-static"
+        style={{ zIndex: 1050 }}
       >
-        <Container className="justify-content-center justify-content-lg-end px-0">
-          <Nav className="gap-4 text-center">
-            {contactData.map(({ icon, text, linkPrefix }, key) => (
-              <Nav.Item key={key} className="p-1">
-                <Nav.Link
-                  className="d-flex p-0 gap-1 align-items-center"
-                  href={`${linkPrefix}:${text.replace(/\ /gi, '')}`}
-                >
-                  <FontAwesomeIcon icon={icon} fixedWidth height="1em" />
-                  {text}
-                </Nav.Link>
-              </Nav.Item>
-            ))}
-          </Nav>
-        </Container>
-      </Navbar>
-      <Navbar ref={mainNavbarRef} variant="dark" bg={theme} expand="lg">
         <Container className="px-lg-1">
-          <Navbar.Brand className="d-flex fw-bold py-3 px-2 gap-3">
-            <Image
-              className={classNames('d-block', NavbarStyles.brandImage)}
-              src={getAssetPath('logo-white.svg')}
-              alt={process.env.BRAND_NAME}
-              fluid
-            />
-            {brandDepartment && (
-              <span
-                className={classNames(
-                  'fw-light border-lg-start ps-lg-3 text-wrap',
-                  NavbarStyles.brandDepartment
-                )}
-              >
-                {capitalizeText(brandDepartment, 'simple')}
-              </span>
-            )}
-          </Navbar.Brand>
+          <Link href="/home" legacyBehavior passHref>
+            <Navbar.Brand className="d-flex fw-bold py-3 px-2 gap-3">
+              <Image
+                className={classNames('d-block', NavbarStyles.brandImage)}
+                src={getAssetPath('logo-colored-simple.svg')}
+                alt={process.env.BRAND_NAME}
+                fluid
+              />
+              {brandDepartment && (
+                <span
+                  className={classNames(
+                    'fw-normal border-lg-start ps-lg-3 text-wrap',
+                    NavbarStyles.brandDepartment
+                  )}
+                >
+                  {capitalizeText(brandDepartment, 'simple')}
+                </span>
+              )}
+            </Navbar.Brand>
+          </Link>
           <Navbar.Toggle className="border-0">
             <FontAwesomeIcon icon={faBars} />
           </Navbar.Toggle>
           {showNavigationOptions && (
             <Navbar.Collapse>
-              <Nav className="ms-auto px-2 px-lg-0 pb-4 pb-lg-0 gap-2">
-                {links.map((link, key) => (
-                  <Link key={key} href={link.href} passHref legacyBehavior>
-                    <Nav.Link as="a">
-                      {capitalizeText(link.text.toLowerCase(), 'simple')}
-                    </Nav.Link>
+              <Nav className="ms-auto px-2 px-lg-0 pb-4 pb-lg-0 gap-4 row-gap-2 fw-semibold text-center">
+                {renderNavLinks(links)}
+                <Nav.Item className="d-inline-flex align-items-center mx-auto">
+                  <Link href="/contact" passHref legacyBehavior>
+                    <Button
+                      variant="primary"
+                      className="rounded-pill fw-semibold text-light px-4"
+                    >
+                      {capitalizeText(t`common:contactUs`, 'simple')}
+                    </Button>
                   </Link>
-                ))}
-                <Nav.Item className="d-inline-flex align-items-center">
-                  <LanguageSelector theme="dark-blue" />
+                </Nav.Item>
+                <Nav.Item className="d-inline-flex align-items-center mx-auto">
+                  <LanguageSelector theme="transparent" className="text-dark" />
                 </Nav.Item>
               </Nav>
             </Navbar.Collapse>
@@ -128,17 +155,13 @@ const NavBar: FC<NavBarProps> = ({
         </Container>
       </Navbar>
       {subLinks.hasItems() && (
-        <Navbar variant="light" bg="light" className="shadow" sticky="top">
-          <Container className="px-lg-1">
-            <Nav>
-              {subLinks.map((link, key) => (
-                <Link key={key} href={link.href} passHref legacyBehavior>
-                  <Nav.Link as="a">
-                    {capitalizeText(link.text.toLowerCase(), 'simple')}
-                  </Nav.Link>
-                </Link>
-              ))}
-            </Nav>
+        <Navbar
+          variant="light"
+          className={classNames('shadow', NavbarStyles.subLinksNavbar)}
+          sticky="top"
+        >
+          <Container className="px-lg-1 fw-semibold">
+            <Nav className="gap-4 row-gap-2">{renderNavLinks(subLinks)}</Nav>
           </Container>
         </Navbar>
       )}

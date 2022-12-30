@@ -11,8 +11,8 @@
   z-index: 20
 
 .homeWrapper
-  color: var(--bs-light)
-  background: linear-gradient(to bottom, darken(colors.$primary, 5%), darken(colors.$primary, 10%))
+  color: var(--bs-dark-blue)
+  background: linear-gradient(to bottom, lighten(colors.$light-gray, 5%), lighten(colors.$light-gray, 3%))
   @mixin relative-text
     position: relative
     z-index: 21
@@ -29,16 +29,12 @@
   @for $i from 1 through 6
     h#{$i}
       font-weight: bolder
-  &::after
-    $background: url(/images/banner-home-0-overlay.png), url(/images/banner-home-0.png)
-    @include mixins.image-overlay($background)
-    z-index: 2
 
 .sectionContent
   $shadow-color: rgba(black, .38)
   @extend .standardContent
-  font-family: Poppins, 'Work Sans', sans-serif
-  font-weight: 600
+  font-family: Montserrat, sans-serif
+  font-weight: 700
   font-size: 3.5rem
   @media (max-width: map.get($grid-breakpoints, 'lg'))
     font-size: 2rem
@@ -55,14 +51,11 @@
   @extend .standardContent
   transition: background-color 250ms ease-in-out
   &:hover
-    background-color: rgba(white, 0.1)
+    background-color: rgba(darken(colors.$light-gray, 70%), .1)
     cursor: help
 
 .contentAbout
   @extend .standardContent
-  &::after
-    $background: url(/images/banner-home-1-overlay.png), url(/images/banner-home-1.png)
-    @include mixins.image-overlay($background)
 
 .contrastedContent
   color: var(--bs-dark)
@@ -73,13 +66,10 @@
   background-position-y: 28%
   position: relative
   opacity: 1
-  &::before
-    @include mixins.image-overlay(url(/images/banner-home-2-overlay-1.png))
-    opacity: .35
 
 .contentServices
   @extend .standardContent, .contrastedContent
-  @include mixins.image-overlay(url(/images/banner-home-2-overlay-2.svg))
+  @include mixins.image-overlay(url(/images/banner-home-2-overlay-1.svg))
   background-position-y: 28%
   position: relative
   opacity: 1
@@ -89,6 +79,8 @@
   transition: all 350ms ease
   overflow: hidden
   backdrop-filter: blur(.5rem)
+  p
+    font-family: 'Work Sans', sans-serif
   &:hover
     color: white !important
     cursor: help

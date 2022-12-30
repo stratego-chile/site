@@ -2,19 +2,25 @@ import { useLocale } from '@stratego/hooks/useLocale'
 import { getLanguage, getNativeName } from 'language-flag-colors'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import { type FC, Fragment, useCallback } from 'react'
-import { Dropdown, DropdownButton } from 'react-bootstrap'
+import { type FC, Fragment, useCallback, useId } from 'react'
+import { Dropdown } from 'react-bootstrap'
 import availableLocales from '@stratego/locale.middleware'
 import classNames from 'classnames'
 
 type LanguageSelectorProps = {
   theme?: 'light' | 'dark' | string
+  className?: string
 }
 
-const LanguageSelector: FC<LanguageSelectorProps> = ({ theme = 'light' }) => {
+const LanguageSelector: FC<LanguageSelectorProps> = ({
+  theme = 'light',
+  className,
+}) => {
   const { i18n } = useTranslation()
 
   const router = useRouter()
+
+  const selectorId = useId()
 
   const { pathname, query, asPath } = router
 
@@ -50,24 +56,27 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ theme = 'light' }) => {
     ))(getLanguage(options?.lang ?? currentLocale)!)
 
   return (
-    <DropdownButton
-      variant={theme}
-      className={classNames('rounded')}
-      title={getLanguageReferenceContent()}
-      align="end"
-      size="sm"
-    >
-      {availableLocales().map((lang, key) => (
-        <Dropdown.Item
-          key={key}
-          href="#"
-          className="d-flex justify-content-start gap-3"
-          onClick={(event) => handleLanguageSelection(event, lang)}
-        >
-          {getLanguageReferenceContent({ lang, mode: 'selector' })}
-        </Dropdown.Item>
-      ))}
-    </DropdownButton>
+    <Dropdown align="end">
+      <Dropdown.Toggle
+        id={selectorId}
+        variant={theme}
+        size="sm"
+        className={classNames('rounded', className)}
+      >
+        {getLanguageReferenceContent()}
+      </Dropdown.Toggle>
+      <Dropdown.Menu>
+        {availableLocales().map((lang, key) => (
+          <Dropdown.Item
+            key={key}
+            className="d-flex justify-content-start gap-3"
+            onClick={(event) => handleLanguageSelection(event, lang)}
+          >
+            {getLanguageReferenceContent({ lang, mode: 'selector' })}
+          </Dropdown.Item>
+        ))}
+      </Dropdown.Menu>
+    </Dropdown>
   )
 }
 

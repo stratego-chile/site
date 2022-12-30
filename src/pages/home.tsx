@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { advantages, services } from '@stratego/data/home-content'
+import ShowOnScroll from '@stratego/components/animations/show-on-scroll'
 
 const defaultFigureHeight = '34rem'
 
@@ -18,7 +19,7 @@ const Home: NextPage<WithoutProps> = () => {
 
   return (
     <Layout
-      pageTitle={capitalizeText(t('sections:home.title') satisfies string)}
+      pageTitle={capitalizeText(t`sections:home.title` satisfies string)}
       showNavigationOptions
       className={classNames('d-flex flex-column', HomeStyles.homeWrapper)}
     >
@@ -74,20 +75,25 @@ const Home: NextPage<WithoutProps> = () => {
                     )}
                   </p>
                   <Link href="/security/services" passHref>
-                    <Button variant="dark-blue" className="rounded-pill">
-                      {capitalizeText(t('common:learnMore'), 'simple')}
+                    <Button
+                      variant="primary"
+                      className="rounded-pill text-light"
+                    >
+                      {capitalizeText(t`common:learnMore`, 'simple')}
                     </Button>
                   </Link>
                 </Col>
                 <Col xs={12} lg="auto">
-                  <Image
-                    src="/images/figure-0.png"
-                    style={{
-                      width: defaultFigureHeight,
-                    }}
-                    alt=""
-                    fluid
-                  />
+                  <ShowOnScroll direction="left">
+                    <Image
+                      src="/images/figure-0.png"
+                      style={{
+                        width: defaultFigureHeight,
+                      }}
+                      alt=""
+                      fluid
+                    />
+                  </ShowOnScroll>
                 </Col>
               </Row>
             </Container>
@@ -98,8 +104,11 @@ const Home: NextPage<WithoutProps> = () => {
         <Row>
           <Col
             className={classNames(
-              'd-flex flex-column flex-lg-row p-5 mx-3 mx-lg-0 mt-5 gap-3',
-              'rounded-4 bg-dark-blue text-center text-lg-start fs-5 fw-normal'
+              'd-flex flex-column flex-lg-row',
+              'p-5 mx-3 mx-lg-0 mt-5 gap-3',
+              'rounded-4 fs-5 fw-normal',
+              'text-center text-lg-start',
+              'bg-light-gray text-dark-blue'
             )}
           >
             {advantages.map((section, key) => (
@@ -146,7 +155,9 @@ const Home: NextPage<WithoutProps> = () => {
                 )}
               >
                 <Col xs={12} lg="auto">
-                  <Image src="/images/figure-1.png" alt="" fluid />
+                  <ShowOnScroll>
+                    <Image src="/images/figure-1.png" alt="" fluid />
+                  </ShowOnScroll>
                 </Col>
                 <Col className="gy-5">
                   <h1 className={classNames(HomeStyles.sectionContent)}>
@@ -184,7 +195,7 @@ const Home: NextPage<WithoutProps> = () => {
                       variant="info"
                       className="rounded-pill text-deep-dark-blue"
                     >
-                      {capitalizeText(t('common:learnMore'), 'simple')}
+                      {capitalizeText(t`common:learnMore`, 'simple')}
                     </Button>
                   </Link>
                 </Col>
@@ -242,12 +253,14 @@ const Home: NextPage<WithoutProps> = () => {
                   </p>
                   <Link href="/security/services" passHref>
                     <Button className="rounded-pill text-light">
-                      {capitalizeText(t('common:learnMore'), 'simple')}
+                      {capitalizeText(t`common:learnMore`, 'simple')}
                     </Button>
                   </Link>
                 </Col>
                 <Col xs={12} lg className="order-1 order-lg-2">
-                  <Image src="/images/figure-2.png" alt="" fluid />
+                  <ShowOnScroll direction="left">
+                    <Image src="/images/figure-2.png" alt="" fluid />
+                  </ShowOnScroll>
                 </Col>
               </Row>
             </Container>
@@ -268,11 +281,11 @@ const Home: NextPage<WithoutProps> = () => {
                 <Col>
                   <h1 className={HomeStyles.sectionContentNegative}>
                     {capitalizeText(
-                      t('sections:home.fragments.services.title.regular'),
+                      t`sections:home.fragments.services.title.regular`,
                       'simple'
                     )}{' '}
                     <span className="text-info">
-                      {t('sections:home.fragments.services.title.emphasis')}
+                      {t`sections:home.fragments.services.title.emphasis`}
                     </span>
                   </h1>
                 </Col>
@@ -288,8 +301,8 @@ const Home: NextPage<WithoutProps> = () => {
                   >
                     <div
                       className={classNames(
-                        'h-100 p-5 rounded-4 bg-opacity-75 bg-light-gray',
-                        'text-center text-dark-blue',
+                        'h-100 p-5 rounded-4 text-center',
+                        'bg-opacity-75 bg-light-gray text-dark-blue',
                         HomeStyles.serviceBox
                       )}
                     >

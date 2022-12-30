@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
-import NotFoundError from '@stratego/pages/404'
 import { type GetServerSideProps, type NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -11,6 +10,7 @@ import SecurityLayout from '@stratego/components/security-layout'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
+import ErrorPage from '@stratego/pages/_error'
 
 const SecuritySection: NextPage<WithoutProps> = () => {
   const { query } = useRouter()
@@ -23,14 +23,14 @@ const SecuritySection: NextPage<WithoutProps> = () => {
     () => ({
       overview: {
         title: capitalizeText(
-          t('sections:security.pages.overview.title'),
+          t`sections:security.pages.overview.title`,
           'simple'
         ),
         template: `/${i18n.language}/security-overview.mdx`,
       },
       services: {
         title: capitalizeText(
-          t('sections:security.pages.services.title'),
+          t`sections:security.pages.services.title`,
           'simple'
         ),
         template: `/${i18n.language}/security-services.mdx`,
@@ -94,13 +94,13 @@ const SecuritySection: NextPage<WithoutProps> = () => {
 
   return !isSectionDefined ? (
     checked ? (
-      <NotFoundError />
+      <ErrorPage statusCode={404} />
     ) : null
   ) : (
     <SecurityLayout
       title={[
         sections[currentSection!].title,
-        t('sections:security.brandDepartment'),
+        t`sections:security.brandDepartment`,
       ].join(' - ')}
     >
       {isSectionDefined && content && checked && (
