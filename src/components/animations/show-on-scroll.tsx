@@ -10,7 +10,7 @@ type ShowOnScrollProps = {
 const ShowOnScroll: FC<PropsWithChildren<ShowOnScrollProps>> = ({
   children,
   direction = 'right',
-  placementDiff = 25,
+  placementDiff = 45,
   duration = 0.8,
 }) => {
   const controls = useAnimation()
@@ -25,7 +25,7 @@ const ShowOnScroll: FC<PropsWithChildren<ShowOnScrollProps>> = ({
   }
 
   useEffect(() => {
-    if (onScreen) {
+    if (onScreen)
       controls.start({
         x: 0,
         opacity: 1,
@@ -34,11 +34,14 @@ const ShowOnScroll: FC<PropsWithChildren<ShowOnScrollProps>> = ({
           ease: 'easeOut',
         },
       })
-    }
   }, [onScreen, controls, duration])
 
   return (
     <motion.div
+      style={{
+        position: 'inherit',
+        display: 'inherit',
+      }}
       ref={rootRef}
       initial={{ opacity: 0, ...directions[direction] }}
       animate={controls}
