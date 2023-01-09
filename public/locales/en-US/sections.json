@@ -124,8 +124,41 @@
     }
   },
   "security": {
-    "title": "security",
+    "title": "cybersecurity",
     "brandDepartment": "information security",
+    "services": {
+      "audit": {
+        "title": "Audit",
+        "modules": {
+          "risksAndVulnerabilities": {
+            "title": "Risks & vulnerabilities detection"
+          },
+          "infrastructure": {
+            "title": "Infrastucture analysis"
+          },
+          "procedures": {
+            "title": "Procedures analysis"
+          },
+          "mitigation": {
+            "title": "Mitigation"
+          },
+          "socialEngineering": {
+            "title": "Social engineering"
+          }
+        }
+      },
+      "consulting": {
+        "title": "Consulting",
+        "modules": {
+          "iso27000": {
+            "title": "ISO/IEC 27000"
+          },
+          "chl19223": {
+            "title": "Chilean Law N° 19223"
+          }
+        }
+      }
+    },
     "pages": {
       "overview": {
         "title": "overview"

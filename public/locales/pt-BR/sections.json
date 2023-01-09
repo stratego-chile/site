@@ -124,8 +124,41 @@
     }
   },
   "security": {
-    "title": "segurança",
-    "brandDepartment": "segurança da informação",
+    "title": "Ciber-segurança",
+    "brandDepartment": "Segurança da informação",
+    "services": {
+      "audit": {
+        "title": "Auditoria",
+        "modules": {
+          "risksAndVulnerabilities": {
+            "title": "Detecção de riscos e vulnerabilidades"
+          },
+          "infrastructure": {
+            "title": "Análise de infrastrutura"
+          },
+          "procedures": {
+            "title": "Análise de procedimentos"
+          },
+          "mitigation": {
+            "title": "Mitigação"
+          },
+          "socialEngineering": {
+            "title": "Engenharia social"
+          }
+        }
+      },
+      "consulting": {
+        "title": "Consultoria",
+        "modules": {
+          "iso27000": {
+            "title": "ISO/IEC 27000"
+          },
+          "chl19223": {
+            "title": "Lei chilena N° 19223"
+          }
+        }
+      }
+    },
     "pages": {
       "overview": {
         "title": "visão geral"

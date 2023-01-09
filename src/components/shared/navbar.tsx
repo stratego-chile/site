@@ -145,38 +145,48 @@ const NavBar: FC<NavBarProps> = ({
             type: 'label',
             subLinks: [
               {
-                text: 'IT Audit',
+                text: t`sections:security.services.audit.title`,
                 type: 'menu',
                 subLinks: [
                   {
-                    href: '/services/cybersecurity/audit/risks',
-                    text: 'Risks identification',
+                    text: t`sections:security.services.audit.modules.risksAndVulnerabilities.title`,
+                    href: '/services/cybersecurity/audit/risks-and-vulnerabilities',
                     type: 'link',
                   },
                   {
-                    href: '/services/cybersecurity/audit/vulnerabilities',
-                    text: 'Vulnerabilities mitigation',
+                    text: t`sections:security.services.audit.modules.infrastructure.title`,
+                    href: '/services/cybersecurity/audit/infrastructure',
                     type: 'link',
                   },
                   {
+                    text: t`sections:security.services.audit.modules.procedures.title`,
+                    href: '/services/cybersecurity/audit/procedures',
+                    type: 'link',
+                  },
+                  {
+                    text: t`sections:security.services.audit.modules.mitigation.title`,
+                    href: '/services/cybersecurity/audit/mitigation',
+                    type: 'link',
+                  },
+                  {
+                    text: t`sections:security.services.audit.modules.socialEngineering.title`,
                     href: '/services/cybersecurity/audit/social-engineering',
-                    text: 'Social engineering',
                     type: 'link',
                   },
                 ],
               },
               {
-                text: 'Consultancy',
+                text: t`sections:security.services.consulting.title`,
                 type: 'menu',
                 subLinks: [
                   {
-                    href: '/services/cybersecurity/consultancy/ISO_IEC-27000',
-                    text: 'ISO/IEC 27000',
+                    text: t`sections:security.services.consulting.modules.iso27000.title`,
+                    href: '/services/cybersecurity/consulting/ISO_IEC-27000',
                     type: 'link',
                   },
                   {
-                    href: '/services/cybersecurity/consultancy/CHL-19223',
-                    text: 'Chilean Law N° 19223',
+                    text: t`sections:security.services.consulting.modules.chl19223.title`,
+                    href: '/services/cybersecurity/consulting/CHL-19223',
                     type: 'link',
                   },
                 ],
