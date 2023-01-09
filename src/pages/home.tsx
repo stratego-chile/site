@@ -13,10 +13,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { capitalizeText } from '@stratego/helpers/text.helper'
-import { advantages, services } from '@stratego/data/home-content'
+import { services } from '@stratego/data/home-content'
 import ShowOnScroll from '@stratego/components/animations/show-on-scroll'
+import Spinner from 'react-bootstrap/Spinner'
+import dynamic from 'next/dynamic'
+import { Alert } from 'react-bootstrap'
 
-const defaultFigureHeight = '34rem'
+const DynamicContactForm = dynamic(
+  () => import('@stratego/components/forms/contact-form'),
+  {
+    loading: ({ isLoading, error }) =>
+      isLoading ? (
+        <Spinner animation="border" variant="primary" />
+      ) : error ? (
+        <Alert variant="danger">{Error.toString()}</Alert>
+      ) : null,
+    ssr: false,
+  }
+)
 
 const Home: NextPage<WithoutProps> = () => {
   const { t } = useTranslation('sections')
@@ -27,54 +41,39 @@ const Home: NextPage<WithoutProps> = () => {
       showNavigationOptions
       className={classNames('d-flex flex-column', HomeStyles.homeWrapper)}
     >
-      <Container
-        fluid
-        className={classNames(HomeStyles.banner, 'd-flex flex-grow-1')}
-      >
-        <Row className={classNames('d-flex flex-grow-1')}>
+      <Container fluid className={classNames(HomeStyles.banner)}>
+        <Row className="py-5">
           <Col
             className={classNames(
-              'd-flex flex-column flex-grow-1 align-self-stretch',
               'align-items-center justify-content-center justify-content-lg-start'
             )}
           >
             <Container
               className={classNames(
-                'd-flex flex-column flex-grow-1 align-self-stretch align-content-center'
+                'd-flex flex-column align-self-stretch align-content-center'
               )}
             >
-              <Row className="d-flex flex-grow-1 align-items-center">
-                <Col className="text-center text-lg-start">
-                  <h1 className={classNames(HomeStyles.sectionContent)}>
+              <Row className="d-flex align-items-center">
+                <Col className="text-center text-lg-start order-2 order-lg-1">
+                  <div className={classNames(HomeStyles.sectionContent)}>
                     <span className="fs-2 d-none d-lg-inline">
                       {capitalizeText(
-                        t(
-                          'sections:home.fragments.emphasisTitles.presentation.appendix'
-                        ),
+                        t`sections:home.fragments.emphasisTitles.presentation.appendix`,
                         'simple'
                       )}
                     </span>
                     <br />
                     {capitalizeText(
-                      t(
-                        'sections:home.fragments.emphasisTitles.presentation.title.regular'
-                      ),
+                      t`sections:home.fragments.emphasisTitles.presentation.title.regular`,
                       'simple'
-                    )}
+                    )}{' '}
                     <span className="text-info">
-                      {capitalizeText(
-                        t(
-                          'sections:home.fragments.emphasisTitles.presentation.title.emphasis'
-                        ),
-                        'simple'
-                      )}
+                      {t`sections:home.fragments.emphasisTitles.presentation.title.emphasis`.toLowerCase()}
                     </span>
-                  </h1>
-                  <p className="text-shadow">
+                  </div>
+                  <p className="text-shadow my-4 fs-5">
                     {capitalizeText(
-                      t(
-                        'sections:home.fragments.emphasisTitles.presentation.subtitle'
-                      ),
+                      t`sections:home.fragments.emphasisTitles.presentation.subtitle`,
                       'simple'
                     )}
                   </p>
@@ -87,12 +86,12 @@ const Home: NextPage<WithoutProps> = () => {
                     </Button>
                   </Link>
                 </Col>
-                <Col xs={12} lg="auto">
+                <Col xs={12} lg="auto" className="order-1 order-lg-2">
                   <ShowOnScroll direction="left">
                     <Image
                       src="/images/figure-0.png"
                       style={{
-                        width: defaultFigureHeight,
+                        width: '34rem',
                       }}
                       alt=""
                       fluid
@@ -104,49 +103,10 @@ const Home: NextPage<WithoutProps> = () => {
           </Col>
         </Row>
       </Container>
-      <Container>
-        <Row>
-          <Col
-            className={classNames(
-              'd-flex flex-column flex-lg-row',
-              'p-5 mx-3 mx-lg-0 mt-5 gap-3',
-              'rounded-4 fs-5 fw-normal',
-              'text-center text-lg-start',
-              'bg-light-gray text-dark-blue'
-            )}
-          >
-            {advantages.map((section, key) => (
-              <Col
-                xs={12}
-                lg
-                className={classNames(
-                  'd-flex flex-column flex-lg-row',
-                  'gap-3 p-3',
-                  'rounded-4 overflow-hidden',
-                  HomeStyles.floatingBox
-                )}
-                key={key}
-              >
-                <div className="fs-1">
-                  <FontAwesomeIcon icon={section.icon} />
-                </div>
-                <div className="d-inline-flex flex-column">
-                  <span className="fs-4 fw-bold">
-                    {capitalizeText(t(section.title))}
-                  </span>
-                  <span className="fs-6">
-                    {capitalizeText(t(section.description), 'simple')}
-                  </span>
-                </div>
-              </Col>
-            ))}
-          </Col>
-        </Row>
-      </Container>
       <Container
         fluid
         className={classNames(
-          'd-flex flex-column gap-5 py-5',
+          'd-flex flex-column py-5',
           HomeStyles.contentAbout
         )}
       >
@@ -164,33 +124,25 @@ const Home: NextPage<WithoutProps> = () => {
                   </ShowOnScroll>
                 </Col>
                 <Col className="gy-5">
-                  <h1 className={classNames(HomeStyles.sectionContent)}>
-                    <span className="fs-2">
+                  <div className={classNames(HomeStyles.sectionContentSmall)}>
+                    <span className="fs-4">
                       {capitalizeText(
-                        t(
-                          'sections:home.fragments.emphasisTitles.aboutUs.appendix'
-                        ),
+                        t`sections:home.fragments.emphasisTitles.aboutUs.appendix`,
                         'simple'
                       )}
                     </span>
                     <br />
                     {capitalizeText(
-                      t(
-                        'sections:home.fragments.emphasisTitles.aboutUs.title.regular'
-                      ),
+                      t`sections:home.fragments.emphasisTitles.aboutUs.title.regular`,
                       'simple'
                     )}{' '}
                     <span className="text-info">
-                      {t(
-                        'sections:home.fragments.emphasisTitles.aboutUs.title.emphasis'
-                      )}
+                      {t`sections:home.fragments.emphasisTitles.aboutUs.title.emphasis`}
                     </span>
-                  </h1>
-                  <p className="text-shadow">
+                  </div>
+                  <p className="text-shadow my-4 fs-6">
                     {capitalizeText(
-                      t(
-                        'sections:home.fragments.emphasisTitles.aboutUs.subtitle'
-                      ),
+                      t`sections:home.fragments.emphasisTitles.aboutUs.subtitle`,
                       'simple'
                     )}
                   </p>
@@ -203,7 +155,7 @@ const Home: NextPage<WithoutProps> = () => {
       <Container
         fluid
         className={classNames(
-          'd-flex flex-column gap-5 py-5',
+          'd-flex flex-column py-5',
           HomeStyles.contentApproach
         )}
       >
@@ -220,30 +172,22 @@ const Home: NextPage<WithoutProps> = () => {
                   <h1 className={classNames(HomeStyles.sectionContentNegative)}>
                     <span className="fs-2">
                       {capitalizeText(
-                        t(
-                          'sections:home.fragments.emphasisTitles.modules.appendix'
-                        ),
+                        t`sections:home.fragments.emphasisTitles.modules.appendix`,
                         'simple'
                       )}
                     </span>
                     <br />
                     {capitalizeText(
-                      t(
-                        'sections:home.fragments.emphasisTitles.modules.title.regular'
-                      ),
+                      t`sections:home.fragments.emphasisTitles.modules.title.regular`,
                       'simple'
                     )}{' '}
                     <span className="text-info">
-                      {t(
-                        'sections:home.fragments.emphasisTitles.modules.title.emphasis'
-                      )}
+                      {t`sections:home.fragments.emphasisTitles.modules.title.emphasis`}
                     </span>
                   </h1>
                   <p className="text-shadow">
                     {capitalizeText(
-                      t(
-                        'sections:home.fragments.emphasisTitles.modules.subtitle'
-                      ),
+                      t`sections:home.fragments.emphasisTitles.modules.subtitle`,
                       'simple'
                     )}
                   </p>
@@ -266,7 +210,7 @@ const Home: NextPage<WithoutProps> = () => {
       <Container
         fluid
         className={classNames(
-          'd-flex flex-column gap-5 py-5',
+          'd-flex flex-column py-5',
           HomeStyles.contentServices
         )}
       >
@@ -295,23 +239,39 @@ const Home: NextPage<WithoutProps> = () => {
                     lg={4}
                     className="align-self-stretch"
                   >
-                    <div
-                      className={classNames(
-                        'h-100 p-5 rounded-4 text-center',
-                        'bg-opacity-75 bg-light-gray text-dark-blue',
-                        HomeStyles.serviceBox
-                      )}
-                    >
-                      <h1>
-                        <FontAwesomeIcon icon={icon} />
-                      </h1>
-                      <h4>{capitalizeText(t(title))}</h4>
-                      <p>{capitalizeText(t(description), 'simple')}</p>
-                    </div>
+                    <ShowOnScroll>
+                      <div
+                        className={classNames(
+                          'h-100 p-5 rounded-4 text-center',
+                          'bg-opacity-75 bg-light-gray text-dark-blue',
+                          HomeStyles.serviceBox
+                        )}
+                      >
+                        <h1>
+                          <FontAwesomeIcon icon={icon} />
+                        </h1>
+                        <h4>{capitalizeText(t(title))}</h4>
+                        <p>{capitalizeText(t(description), 'simple')}</p>
+                      </div>
+                    </ShowOnScroll>
                   </Col>
                 ))}
               </Row>
             </Container>
+          </Col>
+        </Row>
+      </Container>
+      <Container className="d-flex flex-column gap-5 mb-5 py-5">
+        <Row>
+          <Col className="text-center">
+            <h1 className={HomeStyles.sectionContent}>
+              {capitalizeText(t`sections:contact.form.title`, 'simple')}
+            </h1>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <DynamicContactForm />
           </Col>
         </Row>
       </Container>

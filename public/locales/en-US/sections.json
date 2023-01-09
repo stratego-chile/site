@@ -7,23 +7,23 @@
     "fragments": {
       "emphasisTitles": {
         "presentation": {
-          "appendix": "stratego technologies",
+          "appendix": "stratego",
           "title": {
-            "regular": "",
-            "emphasis": "security & innovation services"
+            "regular": "specialists in",
+            "emphasis": "cybersecurity solutions"
           },
-          "subtitle": "at the edge of technology, in the future of your business"
+          "subtitle": "we are a company dedicated to the examination, evaluation and mitigation of IT risks"
         },
         "aboutUs": {
-          "appendix": "we are",
+          "appendix": "",
           "title": {
-            "regular": "professionals",
-            "emphasis": "committed to your cybersecurity"
+            "regular": "professionals committed to cybersecurity,",
+            "emphasis": "from the knowledge of each business"
           },
-          "subtitle": "we enforce the best practices and standards for your business"
+          "subtitle": "each company is a world to be discovered, therefore we understand that to provide a cybersecurity solution it is necessary to develop a deep knowledge of the business, in order to develop a security strategy specific to each need"
         },
         "modules": {
-          "appendix": "our approach is simple",
+          "appendix": "",
           "title": {
             "regular": "the integrity, availability and confidentiality of your data",
             "emphasis": "is our priority"

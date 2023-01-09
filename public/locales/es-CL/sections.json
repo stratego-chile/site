@@ -7,23 +7,23 @@
     "fragments": {
       "emphasisTitles": {
         "presentation": {
-          "appendix": "stratego technologies",
+          "appendix": "stratego",
           "title": {
-            "regular": "",
-            "emphasis": "servicios de innovación y seguridad"
+            "regular": "especialistas en",
+            "emphasis": "soluciones de ciberseguridad"
           },
-          "subtitle": "a la vanguardia de la tecnología, en el futuro de tu negocio"
+          "subtitle": "somos una empresa dedicada al examen, evaluación y mitigación de riesgos informáticos"
         },
         "aboutUs": {
-          "appendix": "somos",
+          "appendix": "",
           "title": {
-            "regular": "profesionales",
-            "emphasis": "comprometidos con la cyber-seguridad"
+            "regular": "profesionales comprometidos con la ciberseguridad,",
+            "emphasis": "desde el conocimiento de cada negocio"
           },
-          "subtitle": "reforzamos las mejores prácticas y estándares para tu empresa"
+          "subtitle": "cada empresa es un mundo por descubrir, por lo mismo entendemos que para dar una solución de ciberseguridad es necesario desarrollar un conocimiento profundo del negocio, de tal modo de desarrollar una estrategia de seguridad específica a cada necesidad"
         },
         "modules": {
-          "appendix": "nuestro enfoque es simple",
+          "appendix": "",
           "title": {
             "regular": "la integridad, confidencialidad y disponibilidad de tus datos",
             "emphasis": "es nuestra prioridad"
