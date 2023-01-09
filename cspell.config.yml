@@ -27,6 +27,7 @@ words:
   - Offcanvas
   - pascalcase
   - recaptcha
+  - rehype
   - stratego
   - uncapitalize
   - uniqid

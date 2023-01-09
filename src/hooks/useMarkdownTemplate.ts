@@ -49,7 +49,16 @@ export const useMarkdownTemplate = (
   }, [template])
 
   const { data: compiledTemplate, isLoading } = useAsyncMemo(async () => {
-    return content && (await serialize(content))
+    return (
+      content &&
+      (await serialize(content, {
+        mdxOptions: {
+          remarkPlugins: [],
+          rehypePlugins: [],
+          development: true, // workaround: https://github.com/hashicorp/next-mdx-remote/issues/307
+        },
+      }))
+    )
   }, [content])
 
   useEffect(() => {
