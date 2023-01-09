@@ -4,6 +4,7 @@ import {
   useState,
   useMemo,
   useEffect,
+  useDebugValue,
 } from 'react'
 
 const RECOMMENDED_DEPS_LENGTH = 3
@@ -29,6 +30,8 @@ export const useAsyncMemo = <T = unknown>(
   const $promiseFunction = useCallback(promiseFunction, [...deps, attempts])
 
   const logger = console
+
+  useDebugValue(hasErrors && errorReason ? errorReason : data)
 
   useEffect(() => {
     setLoadingState(true)
