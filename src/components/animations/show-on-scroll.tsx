@@ -41,6 +41,7 @@ const ShowOnScroll: FC<PropsWithChildren<ShowOnScrollProps>> = ({
       style={{
         position: 'inherit',
         display: 'inherit',
+        height: '100%',
       }}
       ref={rootRef}
       initial={{ opacity: 0, ...directions[direction] }}
