@@ -100,7 +100,7 @@ const SecuritySection: NextPage<WithoutProps> = () => {
 
   return !isSectionDefined ? (
     checked ? (
-      <ErrorPage statusCode={404} showGoBackButton={false} />
+      <ErrorPage statusCode={404} />
     ) : null
   ) : (
     <SecurityLayout
