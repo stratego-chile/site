@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 import { Cookies, CookiesProvider } from 'react-cookie'
 import { showConsoleWarnings } from '@stratego/helpers/console.helper'
 import { config as FontAwesomeConfig } from '@fortawesome/fontawesome-svg-core'
+import { Analytics } from '@vercel/analytics/react'
 
 FontAwesomeConfig.autoAddCss = false // Prevent icon wrong size on SSR
 
@@ -44,6 +45,7 @@ const StrategoLandingApp = ({
             />
           </Head>
           <Component {...pageProps} />
+          <Analytics />
         </GoogleReCaptchaProvider>
       </CookiesProvider>
     </SSRProvider>

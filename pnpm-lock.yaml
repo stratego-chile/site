@@ -16,6 +16,7 @@ specifiers:
   '@types/uuid': ^9.0.0
   '@typescript-eslint/eslint-plugin': ^5.48.1
   '@typescript-eslint/parser': ^5.48.1
+  '@vercel/analytics': ^0.1.6
   '@webdiscus/pug-loader': ^2.10.0
   axios: 1.2.2
   bootstrap: ^5.2.3
@@ -72,6 +73,7 @@ dependencies:
   '@fortawesome/react-fontawesome': 0.2.0_z27bm67dtmuyyvss23ckjdrcuy
   '@popperjs/core': 2.11.6
   '@stdlib/string': 0.0.14
+  '@vercel/analytics': 0.1.6_react@18.2.0
   axios: 1.2.2
   bootstrap: 5.2.3_@popperjs+core@2.11.6
   buffer: 6.0.3
@@ -1598,6 +1600,14 @@ packages:
       '@typescript-eslint/types': 5.48.1
       eslint-visitor-keys: 3.3.0
     dev: true
+
+  /@vercel/analytics/0.1.6_react@18.2.0:
+    resolution: {integrity: sha512-zNd5pj3iDvq8IMBQHa1YRcIteiw6ZiPB8AsONHd8ieFXlNpLqhXfIYnf4WvTfZ7S1NSJ++mIM14aJnNac/VMXQ==}
+    peerDependencies:
+      react: ^16.8||^17||^18
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /@webassemblyjs/ast/1.11.1:
     resolution: {integrity: sha512-ukBh14qFLjxTQNTXocdyksN5QdM28S1CxHt2rdskFyL+xFV7VremuBLVbmCePj+URalXBENx/9Lm7lnhihtCSw==}
