@@ -1,10 +1,21 @@
 import { motion, useAnimation, useInView } from 'framer-motion'
-import { type PropsWithChildren, useRef, type FC, useEffect } from 'react'
+import {
+  type PropsWithChildren,
+  useRef,
+  type FC,
+  useEffect,
+  useState,
+} from 'react'
 
 type ShowOnScrollProps = {
   direction?: 'left' | 'right' | 'top' | 'bottom'
   placementDiff?: number
   duration?: number
+}
+
+enum DisplayState {
+  HIDDEN,
+  SHOWN,
 }
 
 const ShowOnScroll: FC<PropsWithChildren<ShowOnScrollProps>> = ({
@@ -13,9 +24,13 @@ const ShowOnScroll: FC<PropsWithChildren<ShowOnScrollProps>> = ({
   placementDiff = 45,
   duration = 0.8,
 }) => {
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  const onScreen = useInView(wrapperRef)
+
   const controls = useAnimation()
-  const rootRef = useRef<HTMLDivElement>(null)
-  const onScreen = useInView(rootRef)
+
+  const [displayState, setDisplayState] = useState(DisplayState.HIDDEN)
 
   const directions = {
     left: { x: placementDiff },
@@ -25,7 +40,13 @@ const ShowOnScroll: FC<PropsWithChildren<ShowOnScrollProps>> = ({
   }
 
   useEffect(() => {
-    if (onScreen)
+    if (onScreen && displayState === DisplayState.HIDDEN)
+      setDisplayState(DisplayState.SHOWN)
+  }, [onScreen, displayState])
+
+  useEffect(() => {
+    // This prevent animation calculation for every render
+    if (displayState === DisplayState.SHOWN)
       controls.start({
         x: 0,
         opacity: 1,
@@ -34,7 +55,7 @@ const ShowOnScroll: FC<PropsWithChildren<ShowOnScrollProps>> = ({
           ease: 'easeOut',
         },
       })
-  }, [onScreen, controls, duration])
+  }, [displayState, controls, duration])
 
   return (
     <motion.div
@@ -42,9 +63,14 @@ const ShowOnScroll: FC<PropsWithChildren<ShowOnScrollProps>> = ({
         position: 'inherit',
         display: 'inherit',
         height: '100%',
+        overflow: 'visible',
+        width: displayState ? '100%' : `calc(100% - ${placementDiff}px)`,
       }}
-      ref={rootRef}
-      initial={{ opacity: 0, ...directions[direction] }}
+      ref={wrapperRef}
+      initial={{
+        opacity: 0,
+        ...directions[direction],
+      }}
       animate={controls}
     >
       {children}
