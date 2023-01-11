@@ -125,13 +125,6 @@ const Home: NextPage<WithoutProps> = () => {
                 </Col>
                 <Col className="gy-5">
                   <div className={classNames(HomeStyles.sectionContentSmall)}>
-                    <span className="fs-4">
-                      {capitalizeText(
-                        t`sections:home.fragments.emphasisTitles.aboutUs.appendix`,
-                        'simple'
-                      )}
-                    </span>
-                    <br />
                     {capitalizeText(
                       t`sections:home.fragments.emphasisTitles.aboutUs.title.regular`,
                       'simple'
@@ -170,13 +163,6 @@ const Home: NextPage<WithoutProps> = () => {
               >
                 <Col className="order-2 order-lg-1 gy-5" xs={12} lg>
                   <h1 className={classNames(HomeStyles.sectionContentNegative)}>
-                    <span className="fs-2">
-                      {capitalizeText(
-                        t`sections:home.fragments.emphasisTitles.modules.appendix`,
-                        'simple'
-                      )}
-                    </span>
-                    <br />
                     {capitalizeText(
                       t`sections:home.fragments.emphasisTitles.modules.title.regular`,
                       'simple'
@@ -239,21 +225,19 @@ const Home: NextPage<WithoutProps> = () => {
                     lg={4}
                     className="align-self-stretch"
                   >
-                    <ShowOnScroll>
-                      <div
-                        className={classNames(
-                          'h-100 p-5 rounded-4 text-center',
-                          'bg-opacity-75 bg-light-gray text-dark-blue',
-                          HomeStyles.serviceBox
-                        )}
-                      >
-                        <h1>
-                          <FontAwesomeIcon icon={icon} />
-                        </h1>
-                        <h4>{capitalizeText(t(title))}</h4>
-                        <p>{capitalizeText(t(description), 'simple')}</p>
-                      </div>
-                    </ShowOnScroll>
+                    <div
+                      className={classNames(
+                        'h-100 p-5 rounded-4 text-center',
+                        'bg-opacity-75 bg-light-gray text-dark-blue',
+                        HomeStyles.serviceBox
+                      )}
+                    >
+                      <h1>
+                        <FontAwesomeIcon icon={icon} />
+                      </h1>
+                      <h4>{capitalizeText(t(title))}</h4>
+                      <p>{capitalizeText(t(description), 'simple')}</p>
+                    </div>
                   </Col>
                 ))}
               </Row>
