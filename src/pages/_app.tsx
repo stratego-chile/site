@@ -2,20 +2,12 @@ import '@stratego/polyfills'
 import '@stratego/styles/_global.sass'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { type AppProps } from 'next/app'
-import { appWithTranslation, useTranslation } from 'next-i18next'
+import { appWithTranslation } from 'next-i18next'
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 import Head from 'next/head'
 import SSRProvider from 'react-bootstrap/SSRProvider'
-import { useCallback, useEffect, useState } from 'react'
-import Button from 'react-bootstrap/Button'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Offcanvas from 'react-bootstrap/Offcanvas'
-import { Cookies, CookiesProvider, useCookies } from 'react-cookie'
-import { capitalizeText } from '@stratego/helpers/text.helper'
-import addDays from 'date-fns/addDays'
-import { CookieConsent, usableCookies } from '@stratego/helpers/cookies.helper'
+import { useEffect } from 'react'
+import { Cookies, CookiesProvider } from 'react-cookie'
 import { showConsoleWarnings } from '@stratego/helpers/console.helper'
 import { config as FontAwesomeConfig } from '@fortawesome/fontawesome-svg-core'
 
@@ -28,39 +20,7 @@ const StrategoLandingApp = ({
 }: AppProps & {
   cookies?: string | object | null
 }) => {
-  const { t } = useTranslation('common')
-
-  const [showCookiesDisclaimer, setCookiesDisclaimerVisibility] =
-    useState(false)
-
-  const [cookie, setCookie] = useCookies([usableCookies.consent])
-
   const isBrowser = typeof window !== 'undefined'
-
-  const handleCookiesAcceptance = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
-      if (event.isTrusted) {
-        const maxAge = addDays(new Date(), 30).getTime()
-        setCookie(usableCookies.consent, CookieConsent.ACCEPTED, {
-          path: '/',
-          sameSite: 'strict',
-          secure: true,
-          maxAge,
-        })
-      }
-    },
-    [setCookie]
-  )
-
-  useEffect(() => {
-    if (!cookie[usableCookies.consent]) {
-      setCookiesDisclaimerVisibility(true)
-    } else if (cookie[usableCookies.consent] === CookieConsent.REJECTED) {
-      setCookiesDisclaimerVisibility(true)
-    } else if (cookie[usableCookies.consent] === CookieConsent.ACCEPTED) {
-      setCookiesDisclaimerVisibility(false)
-    }
-  }, [cookie])
 
   useEffect(() => {
     showConsoleWarnings()
@@ -84,46 +44,6 @@ const StrategoLandingApp = ({
             />
           </Head>
           <Component {...pageProps} />
-          <Offcanvas
-            show={showCookiesDisclaimer}
-            backdrop="static"
-            placement="bottom"
-            autoFocus
-            enforceFocus
-            restoreFocus
-            renderStaticNode
-            onHide={() => setCookiesDisclaimerVisibility(false)}
-          >
-            <Offcanvas.Body>
-              <Container>
-                <Row className="justify-content-between gap-3">
-                  <Col
-                    xs="12"
-                    lg="auto"
-                    className="d-inline-flex text-center text-lg-start align-items-center"
-                  >
-                    <span className="fs-5">
-                      {capitalizeText(
-                        t`common:cookies.disclaimer.text`,
-                        'simple'
-                      )}
-                    </span>
-                  </Col>
-                  <Col xs="12" lg="auto" className="d-inline-flex gap-2">
-                    <Button
-                      className="text-light"
-                      onClick={handleCookiesAcceptance}
-                    >
-                      {capitalizeText(
-                        t`common:cookies.disclaimer.buttons.accept`,
-                        'simple'
-                      )}
-                    </Button>
-                  </Col>
-                </Row>
-              </Container>
-            </Offcanvas.Body>
-          </Offcanvas>
         </GoogleReCaptchaProvider>
       </CookiesProvider>
     </SSRProvider>
