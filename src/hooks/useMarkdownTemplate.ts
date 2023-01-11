@@ -53,9 +53,8 @@ export const useMarkdownTemplate = (
       content &&
       (await serialize(content, {
         mdxOptions: {
-          remarkPlugins: [],
-          rehypePlugins: [],
-          development: true, // workaround: https://github.com/hashicorp/next-mdx-remote/issues/307
+          // based on workaround: https://github.com/hashicorp/next-mdx-remote/issues/307
+          development: process.env.NODE_ENV !== 'production',
         },
       }))
     )
