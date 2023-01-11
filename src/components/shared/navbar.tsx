@@ -181,12 +181,12 @@ const NavBar: FC<NavBarProps> = ({
                 subLinks: [
                   {
                     text: t`sections:security.services.consulting.modules.iso27000.title`,
-                    href: '/services/cybersecurity/consulting/ISO_IEC-27000',
+                    href: '/services/cybersecurity/consulting/ISO-IEC-27000',
                     type: 'link',
                   },
                   {
-                    text: t`sections:security.services.consulting.modules.chl19223.title`,
-                    href: '/services/cybersecurity/consulting/CHL-19223',
+                    text: t`sections:security.services.consulting.modules.chl21459.title`,
+                    href: '/services/cybersecurity/consulting/CHL-21459',
                     type: 'link',
                   },
                 ],
