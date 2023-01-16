@@ -26,7 +26,7 @@ const DynamicContactForm = dynamic(
       isLoading ? (
         <Spinner animation="border" variant="primary" />
       ) : error ? (
-        <Alert variant="danger">{Error.toString()}</Alert>
+        <Alert variant="danger">{error.toString()}</Alert>
       ) : null,
     ssr: false,
   }
