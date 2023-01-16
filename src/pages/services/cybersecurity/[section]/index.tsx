@@ -110,7 +110,7 @@ const CybersecuritySection: NextPage<WithoutProps> = () => {
     [activeSubsection, getElementId, subsections, t]
   )
 
-  useEffect(() => {
+  const handleHashChange = useCallback(() => {
     const subsection = new URL(location.href).searchParams.get('subsection')
     if (subsection !== null) {
       const index = subsections.findIndex(
@@ -118,8 +118,11 @@ const CybersecuritySection: NextPage<WithoutProps> = () => {
       )
       setActiveSubsection(index)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [subsections])
+
+  useEffect(() => {
+    handleHashChange()
+  }, [handleHashChange])
 
   useEffect(() => {
     if (typeof activeSubsection === 'number') {
