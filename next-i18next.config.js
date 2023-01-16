@@ -1,11 +1,12 @@
+const path = require('path')
+
+const devMode = process.env.NODE_ENV !== 'production'
+
 // @ts-check
 /**
  * @type {import('next-i18next').UserConfig}
  */
-module.exports = {
-  debug: process.env.NODE_ENV === 'development',
-  ns: ['common', 'sections'],
-  defaultNS: 'common',
+const nextI18NextConfig = {
   i18n: {
     /**
      * @type {Array<AvailableLocales>}
@@ -21,9 +22,12 @@ module.exports = {
    * @type {AvailableLocales}
    */
   fallbackLng: 'es-CL',
-  localePath: typeof window === 'undefined' ?
-    require('path').resolve('.', 'public', 'locales') : '/locales',
-  reloadOnPrerender: process.env.NODE_ENV === 'development',
+  localePath: typeof window === 'undefined'
+    ? path.resolve('.', 'public', 'locales')
+    : '/locales',
+  reloadOnPrerender: devMode,
   strictMode: true,
   react: { useSuspense: false }
 }
+
+module.exports = nextI18NextConfig

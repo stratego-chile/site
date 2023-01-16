@@ -9,45 +9,31 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextConfig = {
   i18n: {
     ...i18n,
-    // locales: ['default', 'es-CL', 'en-US', 'pt-BR'],
-    // defaultLocale: 'default',
   },
   reactStrictMode: true,
   poweredByHeader: false,
   sassOptions: {
-    includePaths: [path.join(__dirname, 'src', 'styles')],
+    includePaths: [path.resolve(__dirname, 'src', 'styles')],
   },
   webpack: (config) => {
-    return {
-      ...config,
-      resolve: {
-        ...config.resolve,
-        alias: {
-          ...config.resolve.alias,
-          '@stratego': path.join(__dirname, 'src'),
-        }
-      },
-      plugins: [
-        ...config.plugins,
-      ],
-      module: {
-        ...config.module,
-        rules: [
-          ...config.module.rules,
-          {
-            test: /\.pug$/,
-            loader: '@webdiscus/pug-loader',
-            options: {
-              method: 'compile',
-              embedFilters: {
-                escape: true,
-                markdown: true,
-              },
-            },
-          },
-        ]
-      }
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@stratego': path.join(__dirname, 'src'),
     }
+
+    config.module.rules.push({
+      test: /\.pug$/,
+      loader: '@webdiscus/pug-loader',
+      options: {
+        method: 'compile',
+        embedFilters: {
+          escape: true,
+          markdown: true,
+        },
+      },
+    })
+
+    return config
   },
   redirects: async () => {
     return [
