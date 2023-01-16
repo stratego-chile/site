@@ -7,7 +7,9 @@ const NotFoundPage = () => {
   return <ErrorPage statusCode={404} />
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps<WithoutProps> = async ({
+  locale,
+}) => {
   return {
     props: {
       ...(await serverSideTranslations(locale ?? defaultLocale, ['common'])),
