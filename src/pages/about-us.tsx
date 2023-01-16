@@ -9,7 +9,6 @@ import Row from 'react-bootstrap/Row'
 import { useTranslation } from 'next-i18next'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import { Image } from 'react-bootstrap'
-import classNames from 'classnames'
 import { Fragment } from 'react'
 
 const AboutUs: NextPage<WithoutProps> = () => {
@@ -35,6 +34,9 @@ const AboutUs: NextPage<WithoutProps> = () => {
             }) as Array<{ title: string; description: Array<string> }>
           ).map(({ title, description }, key) => (
             <Fragment key={key}>
+              <Col xs={12} className="pt-3">
+                <h2 className="mb-4">{capitalizeText(title, 'simple')}</h2>
+              </Col>
               {(($image) =>
                 $image &&
                 ($image instanceof Array ? (
@@ -65,8 +67,7 @@ const AboutUs: NextPage<WithoutProps> = () => {
                     />
                   </Col>
                 )))(images[String(key)])}
-              <Col xs={12} className={classNames('d-flex flex-column py-3')}>
-                <h2 className="mb-4">{capitalizeText(title, 'simple')}</h2>
+              <Col xs={12}>
                 {description.map((paragraph, descriptionKey) => (
                   <p key={descriptionKey}>
                     {capitalizeText(paragraph, 'simple')}
