@@ -50,6 +50,7 @@
     "@cspell/dict-es-es": "^2.2.3",
     "@cspell/dict-pt-br": "^2.1.4",
     "@next/bundle-analyzer": "^13.1.2",
+    "@types/express": "^4.17.15",
     "@types/nodemailer": "^6.4.7",
     "@types/pug": "^2.0.6",
     "@types/react": "18.0.26",
