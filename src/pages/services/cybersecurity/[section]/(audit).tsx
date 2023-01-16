@@ -63,13 +63,13 @@ const AuditSection: NextPage<WithoutProps> = () => {
         <Col>
           <div className={classNames(LayoutStyles.autoFormat)}>
             <h1>{t`sections:security.services.audit.title`}</h1>
-            {(
+            {((desc) =>
+              desc instanceof Array &&
+              desc.map((fragment, key) => <p key={key}>{fragment}</p>))(
               t('sections:security.services.audit.description', {
                 returnObjects: true,
-              }) as Array<string>
-            ).map((fragment, key) => (
-              <p key={key}>{fragment}</p>
-            ))}
+              })
+            )}
           </div>
           {subsections.hasItems() && (
             <Accordion
