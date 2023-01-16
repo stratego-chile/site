@@ -1,30 +1,38 @@
 require 'json5/lib/register'
 
+express = require 'express'
 next = require 'next'
 fs = require 'fs'
 path = require 'path'
-
-{ certDir } = require '../config.json5'
-{ createServer } = require 'https'
+https = require 'https'
 { parse } = require 'url'
+{ certDir } = require '../config.json5'
 
-port = 3000
 dev = process.env.NODE_ENV != 'production'
+port = process.env.PORT or 3000
 app = next { dev }
 handle = app.getRequestHandler()
 
 getFile = (fileName) ->
-  fs.readFileSync path.join(__dirname, '..', certDir, fileName)
+  buffer = fs.readFileSync path.join(__dirname, '..', certDir, fileName)
+  buffer.toString()
 
 httpsOptions =
   key: getFile 'devcert.key'
   cert: getFile 'devcert.cert'
 
-app.prepare().then ->
-  createServer httpsOptions, (req, res) ->
-    handle req, res, (parse req.url, true)
+do ->
+  await app.prepare()
+
+  server = express()
+
+  server.get '*', (req, res) ->
+    handle req, res
     return
-  .listen port, (err) ->
+
+  devServer = https.createServer httpsOptions, server
+
+  devServer.listen port, (err) ->
     if err
       throw err
     else
