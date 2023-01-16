@@ -1,4 +1,3 @@
-import ContactForm from '@stratego/components/forms/contact-form'
 import Layout from '@stratego/components/utils/layout'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { defaultLocale } from '@stratego/locales'
@@ -9,6 +8,11 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
+import dynamic from 'next/dynamic'
+
+const ContactForm = dynamic(
+  () => import('@stratego/components/forms/contact-form')
+)
 
 const Contact: NextPage<WithoutProps> = () => {
   const { t } = useTranslation()

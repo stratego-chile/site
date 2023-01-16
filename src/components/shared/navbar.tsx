@@ -14,109 +14,110 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import NavbarStyles from '@stratego/styles/modules/Navbar.module.sass'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-
-type NavLinkType = 'link' | 'menu' | 'label'
-
-export type NavLinkSpec<T = NavLinkType> = {
-  text: string
-  disabled?: boolean
-} & (T extends 'link'
-  ? { type: 'link'; href: string }
-  : { type: 'menu' | 'label'; subLinks: Array<NavLinkSpec> })
+import {
+  cybersecurityLinks,
+  type LinkSpec,
+} from '@stratego/data/navigation-links'
 
 type NavBarProps = {
   showNavigationOptions?: boolean
   theme?: string
   brandDepartment?: string
-  subLinks?: Array<NavLinkSpec>
+  subLinks?: Array<LinkSpec>
 }
 
 const NavBarLinks: FC<{
-  links: Array<NavLinkSpec>
+  links: Array<LinkSpec>
   mode?: 'root' | 'embed'
 }> = ({ links = [], mode = 'root' }) => {
   const togglerId = useId()
+
+  const { t } = useTranslation()
+
   return (
     <Fragment>
-      {links.map((link, key) =>
-        link.type === 'menu' ? (
-          <Dropdown
-            key={key}
-            autoClose="outside"
-            navbar
-            align="start"
-            drop={mode === 'embed' ? 'end' : undefined}
-            className={classNames(mode === 'embed' && 'px-3 px-lg-2')}
-          >
-            <Dropdown.Toggle
-              as={Nav.Link}
-              id={togglerId}
-              className={classNames(mode === 'embed' && 'text-dark')}
-              style={{
-                fontWeight: mode === 'embed' ? 500 : 600,
-                fontSize: mode === 'embed' ? '0.85em' : 'inherit',
-              }}
-              disabled={!!link.disabled}
-            >
-              {mode === 'root'
-                ? capitalizeText(link.text.toLowerCase(), 'simple')
-                : link.text}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {link.subLinks.map((subLink, subLinkKey) =>
-                subLink.type === 'link' ? (
-                  <Link
-                    key={subLinkKey}
-                    href={subLink.href}
-                    passHref
-                    legacyBehavior
-                  >
-                    <Dropdown.Item
-                      style={{
-                        fontSize: '0.85em',
-                      }}
-                      disabled={!!subLink.disabled}
-                    >
-                      {subLink.text}
-                    </Dropdown.Item>
-                  </Link>
-                ) : (
-                  <Fragment key={subLinkKey}>
-                    <NavBarLinks links={[subLink]} mode="embed" />
-                  </Fragment>
-                )
-              )}
-            </Dropdown.Menu>
-          </Dropdown>
-        ) : link.type === 'link' ? (
-          <Link key={key} href={link.href} passHref legacyBehavior>
-            <Nav.Link as="a" disabled={!!link.disabled}>
-              {capitalizeText(link.text.toLowerCase(), 'simple')}
-            </Nav.Link>
-          </Link>
-        ) : mode === 'root' ? (
-          <Navbar.Text>
-            {capitalizeText(link.text.toLowerCase(), 'simple')}
-          </Navbar.Text>
-        ) : (
-          <Fragment key={key}>
-            <Dropdown.Header
-              className={classNames(
-                'd-flex align-items-center py-1',
-                'fw-bold'
-              )}
-            >
-              {capitalizeText(link.text.toLowerCase(), 'simple')}
-            </Dropdown.Header>
-            <NavBarLinks links={link.subLinks} mode="embed" />
-            {links.reduce(
-              (counter, linkSpec) =>
-                linkSpec.type === 'label' ? ++counter : counter,
-              0
-            ) > 1 && <Dropdown.Divider />}
-          </Fragment>
-        )
-      )}
+      {links.map((link, key) => (
+        <Fragment key={key}>
+          {link.subLinks ? (
+            link.label ? (
+              <Fragment>
+                <Dropdown.Header
+                  className={classNames(
+                    'd-flex align-items-center py-1',
+                    'fw-bold'
+                  )}
+                >
+                  {capitalizeText(t(link.text).toLowerCase(), 'simple')}
+                </Dropdown.Header>
+                <NavBarLinks links={link.subLinks} mode="embed" />
+                {links.reduce(
+                  (counter, linkSpec) =>
+                    !linkSpec.href && !linkSpec.subLinks ? ++counter : counter,
+                  0
+                ) > 1 && <Dropdown.Divider />}
+              </Fragment>
+            ) : (
+              <Dropdown
+                autoClose="outside"
+                navbar
+                align="start"
+                drop={mode === 'embed' ? 'end' : undefined}
+                className={classNames(mode === 'embed' && 'px-3 px-lg-2')}
+              >
+                <Dropdown.Toggle
+                  as={Nav.Link}
+                  id={togglerId}
+                  className={classNames(mode === 'embed' && 'text-dark')}
+                  style={{
+                    fontWeight: mode === 'embed' ? 500 : 600,
+                    fontSize: mode === 'embed' ? '0.85em' : 'inherit',
+                  }}
+                  disabled={!!link.disabled}
+                >
+                  {mode === 'root'
+                    ? capitalizeText(t(link.text).toLowerCase(), 'simple')
+                    : t(link.text)}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {link.subLinks.map((subLink, subLinkKey) =>
+                    subLink.href ? (
+                      <Link
+                        key={subLinkKey}
+                        href={subLink.href}
+                        passHref
+                        legacyBehavior
+                      >
+                        <Dropdown.Item
+                          style={{
+                            fontSize: '0.85em',
+                          }}
+                          disabled={!!subLink.disabled}
+                        >
+                          {t(subLink.text)}
+                        </Dropdown.Item>
+                      </Link>
+                    ) : (
+                      <Fragment key={subLinkKey}>
+                        <NavBarLinks links={[subLink]} mode="embed" />
+                      </Fragment>
+                    )
+                  )}
+                </Dropdown.Menu>
+              </Dropdown>
+            )
+          ) : link.href ? (
+            <Link href={link.href} passHref legacyBehavior>
+              <Nav.Link as="a" disabled={!!link.disabled}>
+                {capitalizeText(t(link.text).toLowerCase(), 'simple')}
+              </Nav.Link>
+            </Link>
+          ) : (
+            <Navbar.Text>
+              {capitalizeText(t(link.text).toLowerCase(), 'simple')}
+            </Navbar.Text>
+          )}
+        </Fragment>
+      ))}
     </Fragment>
   )
 }
@@ -129,79 +130,28 @@ const NavBar: FC<NavBarProps> = ({
 }) => {
   const { t } = useTranslation(['common', 'sections'])
 
-  const links = useMemo<Array<NavLinkSpec>>(
+  const links = useMemo<Array<LinkSpec>>(
     () => [
       {
-        text: t`sections:home.title`,
+        text: 'sections:home.title',
         href: '/home',
-        type: 'link',
       },
       {
-        text: t`sections:services.title`,
-        type: 'menu',
+        text: 'sections:services.title',
         subLinks: [
           {
-            text: t`sections:security.title`,
-            type: 'label',
-            subLinks: [
-              {
-                text: t`sections:security.services.audit.title`,
-                type: 'menu',
-                subLinks: [
-                  {
-                    text: t`sections:security.services.audit.modules.risksAndVulnerabilities.title`,
-                    href: '/services/cybersecurity/audit/risks-and-vulnerabilities',
-                    type: 'link',
-                  },
-                  {
-                    text: t`sections:security.services.audit.modules.infrastructure.title`,
-                    href: '/services/cybersecurity/audit/infrastructure',
-                    type: 'link',
-                  },
-                  {
-                    text: t`sections:security.services.audit.modules.procedures.title`,
-                    href: '/services/cybersecurity/audit/procedures',
-                    type: 'link',
-                  },
-                  {
-                    text: t`sections:security.services.audit.modules.mitigation.title`,
-                    href: '/services/cybersecurity/audit/mitigation',
-                    type: 'link',
-                  },
-                  {
-                    text: t`sections:security.services.audit.modules.socialEngineering.title`,
-                    href: '/services/cybersecurity/audit/social-engineering',
-                    type: 'link',
-                  },
-                ],
-              },
-              {
-                text: t`sections:security.services.consulting.title`,
-                type: 'menu',
-                subLinks: [
-                  {
-                    text: t`sections:security.services.consulting.modules.iso27000.title`,
-                    href: '/services/cybersecurity/consulting/ISO-IEC-27000',
-                    type: 'link',
-                  },
-                  {
-                    text: t`sections:security.services.consulting.modules.chl21459.title`,
-                    href: '/services/cybersecurity/consulting/CHL-21459',
-                    type: 'link',
-                  },
-                ],
-              },
-            ],
+            text: 'sections:security.title',
+            label: true,
+            subLinks: cybersecurityLinks,
           },
         ],
       },
       {
-        text: t`common:aboutUs`,
+        text: 'common:aboutUs',
         href: '/about-us',
-        type: 'link',
       },
     ],
-    [t]
+    []
   )
 
   return (

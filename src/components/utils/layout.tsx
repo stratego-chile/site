@@ -19,7 +19,7 @@ import {
 } from '@stratego/helpers/defaults.helper'
 import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
-import NavBar, { type NavLinkSpec } from '@stratego/components/shared/navbar'
+import NavBar from '@stratego/components/shared/navbar'
 import Footer from '@stratego/components/shared/footer'
 import { getPageTitle } from '@stratego/helpers/text.helper'
 import classNames from 'classnames'
@@ -33,12 +33,13 @@ import { CookieConsent, usableCookies } from '@stratego/helpers/cookies.helper'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { useTranslation } from 'next-i18next'
 import { useCookies } from 'react-cookie'
+import { type LinkSpec } from '@stratego/data/navigation-links'
 
 export type LayoutProps = {
   pageTitle?: string
   pageDescription?: string
   brandDepartment?: string
-  subLinks?: Array<NavLinkSpec>
+  subLinks?: Array<LinkSpec>
   defaultGrid?: boolean
   showNavigationOptions?: boolean
   showReturnToTopButton?: boolean

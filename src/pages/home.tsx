@@ -1,7 +1,7 @@
 import Layout from '@stratego/components/utils/layout'
 import { defaultLocale } from '@stratego/locales'
 import classNames from 'classnames'
-import { type GetServerSideProps, type NextPage } from 'next'
+import { type GetStaticProps, type NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import HomeStyles from '@stratego/styles/modules/Home.module.sass'
 import Button from 'react-bootstrap/Button'
@@ -263,13 +263,14 @@ const Home: NextPage<WithoutProps> = () => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<WithoutProps> = async ({
+export const getStaticProps: GetStaticProps<WithoutProps> = async ({
   locale,
 }) => ({
   props: {
     ...(await serverSideTranslations(locale ?? defaultLocale, [
       'common',
       'sections',
+      'validation',
     ])),
   },
 })

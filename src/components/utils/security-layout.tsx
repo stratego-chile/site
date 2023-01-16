@@ -23,17 +23,10 @@ const SecurityLayout: FC<PropsWithChildren<SecurityLayoutProps>> = ({
         {
           href: '/services/security/overview',
           text: t`sections:security.pages.overview.title`,
-          type: 'link',
         },
         {
           href: '/services/security/learn-more',
           text: t`sections:security.pages.learnMore.title`,
-          type: 'link',
-        },
-        {
-          href: '/services/security/contact',
-          text: t`sections:contact.title`,
-          type: 'link',
         },
       ]}
       showNavigationOptions

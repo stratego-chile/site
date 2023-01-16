@@ -81,6 +81,38 @@
       }
     }
   },
+  "aboutUs": {
+    "title": "about us",
+    "content": [
+      {
+        "title": "About us",
+        "description": [
+          "We are a cybersecurity and technological development company, with great experience in the national and international market, whose base responds to the great team that composes it.",
+          "We are permanently seeking to develop and enhance innovative services that impact many businesses.",
+          "We strive to continually grow in knowledge and technical skills, and we work to create an environment where respect and friendship among all.",
+          "We put in front of each client all our experience, dedication and ideas to make each service an instance of great satisfaction for those who benefit from our work."
+        ]
+      },
+      {
+        "title": "Alliance with Baker Tilly",
+        "description": [
+          "We work side by side in partnership with Baker Tilly, a global professional services firm in auditing, tax advisory, consulting and outsourcing, from where we have been able to enhance our services, developing a deeper understanding of the risks faced by various industries and companies."
+        ]
+      },
+      {
+        "title": "Projects financed by Corfo",
+        "description": [
+          "Our projects have been awarded innovation funds in Corfo, including a seed capital fund, which aims to promote innovation in products and services and the Crea y Valida fund, which supports the development of technological services, from the prototype to its technical validation at industrial and commercial level, incorporating stages of Research and Development (R+D+I)."
+        ]
+      },
+      {
+        "title": "Chrisalys Incubator",
+        "description": [
+          "We participated in the Chrisalys incubation program for a whole year, receiving a great development experience."
+        ]
+      }
+    ]
+  },
   "privacyPolicy": {
     "title": "privacy policy"
   },
@@ -125,25 +157,34 @@
   },
   "security": {
     "title": "cybersecurity",
-    "brandDepartment": "information security",
+    "brandDepartment": "cybersecurity",
     "services": {
       "audit": {
         "title": "Audit",
+        "description": [
+          "The objective of our audit is to be able to perform a thorough examination of the infrastructure, systems and processes related to the IT area of a company, in order to identify information security gaps and mitigate the risks of cyber-attacks.",
+          "Our work process usually consists of 5 major topics, however, it all depends on the scope of work, according to the needs of the company."
+        ],
         "modules": {
           "risksAndVulnerabilities": {
-            "title": "Risks & vulnerabilities detection"
+            "title": "Risks & vulnerabilities detection",
+            "description": "Initial phase of the security audit where the reconnaissance, test plan, penetration tests and collection of evidence of vulnerabilities in the systems and networks to be audited are performed."
           },
           "infrastructure": {
-            "title": "Infrastucture analysis"
+            "title": "Infrastucture analysis",
+            "description": "A comprehensive assessment of the company's IT infrastructure is performed, where the integration characteristics, i.e. configurations, versions or programmatic processes in the ecosystem are analyzed."
           },
           "procedures": {
-            "title": "Procedures analysis"
+            "title": "Procedures analysis",
+            "description": "Faculty of the audit where a survey of tasks, directives, practices, policies or related documentation related to the handling or interaction with information assets is made. Through this analysis, vulnerabilities can be identified that lead to changes in organizational and cultural terms to improve the way information is handled."
           },
           "mitigation": {
-            "title": "Mitigation"
+            "title": "Mitigation",
+            "description": "Phase of the audit where risk mitigation recommendations are developed, as well as possible implementation of improvements and corrections. The audit results serve as the basis for developing an action plan to help implement improvements, corrections and IT security best practices."
           },
           "socialEngineering": {
-            "title": "Social engineering"
+            "title": "Social engineering",
+            "description": "Discipline of auditing where human practices or behaviors of the members of the organization are evaluated and tested for violations, in order to obtain relevant and confidential information from a company, accessing systems, information networks, among others."
           }
         }
       },

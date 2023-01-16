@@ -81,6 +81,38 @@
       }
     }
   },
+  "aboutUs": {
+    "title": "sobre nós",
+    "content": [
+      {
+        "title": "Sobre nós",
+        "description": [
+          "Somos uma empresa de segurança cibernética e desenvolvimento tecnológico, com grande experiência no mercado nacional e internacional, com base na grande equipe humana que a compõe",
+          "Estamos constantemente buscando desenvolver e aprimorar serviços inovadores que impactam muitas empresas",
+          "Nós nos esforçamos para crescer continuamente em conhecimento e habilidades técnicas, e trabalhamos para criar um ambiente onde o respeito e a amizade entre todos",
+          "Colocamos toda nossa experiência, dedicação e idéias na frente de cada cliente para fazer de cada serviço uma instância de grande satisfação para aqueles que se beneficiam de nosso trabalho"
+        ]
+      },
+      {
+        "title": "Aliança com a Baker Tilly",
+        "description": [
+          "Trabalhamos lado a lado em parceria com a Baker Tilly, uma empresa global de serviços profissionais em auditoria, assessoria fiscal, consultoria e terceirização, de onde temos sido capazes de melhorar nossos serviços, desenvolvendo um entendimento mais profundo dos riscos enfrentados por várias indústrias e empresas."
+        ]
+      },
+      {
+        "title": "Projetos financiados pela Corfo",
+        "description": [
+          "Nossos projetos receberam fundos de inovação na Corfo, incluindo um fundo de capital semente, que visa promover a inovação em produtos e serviços e o fundo Crea y Valida, que apóia o desenvolvimento de serviços tecnológicos, desde o protótipo até sua validação técnica em nível industrial e comercial, incorporando etapas de Pesquisa e Desenvolvimento (I+D+I)."
+        ]
+      },
+      {
+        "title": "Incubadora Chrisalys",
+        "description": [
+          "Participamos do programa de incubação da Chrisalys durante um ano inteiro, recebendo uma grande experiência de desenvolvimento."
+        ]
+      }
+    ]
+  },
   "privacyPolicy": {
     "title": "política de privacidade"
   },
@@ -125,25 +157,34 @@
   },
   "security": {
     "title": "Ciber-segurança",
-    "brandDepartment": "Segurança da informação",
+    "brandDepartment": "Ciber-segurança",
     "services": {
       "audit": {
         "title": "Auditoria",
+        "description": [
+          "O objetivo de nossa auditoria é poder realizar um exame minucioso da infra-estrutura, sistemas e processos relacionados à área de TI de uma empresa, a fim de identificar lacunas na segurança da informação e mitigar os riscos de ciberataques.",
+          "Nosso processo de trabalho geralmente consiste em 5 tópicos principais, porém, tudo depende do escopo do trabalho, de acordo com as necessidades da empresa."
+        ],
         "modules": {
           "risksAndVulnerabilities": {
-            "title": "Detecção de riscos e vulnerabilidades"
+            "title": "Detecção de riscos e vulnerabilidades",
+            "description": "Fase inicial da auditoria de segurança onde são realizados o reconhecimento, plano de teste, teste de penetração e coleta de provas de vulnerabilidades nos sistemas e redes a serem auditados."
           },
           "infrastructure": {
-            "title": "Análise de infrastrutura"
+            "title": "Análise de infrastrutura",
+            "description": "É realizada uma avaliação abrangente da infra-estrutura de TI da empresa, analisando as características de integração, ou seja, configurações, versões ou processos programáticos no ecossistema."
           },
           "procedures": {
-            "title": "Análise de procedimentos"
+            "title": "Análise de procedimentos",
+            "description": "Faculdade de auditoria onde é feito um levantamento das tarefas, diretrizes, práticas, políticas ou documentação relacionada relacionada ao manuseio ou interação com os ativos de informação. Através de tal análise, podem ser identificadas vulnerabilidades que levam a mudanças organizacionais e culturais para melhorar a forma como as informações são tratadas."
           },
           "mitigation": {
-            "title": "Mitigação"
+            "title": "Mitigação",
+            "description": "Fase da auditoria onde são elaboradas recomendações para a mitigação de riscos, bem como a possível implementação de melhorias e correções. Os resultados da auditoria servem como base para o desenvolvimento de um plano de ação para ajudar a implementar melhorias, correções e melhores práticas de segurança de TI."
           },
           "socialEngineering": {
-            "title": "Engenharia social"
+            "title": "Engenharia social",
+            "description": "Disciplina de auditoria onde práticas humanas ou comportamentos dos membros da organização são avaliados e testados a fim de obter informações relevantes e confidenciais de uma empresa, sistemas de acesso, redes de informação, entre outros."
           }
         }
       },

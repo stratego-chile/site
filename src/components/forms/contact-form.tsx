@@ -62,7 +62,19 @@ const ContactForm = () => {
     [formId]
   )
 
-  const $countryPhonePrefixes = useMemo(() => dialCodes, [])
+  const filterCountryName = (rawName: string) => {
+    const name = rawName.replace(/ *\([^)]*\) */g, '')
+    return name
+  }
+
+  const $countryPhonePrefixes = useMemo(
+    () =>
+      dialCodes.map(({ name, ...data }) => ({
+        name: filterCountryName(name),
+        ...data,
+      })),
+    []
+  )
 
   const countryPhonePrefixes = useDeferredValue($countryPhonePrefixes)
 
@@ -270,6 +282,14 @@ const ContactForm = () => {
               onChange={handleChange}
               value={values.phonePrefix}
               disabled={isSubmitting}
+              style={{
+                width: ((phonePrefixLength) =>
+                  phonePrefixLength ? phonePrefixLength + 'ch' : undefined)(
+                  countryPhonePrefixes.find(
+                    ({ iso2 }) => iso2 === values.phonePrefix
+                  )?.name.length
+                ),
+              }}
             >
               {countryPhonePrefixes.map(({ dialCode, name, iso2 }, key) => (
                 <option value={iso2} key={key}>
@@ -281,7 +301,7 @@ const ContactForm = () => {
               id={getControlId('phoneNumber')}
               name="phoneNumber"
               type="tel"
-              style={{ width: 'auto' }}
+              className="w-auto"
               onChange={handleChange}
               value={values.phoneNumber}
               isInvalid={touched.phoneNumber && !!errors.phoneNumber}
@@ -389,8 +409,8 @@ const ContactForm = () => {
           </Col>
         </Row>
       )}
-      <Row className="d-flex justify-content-end mt-4">
-        <Col xs={12} lg="auto">
+      <Row className="mt-4">
+        <Col xs={12} className="text-center text-lg-end">
           <Button
             type="submit"
             className="text-light rounded-pill"
