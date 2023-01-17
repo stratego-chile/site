@@ -9,7 +9,6 @@ import Button from 'react-bootstrap/Button'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { capitalizeText } from '@stratego/helpers/text.helper'
-import LanguageSelector from './language-selector'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import NavbarStyles from '@stratego/styles/modules/Navbar.module.sass'
@@ -18,6 +17,11 @@ import {
   cybersecurityLinks,
   type LinkSpec,
 } from '@stratego/data/navigation-links'
+import dynamic from 'next/dynamic'
+
+const LanguageSelector = dynamic(
+  () => import('@stratego/components/shared/language-selector')
+)
 
 type NavBarProps = {
   showNavigationOptions?: boolean

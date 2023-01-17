@@ -45,6 +45,14 @@ const CybersecuritySection: NextPage<WithoutProps> = () => {
     []
   )
 
+  const currentSection = useMemo(
+    () =>
+      (($currentSection) => $currentSection)(
+        sections[String(section?.toString()) as keyof typeof sections]
+      ),
+    [sections, section]
+  )
+
   return String(section) in sections ? (
     <Layout
       pageTitle={capitalizeText(
@@ -58,7 +66,7 @@ const CybersecuritySection: NextPage<WithoutProps> = () => {
       }))}
       showNavigationOptions
     >
-      {sections[String(section) as keyof typeof sections]()}
+      {currentSection && currentSection()}
     </Layout>
   ) : (
     <ErrorPage statusCode={404} showGoBackButton />

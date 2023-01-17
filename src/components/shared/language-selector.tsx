@@ -23,8 +23,6 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({
 
   const selectorId = useId()
 
-  const { pathname, query, asPath } = router
-
   const { currentLocale, changeLocale } = useLocale()
 
   const handleLanguageSelection = useCallback(
@@ -32,14 +30,18 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({
       if (event.isTrusted) {
         if (lang !== currentLocale && i18n)
           changeLocale(lang).then(() => {
-            router.push({ pathname, query }, asPath, {
-              locale: lang,
-              scroll: false,
-            })
+            router.push(
+              { pathname: router.pathname, query: router.query },
+              router.asPath,
+              {
+                locale: lang,
+                scroll: false,
+              }
+            )
           })
       }
     },
-    [currentLocale, changeLocale, router, pathname, query, asPath, i18n]
+    [currentLocale, changeLocale, router, i18n]
   )
 
   const getLanguageReferenceContent = (options?: {

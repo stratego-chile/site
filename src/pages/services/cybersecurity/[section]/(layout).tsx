@@ -71,8 +71,11 @@ const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
             <div className={classNames(LayoutStyles.autoFormat)}>
               <h1>{t(`sections:security.services.${section}.title`)}</h1>
               {((desc) =>
-                desc instanceof Array &&
-                desc.map((fragment, key) => <p key={key}>{fragment}</p>))(
+                desc instanceof Array ? (
+                  desc.map((fragment, key) => <p key={key}>{fragment}</p>)
+                ) : (
+                  <p>{String(desc)}</p>
+                ))(
                 t(`sections:security.services.${section}.description`, {
                   returnObjects: true,
                 })

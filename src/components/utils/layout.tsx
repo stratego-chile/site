@@ -19,8 +19,6 @@ import {
 } from '@stratego/helpers/defaults.helper'
 import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
-import NavBar from '@stratego/components/shared/navbar'
-import Footer from '@stratego/components/shared/footer'
 import { getPageTitle } from '@stratego/helpers/text.helper'
 import classNames from 'classnames'
 import Head from 'next/head'
@@ -34,6 +32,10 @@ import { capitalizeText } from '@stratego/helpers/text.helper'
 import { useTranslation } from 'next-i18next'
 import { useCookies } from 'react-cookie'
 import { type LinkSpec } from '@stratego/data/navigation-links'
+import dynamic from 'next/dynamic'
+
+const NavBar = dynamic(() => import('@stratego/components/shared/navbar'))
+const Footer = dynamic(() => import('@stratego/components/shared/footer'))
 
 export type LayoutProps = {
   pageTitle?: string

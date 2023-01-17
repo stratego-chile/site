@@ -11,12 +11,16 @@ import { useTranslation } from 'next-i18next'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { NextPage } from 'next'
 import classNames from 'classnames'
-import LanguageSelector from './language-selector'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faCode } from '@fortawesome/free-solid-svg-icons'
 import FooterStyles from '@stratego/styles/modules/Footer.module.sass'
 import { contactData } from '@stratego/data/contact'
+import dynamic from 'next/dynamic'
+
+const LanguageSelector = dynamic(
+  () => import('@stratego/components/shared/language-selector')
+)
 
 const Footer: NextPage<WithoutProps> = () => {
   const { t } = useTranslation(['common'])

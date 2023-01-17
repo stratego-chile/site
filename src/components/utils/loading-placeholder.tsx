@@ -12,7 +12,10 @@ const LoadingPlaceholder: FC<LoadingPlaceholderProps> = ({
   error,
 }) => {
   return loading ? (
-    <div style={{ height: 'inherit', width: 'inherit' }}>
+    <div
+      style={{ height: 'inherit', width: 'inherit' }}
+      className="text-center my-5"
+    >
       <Spinner />
     </div>
   ) : error ? (
