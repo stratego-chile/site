@@ -1,12 +1,20 @@
-import dialCodes, { DialCodeSpec } from '@stratego/data/dialCodes'
+import dialCodes, { type DialCodeSpec } from '@stratego/data/dialCodes'
 import {
   capitalizeText,
   getCountryFlagEmoji,
+  phoneFormatSpec,
 } from '@stratego/helpers/text.helper'
 import { type FormikHelpers, useFormik } from 'formik'
 import { getCountryCode } from 'language-flag-colors'
 import { useTranslation } from 'next-i18next'
-import { useCallback, useEffect, useId, useMemo, useState } from 'react'
+import {
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useId,
+  useMemo,
+  useState,
+} from 'react'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
@@ -47,15 +55,28 @@ const ContactForm = () => {
     text: string
   }>()
 
-  const nameId = useId()
-  const surnameId = useId()
-  const phoneNumberId = useId()
-  const phonePrefixId = useId()
-  const businessNameId = useId()
-  const emailId = useId()
-  const messageId = useId()
+  const formId = useId()
 
-  const countryPhonePrefixes = useMemo(() => dialCodes, [])
+  const getControlId = useCallback(
+    (controlName: string) => formId.concat('-', controlName),
+    [formId]
+  )
+
+  const filterCountryName = (rawName: string) => {
+    const name = rawName.replace(/ *\([^)]*\) */g, '')
+    return name
+  }
+
+  const $countryPhonePrefixes = useMemo(
+    () =>
+      dialCodes.map(({ name, ...data }) => ({
+        name: filterCountryName(name),
+        ...data,
+      })),
+    []
+  )
+
+  const countryPhonePrefixes = useDeferredValue($countryPhonePrefixes)
 
   const [supportEmojis, setEmojisSupport] = useState(false)
 
@@ -67,10 +88,7 @@ const ContactForm = () => {
     phonePrefix: yup.string().required('validation:required'),
     phoneNumber: yup
       .string()
-      .matches(
-        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-        'validation:invalidPhoneNumber'
-      )
+      .matches(phoneFormatSpec, 'validation:invalidPhoneNumber')
       .required('validation:required'),
     businessName: yup.string().required('validation:required'),
     email: yup
@@ -108,7 +126,7 @@ const ContactForm = () => {
               Authorization: captchaToken,
             },
           })
-          .then(({ data }) => {
+          .then(({ data }) =>
             setSubmitMessage({
               type: data.status === 'OK' ? 'success' : 'error',
               text:
@@ -116,7 +134,7 @@ const ContactForm = () => {
                   ? 'sections:contact.form.messages.success'
                   : 'common:errors.submit',
             })
-          })
+          )
           .catch((error) => {
             console.warn(error)
             setSubmitMessage({
@@ -124,24 +142,22 @@ const ContactForm = () => {
               text: 'common:errors.submit',
             })
           })
-          .finally(() => {
-            helpers.setSubmitting(false)
-          })
+          .finally(() => helpers.setSubmitting(false))
       })
     },
     [countryPhonePrefixes, i18n.language, executeRecaptcha]
   )
 
   const {
-    values,
+    initialValues,
     errors,
     isSubmitting,
-    setValues,
     touched,
+    values,
     handleChange,
     handleSubmit,
-    initialValues,
     setTouched,
+    setValues,
   } = useFormik<ContactData>({
     initialValues: {
       name: '',
@@ -159,12 +175,12 @@ const ContactForm = () => {
   const getLocaleCountryCode = (
     prefixes: Array<DialCodeSpec>,
     locale: string
-  ) => {
-    return prefixes.find(
+  ) =>
+    prefixes.find(
       ({ iso2 }) => getCountryCode(locale)?.toLowerCase() === iso2.toLowerCase()
     )?.iso2
-  }
 
+  // When the language changes, update the default phone prefix value
   useEffect(() => {
     setValues((currentValues) => ({
       ...currentValues,
@@ -173,6 +189,7 @@ const ContactForm = () => {
     }))
   }, [countryPhonePrefixes, i18n, setValues])
 
+  // When the form is submitted successfully, reset the form values and mark all fields as untouched
   useEffect(() => {
     if (submitMessage?.type === 'success') {
       setValues({
@@ -191,6 +208,7 @@ const ContactForm = () => {
     setTouched,
   ])
 
+  // Check if flags can be shown using emojis
   useEffect(() => {
     setEmojisSupport(emojiSupport())
   }, [])
@@ -204,7 +222,7 @@ const ContactForm = () => {
         </Col>
       </Row>
       <Row className="gy-4">
-        <Form.Group as={Col} xs={12} lg={6} controlId={nameId}>
+        <Form.Group as={Col} xs={12} lg={6} controlId={getControlId('name')}>
           <Form.Label>
             {capitalizeText(
               t`sections:contact.form.fields.name.label`,
@@ -225,7 +243,7 @@ const ContactForm = () => {
             </Form.Control.Feedback>
           )}
         </Form.Group>
-        <Form.Group as={Col} xs={12} lg={6} controlId={surnameId}>
+        <Form.Group as={Col} xs={12} lg={6} controlId={getControlId('surname')}>
           <Form.Label>
             {capitalizeText(
               t`sections:contact.form.fields.surname.label`,
@@ -247,7 +265,7 @@ const ContactForm = () => {
           )}
         </Form.Group>
         <Col xs={12} lg>
-          <Form.Label htmlFor={phoneNumberId}>
+          <Form.Label htmlFor={getControlId('phoneNumber')}>
             {capitalizeText(
               t`sections:contact.form.fields.phone.label`,
               'simple'
@@ -255,7 +273,7 @@ const ContactForm = () => {
           </Form.Label>
           <InputGroup>
             <Form.Select
-              id={phonePrefixId}
+              id={getControlId('phonePrefix')}
               aria-label={capitalizeText(
                 t`sections:contact.form.fields.phone.label`,
                 'simple'
@@ -264,6 +282,14 @@ const ContactForm = () => {
               onChange={handleChange}
               value={values.phonePrefix}
               disabled={isSubmitting}
+              style={{
+                width: ((phonePrefixLength) =>
+                  phonePrefixLength ? phonePrefixLength + 'ch' : undefined)(
+                  countryPhonePrefixes.find(
+                    ({ iso2 }) => iso2 === values.phonePrefix
+                  )?.name.length
+                ),
+              }}
             >
               {countryPhonePrefixes.map(({ dialCode, name, iso2 }, key) => (
                 <option value={iso2} key={key}>
@@ -272,10 +298,10 @@ const ContactForm = () => {
               ))}
             </Form.Select>
             <Form.Control
-              id={phoneNumberId}
+              id={getControlId('phoneNumber')}
               name="phoneNumber"
               type="tel"
-              style={{ width: 'auto' }}
+              className="w-auto"
               onChange={handleChange}
               value={values.phoneNumber}
               isInvalid={touched.phoneNumber && !!errors.phoneNumber}
@@ -289,7 +315,12 @@ const ContactForm = () => {
             </Form.Control.Feedback>
           )}
         </Col>
-        <Form.Group as={Col} xs={12} lg controlId={businessNameId}>
+        <Form.Group
+          as={Col}
+          xs={12}
+          lg
+          controlId={getControlId('businessName')}
+        >
           <Form.Label>
             {capitalizeText(
               t`sections:contact.form.fields.business.label`,
@@ -311,7 +342,7 @@ const ContactForm = () => {
             </Form.Control.Feedback>
           )}
         </Form.Group>
-        <Form.Group as={Col} xs={12} controlId={emailId}>
+        <Form.Group as={Col} xs={12} controlId={getControlId('email')}>
           <Form.Label>
             {capitalizeText(
               t`sections:contact.form.fields.email.label`,
@@ -320,7 +351,8 @@ const ContactForm = () => {
           </Form.Label>
           <Form.Control
             name="email"
-            type="text" // Prevents the mismatch rendering bug between server and client
+            // Should be an email field, but it throws a server/client render mismatch
+            type="text" // Prevents the mismatch rendering bug
             onChange={handleChange}
             value={values.email}
             isInvalid={touched.email && !!errors.email}
@@ -332,7 +364,7 @@ const ContactForm = () => {
             </Form.Control.Feedback>
           )}
         </Form.Group>
-        <Form.Group as={Col} xs={12} controlId={messageId}>
+        <Form.Group as={Col} xs={12} controlId={getControlId('message')}>
           <Form.Label>
             {capitalizeText(
               t`sections:contact.form.fields.message.label`,
@@ -377,9 +409,13 @@ const ContactForm = () => {
           </Col>
         </Row>
       )}
-      <Row className="d-flex justify-content-end mt-4">
-        <Col xs={12} lg="auto">
-          <Button type="submit" className="text-light" disabled={isSubmitting}>
+      <Row className="mt-4">
+        <Col xs={12} className="text-center text-lg-end">
+          <Button
+            type="submit"
+            className="text-light rounded-pill"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? (
               <Spinner size="sm" />
             ) : (

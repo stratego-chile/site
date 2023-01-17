@@ -2,32 +2,10 @@ import {
   faBug,
   faCloudBolt,
   faFileShield,
-  faGraduationCap,
-  faLifeRing,
-  faShieldHalved,
   faSignsPost,
   faUserSecret,
   faUserShield,
 } from '@fortawesome/free-solid-svg-icons'
-
-export const advantages = [
-  {
-    icon: faShieldHalved,
-    title: 'sections:home.fragments.advantages.items.privacy.title',
-    description: 'sections:home.fragments.advantages.items.privacy.description',
-  },
-  {
-    icon: faLifeRing,
-    title: 'sections:home.fragments.advantages.items.support.title',
-    description: 'sections:home.fragments.advantages.items.support.description',
-  },
-  {
-    icon: faGraduationCap,
-    title: 'sections:home.fragments.advantages.items.training.title',
-    description:
-      'sections:home.fragments.advantages.items.training.description',
-  },
-]
 
 export const services = [
   {

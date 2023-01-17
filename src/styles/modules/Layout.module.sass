@@ -35,7 +35,6 @@
     font-family: Montserrat, 'Work Sans', sans-serif
     font-weight: 300
     font-size: 1.5rem
-    text-align: justify
     word-spacing: 0.1rem
     line-height: 1.8rem
     margin: 1rem 0
@@ -43,3 +42,12 @@
       font-size: 1rem
       line-height: 1.25rem
       margin: 0.25rem 0
+
+.topTopButton
+  position: fixed
+  z-index: 1070
+  bottom: 3.5rem
+  right: 3.5rem
+  @media (max-width: map.get($grid-breakpoints, 'lg'))
+    bottom: 1rem
+    right: 1rem

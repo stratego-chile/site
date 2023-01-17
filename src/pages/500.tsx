@@ -7,7 +7,9 @@ const UnknownErrorPage = () => {
   return <ErrorPage statusCode={500} />
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps<WithoutProps> = async ({
+  locale,
+}) => {
   return {
     props: {
       ...(await serverSideTranslations(locale ?? defaultLocale, ['common'])),

@@ -1,4 +1,3 @@
-import ContactForm from '@stratego/components/forms/contact-form'
 import Layout from '@stratego/components/utils/layout'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { defaultLocale } from '@stratego/locales'
@@ -9,6 +8,17 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
+import dynamic from 'next/dynamic'
+import LoadingPlaceholder from '@stratego/components/utils/loading-placeholder'
+
+const ContactForm = dynamic(
+  () => import('@stratego/components/forms/contact-form'),
+  {
+    loading: ({ isLoading, error }) => (
+      <LoadingPlaceholder loading={isLoading} error={error} />
+    ),
+  }
+)
 
 const Contact: NextPage<WithoutProps> = () => {
   const { t } = useTranslation()

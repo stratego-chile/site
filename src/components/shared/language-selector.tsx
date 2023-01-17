@@ -31,7 +31,10 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({
       if (event.isTrusted) {
         if (lang !== currentLocale && i18n)
           changeLocale(lang).then(() => {
-            router.push({ pathname, query }, asPath, { locale: lang })
+            router.push({ pathname, query }, asPath, {
+              locale: lang,
+              scroll: false,
+            })
           })
       }
     },
