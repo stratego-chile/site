@@ -1,5 +1,6 @@
 import { useLocale } from '@stratego/hooks/useLocale'
-import { getLanguage, getNativeName } from 'language-flag-colors'
+import { getLanguage } from 'language-flag-colors/bin/functions/getLanguage'
+import { getNativeName } from 'language-flag-colors/bin/functions/getNativeName'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import { type FC, Fragment, useCallback, useId } from 'react'

@@ -5,7 +5,7 @@ import {
   phoneFormatSpec,
 } from '@stratego/helpers/text.helper'
 import { type FormikHelpers, useFormik } from 'formik'
-import { getCountryCode } from 'language-flag-colors'
+import { getCountryCode } from 'language-flag-colors/bin/functions/getCountryCode'
 import { useTranslation } from 'next-i18next'
 import {
   useCallback,

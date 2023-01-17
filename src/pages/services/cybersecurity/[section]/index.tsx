@@ -5,12 +5,19 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import Layout from '@stratego/components/utils/layout'
 import { cybersecurityLinks } from '@stratego/data/navigation-links'
-import Container from 'react-bootstrap/Container'
-import ErrorPage from '@stratego/components/utils/error-page'
 import { useMemo } from 'react'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import dynamic from 'next/dynamic'
 import LoadingPlaceholder from '@stratego/components/utils/loading-placeholder'
+
+const ErrorPage = dynamic(
+  () => import('@stratego/components/utils/error-page'),
+  {
+    loading: ({ isLoading, error }) => (
+      <LoadingPlaceholder loading={isLoading} error={error} />
+    ),
+  }
+)
 
 const SectionLayout = dynamic(
   () => import('@stratego/pages/services/cybersecurity/[section]/(layout)'),
@@ -51,9 +58,7 @@ const CybersecuritySection: NextPage<WithoutProps> = () => {
       }))}
       showNavigationOptions
     >
-      <Container className="my-5">
-        {sections[String(section) as keyof typeof sections]()}
-      </Container>
+      {sections[String(section) as keyof typeof sections]()}
     </Layout>
   ) : (
     <ErrorPage statusCode={404} showGoBackButton />

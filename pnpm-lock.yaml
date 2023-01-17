@@ -25,6 +25,7 @@ specifiers:
   classnames: ^2.3.2
   coffeescript: ^2.7.0
   core-js: ^3.27.1
+  cross-env: ^7.0.3
   cspell: ^6.18.1
   date-fns: ^2.29.3
   detect-emoji-support: ^0.1.7
@@ -115,6 +116,7 @@ devDependencies:
   '@typescript-eslint/parser': 5.48.2_7uibuqfxkfaozanbtbziikiqje
   '@webdiscus/pug-loader': 2.10.2_muplsyjfwbzeyojfi3pfj3ycwm
   coffeescript: 2.7.0
+  cross-env: 7.0.3
   cspell: 6.18.1
   devcert: 1.2.2
   eslint: 8.32.0
@@ -2364,6 +2366,14 @@ packages:
       js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
+    dev: true
+
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn/6.0.5:
