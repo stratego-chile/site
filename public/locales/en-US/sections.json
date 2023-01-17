@@ -190,6 +190,7 @@
       },
       "consulting": {
         "title": "Consulting",
+        "description": "",
         "modules": {
           "isoIec27000": {
             "title": "ISO/IEC 27000",
