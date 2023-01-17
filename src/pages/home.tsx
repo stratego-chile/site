@@ -15,19 +15,15 @@ import { useTranslation } from 'next-i18next'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { services } from '@stratego/data/home-content'
 import ShowOnScroll from '@stratego/components/animations/show-on-scroll'
-import Spinner from 'react-bootstrap/Spinner'
 import dynamic from 'next/dynamic'
-import { Alert } from 'react-bootstrap'
+import LoadingPlaceholder from '@stratego/components/utils/loading-placeholder'
 
 const DynamicContactForm = dynamic(
   () => import('@stratego/components/forms/contact-form'),
   {
-    loading: ({ isLoading, error }) =>
-      isLoading ? (
-        <Spinner animation="border" variant="primary" />
-      ) : error ? (
-        <Alert variant="danger">{error.toString()}</Alert>
-      ) : null,
+    loading: ({ isLoading, error }) => (
+      <LoadingPlaceholder loading={isLoading} error={error} />
+    ),
     ssr: false,
   }
 )
