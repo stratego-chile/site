@@ -36,11 +36,11 @@ export const cybersecurityLinks: Array<LinkSpec> = [
     text: 'sections:security.services.consulting.title',
     subLinks: [
       {
-        href: '/services/cybersecurity/consulting?subsection=ISO-IEC-27000',
-        text: 'sections:security.services.consulting.modules.iso27000.title',
+        href: '/services/cybersecurity/consulting?subsection=ISO-IEC27000',
+        text: 'sections:security.services.consulting.modules.isoIec27000.title',
       },
       {
-        href: '/services/cybersecurity/consulting?subsection=CHL-21459',
+        href: '/services/cybersecurity/consulting?subsection=CHL21459',
         text: 'sections:security.services.consulting.modules.chl21459.title',
       },
     ],
