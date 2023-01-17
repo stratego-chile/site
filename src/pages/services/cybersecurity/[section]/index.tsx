@@ -10,9 +10,15 @@ import ErrorPage from '@stratego/components/utils/error-page'
 import { useMemo } from 'react'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import dynamic from 'next/dynamic'
+import LoadingPlaceholder from '@stratego/components/utils/loading-placeholder'
 
-const AuditSection = dynamic(
-  () => import('@stratego/pages/services/cybersecurity/[section]/(audit)')
+const SectionLayout = dynamic(
+  () => import('@stratego/pages/services/cybersecurity/[section]/(layout)'),
+  {
+    loading: ({ isLoading, error }) => (
+      <LoadingPlaceholder loading={isLoading} error={error} />
+    ),
+  }
 )
 
 const CybersecuritySection: NextPage<WithoutProps> = () => {
@@ -26,8 +32,8 @@ const CybersecuritySection: NextPage<WithoutProps> = () => {
 
   const sections = useMemo(
     () => ({
-      audit: () => <AuditSection />,
-      // TODO: consulting: () => <Fragment></Fragment>,
+      audit: () => <SectionLayout section="audit" />,
+      consulting: () => <SectionLayout section="consulting" />,
     }),
     []
   )
