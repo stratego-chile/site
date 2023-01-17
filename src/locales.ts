@@ -1,4 +1,4 @@
-import { i18n } from '../next-i18next.config'
+import { i18n } from '@stratego/../next-i18next.config'
 
 export const localesList = i18n.locales
 
