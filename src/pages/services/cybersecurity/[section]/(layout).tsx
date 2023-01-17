@@ -14,6 +14,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import kebabcase from '@stdlib/string/kebabcase'
 import { useRouter } from 'next/router'
+import Container from 'react-bootstrap/Container'
 
 type SectionLayoutProps = {
   section: 'audit' | 'consulting'
@@ -64,60 +65,62 @@ const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
 
   return (
     <Fragment>
-      <Row>
-        <Col>
-          <div className={classNames(LayoutStyles.autoFormat)}>
-            <h1>{t(`sections:security.services.${section}.title`)}</h1>
-            {((desc) =>
-              desc instanceof Array &&
-              desc.map((fragment, key) => <p key={key}>{fragment}</p>))(
-              t(`sections:security.services.${section}.description`, {
-                returnObjects: true,
-              })
-            )}
-          </div>
-          {subsections.hasItems() && (
-            <Accordion
-              className="mt-5"
-              activeKey={activeSubsections?.map(($subsection) =>
-                String($subsection)
+      <Container className="my-5">
+        <Row>
+          <Col>
+            <div className={classNames(LayoutStyles.autoFormat)}>
+              <h1>{t(`sections:security.services.${section}.title`)}</h1>
+              {((desc) =>
+                desc instanceof Array &&
+                desc.map((fragment, key) => <p key={key}>{fragment}</p>))(
+                t(`sections:security.services.${section}.description`, {
+                  returnObjects: true,
+                })
               )}
-              alwaysOpen
-            >
-              {subsections.map((subsection, key) => (
-                <Accordion.Item key={key} eventKey={String(key)}>
-                  <Accordion.Header
-                    onClick={(event) =>
-                      event.isTrusted && updateOpenedSubsections(key)
-                    }
-                  >
-                    {t(
-                      `sections:security.services.${section}.modules.${subsection}.title`
-                    )}
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    {((content) =>
-                      content instanceof Array ? (
-                        content.map((fragment, fragmentKey) => (
-                          <p key={fragmentKey}>{fragment}</p>
-                        ))
-                      ) : (
-                        <p>{content}</p>
-                      ))(
-                      t(
-                        `sections:security.services.${section}.modules.${subsection}.description`,
-                        {
-                          returnObjects: true,
-                        }
-                      )
-                    )}
-                  </Accordion.Body>
-                </Accordion.Item>
-              ))}
-            </Accordion>
-          )}
-        </Col>
-      </Row>
+            </div>
+            {subsections.hasItems() && (
+              <Accordion
+                className="mt-5"
+                activeKey={activeSubsections?.map(($subsection) =>
+                  String($subsection)
+                )}
+                alwaysOpen
+              >
+                {subsections.map((subsection, key) => (
+                  <Accordion.Item key={key} eventKey={String(key)}>
+                    <Accordion.Header
+                      onClick={(event) =>
+                        event.isTrusted && updateOpenedSubsections(key)
+                      }
+                    >
+                      {t(
+                        `sections:security.services.${section}.modules.${subsection}.title`
+                      )}
+                    </Accordion.Header>
+                    <Accordion.Body>
+                      {((content) =>
+                        content instanceof Array ? (
+                          content.map((fragment, fragmentKey) => (
+                            <p key={fragmentKey}>{fragment}</p>
+                          ))
+                        ) : (
+                          <p>{content}</p>
+                        ))(
+                        t(
+                          `sections:security.services.${section}.modules.${subsection}.description`,
+                          {
+                            returnObjects: true,
+                          }
+                        )
+                      )}
+                    </Accordion.Body>
+                  </Accordion.Item>
+                ))}
+              </Accordion>
+            )}
+          </Col>
+        </Row>
+      </Container>
     </Fragment>
   )
 }
