@@ -191,21 +191,34 @@
       "consulting": {
         "title": "Consulting",
         "modules": {
-          "iso27000": {
-            "title": "ISO/IEC 27000"
+          "isoIec27000": {
+            "title": "ISO/IEC 27000",
+            "description": [
+              "Cyber-attacks have become a norm these days, every day more and more organizations suffer security breaches that are exploited by increasingly sophisticated cyber-attacks. Moreover, these phenomena are increasing as the process of digitalization of companies advances.",
+              "When we talk about information security, it is usually related to information systems and information storage on digital media. However, security breaches encompass much more than these elements, including aspects related to the handling of information throughout the organization, its collection, storage, distribution, among other sources of IT risks.",
+              "In response to the above, the ISO 27000 standards are a framework of good practices related to the implementation, maintenance and management of the Information Security Management System (ISMS). This system is aimed at developing a culture of continuous improvement and IT risk mitigation in organizations, regardless of company size or type of industry",
+              "As consultants in this area, we seek to collaborate in explaining the benefits of adopting a system of this magnitude and to accompany them in the implementation process."
+            ]
           },
           "chl21459": {
-            "title": "Chilean Law N° 21459"
+            "title": "Chilean Law N° 21459",
+            "description": [
+              "Law 21.459, enacted on June 9, 2022, establishes rules regarding computer crimes, which include:",
+              "- Integrity of a computer system (article 1)",
+              "- Unlawful access (article 2)",
+              "- Unlawful Interception (article 3)",
+              "- Attack on the integrity of computer data (article 4)",
+              "- Computer forgery (article 5)",
+              "- Reception of computer data (article 6)",
+              "- Computer fraud (article 7)",
+              "- Abuse of devices (article 8)",
+              "For these purposes, penalties are established, which, according to their seriousness, range from minor imprisonment in its minimum degree to major imprisonment in its minimum degree, in addition to fines ranging from 11 to 40 monthly tax units. All these offenses are applicable to legal entities",
+              "In view of the exposure that companies have to be victims of these cyber crimes, it is recommended to take different precautions for the protection of information. This is even more sensitive if we consider the safeguarding of confidential information or information that by law, or contract, must be kept in reserve.",
+              "Given the above, as a company we have developed a model of computer crime prevention, whose implementation and certification is partly mandatory for legal entities, but at the same time is a fundamental element that aims to exempt companies from any liability for computer crimes, such as those mentioned above.",
+              "Faced with this scenario as a company we want to provide all the necessary support to accompany you in the process of implementing a model of computer crime prevention, do not hesitate to contact us!"
+            ]
           }
         }
-      }
-    },
-    "pages": {
-      "overview": {
-        "title": "overview"
-      },
-      "learnMore": {
-        "title": "learn more"
       }
     }
   }

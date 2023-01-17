@@ -191,21 +191,34 @@
       "consulting": {
         "title": "Consultoría",
         "modules": {
-          "iso27000": {
-            "title": "ISO/IEC 27000"
+          "isoIec27000": {
+            "title": "ISO/IEC 27000",
+            "description": [
+              "Los ciberataques se han vuelto una norma en estos tiempos, cada día más organizaciones sufren brechas de seguridad que son aprovechadas por ciberataques cada vez más sofisticados. Además, estos fenómenos aumentan conforme avance el proceso de digitalización de las empresas.",
+              "Cuando se habla acerca de seguridad de la información, normalmente se relaciona con sistemas de información y almacenamiento de información en medios digitales. Sin embargo, las brechas de seguridad abarcan mucho más que estos elementos, incluyendo aspectos relacionados con el manejo de la información a través de la organización, la recolección de esta, almacenamiento, distribución, entre otras fuentes de riesgos informáticos.",
+              "Como respuesta a lo anterior, las normas ISO 27000 son un marco de buenas prácticas relativas a la implementación, mantención y gestión del Sistema de Gestión de Seguridad de la Información (SGSI). Este sistema está orientado a poder desarrollar en las organizaciones una cultura de mejora continua y mitigación de riesgos informáticos, independiente del tamaño de empresa o tipo de industria.",
+              "Como consultores de dicha materia buscamos poder colaborarles en poder explicar respecto de los beneficios que conlleva la adopción de un sistema de esta envergadura y junto con ello poder acompañarlos en el proceso de implementación."
+            ]
           },
           "chl21459": {
-            "title": "Ley chilena N° 21459"
+            "title": "Ley chilena N° 21459",
+            "description": [
+              "La ley 21.459, promulgada el 9 de junio de 2022, establece normas respecto de delitos informáticos, los cuales incluyen:",
+              "- Integridad de un sistema informático (artículo 1)",
+              "- Acceso ilícito (artículo 2)",
+              "- Interceptación ilícita (artículo 3)",
+              "- Ataque a la integridad de los datos informáticos (artículo 4)",
+              "- Falsificación informática artículo 5)",
+              "- Receptación de datos informáticos (artículo 6)",
+              "- Fraude informático (artículo 7)",
+              "- Abuso de dispositivos (artículo 8)",
+              "Para estos efectos están establecidas penas, las cuales, de acuerdo con su gravedad, abarcan desde el presidio menor en su grado mínimo a presidio mayor en su grado mínimo, además de multas que van desde las 11 a las 40 unidades tributarias mensuales. Todos estos delitos son aplicables a personas jurídicas.",
+              "En vista de la exposición que tienen las empresas a ser víctimas de estos ciber delitos, se recomienda tomar distintas precauciones para la protección de la información. Esto es aún más sensible si se considera el resguardo de información confidencial o información que por ley, o contrato, deba ser mantenida en reserva.",
+              "Dado lo anterior, como empresa hemos desarrollado un modelo de prevención de delitos informáticos, cuya implementación y certificación es en parte obligatorio para las personas jurídicas, pero a la vez es un elemento fundamental que tiene por objeto poder eximir a las empresas de toda responsabilidad frente a delitos de carácter informático, como los anteriormente mencionados.",
+              "Frente a este escenario como empresa queremos brindar todo el apoyo necesario para acompañarles en el proceso de implementar un modelo de prevención de delitos informáticos, no dude en contactarnos!"
+            ]
           }
         }
-      }
-    },
-    "pages": {
-      "overview": {
-        "title": "resumen"
-      },
-      "learnMore": {
-        "title": "aprender mas"
       }
     }
   }

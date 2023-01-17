@@ -191,21 +191,34 @@
       "consulting": {
         "title": "Consultoria",
         "modules": {
-          "iso27000": {
-            "title": "ISO/IEC 27000"
+          "isoIec27000": {
+            "title": "ISO/IEC 27000",
+            "description": [
+              "Os ciberataques se tornaram a norma hoje em dia, com cada vez mais organizações sofrendo de violações de segurança que são exploradas por ciberataques cada vez mais sofisticados. Além disso, estes fenômenos estão aumentando à medida que o processo de digitalização das empresas avança",
+              "Quando se fala de segurança da informação, geralmente está relacionado com sistemas de informação e armazenamento de informações em mídias digitais. Entretanto, as violações de segurança abrangem muito mais do que estes elementos, incluindo aspectos relacionados ao manuseio de informações em toda a organização, sua coleta, armazenamento, distribuição, entre outras fontes de risco de TI,",
+              "Em resposta ao acima exposto, as normas ISO 27000 são uma estrutura de melhores práticas relacionadas à implementação, manutenção e gerenciamento do Sistema de Gestão da Segurança da Informação (SGSI). Este sistema visa desenvolver uma cultura de melhoria contínua e de mitigação dos riscos de TI nas organizações, independentemente do tamanho da empresa ou do tipo de indústria",
+              "Como consultores nesta área, procuramos ser capazes de colaborar com eles na explicação dos benefícios de adotar um sistema desta magnitude e de acompanhá-los no processo de implementação"
+            ]
           },
           "chl21459": {
-            "title": "Lei chilena N° 21459"
+            "title": "Lei chilena N° 21459",
+            "description": [
+              "A Lei 21.459, promulgada em 9 de junho de 2022, estabelece regras relativas aos crimes informáticos, que incluem:",
+              "- Integridade de um sistema informático (Artigo 1)",
+              "- Acesso ilícito (Artigo 2)",
+              "- Intercepção ilegal (Artigo 3)",
+              "Ataque à integridade dos dados informáticos (Artigo 4)",
+              "Falsificação informática (Artigo 5)",
+              "Recepção de dados informáticos (Artigo 6)",
+              "Fraude informática (Artigo 7)",
+              "Abuso de dispositivos (Artigo 8)",
+              "Para estes fins, são estabelecidas penas que, de acordo com sua gravidade, variam de prisão menor no grau mínimo a prisão maior no grau mínimo, além de multas que variam de 11 a 40 unidades fiscais mensais. Todas essas ofensas são aplicáveis às pessoas jurídicas",
+              "Em vista da exposição das empresas a serem vítimas destes crimes cibernéticos, recomenda-se tomar várias precauções para a proteção das informações. Isto é ainda mais sensível quando se considera a salvaguarda de informações confidenciais ou informações que por lei, ou contrato, devem ser mantidas confidenciais",
+              "Dado o exposto acima, como empresa desenvolvemos um modelo para a prevenção de crimes informáticos, cuja implementação e certificação é parcialmente obrigatória para as pessoas jurídicas, mas ao mesmo tempo é um elemento fundamental que visa isentar as empresas de qualquer responsabilidade por crimes informáticos, tais como os mencionados acima",
+              "Diante deste cenário como empresa, queremos fornecer todo o apoio necessário para acompanhá-lo no processo de implementação de um modelo de prevenção de crimes informáticos, não hesite em nos contatar"
+            ]
           }
         }
-      }
-    },
-    "pages": {
-      "overview": {
-        "title": "visão geral"
-      },
-      "learnMore": {
-        "title": "saiba mais"
       }
     }
   }
