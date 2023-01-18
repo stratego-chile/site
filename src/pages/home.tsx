@@ -17,6 +17,7 @@ import { services } from '@stratego/data/home-content'
 import ShowOnScroll from '@stratego/components/animations/show-on-scroll'
 import dynamic from 'next/dynamic'
 import LoadingPlaceholder from '@stratego/components/utils/loading-placeholder'
+import { cybersecurityLinks } from '@stratego/data/navigation-links'
 
 const DynamicContactForm = dynamic(
   () => import('@stratego/components/forms/contact-form'),
@@ -73,7 +74,10 @@ const Home: NextPage<WithoutProps> = () => {
                       'simple'
                     )}
                   </p>
-                  <Link href="/services/security/overview" passHref>
+                  <Link
+                    href={cybersecurityLinks.at(0)!.subLinks!.at(0)!.href!}
+                    passHref
+                  >
                     <Button
                       variant="primary"
                       className="rounded-pill text-light"
@@ -173,7 +177,10 @@ const Home: NextPage<WithoutProps> = () => {
                       'simple'
                     )}
                   </p>
-                  <Link href="/services/security/about" passHref>
+                  <Link
+                    href={cybersecurityLinks.at(0)!.subLinks!.at(0)!.href!}
+                    passHref
+                  >
                     <Button className="rounded-pill text-light">
                       {capitalizeText(t`common:learnMore`, 'simple')}
                     </Button>
