@@ -58,7 +58,7 @@ const Layout: FC<PropsWithChildren<LayoutProps>> = ({
   children,
   ...divProps
 }) => {
-  const [title, setTitle] = useState<string>()
+  const [title, setTitle] = useState<string>(process.env.DEFAULT_PAGE_TITLE)
   const [description, setDescription] = useState<string>()
 
   const [consentCookie, setConsentCookie] = useCookies([usableCookies.consent])
