@@ -16,10 +16,7 @@ const nextConfig = {
     includePaths: [path.resolve(__dirname, 'src', 'styles')],
   },
   webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@stratego': path.join(__dirname, 'src'),
-    }
+    config.resolve.alias['@stratego'] = path.join(__dirname, 'src')
 
     config.module.rules.push({
       test: /\.pug$/,
@@ -44,14 +41,15 @@ const nextConfig = {
       },
     ]
   },
-  // Add environment variables to the client
+  // Add environment variables to the client side
   env: {
     BRAND_NAME: process.env.BRAND_NAME,
     BRAND_JURIDICAL_NAME: process.env.BRAND_JURIDICAL_NAME,
     DEFAULT_PAGE_TITLE: process.env.DEFAULT_PAGE_TITLE,
     DEFAULT_PAGE_DESCRIPTION: process.env.DEFAULT_PAGE_DESCRIPTION,
     DEFAULT_ASSETS_SOURCE: process.env.DEFAULT_ASSETS_SOURCE,
-    PAGES_TEMPLATES_SOURCE: process.env.PAGES_TEMPLATES_SOURCE,
+    DOCS_POSTS_SOURCE: process.env.DOCS_POSTS_SOURCE,
+    DOCS_SOCKET_KEY: process.env.DOCS_SOCKET_KEY,
     CAPTCHA_KEY: process.env.CAPTCHA_KEY,
   },
 }
