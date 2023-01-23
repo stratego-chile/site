@@ -12,8 +12,10 @@ import {
 import { useRemoteContent } from '@stratego/hooks/useRemoteContent'
 import { useAsyncMemo } from '@stratego/hooks/useAsyncMemo'
 import { useTranslation } from 'next-i18next'
+import RemarkUnwrapImages from 'remark-unwrap-images'
 
 interface LoadingState extends Boolean {}
+interface IsFound extends Boolean {}
 
 type Content = ReactNode | null
 
@@ -23,7 +25,7 @@ export const useMarkdownTemplate = (
     layoutParsers?: MDXRemoteProps['components']
   },
   deps: DependencyList = []
-): [Content, LoadingState] => {
+): [Content, LoadingState, IsFound] => {
   const templatePath = useMemo(
     () => config?.templatePath || 'about:blank',
     [config?.templatePath]
@@ -31,7 +33,7 @@ export const useMarkdownTemplate = (
 
   const { i18n } = useTranslation()
 
-  const [template] = useRemoteContent(
+  const { content: template, resourceFound: templateFound } = useRemoteContent(
     {
       path: templatePath,
     },
@@ -50,15 +52,17 @@ export const useMarkdownTemplate = (
 
   const { data: compiledTemplate, isLoading } = useAsyncMemo(async () => {
     return (
+      templateFound &&
       content &&
       (await serialize(content, {
         mdxOptions: {
+          remarkPlugins: [RemarkUnwrapImages],
           // based on workaround: https://github.com/hashicorp/next-mdx-remote/issues/307
           development: process.env.NODE_ENV !== 'production',
         },
       }))
     )
-  }, [content])
+  }, [templateFound, content])
 
   useEffect(() => {
     if (compiledTemplate) {
@@ -76,5 +80,5 @@ export const useMarkdownTemplate = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [compiledTemplate])
 
-  return [compiledContent, !isLoading]
+  return [compiledContent, !isLoading, templateFound]
 }
