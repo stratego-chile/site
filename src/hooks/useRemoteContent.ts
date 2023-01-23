@@ -12,7 +12,7 @@ export const useRemoteContent = (
   config: RemoteContentHookConfig,
   deps: DependencyList = []
 ): {
-  content: ReadableStream<Uint8Array> | null | undefined
+  content?: ReadableStream<Uint8Array> | null
   fetchState: FetchingDone
   resourceFound: ResourceFound
 } => {
