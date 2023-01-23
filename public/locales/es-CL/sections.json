@@ -222,5 +222,19 @@
         }
       }
     }
+  },
+  "docs": {
+    "previewAlert": "Esta es una versión preliminar de esta funcionalidad. Si estás teniendo problemas, por favor <redirect>reporta cualquier error</redirect>",
+    "title": "docs",
+    "searchControl": {
+      "title": "Documentación y base de conocimientos",
+      "label": "Buscar artículo",
+      "resetButton": "Limpiar búsqueda"
+    },
+    "messages": {
+      "welcome": "Usa el buscador para encontrar artículos",
+      "notFound": "No se encontraron artículos",
+      "found": "Artículos encontrados"
+    }
   }
 }

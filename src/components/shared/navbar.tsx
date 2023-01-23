@@ -141,6 +141,10 @@ const NavBar: FC<NavBarProps> = ({
         href: '/home',
       },
       {
+        text: 'common:aboutUs',
+        href: '/about-us',
+      },
+      {
         text: 'sections:services.title',
         subLinks: [
           {
@@ -151,8 +155,8 @@ const NavBar: FC<NavBarProps> = ({
         ],
       },
       {
-        text: 'common:aboutUs',
-        href: '/about-us',
+        text: 'sections:docs.title',
+        href: '/docs',
       },
     ],
     []
