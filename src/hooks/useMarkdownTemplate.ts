@@ -33,7 +33,11 @@ export const useMarkdownTemplate = (
 
   const { i18n } = useTranslation()
 
-  const { content: template, resourceFound: templateFound } = useRemoteContent(
+  const {
+    content: template,
+    resourceFound: templateFound,
+    fetchState,
+  } = useRemoteContent(
     {
       path: templatePath,
     },
@@ -80,5 +84,5 @@ export const useMarkdownTemplate = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [compiledTemplate])
 
-  return [compiledContent, !isLoading, templateFound]
+  return [compiledContent, fetchState || !isLoading, templateFound]
 }
