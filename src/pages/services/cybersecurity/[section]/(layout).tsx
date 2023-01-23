@@ -23,6 +23,10 @@ type SectionLayoutProps = {
 const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
   const router = useRouter()
 
+  const {
+    query: { subsection },
+  } = router
+
   const { t } = useTranslation()
 
   const [activeSubsections, setActiveSubsections] = useState<Array<number>>([])
@@ -38,15 +42,15 @@ const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
   )
 
   const handleHashChange = useCallback(() => {
-    const subsection = new URL(location.href).searchParams.get('subsection')
     if (subsection) {
       const index = subsections.findIndex(
         (subsectionName) =>
-          kebabcase(subsectionName).toLowerCase() === subsection.toLowerCase()
+          kebabcase(subsectionName).toLowerCase() ===
+          subsection.toString().toLowerCase()
       )
       setActiveSubsections([index])
     }
-  }, [subsections])
+  }, [subsection, subsections])
 
   const updateOpenedSubsections = useCallback(
     (eventKey: number) => {
@@ -89,7 +93,7 @@ const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
                 )}
                 alwaysOpen
               >
-                {subsections.map((subsection, key) => (
+                {subsections.map(($subsection, key) => (
                   <Accordion.Item key={key} eventKey={String(key)}>
                     <Accordion.Header
                       onClick={(event) =>
@@ -97,7 +101,7 @@ const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
                       }
                     >
                       {t(
-                        `sections:security.services.${section}.modules.${subsection}.title`
+                        `sections:security.services.${section}.modules.${$subsection}.title`
                       )}
                     </Accordion.Header>
                     <Accordion.Body>
@@ -110,7 +114,7 @@ const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
                           <p>{content}</p>
                         ))(
                         t(
-                          `sections:security.services.${section}.modules.${subsection}.description`,
+                          `sections:security.services.${section}.modules.${$subsection}.description`,
                           {
                             returnObjects: true,
                           }
