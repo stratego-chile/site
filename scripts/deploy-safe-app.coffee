@@ -26,9 +26,8 @@ do ->
 
   server = express()
 
-  server.get '*', (req, res) ->
+  server.all '*', (req, res) ->
     handle req, res
-    return
 
   devServer = https.createServer httpsOptions, server
 

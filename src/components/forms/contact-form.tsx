@@ -62,15 +62,10 @@ const ContactForm = () => {
     [formId]
   )
 
-  const filterCountryName = (rawName: string) => {
-    const name = rawName.replace(/ *\([^)]*\) */g, '')
-    return name
-  }
-
   const $countryPhonePrefixes = useMemo(
     () =>
       dialCodes.map(({ name, ...data }) => ({
-        name: filterCountryName(name),
+        name: name.replace(/ *\([^)]*\) */g, ''),
         ...data,
       })),
     []

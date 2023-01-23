@@ -18,6 +18,10 @@ const nextI18NextConfig = {
     defaultLocale: 'es-CL',
     localeDetection: false,
   },
+  react: {
+    transSupportBasicHtmlNodes: true,
+    transKeepBasicHtmlNodesFor: ['br', 'strong', 'a', 'b', 'u', 'small', 'sup', 'sub'],
+  },
   /**
    * @type {AvailableLocales}
    */

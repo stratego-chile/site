@@ -15,8 +15,8 @@ declare global {
       DEFAULT_PAGE_DESCRIPTION: string
       DEFAULT_ASSETS_SOURCE: string
 
-      // Sources base links
-      PAGES_TEMPLATES_SOURCE?: string
+      // App documenttion posts
+      DOCS_POSTS_SOURCE: string
 
       // Mailer config
       MAILER_USER: string
@@ -32,6 +32,9 @@ declare global {
       CAPTCHA_KEY: string
       CAPTCHA_SECRET: string
       CAPTCHA_MIN_SCORE: string
+
+      // API keys
+      DOCS_SEARCH_TOKEN: string
     }
   }
 }
