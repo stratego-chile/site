@@ -11,27 +11,26 @@ import {
 } from 'react'
 import { useRemoteContent } from '@stratego/hooks/useRemoteContent'
 import { useAsyncMemo } from '@stratego/hooks/useAsyncMemo'
-import { useTranslation } from 'next-i18next'
 import RemarkUnwrapImages from 'remark-unwrap-images'
 
 interface LoadingState extends Boolean {}
 interface IsFound extends Boolean {}
 
-type Content = ReactNode | null
+type MarkdownTemplateFetch = [ReactNode, LoadingState, IsFound]
+
+type MarkdownTemplateConfig = {
+  templatePath?: string | URL
+  components?: MDXRemoteProps['components']
+}
 
 export const useMarkdownTemplate = (
-  config?: {
-    templatePath?: string | URL
-    layoutParsers?: MDXRemoteProps['components']
-  },
+  config?: MarkdownTemplateConfig,
   deps: DependencyList = []
-): [Content, LoadingState, IsFound] => {
+): MarkdownTemplateFetch => {
   const templatePath = useMemo(
     () => config?.templatePath || 'about:blank',
     [config?.templatePath]
   )
-
-  const { i18n } = useTranslation()
 
   const {
     content: template,
@@ -41,10 +40,10 @@ export const useMarkdownTemplate = (
     {
       path: templatePath,
     },
-    [...deps, i18n]
+    [...deps]
   )
 
-  const [compiledContent, setContent] = useState<Content>(null)
+  const [compiledContent, setContent] = useState<ReactNode>(null)
 
   const { data: content } = useAsyncMemo(async () => {
     if (template instanceof ReadableStream && !template.locked) {
@@ -76,7 +75,8 @@ export const useMarkdownTemplate = (
           {},
           createElement(MDXRemote, {
             ...compiledTemplate,
-            components: { ...config?.layoutParsers },
+            components: config?.components,
+            lazy: true,
           })
         )
       )
@@ -84,5 +84,5 @@ export const useMarkdownTemplate = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [compiledTemplate])
 
-  return [compiledContent, fetchState || !isLoading, templateFound]
+  return [compiledContent, !fetchState && !isLoading, templateFound]
 }
