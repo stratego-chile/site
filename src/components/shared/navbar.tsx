@@ -155,6 +155,15 @@ const NavBar: FC<NavBarProps> = ({
         ],
       },
       {
+        text: 'sections:utils.title',
+        subLinks: [
+          {
+            text: 'sections:utils.list.0.title',
+            href: '/utilities/password-generator',
+          },
+        ],
+      },
+      {
         text: 'sections:docs.title',
         href: '/docs',
       },
@@ -165,7 +174,7 @@ const NavBar: FC<NavBarProps> = ({
   return (
     <Fragment>
       <Navbar
-        variant="light"
+        variant="dark"
         bg={theme}
         expand="lg"
         className="position-static"
@@ -210,7 +219,10 @@ const NavBar: FC<NavBarProps> = ({
                   </Link>
                 </Nav.Item>
                 <Nav.Item className="d-inline-flex align-items-center mx-auto">
-                  <LanguageSelector theme="transparent" className="text-dark" />
+                  <LanguageSelector
+                    theme="transparent"
+                    className="text-light"
+                  />
                 </Nav.Item>
               </Nav>
             </Navbar.Collapse>
