@@ -17,12 +17,15 @@ import { faCode } from '@fortawesome/free-solid-svg-icons'
 import FooterStyles from '@stratego/styles/modules/Footer.module.sass'
 import { contactData } from '@stratego/data/contact'
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 
 const LanguageSelector = dynamic(
   () => import('@stratego/components/shared/language-selector')
 )
 
 const Footer: NextPage<WithoutProps> = () => {
+  const router = useRouter()
+
   const { t } = useTranslation(['common'])
 
   return (
@@ -40,51 +43,63 @@ const Footer: NextPage<WithoutProps> = () => {
                 fluid
                 className="d-block mx-auto mb-5"
                 style={{ height: '4rem' }}
-                src={getAssetPath('logo-colored.svg')}
+                src={getAssetPath('logo-white.svg')}
                 alt={process.env.BRAND_NAME}
               />
               <address>
-                {contactData.map(({ icon, text, linkPrefix }, key) => (
-                  <Link
-                    key={key}
-                    href={`${linkPrefix}:${text.replace(/\ /gi, '')}`}
-                    passHref
-                    legacyBehavior
-                  >
-                    <a
-                      className={classNames(
-                        'd-flex align-items-center justify-content-center justify-content-lg-start',
-                        'p-0 mb-4 gap-1',
-                        'text-dark text-decoration-none'
-                      )}
+                <div className="d-flex flex-column text-center text-lg-start">
+                  {contactData.map(({ icon, text, linkPrefix, link }, key) => (
+                    <Link
+                      key={key}
+                      href={
+                        linkPrefix
+                          ? typeof text === 'string'
+                            ? `${linkPrefix}:${text.replace(/\ /gi, '')}`
+                            : link
+                            ? `${linkPrefix}:${link}`
+                            : router.asPath
+                          : link ?? router.asPath
+                      }
+                      className="d-grid mb-3 text-decoration-none"
+                      style={{ color: 'inherit' }}
+                      target={link ? '_blank' : undefined}
+                      rel={link ? 'noreferrer noopener' : undefined}
                     >
-                      <FontAwesomeIcon icon={icon} fixedWidth height="1em" />
-                      {text}
-                    </a>
-                  </Link>
-                ))}
-                <Link
-                  className={classNames(
-                    'd-grid align-items-center text-center text-lg-start',
-                    'p-0 mb-4 gap-1',
-                    'text-dark text-decoration-none'
-                  )}
-                  href="https://www.openstreetmap.org/way/579051556#map=19/-33.42477/-70.61791"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <p className="mb-0">Padre Mariano 272</p>
-                  <p className="mb-0">Oficina 302</p>
-                  <p className="mb-0">Providencia, Santiago, Chile</p>
-                </Link>
+                      <p
+                        className={classNames(
+                          'd-inline-flex align-items-center',
+                          'justify-content-center justify-content-lg-start',
+                          'mb-0 gap-1'
+                        )}
+                      >
+                        <FontAwesomeIcon
+                          className={classNames(
+                            text instanceof Array && 'd-none d-lg-inline-flex'
+                          )}
+                          icon={icon}
+                          fixedWidth
+                          height="1em"
+                        />
+                        {text instanceof Array
+                          ? text.map((fragment, fragmentKey) => (
+                              <Fragment key={fragmentKey}>
+                                {fragment}
+                                <br />
+                              </Fragment>
+                            ))
+                          : text}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
               </address>
             </Col>
             <Col xs="auto" className="order-1 order-lg-2">
-              <LanguageSelector theme="light-gray" />
+              <LanguageSelector theme="light" />
             </Col>
           </Row>
         </Container>
-        <Navbar variant="light" bg="transparent" expand>
+        <Navbar variant="dark" bg="transparent" expand>
           <Container className="d-grid d-lg-flex justify-content-center justify-content-lg-between px-lg-1">
             <Navbar.Text className="px-2 order-2 order-lg-1">
               2022 - {new Date().getFullYear()}

@@ -1,4 +1,3 @@
-import Layout from '@stratego/components/utils/layout'
 import { defaultLocale } from '@stratego/locales'
 import classNames from 'classnames'
 import { type GetStaticProps, type NextPage } from 'next'
@@ -14,10 +13,15 @@ import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { services } from '@stratego/data/home-content'
-import ShowOnScroll from '@stratego/components/animations/show-on-scroll'
 import dynamic from 'next/dynamic'
-import LoadingPlaceholder from '@stratego/components/utils/loading-placeholder'
+import LoadingPlaceholder from '@stratego/components/shared/loading-placeholder'
 import { cybersecurityLinks } from '@stratego/data/navigation-links'
+
+const Layout = dynamic(() => import('@stratego/components/shared/layout'))
+
+const ShowOnScroll = dynamic(
+  () => import('@stratego/components/animations/show-on-scroll')
+)
 
 const DynamicContactForm = dynamic(
   () => import('@stratego/components/forms/contact-form'),
