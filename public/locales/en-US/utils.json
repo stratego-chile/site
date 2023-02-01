@@ -1,0 +1,20 @@
+{
+  "list": [
+    {
+      "title": "Password generator",
+      "subtitle": "Any passwords generated are not stored or shared with any of our storage services or third parties.",
+      "include": "Include",
+      "availableChars": "Available characters",
+      "times": "Times",
+      "length": "Password length",
+      "regular": "Regular letters (uppercase and lowercase)",
+      "special": "Special letters",
+      "numbers": "Numbers",
+      "symbols": "Symbols",
+      "generate": "Generate passwords",
+      "copy": "Copy",
+      "copied": "Copied"
+    }
+  ],
+  "footNote": "See the <redirect>source code</redirect>."
+}

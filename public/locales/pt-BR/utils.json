@@ -1,0 +1,20 @@
+{
+  "list": [
+    {
+      "title": "Gerador de senhas",
+      "subtitle": "Quaisquer senhas geradas não são armazenadas ou compartilhadas com nenhum de nossos ativos de armazenamento ou com terceiros.",
+      "include": "Incluir",
+      "availableChars": "Caracteres disponíveis",
+      "times": "vezes",
+      "length": "Comprimento",
+      "regular": "Cartas (letras minúsculas e maiúsculas)",
+      "special": "Cartas especiais",
+      "numbers": "Números",
+      "symbols": "Símbolos",
+      "generate": "Gerar senhas",
+      "copy": "Cópia",
+      "copied": "Copiando"
+    }
+  ],
+  "footNote": "Veja o <redirect>código da fonte</redirect>."
+}

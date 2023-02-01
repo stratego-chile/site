@@ -236,5 +236,13 @@
       "notFound": "No se encontraron artículos",
       "found": "Artículos encontrados"
     }
+  },
+  "utils": {
+    "title": "Utilidades",
+    "list": [
+      {
+        "title": "Generador de contraseñas"
+      }
+    ]
   }
 }

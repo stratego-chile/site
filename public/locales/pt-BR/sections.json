@@ -236,5 +236,13 @@
       "notFound": "Nenhum artigo encontrado",
       "found": "Artigos encontrados"
     }
+  },
+  "utils": {
+    "title": "Utilitários",
+    "list": [
+      {
+        "title": "Gerador de senha"
+      }
+    ]
   }
 }

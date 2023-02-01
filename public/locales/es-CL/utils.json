@@ -1,0 +1,20 @@
+{
+  "list": [
+    {
+      "title": "Generador de contraseñas",
+      "subtitle": "Cualquier contraseña generada no es almacenada ni compartida, con ninguno de nuestros activos de almacenamiento ni terceros.",
+      "include": "Incluir",
+      "availableChars": "Caracteres disponibles",
+      "times": "Veces",
+      "length": "Largo de la contraseña",
+      "regular": "Letras (minúsculas y mayúsculas)",
+      "special": "Letras especiales",
+      "numbers": "Números",
+      "symbols": "Símbolos",
+      "generate": "Generar contraseñas",
+      "copy": "Copiar",
+      "copied": "Copiado"
+    }
+  ],
+  "footNote": "Revisa el <redirect>código fuente</redirect>."
+}

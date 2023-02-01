@@ -236,5 +236,13 @@
       "notFound": "No articles found",
       "found": "Found articles"
     }
+  },
+  "utils": {
+    "title": "Utilities",
+    "list": [
+      {
+        "title": "Password generator"
+      }
+    ]
   }
 }
