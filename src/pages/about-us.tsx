@@ -1,4 +1,4 @@
-import Layout from '@stratego/components/utils/layout'
+import Layout from '@stratego/components/shared/layout'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { defaultLocale } from '@stratego/locales'
 import { type GetStaticProps, type NextPage } from 'next'
