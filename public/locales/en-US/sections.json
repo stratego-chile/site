@@ -222,5 +222,27 @@
         }
       }
     }
+  },
+  "docs": {
+    "previewAlert": "This is a preliminary version of this feature. If you are having problems, please <redirect>report any bugs</redirect>",
+    "title": "docs",
+    "searchControl": {
+      "title": "Documentation and knowledge base",
+      "label": "Search article",
+      "resetButton": "Clear search"
+    },
+    "messages": {
+      "welcome": "Use the search bar to find articles",
+      "notFound": "No articles found",
+      "found": "Found articles"
+    }
+  },
+  "utils": {
+    "title": "Utilities",
+    "list": [
+      {
+        "title": "Password generator"
+      }
+    ]
   }
 }

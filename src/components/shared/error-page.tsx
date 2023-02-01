@@ -5,7 +5,7 @@ import { capitalizeText } from '@stratego/helpers/text.helper'
 import { useTranslation } from 'next-i18next'
 import { FC } from 'react'
 import classNames from 'classnames'
-import GoBackButton from '@stratego/components/utils/go-back-button'
+import GoBackButton from '@stratego/components/shared/go-back-button'
 
 type ErrorPageProps = {
   statusCode?: number

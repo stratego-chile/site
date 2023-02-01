@@ -1,0 +1,10 @@
+{
+  "articles": {
+    "default": {
+      "informationSecurity": "Segurança da Informação"
+    }
+  },
+  "page": {
+    "helpNote": "Você encontrou algum bug nesta página? Você pode fazer uma contribuição ou relatar o problema em nosso <redirect>repositório público</redirect>."
+  }
+}

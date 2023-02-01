@@ -17,6 +17,7 @@ declare global {
 
       // App documenttion posts
       DOCS_POSTS_SOURCE: string
+      DOCS_PUSHER_CHANNEL: string
 
       // Mailer config
       MAILER_USER: string
@@ -33,8 +34,11 @@ declare global {
       CAPTCHA_SECRET: string
       CAPTCHA_MIN_SCORE: string
 
-      // API keys
-      DOCS_SEARCH_TOKEN: string
+      // Pusher config keys
+      PUSHER_APP_ID: string
+      PUSHER_APP_KEY: string
+      PUSHER_APP_SECRET: string
+      PUSHER_APP_CLUSTER: string
     }
   }
 }

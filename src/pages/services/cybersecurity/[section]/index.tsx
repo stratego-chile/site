@@ -3,15 +3,15 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { defaultLocale } from '@stratego/locales'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import Layout from '@stratego/components/utils/layout'
+import Layout from '@stratego/components/shared/layout'
 import { cybersecurityLinks } from '@stratego/data/navigation-links'
 import { useMemo } from 'react'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import dynamic from 'next/dynamic'
-import LoadingPlaceholder from '@stratego/components/utils/loading-placeholder'
+import LoadingPlaceholder from '@stratego/components/shared/loading-placeholder'
 
 const ErrorPage = dynamic(
-  () => import('@stratego/components/utils/error-page'),
+  () => import('@stratego/components/shared/error-page'),
   {
     loading: ({ isLoading, error }) => (
       <LoadingPlaceholder loading={isLoading} error={error} />

@@ -1,7 +1,7 @@
 import { type GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { defaultLocale } from '@stratego/locales'
-import ErrorPage from '@stratego/components/utils/error-page'
+import ErrorPage from '@stratego/components/shared/error-page'
 
 const NotFoundPage = () => {
   return <ErrorPage statusCode={404} />

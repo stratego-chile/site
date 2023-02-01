@@ -125,7 +125,7 @@ const Layout: FC<PropsWithChildren<LayoutProps>> = ({
       </Head>
       <NavBar
         showNavigationOptions={showNavigationOptions}
-        theme="light"
+        theme="dark-blue"
         brandDepartment={brandDepartment}
         subLinks={subLinks}
       />
@@ -153,7 +153,7 @@ const Layout: FC<PropsWithChildren<LayoutProps>> = ({
         className={LayoutStyles.topTopButton}
       >
         <Button
-          className="text-light rounded-pill"
+          className="text-light rounded"
           onClick={() =>
             document.body.scrollIntoView({ behavior: 'smooth', block: 'start' })
           }
