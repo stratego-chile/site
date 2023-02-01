@@ -52,8 +52,6 @@
     "react-i18next": "^12.1.4",
     "react-use": "^17.4.0",
     "remark-unwrap-images": "^3.0.1",
-    "socket.io": "^4.5.4",
-    "socket.io-client": "^4.5.4",
     "yup": "^0.32.11"
   },
   "devDependencies": {

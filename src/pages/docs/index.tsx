@@ -4,6 +4,7 @@ import { type GetStaticProps, type NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import {
+  type FC,
   Fragment,
   useCallback,
   useDeferredValue,
@@ -19,7 +20,6 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import * as Yup from 'yup'
-import io from 'socket.io-client'
 import { Trans, useTranslation } from 'next-i18next'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { useRouter } from 'next/router'
@@ -31,8 +31,9 @@ import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
 import { useAsyncMemo } from '@stratego/hooks/useAsyncMemo'
 import { Fade } from 'react-bootstrap'
+import { useTrigger } from '@harelpls/use-pusher'
 
-const Layout = dynamic(() => import('@stratego/components/utils/layout'))
+const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 
 type DocumentationSearch = {
   inputCriteria: string
@@ -44,6 +45,29 @@ enum SearchResultsDisplayMode {
   Found,
 }
 
+type ArticleLinksProps = {
+  articles: Array<{
+    id: string
+    title: string
+  }>
+}
+
+const ArticleLinks: FC<ArticleLinksProps> = ({ articles }) => {
+  const { t } = useTranslation()
+
+  return (
+    <ListGroup as="ol" numbered>
+      {articles?.map(({ id, title }, key) => (
+        <Link key={key} href={`/docs/${id}`} legacyBehavior passHref>
+          <ListGroup.Item action as="li" className="pe-pointer">
+            {capitalizeText(t(title), 'simple')}
+          </ListGroup.Item>
+        </Link>
+      ))}
+    </ListGroup>
+  )
+}
+
 const Documentation: NextPage<WithoutProps> = () => {
   const router = useRouter()
 
@@ -51,11 +75,9 @@ const Documentation: NextPage<WithoutProps> = () => {
     query: { search },
   } = router
 
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const formId = useId()
-
-  const [socket, setSocket] = useState<ReturnType<typeof io>>()
 
   const [foundArticles, setFoundArticles] = useState<
     Array<{
@@ -66,7 +88,7 @@ const Documentation: NextPage<WithoutProps> = () => {
 
   const { data: recommendedArticles } = useAsyncMemo<
     Array<UnpackedArray<typeof foundArticles>>
-  >(async () => (await fetch('/api/default-docs')).json(), [t])
+  >(async () => (await fetch('/api/default-docs')).json(), [i18n.language])
 
   const getControlId = useCallback(
     (controlRef: string) => formId.concat('-', controlRef),
@@ -75,12 +97,15 @@ const Documentation: NextPage<WithoutProps> = () => {
 
   const [requestingResults, requestResults] = useTransition()
 
+  const docsSearcher = useTrigger(process.env.DOCS_PUSHER_CHANNEL)
+
   const {
     errors,
     handleChange,
     handleSubmit,
     touched,
     values: { inputCriteria },
+    resetForm,
     setValues,
   } = useFormik<DocumentationSearch>({
     initialValues: {
@@ -108,35 +133,12 @@ const Documentation: NextPage<WithoutProps> = () => {
   )
 
   useEffect(() => {
-    fetch('/api/search-docs').finally(() => {
-      const $socket = io({
-        auth: {
-          token: process.env.DOCS_SEARCH_TOKEN,
-        },
-      })
-      setSocket($socket)
-    })
-  }, [])
-
-  useEffect(() => {
-    if (search && inputCriteria !== search.toString())
+    if (search && !inputCriteria)
       setValues({
         inputCriteria: search.toString(),
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  useEffect(() => {
-    if (socket)
-      socket.on('search-results', (...searchResults: typeof foundArticles) => {
-        if (searchResults instanceof Array)
-          setFoundArticles(
-            searchResults.filter(
-              ({ id, title }) => (Number.isInteger(id) || id) && title
-            )
-          )
-      })
-  }, [socket])
+  }, [search])
 
   useEffect(() => {
     const criteriaUpdateTimer = setTimeout(
@@ -150,11 +152,23 @@ const Documentation: NextPage<WithoutProps> = () => {
 
   useEffect(() => {
     if (!criteria) return setFoundArticles([])
-    else if (socket)
+    else if (docsSearcher)
       requestResults(() => {
-        socket.emit('search-docs', criteria)
+        docsSearcher('search-docs', criteria)
       })
-  }, [criteria, socket])
+  }, [criteria, docsSearcher])
+
+  useEffect(() => {
+    if (router.isReady)
+      router.replace({
+        query: inputCriteria
+          ? {
+              search: inputCriteria,
+            }
+          : {},
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputCriteria])
 
   return (
     <Layout
@@ -204,40 +218,28 @@ const Documentation: NextPage<WithoutProps> = () => {
                 <Form.Control
                   type="text"
                   name="inputCriteria"
-                  onChange={(event) => {
-                    if (
-                      String(event.target.value).toLowerCase() !==
-                        inputCriteria.toLowerCase() &&
-                      router.isReady
-                    )
-                      router.replace({
-                        query: event.target.value
-                          ? {
-                              search: event.target.value,
-                            }
-                          : {},
-                      })
-                    handleChange(event)
-                  }}
+                  onChange={handleChange}
                   value={inputCriteria}
                   isInvalid={touched.inputCriteria && !!errors.inputCriteria}
                 />
-                <Form.Text className="d-flex justify-content-between">
-                  <Fade in={requestingResults}>
-                    <Spinner size="sm" />
-                  </Fade>
+                <Form.Text
+                  className={classNames(
+                    'd-flex',
+                    requestingResults
+                      ? 'justify-content-between'
+                      : 'justify-content-end'
+                  )}
+                >
+                  {requestingResults && <Spinner size="sm" />}
                   <Fade in={!!inputCriteria}>
                     <Button
                       size="sm"
                       variant="link"
-                      className="px-0"
-                      onClick={() => {
-                        setValues({ inputCriteria: '' })
-                        if (router.isReady)
-                          router.replace({
-                            query: {},
-                          })
-                      }}
+                      className={classNames(
+                        'px-0',
+                        !inputCriteria && 'pe-none'
+                      )}
+                      onClick={() => resetForm()}
                     >
                       {capitalizeText(
                         t`sections:docs.searchControl.resetButton`,
@@ -249,15 +251,7 @@ const Documentation: NextPage<WithoutProps> = () => {
               </Form.Group>
             </Form>
             <h6 className="my-4">Artículos recomendados</h6>
-            <ListGroup as="ol" numbered>
-              {recommendedArticles?.map(({ id, title }, key) => (
-                <Link key={key} href={`/docs/${id}`} legacyBehavior passHref>
-                  <ListGroup.Item action as="li" className="pe-pointer">
-                    {capitalizeText(title, 'simple')}
-                  </ListGroup.Item>
-                </Link>
-              ))}
-            </ListGroup>
+            <ArticleLinks articles={recommendedArticles ?? []} />
           </Col>
           <Col
             xs={12}
@@ -270,20 +264,7 @@ const Documentation: NextPage<WithoutProps> = () => {
                   <h6 className="text-start">
                     {capitalizeText(t`sections:docs.messages.found`, 'simple')}
                   </h6>
-                  <ListGroup as="ol" numbered>
-                    {foundArticles.map(({ id, title }, key) => (
-                      <Link
-                        key={key}
-                        href={`/docs/${id}`}
-                        legacyBehavior
-                        passHref
-                      >
-                        <ListGroup.Item as="li" action className="pe-pointer">
-                          {title}
-                        </ListGroup.Item>
-                      </Link>
-                    ))}
-                  </ListGroup>
+                  <ArticleLinks articles={foundArticles ?? []} />
                 </Fragment>
               ) : (
                 <Row className="h-100 align-items-center">
