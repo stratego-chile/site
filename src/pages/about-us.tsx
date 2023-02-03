@@ -1,4 +1,3 @@
-import Layout from '@stratego/components/shared/layout'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { defaultLocale } from '@stratego/locales'
 import { type GetStaticProps, type NextPage } from 'next'
@@ -10,6 +9,9 @@ import { useTranslation } from 'next-i18next'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import { Image } from 'react-bootstrap'
 import { Fragment } from 'react'
+import dynamic from 'next/dynamic'
+
+const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 
 const AboutUs: NextPage<WithoutProps> = () => {
   const { t } = useTranslation('sections')
