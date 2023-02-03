@@ -2,13 +2,10 @@ import { type GetServerSideProps, type NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { defaultLocale } from '@stratego/locales'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
-import Layout from '@stratego/components/shared/layout'
-import { cybersecurityLinks } from '@stratego/data/navigation-links'
-import { useMemo } from 'react'
-import { capitalizeText } from '@stratego/helpers/text.helper'
 import dynamic from 'next/dynamic'
 import LoadingPlaceholder from '@stratego/components/shared/loading-placeholder'
+
+type Section = 'audit' | 'consulting'
 
 const ErrorPage = dynamic(
   () => import('@stratego/components/shared/error-page'),
@@ -35,39 +32,10 @@ const CybersecuritySection: NextPage<WithoutProps> = () => {
     query: { section },
   } = router
 
-  const { t } = useTranslation()
+  const sections: Array<Section> = ['audit', 'consulting']
 
-  const sections = useMemo(
-    () => ({
-      audit: () => <SectionLayout section="audit" />,
-      consulting: () => <SectionLayout section="consulting" />,
-    }),
-    []
-  )
-
-  const currentSection = useMemo(
-    () =>
-      (($currentSection) => $currentSection)(
-        sections[String(section?.toString()) as keyof typeof sections]
-      ),
-    [sections, section]
-  )
-
-  return String(section) in sections ? (
-    <Layout
-      pageTitle={capitalizeText(
-        [t`sections:security.brandDepartment`].join('-'.surround(' ')),
-        'simple'
-      )}
-      brandDepartment={t`sections:security.brandDepartment` satisfies string}
-      subLinks={cybersecurityLinks.map(({ text, ...linkProps }) => ({
-        text: t(text),
-        ...linkProps,
-      }))}
-      showNavigationOptions
-    >
-      {currentSection && currentSection()}
-    </Layout>
+  return sections.includes(String(section) as Section) ? (
+    <SectionLayout section={section as Section} />
   ) : (
     <ErrorPage statusCode={404} showGoBackButton />
   )
