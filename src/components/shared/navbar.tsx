@@ -90,7 +90,6 @@ const NavBarLinks: FC<{
                         href={subLink.href}
                         passHref
                         legacyBehavior
-                        prefetch={false}
                       >
                         <Dropdown.Item
                           style={{
@@ -111,7 +110,7 @@ const NavBarLinks: FC<{
               </Dropdown>
             )
           ) : link.href ? (
-            <Link href={link.href} passHref legacyBehavior prefetch={false}>
+            <Link href={link.href} passHref legacyBehavior>
               <Nav.Link as="a" disabled={!!link.disabled}>
                 {capitalizeText(t(link.text).toLowerCase(), 'simple')}
               </Nav.Link>
