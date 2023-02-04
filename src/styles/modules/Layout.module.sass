@@ -25,9 +25,8 @@
       $base-font-size: 1ex
       $heading-scale: .75
 
-      font-size: $base-font-size - (($lower-header-index - $i) * .75)
-
       @if $i < $lower-header-index
+        font-size: $base-font-size - (($lower-header-index - $i) * .75)
         line-height: #{2 + (($lower-header-index - $i) * 0.1)}rem
 
         @media (max-width: map.get($grid-breakpoints, 'lg'))
