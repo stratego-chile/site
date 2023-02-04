@@ -1,5 +1,5 @@
 import { type GetServerSideProps, type NextPage } from 'next'
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
@@ -101,28 +101,28 @@ const DocumentationPost: NextPage<WithoutProps> = () => {
             <Col>{postContent}</Col>
           </Row>
           {postContent && (
-            <Fragment>
-              <hr className="my-5" />
-              <Row>
-                <Col xs={12} lg>
-                  <small className="text-muted fst-italic">
-                    <Trans
-                      t={t}
-                      i18nKey="docs:page.helpNote"
-                      components={{
-                        redirect: (
-                          <Link
-                            href="https://github.com/stratego-chile/site-content/issues"
-                            target="_blank"
-                            rel="noreferrer noopener"
-                          />
-                        ),
-                      }}
-                    />
-                  </small>
-                </Col>
-              </Row>
-            </Fragment>
+            <Row>
+              <Col xs={12}>
+                <hr className="my-5" />
+              </Col>
+              <Col xs={12} lg>
+                <small className="text-muted fst-italic">
+                  <Trans
+                    t={t}
+                    i18nKey="docs:page.helpNote"
+                    components={{
+                      redirect: (
+                        <Link
+                          href="https://github.com/stratego-chile/site-content/issues"
+                          target="_blank"
+                          rel="noreferrer noopener"
+                        />
+                      ),
+                    }}
+                  />
+                </small>
+              </Col>
+            </Row>
           )}
         </Container>
       )}

@@ -1,4 +1,3 @@
-import Layout from '@stratego/components/shared/layout'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { defaultLocale } from '@stratego/locales'
 import { type GetServerSideProps, type NextPage } from 'next'
@@ -10,6 +9,8 @@ import Row from 'react-bootstrap/Row'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import dynamic from 'next/dynamic'
 import LoadingPlaceholder from '@stratego/components/shared/loading-placeholder'
+
+const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 
 const ContactForm = dynamic(
   () => import('@stratego/components/forms/contact-form'),

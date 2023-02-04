@@ -161,6 +161,7 @@
     "services": {
       "audit": {
         "title": "Audit",
+        "image": "/images/audit.jpg",
         "description": [
           "The objective of our audit is to be able to perform a thorough examination of the infrastructure, systems and processes related to the IT area of a company, in order to identify information security gaps and mitigate the risks of cyber-attacks.",
           "Our work process usually consists of 5 major topics, however, it all depends on the scope of work, according to the needs of the company."
@@ -190,6 +191,7 @@
       },
       "consulting": {
         "title": "Consulting",
+        "image": "/images/consultancy.jpg",
         "description": "",
         "modules": {
           "isoIec27000": {

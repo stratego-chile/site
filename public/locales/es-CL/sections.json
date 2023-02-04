@@ -161,6 +161,7 @@
     "services": {
       "audit": {
         "title": "Auditoría",
+        "image": "/images/audit.jpg",
         "description": [
           "El objetivo de nuestra auditoría es poder realizar un examen exhaustivo de la infraestructura, los sistemas y los procesos relacionados con el área informática de una empresa, de tal forma de identificar brechas de seguridad de la información y mitigar los riesgos de ciberataques.",
           "Nuestro proceso de trabajo normalmente consta de 5 grandes tópicos, sin embargo, todo depende del alcance del trabajo, de acuerdo con las necesidades de la empresa."
@@ -190,6 +191,7 @@
       },
       "consulting": {
         "title": "Consultoría",
+        "image": "/images/consultancy.jpg",
         "description": "",
         "modules": {
           "isoIec27000": {

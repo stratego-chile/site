@@ -66,7 +66,7 @@ const NavBarLinks: FC<{
                 navbar
                 align="start"
                 drop={mode === 'embed' ? 'end' : undefined}
-                className={classNames(mode === 'embed' && 'px-3 px-lg-2')}
+                className={classNames(mode === 'embed' && 'px-3 px-xl-2')}
               >
                 <Dropdown.Toggle
                   as={Nav.Link}
@@ -176,11 +176,11 @@ const NavBar: FC<NavBarProps> = ({
       <Navbar
         variant="dark"
         bg={theme}
-        expand="lg"
+        expand="xxl"
         className="position-static"
         style={{ zIndex: 1050 }}
       >
-        <Container className="px-lg-1">
+        <Container className="px-xl-1">
           <Link href="/home" legacyBehavior passHref>
             <Navbar.Brand className="d-flex fw-bold py-3 px-2 gap-3">
               <Image
@@ -192,7 +192,7 @@ const NavBar: FC<NavBarProps> = ({
               {brandDepartment && (
                 <span
                   className={classNames(
-                    'fw-normal border-lg-start ps-lg-3 text-wrap',
+                    'fw-normal border-xl-start ps-xl-3 text-wrap',
                     NavbarStyles.brandDepartment
                   )}
                 >
@@ -206,7 +206,7 @@ const NavBar: FC<NavBarProps> = ({
           </Navbar.Toggle>
           {showNavigationOptions && (
             <Navbar.Collapse>
-              <Nav className="ms-auto px-2 px-lg-0 pb-4 pb-lg-0 gap-4 row-gap-2 fw-semibold text-center">
+              <Nav className="ms-auto px-2 px-xl-0 pb-4 pb-xl-0 gap-4 row-gap-2 fw-semibold text-center">
                 <NavBarLinks links={links} />
                 <Nav.Item className="d-inline-flex align-items-center mx-auto">
                   <Link href="/contact" passHref legacyBehavior>
@@ -231,11 +231,12 @@ const NavBar: FC<NavBarProps> = ({
       </Navbar>
       {subLinks.hasItems() && (
         <Navbar
-          variant="light"
-          className={classNames('shadow', NavbarStyles.subLinksNavbar)}
+          variant="dark"
+          bg="dark-blue"
+          className={classNames('shadow')}
           sticky="top"
         >
-          <Container className="px-lg-1 fw-semibold">
+          <Container className="px-xl-1 fw-semibold">
             <Nav className="gap-4 row-gap-2">
               <NavBarLinks links={subLinks} />
             </Nav>

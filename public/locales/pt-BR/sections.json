@@ -161,6 +161,7 @@
     "services": {
       "audit": {
         "title": "Auditoria",
+        "image": "/images/audit.jpg",
         "description": [
           "O objetivo de nossa auditoria é poder realizar um exame minucioso da infra-estrutura, sistemas e processos relacionados à área de TI de uma empresa, a fim de identificar lacunas na segurança da informação e mitigar os riscos de ciberataques.",
           "Nosso processo de trabalho geralmente consiste em 5 tópicos principais, porém, tudo depende do escopo do trabalho, de acordo com as necessidades da empresa."
@@ -190,6 +191,7 @@
       },
       "consulting": {
         "title": "Consultoria",
+        "image": "/images/consultancy.jpg",
         "description": "",
         "modules": {
           "isoIec27000": {

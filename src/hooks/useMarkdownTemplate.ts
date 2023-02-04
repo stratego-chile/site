@@ -54,17 +54,15 @@ export const useMarkdownTemplate = (
   }, [template])
 
   const { data: compiledTemplate, isLoading } = useAsyncMemo(async () => {
-    return (
-      templateFound &&
-      content &&
-      (await serialize(content, {
-        mdxOptions: {
-          remarkPlugins: [RemarkUnwrapImages],
-          // based on workaround: https://github.com/hashicorp/next-mdx-remote/issues/307
-          development: process.env.NODE_ENV !== 'production',
-        },
-      }))
-    )
+    return templateFound && content
+      ? await serialize(content, {
+          mdxOptions: {
+            remarkPlugins: [RemarkUnwrapImages],
+            // based on workaround: https://github.com/hashicorp/next-mdx-remote/issues/307
+            development: process.env.NODE_ENV !== 'production',
+          },
+        })
+      : null
   }, [templateFound, content])
 
   useEffect(() => {
