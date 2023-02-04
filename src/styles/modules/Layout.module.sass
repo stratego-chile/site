@@ -19,12 +19,22 @@
   flex-grow: 1
 
 .autoFormat
-  @for $i from 1 through 6
+  $lower-header-index: 6
+  @for $i from 1 through $lower-header-index
     h#{$i}
-      font-size: calc(2.7em - 0.#{math.div(2, $i)}rem)
-      line-height: calc(1.4em + 0.#{math.div(2, $i)}rem) !important
-      @media (max-width: map.get($grid-breakpoints, 'lg'))
-        font-size: calc(2em - 0.#{math.div(2, $i)}rem)
+      $base-font-size: 1ex
+      $heading-scale: .75
+
+      font-size: $base-font-size - (($lower-header-index - $i) * .75)
+
+      @if $i < $lower-header-index
+        line-height: #{2 + (($lower-header-index - $i) * 0.1)}rem
+
+        @media (max-width: map.get($grid-breakpoints, 'lg'))
+          $base-font-size: 20px
+          font-size: $base-font-size + ($lower-header-index - $i) + 1
+          line-height: #{3 + (($lower-header-index - $i) * 0.1)}rem !important
+
       @if $i < 3
         @include mixins.colored-text(map.get(colors.$palette, 'primary'), map.get(colors.$palette, 'info'))
         font-weight: bolder
