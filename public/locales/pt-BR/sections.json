@@ -228,6 +228,9 @@
   "docs": {
     "previewAlert": "Esta é uma versão preliminar desta característica. Se você estiver tendo problemas, por favor, <redirect>reporte quaisquer erros</reditect>",
     "title": "docs",
+    "recommendedArticles": {
+      "title": "Artigos recomendados"
+    },
     "searchControl": {
       "title": "Documentação e base de conhecimento",
       "label": "Pesquisar artigo",
