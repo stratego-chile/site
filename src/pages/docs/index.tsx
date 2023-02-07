@@ -32,8 +32,11 @@ import Spinner from 'react-bootstrap/Spinner'
 import { useAsyncMemo } from '@stratego/hooks/useAsyncMemo'
 import { Fade } from 'react-bootstrap'
 import { useTrigger } from '@harelpls/use-pusher'
+import { isSerializable } from '@stratego/helpers/assert.helper'
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
+
+const locallySavedArticlesId = 'recommendedArticles'
 
 type DocumentationSearch = {
   inputCriteria: string
@@ -53,16 +56,26 @@ type ArticleLinksProps = {
 }
 
 const ArticleLinks: FC<ArticleLinksProps> = ({ articles }) => {
+  const router = useRouter()
+
   const { t } = useTranslation()
 
   return (
     <ListGroup as="ol" numbered>
       {articles?.map(({ id, title }, key) => (
-        <Link key={key} href={`/docs/${id}`} legacyBehavior passHref>
-          <ListGroup.Item action as="li" className="pe-pointer">
-            {capitalizeText(t(title), 'simple')}
-          </ListGroup.Item>
-        </Link>
+        <ListGroup.Item
+          action
+          as="li"
+          className="pe-pointer"
+          key={key}
+          onClick={() =>
+            router.push('/docs/[post]', `/docs/${id}`, {
+              shallow: true,
+            })
+          }
+        >
+          {capitalizeText(t(title), 'simple')}
+        </ListGroup.Item>
       ))}
     </ListGroup>
   )
@@ -70,10 +83,6 @@ const ArticleLinks: FC<ArticleLinksProps> = ({ articles }) => {
 
 const Documentation: NextPage<WithoutProps> = () => {
   const router = useRouter()
-
-  const {
-    query: { search },
-  } = router
 
   const { t, i18n } = useTranslation()
 
@@ -88,7 +97,31 @@ const Documentation: NextPage<WithoutProps> = () => {
 
   const { data: recommendedArticles } = useAsyncMemo<
     Array<UnpackedArray<typeof foundArticles>>
-  >(async () => (await fetch('/api/default-docs')).json(), [i18n.language])
+  >(async () => {
+    if (window.localStorage) {
+      const locallySavedArticles = localStorage.getItem(locallySavedArticlesId)
+      if (locallySavedArticles && isSerializable(locallySavedArticles)) {
+        const parsedArticles = JSON.parse(locallySavedArticles)
+        if (parsedArticles instanceof Array) {
+          let isCompat = true
+          parsedArticles.forEach((article) => {
+            if (
+              !(Object.hasOwn(article, 'id') && Object.hasOwn(article, 'title'))
+            )
+              isCompat = false
+          })
+          if (isCompat) return parsedArticles
+        }
+      }
+    }
+    const fetchedArticles = await (await fetch('/api/default-docs')).json()
+    if (window.localStorage)
+      localStorage.setItem(
+        locallySavedArticlesId,
+        JSON.stringify(fetchedArticles)
+      )
+    return fetchedArticles
+  }, [i18n.language])
 
   const getControlId = useCallback(
     (controlRef: string) => formId.concat('-', controlRef),
@@ -118,9 +151,7 @@ const Documentation: NextPage<WithoutProps> = () => {
     }),
   })
 
-  const [delayedCriteria, setDelayedCriteria] = useState(inputCriteria)
-
-  const criteria = useDeferredValue(delayedCriteria)
+  const criteria = useDeferredValue(inputCriteria)
 
   const searchResultsState = useMemo(
     () =>
@@ -133,42 +164,32 @@ const Documentation: NextPage<WithoutProps> = () => {
   )
 
   useEffect(() => {
-    if (search && !inputCriteria)
+    if (router.query.search && inputCriteria !== router.query.search)
       setValues({
-        inputCriteria: search.toString(),
+        inputCriteria: router.query.search.toString(),
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search])
-
-  useEffect(() => {
-    const criteriaUpdateTimer = setTimeout(
-      () => {
-        setDelayedCriteria(inputCriteria)
-      },
-      !inputCriteria ? 0 : 1000
-    )
-    return () => clearTimeout(criteriaUpdateTimer)
-  }, [inputCriteria, setValues])
+  }, [router.query.search])
 
   useEffect(() => {
     if (!criteria) return setFoundArticles([])
-    else if (docsSearcher)
+    else
       requestResults(() => {
         docsSearcher('search-docs', criteria)
       })
-  }, [criteria, docsSearcher])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [criteria])
 
   useEffect(() => {
     if (router.isReady)
       router.replace({
-        query: inputCriteria
+        query: criteria
           ? {
-              search: inputCriteria,
+              search: criteria,
             }
           : {},
       })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputCriteria])
+  }, [criteria, router])
 
   return (
     <Layout
@@ -223,14 +244,8 @@ const Documentation: NextPage<WithoutProps> = () => {
                   isInvalid={touched.inputCriteria && !!errors.inputCriteria}
                 />
                 <Form.Text
-                  className={classNames(
-                    'd-flex',
-                    requestingResults
-                      ? 'justify-content-between'
-                      : 'justify-content-end'
-                  )}
+                  className={classNames('d-flex', 'justify-content-end')}
                 >
-                  {requestingResults && <Spinner size="sm" />}
                   <Fade in={!!inputCriteria}>
                     <Button
                       size="sm"
@@ -250,7 +265,9 @@ const Documentation: NextPage<WithoutProps> = () => {
                 </Form.Text>
               </Form.Group>
             </Form>
-            <h6 className="my-4">Artículos recomendados</h6>
+            <h6 className="my-4">
+              {t`sections:docs.recommendedArticles.title`}
+            </h6>
             <ArticleLinks articles={recommendedArticles ?? []} />
           </Col>
           <Col
@@ -258,6 +275,7 @@ const Documentation: NextPage<WithoutProps> = () => {
             lg
             className="align-self-stretch bg-light rounded-2 text-center"
           >
+            {requestingResults && <Spinner size="sm" />}
             {!requestingResults &&
               (searchResultsState === SearchResultsDisplayMode.Found ? (
                 <Fragment>
