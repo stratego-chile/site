@@ -15,9 +15,9 @@ import dynamic from 'next/dynamic'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { defaultLocale } from '@stratego/locales'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleQuestion, faCopy } from '@fortawesome/free-regular-svg-icons'
+import { faCircleQuestion } from '@fortawesome/free-regular-svg-icons/faCircleQuestion'
+import { faCopy } from '@fortawesome/free-solid-svg-icons/faCopy'
 import { useFormik } from 'formik'
-import * as Yup from 'yup'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import classNames from 'classnames'
 import { Trans, useTranslation } from 'next-i18next'
@@ -68,22 +68,29 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
     [formId]
   )
 
+  const optionsSpec = {
+    length: {
+      min: 8,
+      max: 64,
+    },
+    times: {
+      min: 1,
+      max: 20,
+    },
+    includes: {
+      minLength: 1,
+    },
+  }
+
   const defaultOptions: GeneratorOptions = {
     length: 24,
     times: 5,
     include: Object.keys(chars) as Array<Characters>,
   }
 
-  const validationSchema = Yup.object().shape({
-    length: Yup.number().required().min(8).max(64),
-    times: Yup.number().required().min(1).max(20),
-    include: Yup.array().required().min(1),
-  })
-
   const { values, handleChange, handleSubmit } = useFormik({
     initialValues: defaultOptions,
     onSubmit: () => {},
-    validationSchema,
   })
 
   const options = useDeferredValue(values)
@@ -201,22 +208,8 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
                       onChange={handleChange}
                       value={values.times}
                       step={1}
-                      min={
-                        (
-                          (validationSchema.describe().fields.times as any)
-                            .tests as Array<any>
-                        ).find(({ name }) => name === 'min')?.params?.min as
-                          | number
-                          | undefined
-                      }
-                      max={
-                        (
-                          (validationSchema.describe().fields.times as any)
-                            .tests as Array<any>
-                        ).find(({ name }) => name === 'max')?.params?.max as
-                          | number
-                          | undefined
-                      }
+                      min={optionsSpec.times.min}
+                      max={optionsSpec.times.max}
                     />
                   </Form.Group>
                 </Col>
@@ -230,22 +223,8 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
                       onChange={handleChange}
                       value={values.length}
                       step={1}
-                      min={
-                        (
-                          (validationSchema.describe().fields.length as any)
-                            .tests as Array<any>
-                        ).find(({ name }) => name === 'min')?.params?.min as
-                          | number
-                          | undefined
-                      }
-                      max={
-                        (
-                          (validationSchema.describe().fields.length as any)
-                            .tests as Array<any>
-                        ).find(({ name }) => name === 'max')?.params?.max as
-                          | number
-                          | undefined
-                      }
+                      min={optionsSpec.length.min}
+                      max={optionsSpec.length.max}
                     />
                   </Form.Group>
                 </Col>

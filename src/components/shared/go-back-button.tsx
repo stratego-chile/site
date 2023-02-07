@@ -1,4 +1,4 @@
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { useRouter } from 'next/router'

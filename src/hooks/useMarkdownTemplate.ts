@@ -1,5 +1,4 @@
-import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote'
+import { type MDXRemoteProps } from 'next-mdx-remote'
 import {
   createElement,
   type DependencyList,
@@ -8,10 +7,12 @@ import {
   useEffect,
   useMemo,
   useState,
+  type FC,
 } from 'react'
 import { useRemoteContent } from '@stratego/hooks/useRemoteContent'
 import { useAsyncMemo } from '@stratego/hooks/useAsyncMemo'
 import RemarkUnwrapImages from 'remark-unwrap-images'
+import dynamic from 'next/dynamic'
 
 interface LoadingState extends Boolean {}
 interface IsFound extends Boolean {}
@@ -22,6 +23,10 @@ type MarkdownTemplateConfig = {
   templatePath?: string | URL
   components?: MDXRemoteProps['components']
 }
+
+const MDXRemote = dynamic(
+  async () => (await import('next-mdx-remote')).MDXRemote as FC<MDXRemoteProps>
+)
 
 export const useMarkdownTemplate = (
   config?: MarkdownTemplateConfig,
@@ -55,7 +60,9 @@ export const useMarkdownTemplate = (
 
   const { data: compiledTemplate, isLoading } = useAsyncMemo(async () => {
     return templateFound && content
-      ? await serialize(content, {
+      ? await (
+          await import('next-mdx-remote/serialize')
+        ).serialize(content, {
           mdxOptions: {
             remarkPlugins: [RemarkUnwrapImages],
             // based on workaround: https://github.com/hashicorp/next-mdx-remote/issues/307
@@ -70,7 +77,7 @@ export const useMarkdownTemplate = (
       setContent(
         createElement(
           Fragment,
-          {},
+          undefined,
           createElement(MDXRemote, {
             ...compiledTemplate,
             components: config?.components,

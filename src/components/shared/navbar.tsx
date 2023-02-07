@@ -12,7 +12,7 @@ import { capitalizeText } from '@stratego/helpers/text.helper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import NavbarStyles from '@stratego/styles/modules/Navbar.module.sass'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
 import {
   cybersecurityLinks,
   type LinkSpec,

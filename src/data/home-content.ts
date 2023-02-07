@@ -1,11 +1,9 @@
-import {
-  faBug,
-  faCloudBolt,
-  faFileShield,
-  faSignsPost,
-  faUserSecret,
-  faUserShield,
-} from '@fortawesome/free-solid-svg-icons'
+import { faBug } from '@fortawesome/free-solid-svg-icons/faBug'
+import { faCloudBolt } from '@fortawesome/free-solid-svg-icons/faCloudBolt'
+import { faFileShield } from '@fortawesome/free-solid-svg-icons/faFileShield'
+import { faSignsPost } from '@fortawesome/free-solid-svg-icons/faSignsPost'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons/faUserSecret'
+import { faUserShield } from '@fortawesome/free-solid-svg-icons/faUserShield'
 
 export const services = [
   {
