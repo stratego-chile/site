@@ -47,8 +47,8 @@ import 'core-js/features/array/group-to-map'
       writable: false,
       value: 'static',
     })
-    String.prototype[surround] = function (surroundChar = ' ') {
-      return new Array<string>(2).fill(surroundChar).join(this.valueOf())
+    String.prototype[surround] = function (wrapper = ' ') {
+      return new Array<string>(2).fill(wrapper).join(this.valueOf())
     }
   }
 })()

@@ -1,9 +1,5 @@
-interface ObjectConstructor {
-  keys<T extends object>(o: T): Array<keyof T | string>
-}
-
 interface String {
-  surround(surroundChar?: string): string
+  surround(wrapper?: string): string
 }
 
 interface Array<T> {
