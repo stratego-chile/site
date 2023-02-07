@@ -8,7 +8,7 @@ import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { defaultLocale } from '@stratego/locales'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
+import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons/faUpRightFromSquare'
 import { useMarkdownTemplate } from '@stratego/hooks/useMarkdownTemplate'
 import kebabcase from '@stdlib/string/kebabcase'
 import LoadingPlaceholder from '@stratego/components/shared/loading-placeholder'
@@ -18,13 +18,13 @@ import { capitalizeText } from '@stratego/helpers/text.helper'
 import classNames from 'classnames'
 import Link from 'next/link'
 
-const GoBackButton = dynamic(
-  () => import('@stratego/components/shared/go-back-button')
-)
-
 const Layout = dynamic(() => import('@stratego/components/shared/layout'), {
   loading: () => <LoadingPlaceholder />,
 })
+
+const GoBackButton = dynamic(
+  () => import('@stratego/components/shared/go-back-button')
+)
 
 const ErrorPage = dynamic(
   () => import('@stratego/components/shared/error-page')
