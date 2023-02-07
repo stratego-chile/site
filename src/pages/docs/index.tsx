@@ -12,7 +12,6 @@ import {
   useId,
   useMemo,
   useState,
-  useTransition,
 } from 'react'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
@@ -68,6 +67,7 @@ const ArticleLinks: FC<ArticleLinksProps> = ({ articles }) => {
           as="li"
           className="pe-pointer"
           key={key}
+          disabled={!router.isReady}
           onClick={() =>
             router.push('/docs/[post]', `/docs/${id}`, {
               shallow: true,
@@ -128,7 +128,7 @@ const Documentation: NextPage<WithoutProps> = () => {
     [formId]
   )
 
-  const [requestingResults, requestResults] = useTransition()
+  const [requestingResults, setRequestingState] = useState(false)
 
   const docsSearcher = useTrigger(process.env.DOCS_PUSHER_CHANNEL)
 
@@ -164,32 +164,40 @@ const Documentation: NextPage<WithoutProps> = () => {
   )
 
   useEffect(() => {
-    if (router.query.search && inputCriteria !== router.query.search)
-      setValues({
-        inputCriteria: router.query.search.toString(),
-      })
+    const searchCriteria = new URL(location.href).searchParams.get('search')
+    if (searchCriteria)
+      setValues(($values) => ({
+        ...$values,
+        inputCriteria: searchCriteria,
+      }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query.search])
+  }, [])
 
   useEffect(() => {
-    if (!criteria) return setFoundArticles([])
-    else
-      requestResults(() => {
-        docsSearcher('search-docs', criteria)
+    if (router.isReady) {
+      if (inputCriteria) {
+        router.query.search = inputCriteria || undefined
+      } else if (Object.hasOwn(router.query, 'search')) {
+        delete router.query.search
+      }
+      router.replace(router, router, {
+        shallow: true,
       })
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [criteria])
+  }, [inputCriteria])
 
   useEffect(() => {
-    if (router.isReady)
-      router.replace({
-        query: criteria
-          ? {
-              search: criteria,
-            }
-          : {},
-      })
-  }, [criteria, router])
+    if (criteria && !requestingResults) {
+      setRequestingState(true)
+      docsSearcher('search-docs', criteria).finally(() =>
+        setRequestingState(false)
+      )
+    } else {
+      setFoundArticles([])
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [criteria, docsSearcher])
 
   return (
     <Layout
@@ -273,7 +281,11 @@ const Documentation: NextPage<WithoutProps> = () => {
           <Col
             xs={12}
             lg
-            className="align-self-stretch bg-light rounded-2 text-center"
+            className={classNames(
+              'align-self-stretch bg-light rounded-2 text-center',
+              requestingResults &&
+                'd-flex justify-content-center align-items-center'
+            )}
           >
             {requestingResults && <Spinner size="sm" />}
             {!requestingResults &&
