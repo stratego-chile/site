@@ -27,12 +27,12 @@
 
       @if $i < $lower-header-index
         font-size: $base-font-size - (($lower-header-index - $i) * .75)
-        line-height: #{2 + (($lower-header-index - $i) * 0.1)}rem
+        line-height: #{2 + (($lower-header-index - $i) * 0.2)}rem
 
         @media (max-width: map.get($grid-breakpoints, 'lg'))
           $base-font-size: 20px
           font-size: $base-font-size + ($lower-header-index - $i) + 1
-          line-height: #{3 + (($lower-header-index - $i) * 0.1)}rem !important
+          line-height: #{1 + (($lower-header-index - $i) * 0.3)}rem !important
 
       @if $i < 3
         @include mixins.colored-text(map.get(colors.$palette, 'primary'), map.get(colors.$palette, 'info'))
