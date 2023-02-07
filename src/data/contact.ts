@@ -1,10 +1,8 @@
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import {
-  faEnvelope,
-  faLocationDot,
-  faPhone,
-  type IconDefinition,
-} from '@fortawesome/free-solid-svg-icons'
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope'
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons/faLocationDot'
+import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone'
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 
 type ContactFragment = {
   icon: IconDefinition
