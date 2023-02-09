@@ -18,7 +18,7 @@ import Form from 'react-bootstrap/Form'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import * as Yup from 'yup'
+import * as yup from 'yup'
 import { Trans, useTranslation } from 'next-i18next'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { useRouter } from 'next/router'
@@ -146,8 +146,8 @@ const Documentation: NextPage<WithoutProps> = () => {
     },
     enableReinitialize: true,
     onSubmit: () => void 0,
-    validationSchema: Yup.object().shape({
-      criteria: Yup.string().required(),
+    validationSchema: yup.object({
+      criteria: yup.string().nonNullable().required(),
     }),
   })
 
