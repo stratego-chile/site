@@ -17,7 +17,7 @@ const ErrorPage = dynamic(
 )
 
 const SectionLayout = dynamic(
-  () => import('@stratego/pages/services/cybersecurity/[section]/(layout)'),
+  () => import('@stratego/pages/services/cybersecurity/(layout)'),
   {
     loading: ({ isLoading, error }) => (
       <LoadingPlaceholder loading={isLoading} error={error} />

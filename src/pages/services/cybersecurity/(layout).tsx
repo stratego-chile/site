@@ -94,7 +94,6 @@ const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
               <div
                 className="d-none d-xl-block mb-5"
                 style={{ height: '30rem' }}
-                itemScope
               >
                 <div
                   style={{
