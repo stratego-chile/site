@@ -77,7 +77,7 @@ const ContactForm = () => {
 
   const { executeRecaptcha } = useGoogleReCaptcha()
 
-  const validationSchema = yup.object().shape({
+  const validationSchema = yup.object({
     name: yup.string().required('validation:required'),
     surname: yup.string().required('validation:required'),
     phonePrefix: yup.string().required('validation:required'),
