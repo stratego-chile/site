@@ -1,15 +1,15 @@
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { defaultLocale } from '@stratego/locales'
+import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import { type GetStaticProps, type NextPage } from 'next'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import dynamic from 'next/dynamic'
+import { Fragment } from 'react'
+import { Image } from 'react-bootstrap'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import { useTranslation } from 'next-i18next'
-import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
-import { Image } from 'react-bootstrap'
-import { Fragment } from 'react'
-import dynamic from 'next/dynamic'
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 

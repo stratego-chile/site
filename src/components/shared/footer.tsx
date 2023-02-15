@@ -1,23 +1,23 @@
+import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub'
+import { faCode } from '@fortawesome/free-solid-svg-icons/faCode'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { contactData } from '@stratego/data/contact'
+import { getAssetPath } from '@stratego/helpers/static-resources.helper'
+import { capitalizeText } from '@stratego/helpers/text.helper'
+import FooterStyles from '@stratego/styles/modules/Footer.module.sass'
+import classNames from 'classnames'
+import { NextPage } from 'next'
+import { useTranslation } from 'next-i18next'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { Fragment } from 'react'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
-import Row from 'react-bootstrap/Row'
-import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import { Fragment } from 'react'
-import Link from 'next/link'
-import { getAssetPath } from '@stratego/helpers/static-resources.helper'
-import { useTranslation } from 'next-i18next'
-import { capitalizeText } from '@stratego/helpers/text.helper'
-import { NextPage } from 'next'
-import classNames from 'classnames'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub'
-import { faCode } from '@fortawesome/free-solid-svg-icons/faCode'
-import FooterStyles from '@stratego/styles/modules/Footer.module.sass'
-import { contactData } from '@stratego/data/contact'
-import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
+import Navbar from 'react-bootstrap/Navbar'
+import Row from 'react-bootstrap/Row'
 
 const LanguageSelector = dynamic(
   () => import('@stratego/components/shared/language-selector')
@@ -151,5 +151,9 @@ const Footer: NextPage<WithoutProps> = () => {
     </Fragment>
   )
 }
+
+Footer.propTypes = {}
+
+Footer.displayName = 'Footer'
 
 export default Footer

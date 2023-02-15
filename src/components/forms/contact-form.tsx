@@ -4,7 +4,9 @@ import {
   getCountryFlagEmoji,
   phoneFormatSpec,
 } from '@stratego/helpers/text.helper'
-import { type FormikHelpers, useFormik } from 'formik'
+import requester from 'axios'
+import emojiSupport from 'detect-emoji-support'
+import { useFormik, type FormikHelpers } from 'formik'
 import { getCountryCode } from 'language-flag-colors/bin/functions/getCountryCode'
 import { useTranslation } from 'next-i18next'
 import {
@@ -14,18 +16,17 @@ import {
   useId,
   useMemo,
   useState,
+  type FC,
 } from 'react'
-import Row from 'react-bootstrap/Row'
-import Form from 'react-bootstrap/Form'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
-import Spinner from 'react-bootstrap/Spinner'
 import Alert from 'react-bootstrap/Alert'
+import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col'
+import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
-import emojiSupport from 'detect-emoji-support'
-import requester from 'axios'
-import * as yup from 'yup'
+import Row from 'react-bootstrap/Row'
+import Spinner from 'react-bootstrap/Spinner'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
+import * as yup from 'yup'
 
 type ContactData = {
   name: string
@@ -47,7 +48,7 @@ type ContactSubmitResponse =
 
 const MAX_MESSAGE_LENGTH = 200
 
-const ContactForm = () => {
+const ContactForm: FC<WithoutProps> = () => {
   const { t, i18n } = useTranslation('sections')
 
   const [submitMessage, setSubmitMessage] = useState<{
@@ -422,5 +423,9 @@ const ContactForm = () => {
     </Form>
   )
 }
+
+ContactForm.propTypes = {}
+
+ContactForm.displayName = 'ContactForm'
 
 export default ContactForm

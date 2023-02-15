@@ -1,10 +1,11 @@
 import { motion, useAnimation, useInView } from 'framer-motion'
+import PropTypes from 'prop-types'
 import {
-  type PropsWithChildren,
-  useRef,
-  type FC,
   useEffect,
+  useRef,
   useState,
+  type FC,
+  type PropsWithChildren,
 } from 'react'
 
 type ShowOnScrollProps = {
@@ -77,5 +78,19 @@ const ShowOnScroll: FC<PropsWithChildren<ShowOnScrollProps>> = ({
     </motion.div>
   )
 }
+
+ShowOnScroll.propTypes = {
+  direction: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+  placementDiff: PropTypes.number,
+  duration: PropTypes.number,
+}
+
+ShowOnScroll.defaultProps = {
+  direction: 'right',
+  placementDiff: 45,
+  duration: 0.8,
+}
+
+ShowOnScroll.displayName = 'ShowOnScroll'
 
 export default ShowOnScroll

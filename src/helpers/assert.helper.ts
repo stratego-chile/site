@@ -30,3 +30,130 @@ export const isSerializable = (item: any) => {
 
   return true
 }
+
+type Enumerate<
+  N extends number,
+  Acc extends number[] = []
+> = Acc['length'] extends N
+  ? Acc[number]
+  : Enumerate<N, [...Acc, Acc['length']]>
+
+type IntRange<F extends number, T extends number> = Exclude<
+  Enumerate<T>,
+  Enumerate<F>
+>
+
+type SimilarityOptions = {
+  syntheticPercentage?: IntRange<0, 101>
+}
+
+const defaultSyntheticSimilarityPercentage = 0x000050
+
+/**
+ * Get the similarity percentage between two strings.
+ *
+ * Based on the [Jaro–Winkler similarity distance algorithm](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance).
+ *
+ * Based on the [@sumn2u's Gist](https://gist.github.com/sumn2u/0e0b5d9505ad096284928a987ace13fb#file-jaro-wrinker-js)
+ */
+export const isSimilar = (
+  comparator: string,
+  criteria: string,
+  options?: SimilarityOptions
+) => {
+  const calculateStringsSimilarity = (
+    firstString: string,
+    secondString: string
+  ) => {
+    let matchesFound = 0
+
+    if (firstString.trim() === secondString.trim()) return 100
+
+    const range =
+      Math.floor(Math.max(firstString.length, secondString.length) / 2) - 1
+    const matchesInFirstString = new Array(firstString.length)
+    const matchesInSecondString = new Array(secondString.length)
+
+    new Array(firstString.length)
+      .fill(null)
+      .forEach((_, firstStringCharIndex) => {
+        const high =
+          firstStringCharIndex + range <= secondString.length
+            ? firstStringCharIndex + range
+            : secondString.length - 1
+
+        let low =
+          firstStringCharIndex >= range ? firstStringCharIndex - range : 0
+
+        while (low <= high) {
+          if (
+            !matchesInFirstString[firstStringCharIndex] &&
+            !matchesInSecondString[low] &&
+            firstString[firstStringCharIndex] === secondString[low]
+          ) {
+            ++matchesFound
+            matchesInFirstString[firstStringCharIndex] = matchesInSecondString[
+              low
+            ] = true
+            low = high
+          }
+          low++
+        }
+      })
+
+    if (matchesFound === 0) return 0
+
+    let transpositionsCounterIndex = 0,
+      transpositions = 0
+
+    new Array(firstString.length)
+      .fill(null)
+      .forEach((_, firstStringCharIndex) => {
+        if (matchesInFirstString[firstStringCharIndex]) {
+          while (transpositionsCounterIndex < secondString.length) {
+            if (matchesInSecondString[transpositionsCounterIndex]) {
+              transpositionsCounterIndex += 1
+              break
+            }
+            if (
+              firstString[firstStringCharIndex] !==
+              secondString[transpositionsCounterIndex]
+            ) {
+              ++transpositions
+            }
+            transpositionsCounterIndex++
+          }
+        }
+      })
+
+    let weight =
+      (matchesFound / firstString.length +
+        matchesFound / secondString.length +
+        (matchesFound - transpositions / 2) / matchesFound) /
+      3
+
+    let lengthPrefix = 0
+
+    const scoreScalingFactor = 0.1
+
+    if (weight > 0.7) {
+      while (
+        firstString[lengthPrefix] === secondString[lengthPrefix] &&
+        lengthPrefix < 4
+      )
+        ++lengthPrefix
+      weight = weight + lengthPrefix * scoreScalingFactor * (1 - weight)
+    }
+
+    return weight * 100
+  }
+
+  const validateComparison = (percentage: number) => {
+    return (
+      percentage >=
+      (options?.syntheticPercentage ?? defaultSyntheticSimilarityPercentage)
+    )
+  }
+
+  return validateComparison(calculateStringsSimilarity(comparator, criteria))
+}

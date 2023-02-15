@@ -31,13 +31,17 @@ words:
   - isplainobject
   - kebabcase
   - msapplication
+  - nocheck
   - Offcanvas
   - pascalcase
   - pucv
   - recaptcha
   - rehype
   - stratego
+  - sumn
   - uncapitalize
   - uniqid
+  - unmarshall
   - whitesmoke
+  - Winkler
   - Xmark

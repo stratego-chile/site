@@ -15,9 +15,12 @@ declare global {
       DEFAULT_PAGE_DESCRIPTION: string
       DEFAULT_ASSETS_SOURCE: string
 
-      // App documenttion posts
+      // App documenttion module
       DOCS_POSTS_SOURCE: string
-      DOCS_PUSHER_CHANNEL: string
+      DOCS_DYNAMODB_TABLE: string
+      DOCS_DYNAMODB_REGION: string
+      DOCS_DYNAMODB_ACCESS_KEY_ID: string
+      DOCS_DYNAMODB_SECRET_ACCESS_KEY: string
 
       // Mailer config
       MAILER_USER: string
@@ -33,12 +36,6 @@ declare global {
       CAPTCHA_KEY: string
       CAPTCHA_SECRET: string
       CAPTCHA_MIN_SCORE: string
-
-      // Pusher config keys
-      PUSHER_APP_ID: string
-      PUSHER_APP_KEY: string
-      PUSHER_APP_SECRET: string
-      PUSHER_APP_CLUSTER: string
     }
   }
 }

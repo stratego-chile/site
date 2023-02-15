@@ -1,27 +1,22 @@
+import { faCircleQuestion } from '@fortawesome/free-regular-svg-icons/faCircleQuestion'
+import { faCopy } from '@fortawesome/free-solid-svg-icons/faCopy'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { capitalizeText } from '@stratego/helpers/text.helper'
+import { defaultLocale } from '@stratego/locales'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
+import classNames from 'classnames'
+import { useFormik } from 'formik'
 import type { GetStaticProps, NextPage } from 'next'
-import shuffle from '@stdlib/random/shuffle'
+import { Trans, useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import { useCallback, useDeferredValue, useId, useMemo, useState } from 'react'
 import Button from 'react-bootstrap/Button'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
-import Row from 'react-bootstrap/Row'
-import Table from 'react-bootstrap/Table'
-import Tooltip from 'react-bootstrap/Tooltip'
-import dynamic from 'next/dynamic'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { defaultLocale } from '@stratego/locales'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleQuestion } from '@fortawesome/free-regular-svg-icons/faCircleQuestion'
-import { faCopy } from '@fortawesome/free-solid-svg-icons/faCopy'
-import { useFormik } from 'formik'
-import { capitalizeText } from '@stratego/helpers/text.helper'
-import classNames from 'classnames'
-import { Trans, useTranslation } from 'next-i18next'
-import Link from 'next/link'
+import { useAsyncFn } from 'react-use'
 
 type Enumerate<
   N extends number,
@@ -42,6 +37,16 @@ type GeneratorOptions = {
   times: IntRange<1, 21>
   include: Array<Characters>
 }
+
+const Container = dynamic(() => import('react-bootstrap/Container'))
+
+const Row = dynamic(() => import('react-bootstrap/Row'))
+
+const Col = dynamic(() => import('react-bootstrap/Col'))
+
+const Table = dynamic(() => import('react-bootstrap/Table'))
+
+const Tooltip = dynamic(() => import('react-bootstrap/Tooltip'))
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 
@@ -88,12 +93,16 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
     include: Object.keys(chars) as Array<Characters>,
   }
 
-  const { values, handleChange, handleSubmit } = useFormik({
+  const {
+    values: optionFormValues,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
     initialValues: defaultOptions,
     onSubmit: () => {},
   })
 
-  const options = useDeferredValue(values)
+  const options = useDeferredValue(optionFormValues)
   //#endregion
 
   const usableChars = useMemo(
@@ -104,20 +113,24 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
     [chars, options.include]
   )
 
-  const generatePassword = useCallback(() => {
-    const $generatedPasswords = new Array<Array<string>>(options.times)
-      .fill(usableChars)
-      .map((digest) => {
-        const mixedShuffle = shuffle(digest)
-        return new Array(options.length)
+  const [, generatePassword] = useAsyncFn(async () => {
+    const { default: shuffle } = await import('@stdlib/random/shuffle')
+    const $$generatedPasswords: Array<string> = []
+    for (const digest of new Array<Array<string>>(options.times).fill(
+      usableChars
+    )) {
+      const mixedShuffle = shuffle(digest)
+      $$generatedPasswords.push(
+        new Array(options.length)
           .fill(mixedShuffle)
           .map(
             (characters) =>
               characters[Math.floor(Math.random() * characters.length)]
           )
           .join('')
-      })
-    setGeneratedPasswords($generatedPasswords)
+      )
+    }
+    setGeneratedPasswords($$generatedPasswords)
   }, [usableChars, options])
 
   return (
@@ -190,7 +203,7 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
                           label={t(`list.0.${key}`)}
                           value={key}
                           onChange={handleChange}
-                          checked={values.include.includes(
+                          checked={optionFormValues.include.includes(
                             key as keyof typeof chars
                           )}
                         />
@@ -206,7 +219,7 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
                     <Form.Range
                       name="times"
                       onChange={handleChange}
-                      value={values.times}
+                      value={optionFormValues.times}
                       step={1}
                       min={optionsSpec.times.min}
                       max={optionsSpec.times.max}
@@ -221,7 +234,7 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
                     <Form.Range
                       name="length"
                       onChange={handleChange}
-                      value={values.length}
+                      value={optionFormValues.length}
                       step={1}
                       min={optionsSpec.length.min}
                       max={optionsSpec.length.max}
