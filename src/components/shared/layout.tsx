@@ -1,41 +1,33 @@
-import {
-  type FC,
-  useEffect,
-  useState,
-  type PropsWithChildren,
-  type DetailedHTMLProps,
-  type HTMLAttributes,
-  useMemo,
-  useRef,
-  useCallback,
-} from 'react'
-import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
+import { type LinkSpec } from '@stratego/data/navigation-links'
 import {
   DEFAULT_PAGE_DESCRIPTION,
   DEFAULT_TITLE,
 } from '@stratego/helpers/defaults.helper'
-import Button from 'react-bootstrap/Button'
-import Offcanvas from 'react-bootstrap/Offcanvas'
 import { getPageTitle } from '@stratego/helpers/text.helper'
+import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import classNames from 'classnames'
-import Head from 'next/head'
-import { useWindowScroll } from 'react-use'
-import { motion } from 'framer-motion'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp'
-import addDays from 'date-fns/addDays'
-import { CookieConsent, usableCookies } from '@stratego/helpers/cookies.helper'
-import { capitalizeText } from '@stratego/helpers/text.helper'
-import { useTranslation } from 'next-i18next'
-import { useCookies } from 'react-cookie'
-import { type LinkSpec } from '@stratego/data/navigation-links'
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
+import PropTypes from 'prop-types'
+import {
+  useEffect,
+  useState,
+  type DetailedHTMLProps,
+  type FC,
+  type HTMLAttributes,
+  type PropsWithChildren,
+} from 'react'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 
 const NavBar = dynamic(() => import('@stratego/components/shared/navbar'))
+
 const Footer = dynamic(() => import('@stratego/components/shared/footer'))
+
+const ToTopButton = dynamic(
+  () => import('@stratego/components/misc/ToTopButton')
+)
 
 export type LayoutProps = {
   pageTitle?: string
@@ -54,60 +46,12 @@ const Layout: FC<PropsWithChildren<LayoutProps>> = ({
   subLinks = [],
   defaultGrid,
   showNavigationOptions = false,
-  showReturnToTopButton: $showReturnToTopButton = true,
+  showReturnToTopButton = true,
   children,
   ...divProps
 }) => {
   const [title, setTitle] = useState<string>(process.env.DEFAULT_PAGE_TITLE)
   const [description, setDescription] = useState<string>()
-
-  const [consentCookie, setConsentCookie] = useCookies([usableCookies.consent])
-
-  const { t } = useTranslation('common')
-
-  const [showCookiesDisclaimer, setCookiesDisclaimerVisibility] =
-    useState(false)
-
-  const { y: scrollPosition } = useWindowScroll()
-
-  const showReturnToTopButtonRef = useRef<HTMLDivElement>(null)
-
-  const showReturnToTopButton = useMemo(
-    () =>
-      typeof window !== 'undefined' &&
-      $showReturnToTopButton &&
-      scrollPosition > window.outerHeight * 0.6,
-    [scrollPosition, $showReturnToTopButton]
-  )
-
-  const handleCookiesAcceptance = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
-      if (event.isTrusted) {
-        const maxAge = addDays(new Date(), 30).getTime()
-        setConsentCookie(usableCookies.consent, CookieConsent.ACCEPTED, {
-          path: '/',
-          sameSite: 'strict',
-          secure: true,
-          maxAge,
-        })
-      }
-    },
-    [setConsentCookie]
-  )
-
-  useEffect(() => {
-    if (!consentCookie[usableCookies.consent]) {
-      setCookiesDisclaimerVisibility(true)
-    } else if (
-      consentCookie[usableCookies.consent] === CookieConsent.REJECTED
-    ) {
-      setCookiesDisclaimerVisibility(true)
-    } else if (
-      consentCookie[usableCookies.consent] === CookieConsent.ACCEPTED
-    ) {
-      setCookiesDisclaimerVisibility(false)
-    }
-  }, [consentCookie])
 
   useEffect(() => {
     setTitle(pageTitle ? getPageTitle(pageTitle) : DEFAULT_TITLE)
@@ -147,64 +91,28 @@ const Layout: FC<PropsWithChildren<LayoutProps>> = ({
           children
         )}
       </div>
-      <motion.div
-        ref={showReturnToTopButtonRef}
-        animate={{ opacity: showReturnToTopButton ? 1 : 0 }}
-        className={LayoutStyles.topTopButton}
-      >
-        <Button
-          className="text-light rounded"
-          onClick={() =>
-            document.body.scrollIntoView({ behavior: 'smooth', block: 'start' })
-          }
-        >
-          <FontAwesomeIcon icon={faChevronUp} />
-        </Button>
-      </motion.div>
+      <ToTopButton show={showReturnToTopButton} />
       <Footer />
-      <Offcanvas
-        show={showCookiesDisclaimer}
-        backdrop="static"
-        placement="bottom"
-        autoFocus
-        enforceFocus
-        restoreFocus
-        renderStaticNode
-        onHide={() => setCookiesDisclaimerVisibility(false)}
-      >
-        <Offcanvas.Body>
-          <Container>
-            <Row className="justify-content-between">
-              <Col
-                xs="12"
-                lg
-                className="d-inline-flex text-center text-lg-start align-items-center"
-              >
-                <span className="fs-5">
-                  {capitalizeText(t`common:cookies.disclaimer.text`, 'simple')}
-                </span>
-              </Col>
-              <Col
-                xs="12"
-                lg="auto"
-                className="d-inline-flex gap-2 py-3 justify-content-center"
-              >
-                <Button
-                  className="text-light"
-                  onClick={handleCookiesAcceptance}
-                >
-                  {capitalizeText(
-                    t`common:cookies.disclaimer.buttons.accept`,
-                    'simple'
-                  )}
-                </Button>
-              </Col>
-            </Row>
-          </Container>
-        </Offcanvas.Body>
-      </Offcanvas>
     </div>
   )
 }
+
+Layout.propTypes = {
+  pageTitle: PropTypes.string,
+  pageDescription: PropTypes.string,
+  brandDepartment: PropTypes.string,
+  subLinks: PropTypes.array,
+  defaultGrid: PropTypes.bool,
+  showNavigationOptions: PropTypes.bool,
+  showReturnToTopButton: PropTypes.bool,
+}
+
+Layout.defaultProps = {
+  subLinks: [],
+  showNavigationOptions: false,
+  showReturnToTopButton: true,
+}
+
+Layout.displayName = 'Layout'
 
 export default Layout

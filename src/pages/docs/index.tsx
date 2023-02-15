@@ -1,10 +1,17 @@
+import { capitalizeText } from '@stratego/helpers/text.helper'
+import { useAsyncMemo } from '@stratego/hooks/useAsyncMemo'
+import { useStorage } from '@stratego/hooks/useStorage'
 import { defaultLocale } from '@stratego/locales'
+import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
+import classNames from 'classnames'
 import { useFormik } from 'formik'
-import { type GetStaticProps, type NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
+import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import { type NextRouter, useRouter } from 'next/router'
 import {
-  type FC,
   Fragment,
   useCallback,
   useDeferredValue,
@@ -12,26 +19,18 @@ import {
   useId,
   useMemo,
   useState,
+  type FC,
 } from 'react'
+import { Fade } from 'react-bootstrap'
+import Badge from 'react-bootstrap/Badge'
+import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import ListGroup from 'react-bootstrap/ListGroup'
-import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import * as yup from 'yup'
-import { Trans, useTranslation } from 'next-i18next'
-import { capitalizeText } from '@stratego/helpers/text.helper'
-import { useRouter } from 'next/router'
-import classNames from 'classnames'
-import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
-import Link from 'next/link'
-import Badge from 'react-bootstrap/Badge'
-import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
-import { useAsyncMemo } from '@stratego/hooks/useAsyncMemo'
-import { Fade } from 'react-bootstrap'
-import { useTrigger } from '@harelpls/use-pusher'
-import { isSerializable } from '@stratego/helpers/assert.helper'
+import * as yup from 'yup'
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 
@@ -48,30 +47,36 @@ enum SearchResultsDisplayMode {
 }
 
 type ArticleLinksProps = {
+  router: NextRouter
   articles: Array<{
     id: string
     title: string
   }>
 }
 
-const ArticleLinks: FC<ArticleLinksProps> = ({ articles }) => {
-  const router = useRouter()
-
+const ArticleLinks: FC<ArticleLinksProps> = ({ articles = [], router }) => {
   const { t } = useTranslation()
 
   return (
     <ListGroup as="ol" numbered>
-      {articles?.map(({ id, title }, key) => (
+      {articles.map(({ id, title }, key) => (
         <ListGroup.Item
           action
           as="li"
-          className="pe-pointer"
+          className="pe-pointer text-start"
           key={key}
-          disabled={!router.isReady}
           onClick={() =>
-            router.push('/docs/[post]', `/docs/${id}`, {
-              shallow: true,
-            })
+            router.push(
+              {
+                pathname: `/docs/[post]`,
+              },
+              {
+                pathname: `/docs/${id}`,
+              },
+              {
+                shallow: true,
+              }
+            )
           }
         >
           {capitalizeText(t(title), 'simple')}
@@ -81,12 +86,21 @@ const ArticleLinks: FC<ArticleLinksProps> = ({ articles }) => {
   )
 }
 
+const SEARCH_CRITERIA_DELAY = 1000
+
 const Documentation: NextPage<WithoutProps> = () => {
   const router = useRouter()
 
   const { t, i18n } = useTranslation()
 
+  const { getStorageItem, setStorageItem } = useStorage()
+
   const formId = useId()
+
+  const getControlId = useCallback(
+    (controlRef: string) => formId.concat('-', controlRef),
+    [formId]
+  )
 
   const [foundArticles, setFoundArticles] = useState<
     Array<{
@@ -95,42 +109,9 @@ const Documentation: NextPage<WithoutProps> = () => {
     }>
   >([])
 
-  const { data: recommendedArticles } = useAsyncMemo<
-    Array<UnpackedArray<typeof foundArticles>>
-  >(async () => {
-    if (window.localStorage) {
-      const locallySavedArticles = localStorage.getItem(locallySavedArticlesId)
-      if (locallySavedArticles && isSerializable(locallySavedArticles)) {
-        const parsedArticles = JSON.parse(locallySavedArticles)
-        if (parsedArticles instanceof Array) {
-          let isCompat = true
-          parsedArticles.forEach((article) => {
-            if (
-              !(Object.hasOwn(article, 'id') && Object.hasOwn(article, 'title'))
-            )
-              isCompat = false
-          })
-          if (isCompat) return parsedArticles
-        }
-      }
-    }
-    const fetchedArticles = await (await fetch('/api/default-docs')).json()
-    if (window.localStorage)
-      localStorage.setItem(
-        locallySavedArticlesId,
-        JSON.stringify(fetchedArticles)
-      )
-    return fetchedArticles
-  }, [i18n.language])
-
-  const getControlId = useCallback(
-    (controlRef: string) => formId.concat('-', controlRef),
-    [formId]
-  )
-
-  const [requestingResults, setRequestingState] = useState(false)
-
-  const docsSearcher = useTrigger(process.env.DOCS_PUSHER_CHANNEL)
+  const [locallySavedArticles, setLocallySavedArticles] = useState<
+    typeof foundArticles
+  >([])
 
   const {
     errors,
@@ -151,17 +132,63 @@ const Documentation: NextPage<WithoutProps> = () => {
     }),
   })
 
-  const criteria = useDeferredValue(inputCriteria)
+  const [delayedInputCriteria, setDelayedInputCriteria] = useState('')
+
+  const [requestingResults, setRequestingState] = useState(false)
+
+  const criteria = useDeferredValue(delayedInputCriteria)
 
   const searchResultsState = useMemo(
     () =>
-      criteria
+      inputCriteria
         ? foundArticles.hasItems()
           ? SearchResultsDisplayMode.Found
           : SearchResultsDisplayMode.NotFound
         : SearchResultsDisplayMode.Blank,
-    [criteria, foundArticles]
+    [inputCriteria, foundArticles]
   )
+
+  const searchDocumentationPosts = async (
+    searchCriteria: string,
+    defaultMode?: boolean
+  ) => {
+    const response = await fetch('/api/search-docs', {
+      method: 'POST',
+      headers: {
+        'Accept-Language': i18n.language,
+      },
+      body: JSON.stringify(
+        defaultMode ? { default: true } : { searchCriteria }
+      ),
+    })
+
+    const { foundArticles: $foundArticles } = await response.json()
+
+    return $foundArticles instanceof Array ? $foundArticles : []
+  }
+
+  const { data: recommendedArticles } = useAsyncMemo<
+    typeof foundArticles
+  >(async () => {
+    const fetchedArticles = await searchDocumentationPosts('', true)
+
+    setStorageItem(locallySavedArticlesId, fetchedArticles)
+
+    return fetchedArticles instanceof Array ? fetchedArticles : []
+  }, [router.isReady, i18n.language])
+
+  useEffect(() => {
+    const $locallySavedArticles = getStorageItem(locallySavedArticlesId)
+
+    if (
+      $locallySavedArticles instanceof Array &&
+      $locallySavedArticles.every(
+        (article) =>
+          article instanceof Object && 'id' in article && 'title' in article
+      )
+    )
+      setLocallySavedArticles($locallySavedArticles)
+  }, [getStorageItem])
 
   useEffect(() => {
     const searchCriteria = new URL(location.href).searchParams.get('search')
@@ -170,34 +197,42 @@ const Documentation: NextPage<WithoutProps> = () => {
         ...$values,
         inputCriteria: searchCriteria,
       }))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [setValues])
 
   useEffect(() => {
-    if (router.isReady) {
-      if (inputCriteria) {
-        router.query.search = inputCriteria || undefined
-      } else if (Object.hasOwn(router.query, 'search')) {
-        delete router.query.search
-      }
-      router.replace(router, router, {
-        shallow: true,
-      })
+    if (inputCriteria) {
+      const searchTimeout = setTimeout(() => {
+        setDelayedInputCriteria(inputCriteria)
+      }, SEARCH_CRITERIA_DELAY)
+      return () => clearTimeout(searchTimeout)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputCriteria])
 
   useEffect(() => {
     if (criteria && !requestingResults) {
       setRequestingState(true)
-      docsSearcher('search-docs', criteria).finally(() =>
-        setRequestingState(false)
-      )
+      searchDocumentationPosts(criteria)
+        .then(($foundArticles) => {
+          setFoundArticles($foundArticles)
+        })
+        .finally(() => setRequestingState(false))
     } else {
       setFoundArticles([])
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [criteria, docsSearcher])
+  }, [criteria])
+
+  useEffect(() => {
+    if (router.isReady) {
+      const $router = router
+      if (inputCriteria) $router.query.search = inputCriteria || undefined
+      else if ('search' in $router.query) delete $router.query.search
+      router.replace({
+        query: $router.query,
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputCriteria])
 
   return (
     <Layout
@@ -216,6 +251,7 @@ const Documentation: NextPage<WithoutProps> = () => {
             <span className="d-none d-lg-inline-block">&ensp;</span>
             <br className="d-lg-none mb-3" />
             <Trans
+              t={t}
               i18nKey="sections:docs.previewAlert"
               components={{
                 redirect: (
@@ -276,7 +312,15 @@ const Documentation: NextPage<WithoutProps> = () => {
             <h6 className="my-4">
               {t`sections:docs.recommendedArticles.title`}
             </h6>
-            <ArticleLinks articles={recommendedArticles ?? []} />
+            <ArticleLinks
+              router={router}
+              articles={
+                recommendedArticles instanceof Array &&
+                recommendedArticles.hasItems()
+                  ? recommendedArticles
+                  : locallySavedArticles
+              }
+            />
           </Col>
           <Col
             xs={12}
@@ -294,7 +338,12 @@ const Documentation: NextPage<WithoutProps> = () => {
                   <h6 className="text-start">
                     {capitalizeText(t`sections:docs.messages.found`, 'simple')}
                   </h6>
-                  <ArticleLinks articles={foundArticles ?? []} />
+                  <ArticleLinks
+                    router={router}
+                    articles={
+                      foundArticles instanceof Array ? foundArticles : []
+                    }
+                  />
                 </Fragment>
               ) : (
                 <Row className="h-100 align-items-center">

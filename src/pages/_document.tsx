@@ -1,11 +1,11 @@
+import { defaultLocale } from '@stratego/locales'
 import Document, {
-  Html,
   Head,
-  type DocumentProps,
+  Html,
   Main,
   NextScript,
+  type DocumentProps,
 } from 'next/document'
-import { defaultLocale } from '@stratego/locales'
 
 class StrategoDocument extends Document<DocumentProps> {
   render() {

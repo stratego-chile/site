@@ -1,11 +1,16 @@
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import { capitalizeText } from '@stratego/helpers/text.helper'
-import { useTranslation } from 'next-i18next'
-import { FC } from 'react'
-import classNames from 'classnames'
 import GoBackButton from '@stratego/components/shared/go-back-button'
+import { capitalizeText } from '@stratego/helpers/text.helper'
+import classNames from 'classnames'
+import { useTranslation } from 'next-i18next'
+import dynamic from 'next/dynamic'
+import PropTypes from 'prop-types'
+import type { FC } from 'react'
+
+const Container = dynamic(() => import('react-bootstrap/Container'))
+
+const Row = dynamic(() => import('react-bootstrap/Row'))
+
+const Col = dynamic(() => import('react-bootstrap/Col'))
 
 type ErrorPageProps = {
   statusCode?: number
@@ -46,5 +51,18 @@ const ErrorPage: FC<ErrorPageProps> = ({
     </Container>
   )
 }
+
+ErrorPage.propTypes = {
+  relativeHeight: PropTypes.bool,
+  showGoBackButton: PropTypes.bool,
+  statusCode: PropTypes.number,
+}
+
+ErrorPage.defaultProps = {
+  showGoBackButton: true,
+  relativeHeight: false,
+}
+
+ErrorPage.displayName = 'ErrorPage'
 
 export default ErrorPage

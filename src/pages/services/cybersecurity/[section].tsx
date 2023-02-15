@@ -1,9 +1,9 @@
-import { type GetServerSideProps, type NextPage } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { defaultLocale } from '@stratego/locales'
-import { useRouter } from 'next/router'
-import dynamic from 'next/dynamic'
 import LoadingPlaceholder from '@stratego/components/shared/loading-placeholder'
+import { defaultLocale } from '@stratego/locales'
+import type { GetServerSideProps, NextPage } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 
 type Section = 'audit' | 'consulting'
 

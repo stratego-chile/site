@@ -1,7 +1,7 @@
+import ErrorPage from '@stratego/components/shared/error-page'
+import { defaultLocale } from '@stratego/locales'
 import { type GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { defaultLocale } from '@stratego/locales'
-import ErrorPage from '@stratego/components/shared/error-page'
 
 const UnknownErrorPage = () => {
   return <ErrorPage statusCode={500} />

@@ -1,22 +1,25 @@
-import { useTranslation } from 'next-i18next'
-import classNames from 'classnames'
-import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
-import { type FC, useCallback, useEffect, useMemo, useState } from 'react'
-import Accordion from 'react-bootstrap/Accordion'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
 import kebabcase from '@stdlib/string/kebabcase'
-import { useRouter } from 'next/router'
-import Container from 'react-bootstrap/Container'
-import { capitalizeText } from '@stratego/helpers/text.helper'
-import dynamic from 'next/dynamic'
 import { cybersecurityLinks } from '@stratego/data/navigation-links'
-
-const Layout = dynamic(() => import('@stratego/components/shared/layout'))
+import { capitalizeText } from '@stratego/helpers/text.helper'
+import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
+import classNames from 'classnames'
+import { useTranslation } from 'next-i18next'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
+import { useCallback, useEffect, useMemo, useState, type FC } from 'react'
+import Accordion from 'react-bootstrap/Accordion'
 
 type SectionLayoutProps = {
   section: 'audit' | 'consulting'
 }
+
+const Layout = dynamic(() => import('@stratego/components/shared/layout'))
+
+const Container = dynamic(() => import('react-bootstrap/Container'))
+
+const Row = dynamic(() => import('react-bootstrap/Row'))
+
+const Col = dynamic(() => import('react-bootstrap/Col'))
 
 const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
   const router = useRouter()

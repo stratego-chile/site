@@ -1,23 +1,25 @@
-import { getAssetPath } from '@stratego/helpers/static-resources.helper'
-import { Fragment, useId, useMemo, type FC } from 'react'
-import Navbar from 'react-bootstrap/Navbar'
-import Container from 'react-bootstrap/Container'
-import Dropdown from 'react-bootstrap/Dropdown'
-import Image from 'react-bootstrap/Image'
-import Nav from 'react-bootstrap/Nav'
-import Button from 'react-bootstrap/Button'
-import Link from 'next/link'
-import { useTranslation } from 'next-i18next'
-import { capitalizeText } from '@stratego/helpers/text.helper'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import classNames from 'classnames'
-import NavbarStyles from '@stratego/styles/modules/Navbar.module.sass'
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   cybersecurityLinks,
   type LinkSpec,
 } from '@stratego/data/navigation-links'
+import { recursiveCall } from '@stratego/helpers/functions.helper'
+import { getAssetPath } from '@stratego/helpers/static-resources.helper'
+import { capitalizeText } from '@stratego/helpers/text.helper'
+import NavbarStyles from '@stratego/styles/modules/Navbar.module.sass'
+import classNames from 'classnames'
+import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import PropTypes from 'prop-types'
+import { Fragment, useId, useMemo, type FC } from 'react'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Dropdown from 'react-bootstrap/Dropdown'
+import Image from 'react-bootstrap/Image'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
 
 const LanguageSelector = dynamic(
   () => import('@stratego/components/shared/language-selector')
@@ -31,7 +33,7 @@ type NavBarProps = {
 }
 
 const NavBarLinks: FC<{
-  links: Array<LinkSpec>
+  links?: Array<LinkSpec>
   mode?: 'root' | 'embed'
 }> = ({ links = [], mode = 'root' }) => {
   const togglerId = useId()
@@ -87,7 +89,12 @@ const NavBarLinks: FC<{
                     subLink.href ? (
                       <Link
                         key={subLinkKey}
-                        href={subLink.href}
+                        href={
+                          subLink.dynamicPath
+                            ? subLink.dynamicTemplatePath
+                            : subLink.href
+                        }
+                        as={subLink.dynamicPath ? subLink.href : undefined}
                         passHref
                         legacyBehavior
                       >
@@ -110,7 +117,12 @@ const NavBarLinks: FC<{
               </Dropdown>
             )
           ) : link.href ? (
-            <Link href={link.href} passHref legacyBehavior>
+            <Link
+              href={link.dynamicPath ? link.dynamicTemplatePath : link.href}
+              as={link.dynamicPath ? link.href : undefined}
+              passHref
+              legacyBehavior
+            >
               <Nav.Link as="a" disabled={!!link.disabled}>
                 {capitalizeText(t(link.text).toLowerCase(), 'simple')}
               </Nav.Link>
@@ -125,6 +137,30 @@ const NavBarLinks: FC<{
     </Fragment>
   )
 }
+
+const lazySubLink = recursiveCall(function () {
+  return PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    href: PropTypes.string,
+    disabled: PropTypes.bool,
+    subLinks: lazySubLink,
+    dynamicPath: PropTypes.bool,
+    dynamicTemplatePath: PropTypes.string,
+  })
+})
+
+NavBarLinks.propTypes = {
+  links: PropTypes.arrayOf(lazySubLink),
+  mode: PropTypes.oneOf(['root', 'embed']),
+}
+
+NavBarLinks.defaultProps = {
+  links: [],
+  mode: 'root',
+}
+
+NavBarLinks.displayName = 'NavBarLinks'
 
 const NavBar: FC<NavBarProps> = ({
   showNavigationOptions,
@@ -246,5 +282,19 @@ const NavBar: FC<NavBarProps> = ({
     </Fragment>
   )
 }
+
+NavBar.propTypes = {
+  showNavigationOptions: PropTypes.bool,
+  theme: PropTypes.oneOf(['dark-blue', 'light-blue']),
+  brandDepartment: PropTypes.string,
+  subLinks: PropTypes.arrayOf(lazySubLink),
+}
+
+NavBar.defaultProps = {
+  theme: 'dark-blue',
+  subLinks: [],
+}
+
+NavBar.displayName = 'TopNavigationBar'
 
 export default NavBar

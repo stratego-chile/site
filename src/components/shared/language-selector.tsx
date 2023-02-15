@@ -1,12 +1,13 @@
 import { useLocale } from '@stratego/hooks/useLocale'
+import { localesList as availableLocales } from '@stratego/locales'
+import classNames from 'classnames'
 import { getLanguage } from 'language-flag-colors/bin/functions/getLanguage'
 import { getNativeName } from 'language-flag-colors/bin/functions/getNativeName'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import { type FC, Fragment, useCallback, useId } from 'react'
+import PropTypes from 'prop-types'
+import { Fragment, useCallback, useId, type FC } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
-import { localesList as availableLocales } from '@stratego/locales'
-import classNames from 'classnames'
 
 type LanguageSelectorProps = {
   theme?: 'light' | 'dark' | string
@@ -85,5 +86,16 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({
     </Dropdown>
   )
 }
+
+LanguageSelector.propTypes = {
+  className: PropTypes.string,
+  theme: PropTypes.string,
+}
+
+LanguageSelector.defaultProps = {
+  theme: 'light',
+}
+
+LanguageSelector.displayName = 'LanguageSelector'
 
 export default LanguageSelector

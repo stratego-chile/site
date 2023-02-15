@@ -1,14 +1,14 @@
-import defaultTranslation from '@stratego/mail/i18n/es-CL.json'
-import template from '@stratego/templates/contact.pug'
-import type { NextApiHandler } from 'next'
 import BootstrapStyles from '!!raw-loader!bootstrap/dist/css/bootstrap.min.css'
+import format from '@stdlib/string/format'
+import { defaultLocale, localesList } from '@stratego/locales'
+import defaultTranslation from '@stratego/mail/i18n/es-CL.json'
+import { checkCaptchaToken } from '@stratego/pages/api/(captcha)'
+import endpoint from '@stratego/pages/api/(endpoint)'
+import template from '@stratego/templates/contact.pug'
+import type { Method } from 'axios'
+import type { NextApiHandler } from 'next'
 import mailer, { type SendMailOptions } from 'nodemailer'
 import { type LocalsObject } from 'pug'
-import format from '@stdlib/string/format'
-import { checkCaptchaToken } from '@stratego/pages/api/(captcha)'
-import { defaultLocale, localesList } from '@stratego/locales'
-import endpoint from '@stratego/pages/api/(endpoint)'
-import type { Method } from 'axios'
 
 const ALLOWED_METHODS: Array<Method> = ['POST']
 
@@ -54,8 +54,8 @@ const handler: NextApiHandler<ResponseBody<undefined>> = async (...hooks) => {
       'email',
       'message',
     ].forEach((keyName) => {
-      if (!Object.hasOwn(formData, keyName))
-        throw new TypeError(`"${keyName}" is undefined`)
+      if (!(keyName in formData))
+        throw new ReferenceError(`"${keyName}" is undefined`)
     })
 
     const {

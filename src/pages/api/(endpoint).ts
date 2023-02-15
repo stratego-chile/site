@@ -22,7 +22,7 @@ const endpoint = <T = any>(
       return response.status(500).json({
         status: 'ERROR',
         message: 'Unexpected error',
-        trace: error || undefined,
+        trace: error,
       } as any)
     }
   }
