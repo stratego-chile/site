@@ -1,6 +1,6 @@
 import type { NextApiHandler } from 'next'
 import { DynamoDBClient, ScanCommand } from '@aws-sdk/client-dynamodb'
-import { isSerializable, isSimilar } from '@stratego/helpers/assert.helper'
+import { isSimilar } from '@stratego/helpers/assert.helper'
 import { unmarshall } from '@aws-sdk/util-dynamodb'
 import { defaultLocale } from '@stratego/locales'
 import endpoint from './(endpoint)'
@@ -29,9 +29,7 @@ const ALLOWED_METHODS: Array<Method> = ['POST']
 
 const handle: NextApiHandler = async (...hooks) => {
   endpoint(ALLOWED_METHODS, ...hooks, async (request, response) => {
-    if (!isSerializable(request.body)) throw new TypeError('Wrong payload')
-
-    const searchRequest = JSON.parse(request.body) as Partial<SearchRequest>
+    const searchRequest = request.body as Partial<SearchRequest>
 
     const locale = request.headers['accept-language'] as AvailableLocales
 
