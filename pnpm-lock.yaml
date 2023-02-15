@@ -3938,7 +3938,7 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_qa2thblfovmfepmgrc7z2owbo4:
+  /eslint-plugin-prettier/4.2.1_u5wnrdwibbfomslmnramz52buy:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -3949,8 +3949,8 @@ packages:
       eslint-config-prettier:
         optional: true
     dependencies:
-      eslint: 8.33.0
-      eslint-config-prettier: 8.6.0_eslint@8.33.0
+      eslint: 8.34.0
+      eslint-config-prettier: 8.6.0_eslint@8.34.0
       prettier: 2.8.4
       prettier-linter-helpers: 1.0.0
     dev: true
