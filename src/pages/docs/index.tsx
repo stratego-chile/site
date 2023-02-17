@@ -1,4 +1,5 @@
 import { capitalizeText } from '@stratego/helpers/text.helper'
+import { useAsyncMemo } from '@stratego/hooks/use-async-memo'
 import { useStorage } from '@stratego/hooks/use-storage'
 import { defaultLocale } from '@stratego/locales'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
@@ -21,19 +22,22 @@ import {
   useState,
   type FC,
 } from 'react'
-import { Fade } from 'react-bootstrap'
-import Badge from 'react-bootstrap/Badge'
+import Fade from 'react-bootstrap/Fade'
 import Button from 'react-bootstrap/Button'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import ListGroup from 'react-bootstrap/ListGroup'
-import Row from 'react-bootstrap/Row'
-import Spinner from 'react-bootstrap/Spinner'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
-import * as yup from 'yup'
 import { useAsyncFn } from 'react-use'
-import { useAsyncMemo } from '@stratego/hooks/use-async-memo'
+
+const Container = dynamic(() => import('react-bootstrap/Container'))
+
+const Row = dynamic(() => import('react-bootstrap/Row'))
+
+const Col = dynamic(() => import('react-bootstrap/Col'))
+
+const Badge = dynamic(() => import('react-bootstrap/Badge'))
+
+const Spinner = dynamic(() => import('react-bootstrap/Spinner'))
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 
@@ -47,6 +51,7 @@ enum SearchResultsDisplayMode {
   Blank,
   NotFound,
   Found,
+  Searching,
 }
 
 type ArticleLinksProps = {
@@ -63,25 +68,16 @@ const ArticleLinks: FC<ArticleLinksProps> = ({ articles = [], router }) => {
   return (
     <ListGroup as="ol" numbered>
       {articles.map(({ id, title }, key) => (
-        <ListGroup.Item
-          action
-          as="li"
-          className="pe-pointer text-start"
-          key={key}
-          onClick={() =>
-            router.push(
-              {
-                pathname: `/docs/${id}`,
-              },
-              undefined,
-              {
-                shallow: true,
-              }
-            )
-          }
-        >
-          {capitalizeText(t(title), 'simple')}
-        </ListGroup.Item>
+        <Link key={key} href={`/docs/${id}`} passHref legacyBehavior>
+          <ListGroup.Item
+            action
+            as="li"
+            className="pe-pointer text-start"
+            disabled={!router.isReady}
+          >
+            {capitalizeText(t(title), 'simple')}
+          </ListGroup.Item>
+        </Link>
       ))}
     </ListGroup>
   )
@@ -117,9 +113,6 @@ const Documentation: NextPage<WithoutProps> = () => {
     },
     enableReinitialize: true,
     onSubmit: () => void 0,
-    validationSchema: yup.object({
-      criteria: yup.string().nonNullable().required(),
-    }),
   })
 
   const [delayedInputCriteria, setDelayedInputCriteria] = useState('')
@@ -197,20 +190,23 @@ const Documentation: NextPage<WithoutProps> = () => {
   }, [savedDefaultArticles])
 
   const { data: foundArticles } = useAsyncMemo(async () => {
+    if (inputCriteria !== criteria) return []
     const { foundArticles: $foundArticles } = await searchDocumentationPosts(
       criteria
     )
     return $foundArticles instanceof Array ? $foundArticles : []
-  }, [criteria])
+  }, [inputCriteria, criteria])
 
   const searchResultsState = useMemo(
     () =>
-      inputCriteria
+      documentationSearch.loading
+        ? SearchResultsDisplayMode.Searching
+        : inputCriteria
         ? foundArticles instanceof Array && foundArticles.hasItems
           ? SearchResultsDisplayMode.Found
           : SearchResultsDisplayMode.NotFound
         : SearchResultsDisplayMode.Blank,
-    [inputCriteria, foundArticles]
+    [documentationSearch.loading, inputCriteria, foundArticles]
   )
 
   useEffect(() => {
@@ -254,7 +250,7 @@ const Documentation: NextPage<WithoutProps> = () => {
       if (inputCriteria) query.search = inputCriteria || undefined
       else if ('search' in query) delete query.search
 
-      router.replace({ query })
+      router.replace({ query }, undefined, { shallow: true })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputCriteria])
@@ -350,7 +346,7 @@ const Documentation: NextPage<WithoutProps> = () => {
             xs={12}
             lg
             className={classNames(
-              'align-self-stretch bg-light rounded-2 text-center',
+              'align-self-stretch text-center',
               documentationSearch.loading &&
                 'd-flex justify-content-center align-items-center'
             )}
