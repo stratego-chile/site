@@ -49,9 +49,14 @@ const SubsectionItem: FC<{
     })
   }, [contentRef])
 
-  if (scrollInto) {
-    scrollIntoElement()
-  }
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (scrollInto) {
+        scrollIntoElement()
+      }
+    }, 250)
+    return () => clearTimeout(timeout)
+  }, [scrollInto, scrollIntoElement])
 
   return (
     <Accordion.Item key={itemKey} eventKey={String(itemKey)}>
