@@ -1,7 +1,10 @@
+import type { ParsedUrlQueryInput } from 'querystring'
+
 export type LinkSpec = {
   text: string
   label?: boolean
   href?: string
+  queryParams?: ParsedUrlQueryInput
   subLinks?: Array<LinkSpec>
   disabled?: boolean
 } & Exclusive<
@@ -20,33 +23,48 @@ export const cybersecurityLinks: Array<LinkSpec> = [
     text: 'sections:security.services.audit.title',
     subLinks: [
       {
-        href: '/services/cybersecurity/audit?subsection=risks-and-vulnerabilities',
+        href: '/services/cybersecurity/audit',
+        queryParams: {
+          subsection: 'risks-and-vulnerabilities',
+        },
         dynamicPath: true,
-        dynamicTemplatePath: '/services/cybersecurity/[section]',
+        dynamicTemplatePath: '/services/cybersecurity/audit',
         text: 'sections:security.services.audit.modules.risksAndVulnerabilities.title',
       },
       {
-        href: '/services/cybersecurity/audit?subsection=infrastructure',
+        href: '/services/cybersecurity/audit',
+        queryParams: {
+          subsection: 'infrastructure',
+        },
         dynamicPath: true,
-        dynamicTemplatePath: '/services/cybersecurity/[section]',
+        dynamicTemplatePath: '/services/cybersecurity/audit',
         text: 'sections:security.services.audit.modules.infrastructure.title',
       },
       {
-        href: '/services/cybersecurity/audit?subsection=procedures',
+        href: '/services/cybersecurity/audit',
+        queryParams: {
+          subsection: 'procedures',
+        },
         dynamicPath: true,
-        dynamicTemplatePath: '/services/cybersecurity/[section]',
+        dynamicTemplatePath: '/services/cybersecurity/audit',
         text: 'sections:security.services.audit.modules.procedures.title',
       },
       {
-        href: '/services/cybersecurity/audit?subsection=mitigation',
+        href: '/services/cybersecurity/audit',
+        queryParams: {
+          subsection: 'mitigation',
+        },
         dynamicPath: true,
-        dynamicTemplatePath: '/services/cybersecurity/[section]',
+        dynamicTemplatePath: '/services/cybersecurity/audit',
         text: 'sections:security.services.audit.modules.mitigation.title',
       },
       {
-        href: '/services/cybersecurity/audit?subsection=social-engineering',
+        href: '/services/cybersecurity/audit',
+        queryParams: {
+          subsection: 'social-engineering',
+        },
         dynamicPath: true,
-        dynamicTemplatePath: '/services/cybersecurity/[section]',
+        dynamicTemplatePath: '/services/cybersecurity/audit',
         text: 'sections:security.services.audit.modules.socialEngineering.title',
       },
     ],
@@ -55,17 +73,57 @@ export const cybersecurityLinks: Array<LinkSpec> = [
     text: 'sections:security.services.consulting.title',
     subLinks: [
       {
-        href: '/services/cybersecurity/consulting?subsection=ISO-IEC27000',
+        href: '/services/cybersecurity/consulting',
+        queryParams: {
+          subsection: 'ISO-IEC27000',
+        },
         dynamicPath: true,
-        dynamicTemplatePath: '/services/cybersecurity/[section]',
+        dynamicTemplatePath: '/services/cybersecurity/consulting',
         text: 'sections:security.services.consulting.modules.isoIec27000.title',
       },
       {
-        href: '/services/cybersecurity/consulting?subsection=CHL21459',
+        href: '/services/cybersecurity/consulting',
+        queryParams: {
+          subsection: 'CHL21459',
+        },
         dynamicPath: true,
-        dynamicTemplatePath: '/services/cybersecurity/[section]',
+        dynamicTemplatePath: '/services/cybersecurity/consulting',
         text: 'sections:security.services.consulting.modules.chl21459.title',
       },
     ],
+  },
+]
+
+export const navbarLinks: Array<LinkSpec> = [
+  {
+    text: 'sections:home.title',
+    href: '/home',
+  },
+  {
+    text: 'common:aboutUs',
+    href: '/about-us',
+  },
+  {
+    text: 'sections:services.title',
+    subLinks: [
+      {
+        text: 'sections:security.title',
+        label: true,
+        subLinks: cybersecurityLinks,
+      },
+    ],
+  },
+  {
+    text: 'sections:utils.title',
+    subLinks: [
+      {
+        text: 'sections:utils.list.0.title',
+        href: '/utilities/password-generator',
+      },
+    ],
+  },
+  {
+    text: 'sections:docs.title',
+    href: '/docs',
   },
 ]

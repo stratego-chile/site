@@ -1,9 +1,6 @@
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  cybersecurityLinks,
-  type LinkSpec,
-} from '@stratego/data/navigation-links'
+import { navbarLinks, type LinkSpec } from '@stratego/data/navigation-links'
 import { recursiveCall } from '@stratego/helpers/functions.helper'
 import { getAssetPath } from '@stratego/helpers/static-resources.helper'
 import { capitalizeText } from '@stratego/helpers/text.helper'
@@ -11,9 +8,9 @@ import NavbarStyles from '@stratego/styles/modules/Navbar.module.sass'
 import classNames from 'classnames'
 import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
+import Link, { LinkProps } from 'next/link'
 import PropTypes from 'prop-types'
-import { Fragment, useId, useMemo, type FC } from 'react'
+import { Fragment, PropsWithChildren, useId, useMemo, type FC } from 'react'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Dropdown from 'react-bootstrap/Dropdown'
@@ -21,15 +18,42 @@ import Image from 'react-bootstrap/Image'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 
-const LanguageSelector = dynamic(
-  () => import('@stratego/components/shared/language-selector')
-)
-
 type NavBarProps = {
   showNavigationOptions?: boolean
   theme?: string
   brandDepartment?: string
   subLinks?: Array<LinkSpec>
+}
+
+const LanguageSelector = dynamic(
+  () => import('@stratego/components/shared/language-selector')
+)
+
+const NavBarLink: FC<
+  PropsWithChildren<
+    Partial<LinkProps> & {
+      link: LinkSpec
+    }
+  >
+> = ({ link, children, ...linkProps }) => {
+  return (
+    <Link
+      {...linkProps}
+      href={
+        linkProps.href ?? {
+          pathname: link.dynamicPath ? link.dynamicTemplatePath : link.href,
+        }
+      }
+      as={
+        linkProps.as ?? {
+          pathname: link.href,
+          query: link.queryParams,
+        }
+      }
+    >
+      {children}
+    </Link>
+  )
 }
 
 const NavBarLinks: FC<{
@@ -64,7 +88,6 @@ const NavBarLinks: FC<{
               </Fragment>
             ) : (
               <Dropdown
-                autoClose="outside"
                 navbar
                 align="start"
                 drop={mode === 'embed' ? 'end' : undefined}
@@ -87,16 +110,12 @@ const NavBarLinks: FC<{
                 <Dropdown.Menu>
                   {link.subLinks.map((subLink, subLinkKey) =>
                     subLink.href ? (
-                      <Link
+                      <NavBarLink
                         key={subLinkKey}
-                        href={
-                          subLink.dynamicPath
-                            ? subLink.dynamicTemplatePath
-                            : subLink.href
-                        }
-                        as={subLink.dynamicPath ? subLink.href : undefined}
+                        link={subLink}
                         passHref
                         legacyBehavior
+                        scroll={false}
                       >
                         <Dropdown.Item
                           style={{
@@ -106,7 +125,7 @@ const NavBarLinks: FC<{
                         >
                           {t(subLink.text)}
                         </Dropdown.Item>
-                      </Link>
+                      </NavBarLink>
                     ) : (
                       <Fragment key={subLinkKey}>
                         <NavBarLinks links={[subLink]} mode="embed" />
@@ -117,16 +136,11 @@ const NavBarLinks: FC<{
               </Dropdown>
             )
           ) : link.href ? (
-            <Link
-              href={link.dynamicPath ? link.dynamicTemplatePath : link.href}
-              as={link.dynamicPath ? link.href : undefined}
-              passHref
-              legacyBehavior
-            >
+            <NavBarLink link={link} passHref legacyBehavior scroll={false}>
               <Nav.Link as="a" disabled={!!link.disabled}>
                 {capitalizeText(t(link.text).toLowerCase(), 'simple')}
               </Nav.Link>
-            </Link>
+            </NavBarLink>
           ) : (
             <Navbar.Text>
               {capitalizeText(t(link.text).toLowerCase(), 'simple')}
@@ -170,42 +184,7 @@ const NavBar: FC<NavBarProps> = ({
 }) => {
   const { t } = useTranslation(['common', 'sections'])
 
-  const links = useMemo<Array<LinkSpec>>(
-    () => [
-      {
-        text: 'sections:home.title',
-        href: '/home',
-      },
-      {
-        text: 'common:aboutUs',
-        href: '/about-us',
-      },
-      {
-        text: 'sections:services.title',
-        subLinks: [
-          {
-            text: 'sections:security.title',
-            label: true,
-            subLinks: cybersecurityLinks,
-          },
-        ],
-      },
-      {
-        text: 'sections:utils.title',
-        subLinks: [
-          {
-            text: 'sections:utils.list.0.title',
-            href: '/utilities/password-generator',
-          },
-        ],
-      },
-      {
-        text: 'sections:docs.title',
-        href: '/docs',
-      },
-    ],
-    []
-  )
+  const links = useMemo<Array<LinkSpec>>(() => navbarLinks, [])
 
   return (
     <Fragment>
@@ -265,7 +244,7 @@ const NavBar: FC<NavBarProps> = ({
           )}
         </Container>
       </Navbar>
-      {subLinks.hasItems() && (
+      {subLinks.hasItems && (
         <Navbar
           variant="dark"
           bg="dark-blue"
