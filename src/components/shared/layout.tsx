@@ -26,7 +26,7 @@ const NavBar = dynamic(() => import('@stratego/components/shared/navbar'))
 const Footer = dynamic(() => import('@stratego/components/shared/footer'))
 
 const ToTopButton = dynamic(
-  () => import('@stratego/components/misc/ToTopButton')
+  () => import('@stratego/components/misc/to-top-button')
 )
 
 export type LayoutProps = {

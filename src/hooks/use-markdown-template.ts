@@ -9,8 +9,8 @@ import {
   useState,
   type FC,
 } from 'react'
-import { useRemoteContent } from '@stratego/hooks/useRemoteContent'
-import { useAsyncMemo } from '@stratego/hooks/useAsyncMemo'
+import { useRemoteContent } from '@stratego/hooks/use-remote-content'
+import { useAsyncMemo } from '@stratego/hooks/use-async-memo'
 import RemarkUnwrapImages from 'remark-unwrap-images'
 import dynamic from 'next/dynamic'
 
@@ -40,7 +40,7 @@ export const useMarkdownTemplate = (
   const {
     content: template,
     resourceFound: templateFound,
-    fetchState,
+    fetching,
   } = useRemoteContent(
     {
       path: templatePath,
@@ -89,5 +89,5 @@ export const useMarkdownTemplate = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [compiledTemplate])
 
-  return [compiledContent, !fetchState && !isLoading, templateFound]
+  return [compiledContent, isLoading || fetching, templateFound]
 }
