@@ -2,15 +2,13 @@
   // Add `hasItems` function to Array prototype in isolated mode
   const hasItems = 'hasItems'
   if (!Object.prototype.hasOwnProperty.call(Array, hasItems)) {
-    Object.defineProperty(Array, hasItems, {
+    Object.defineProperty(Array.prototype, hasItems, {
       enumerable: false,
       configurable: false,
-      writable: false,
-      value: 'static',
+      get: function () {
+        return this.length > 0
+      },
     })
-    Array.prototype[hasItems] = function () {
-      return this.length > 0
-    }
   }
 
   // Add `surround` function to String prototype in isolated mode
