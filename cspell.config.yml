@@ -3,7 +3,7 @@ language: en, es, pt-BR
 files:
   - src/**/*.{tsx,ts,json}
 ignorePaths:
-  - src/data/dialCodes.ts
+  - src/data/dial-codes.ts
 dictionaryDefinitions:
   - name: spanish
     path: ./node_modules/@cspell/dict-es-es/Spanish.trie.gz

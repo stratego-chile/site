@@ -16,7 +16,7 @@ import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 FontAwesomeConfig.autoAddCss = false // Prevent wrong icon size on SSR
 
 const CookiesDisclaimer = dynamic(
-  () => import('@stratego/components/misc/CookiesDisclaimer')
+  () => import('@stratego/components/misc/cookies-disclaimer')
 )
 
 const StrategoLandingApp = ({

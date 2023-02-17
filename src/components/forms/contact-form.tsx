@@ -1,4 +1,4 @@
-import dialCodes, { type DialCodeSpec } from '@stratego/data/dialCodes'
+import dialCodes, { type DialCodeSpec } from '@stratego/data/dial-codes'
 import {
   capitalizeText,
   getCountryFlagEmoji,

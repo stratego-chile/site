@@ -1,4 +1,4 @@
-import { useLocale } from '@stratego/hooks/useLocale'
+import { useLocale } from '@stratego/hooks/use-locale'
 import { localesList as availableLocales } from '@stratego/locales'
 import classNames from 'classnames'
 import { getLanguage } from 'language-flag-colors/bin/functions/getLanguage'

@@ -16,6 +16,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
+import Tooltip from 'react-bootstrap/Tooltip'
 import { useAsyncFn } from 'react-use'
 
 type Enumerate<
@@ -45,8 +46,6 @@ const Row = dynamic(() => import('react-bootstrap/Row'))
 const Col = dynamic(() => import('react-bootstrap/Col'))
 
 const Table = dynamic(() => import('react-bootstrap/Table'))
-
-const Tooltip = dynamic(() => import('react-bootstrap/Tooltip'))
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 
@@ -115,22 +114,29 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
 
   const [, generatePassword] = useAsyncFn(async () => {
     const { default: shuffle } = await import('@stdlib/random/shuffle')
-    const $$generatedPasswords: Array<string> = []
+    const $generatedPasswords: Array<string> = []
     for (const digest of new Array<Array<string>>(options.times).fill(
       usableChars
     )) {
       const mixedShuffle = shuffle(digest)
-      $$generatedPasswords.push(
-        new Array(options.length)
+      let generatedPassword = String()
+
+      while (
+        generatedPassword === String() ||
+        $generatedPasswords.includes(generatedPassword)
+      ) {
+        generatedPassword = new Array(options.length)
           .fill(mixedShuffle)
           .map(
             (characters) =>
               characters[Math.floor(Math.random() * characters.length)]
           )
           .join('')
-      )
+      }
+
+      $generatedPasswords.push(generatedPassword)
     }
-    setGeneratedPasswords($$generatedPasswords)
+    setGeneratedPasswords($generatedPasswords)
   }, [usableChars, options])
 
   return (

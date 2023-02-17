@@ -3,9 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import kebabcase from '@stdlib/string/kebabcase'
 import LoadingPlaceholder from '@stratego/components/shared/loading-placeholder'
 import { capitalizeText } from '@stratego/helpers/text.helper'
-import { useMarkdownTemplate } from '@stratego/hooks/useMarkdownTemplate'
+import { useAsyncMemo } from '@stratego/hooks/use-async-memo'
+import { useMarkdownTemplate } from '@stratego/hooks/use-markdown-template'
 import { defaultLocale } from '@stratego/locales'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
+import requester from 'axios'
 import classNames from 'classnames'
 import { type GetServerSideProps, type NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
@@ -13,10 +15,12 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
+import { useAsyncFn } from 'react-use'
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'), {
   loading: () => <LoadingPlaceholder />,
@@ -33,19 +37,52 @@ const ErrorPage = dynamic(
 const DocumentationPost: NextPage<WithoutProps> = () => {
   const { t, i18n } = useTranslation()
 
-  const [fetched, setFetchState] = useState(false)
+  const router = useRouter()
 
-  const {
-    query: { post: postId },
-  } = useRouter()
+  const { executeRecaptcha } = useGoogleReCaptcha()
 
-  const [postContent, postFetchFinished, postFound] = useMarkdownTemplate(
+  const [refFetch, getDocRefData] = useAsyncFn(
+    async (id: string) => {
+      if (executeRecaptcha) {
+        const captchaToken = await executeRecaptcha('enquiryFormSubmit')
+
+        const response = await requester.get<DocumentationPostRef>(
+          `/api/docs/${id}`,
+          {
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'Accept-Language': i18n.language,
+              Authorization: captchaToken,
+            },
+          }
+        )
+
+        return response.data instanceof Object &&
+          ['id', 'title', 'locale'].every(
+            (expectedProp) => expectedProp in response.data
+          )
+          ? (response.data as DocumentationPostRef)
+          : undefined
+      }
+      return undefined
+    },
+    [executeRecaptcha, i18n.language]
+  )
+
+  const { data: docRef } = useAsyncMemo(async () => {
+    if (!router.query.post) return undefined
+    const $docRef = await getDocRefData(router.query.post.toString())
+    return $docRef
+  }, [router.query.post, getDocRefData, i18n.language])
+
+  const [postContent, fetchingPost, postFound] = useMarkdownTemplate(
     {
       templatePath:
-        postId &&
+        docRef &&
         String(process.env.DOCS_POSTS_SOURCE)
-          .concat(`/${i18n.language}/`)
-          .concat(kebabcase(postId.toString()))
+          .concat(`/${docRef.locale}/`)
+          .concat(kebabcase(docRef.id ?? String(router.query.post?.toString())))
           .concat('.mdx'),
       components: {
         img: (props) => (
@@ -74,23 +111,25 @@ const DocumentationPost: NextPage<WithoutProps> = () => {
         ),
       },
     },
-    [postId, i18n.language]
+    [docRef]
   )
 
-  useEffect(() => {
-    if (postFetchFinished) setFetchState(true)
-  }, [postFetchFinished])
+  const fetching = useMemo(
+    () => refFetch.loading || fetchingPost,
+    [refFetch, fetchingPost]
+  )
 
   return (
     <Layout
       pageTitle={capitalizeText(
-        t`sections:docs.title` satisfies string,
+        docRef?.title ?? (t`sections:docs.title` satisfies string),
         'simple'
       )}
       showNavigationOptions
+      defaultGrid={!!fetching}
     >
-      {!postFetchFinished && <LoadingPlaceholder />}
-      {postFetchFinished && postFound && (
+      {fetching && <LoadingPlaceholder />}
+      {!fetching && postFound && (
         <Container className={classNames(LayoutStyles.autoFormat, 'my-5')}>
           <Row className="justify-content-end align-items-center">
             <Col xs="auto">
@@ -126,7 +165,7 @@ const DocumentationPost: NextPage<WithoutProps> = () => {
           )}
         </Container>
       )}
-      {fetched && !postFound && !postContent && (
+      {!fetching && !postFound && !postContent && (
         <Container className="d-flex flex-column flex-grow-1 my-5">
           <Row className="flex-grow-1 align-items-center justify-content-center">
             <Col>
