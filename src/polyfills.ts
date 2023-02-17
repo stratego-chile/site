@@ -1,7 +1,7 @@
 ;(() => {
   // Add `hasItems` function to Array prototype in isolated mode
   const hasItems = 'hasItems'
-  if (!Object.prototype.hasOwnProperty.call(Array, hasItems)) {
+  if (!Object.prototype.hasOwnProperty.call(Array.prototype, hasItems)) {
     Object.defineProperty(Array.prototype, hasItems, {
       enumerable: false,
       configurable: false,
