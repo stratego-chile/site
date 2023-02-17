@@ -4,6 +4,8 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
+import { Fragment } from 'react'
+import { useSearchParam } from 'react-use'
 
 type Section = 'audit' | 'consulting'
 
@@ -28,14 +30,19 @@ const SectionLayout = dynamic(
 const CybersecuritySection: NextPage<WithoutProps> = () => {
   const router = useRouter()
 
-  const {
-    query: { section },
-  } = router
-
   const sections: Array<Section> = ['audit', 'consulting']
 
-  return sections.includes(String(section) as Section) ? (
-    <SectionLayout section={section as Section} />
+  const subsection = useSearchParam('subsection')
+
+  return (sections as Array<string>).includes(
+    String(router.query.section).toLowerCase()
+  ) ? (
+    <Fragment>
+      <SectionLayout
+        section={router.query.section as Section}
+        subsection={subsection ?? ''}
+      />
+    </Fragment>
   ) : (
     <ErrorPage statusCode={404} showGoBackButton />
   )
