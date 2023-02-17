@@ -1,18 +1,11 @@
-import type { NextApiHandler } from 'next'
 import { DynamoDBClient, ScanCommand } from '@aws-sdk/client-dynamodb'
-import { isSerializable, isSimilar } from '@stratego/helpers/assert.helper'
 import { unmarshall } from '@aws-sdk/util-dynamodb'
+import { isSerializable, isSimilar } from '@stratego/helpers/assert.helper'
 import { defaultLocale } from '@stratego/locales'
-import endpoint from './(endpoint)'
+import { checkCaptchaToken } from '@stratego/pages/api/(captcha)'
+import endpoint from '@stratego/pages/api/(endpoint)'
 import type { Method } from 'axios'
-
-type DocumentationPost<T = string> = {
-  refId: string
-  type: T extends 'default' ? T : string
-  availableLocales: Array<AvailableLocales>
-  title: Record<AvailableLocales, string>
-  tags: Array<string>
-}
+import type { NextApiHandler } from 'next'
 
 type SearchRequest = Exclusive<
   {
@@ -27,11 +20,19 @@ type SearchRequest = Exclusive<
 
 const ALLOWED_METHODS: Array<Method> = ['POST']
 
-const handle: NextApiHandler = async (...hooks) => {
+const handle: NextApiHandler<{
+  foundArticles: Array<DocumentationPostRef>
+  defaultMode: boolean
+}> = async (...hooks) => {
   endpoint(ALLOWED_METHODS, ...hooks, async (request, response) => {
     if (!isSerializable(request.body)) throw new TypeError('Wrong payload')
 
-    const searchRequest = JSON.parse(request.body) as Partial<SearchRequest>
+    const captchaToken = request.headers.authorization
+
+    if (!captchaToken || !(await checkCaptchaToken(captchaToken)))
+      throw new Error('Captcha token invalid')
+
+    const searchRequest = request.body as Partial<SearchRequest>
 
     const locale = request.headers['accept-language'] as AvailableLocales
 
@@ -56,6 +57,14 @@ const handle: NextApiHandler = async (...hooks) => {
     )
 
     const docs: Array<DocumentationPost> = (($items) => {
+      if (
+        $items.some(
+          (item) =>
+            typeof item === 'object' &&
+            [''].every((expectedProp) => expectedProp in item)
+        )
+      )
+        return []
       if (!isDefault) {
         const parsedCriteria = (searchCriteria ?? '').split(' ')
 
@@ -72,12 +81,14 @@ const handle: NextApiHandler = async (...hooks) => {
 
     response.status(200).json({
       foundArticles: docs
-        .filter(({ availableLocales }) =>
+        ?.filter(({ availableLocales }) =>
           availableLocales.includes(locale ?? defaultLocale)
         )
-        .map(({ refId, title }) => ({
+        .map(({ refId, title, availableLocales }) => ({
           id: refId,
-          title: title[locale] ?? title[defaultLocale],
+          title: title[locale] ?? title[defaultLocale]!,
+          locale:
+            availableLocales[availableLocales.indexOf(locale ?? defaultLocale)],
         })),
       defaultMode: !!isDefault,
     })
