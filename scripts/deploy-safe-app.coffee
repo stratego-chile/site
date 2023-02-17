@@ -26,6 +26,8 @@ do ->
 
   server = express()
 
+  server.disable 'x-powered-by'
+
   server.all '*', (req, res) ->
     handle req, res
 
