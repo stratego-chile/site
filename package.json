@@ -1,5 +1,12 @@
 {
   "name": "stratego-site",
+  "description": "Stratego website",
+  "license": "MIT",
+  "author": {
+    "name": "Stratego Techonlogies SpA",
+    "email": "contact@stratego.cl",
+    "url": "https://stratego.cl"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
