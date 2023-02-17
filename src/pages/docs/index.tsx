@@ -1,8 +1,8 @@
 import { capitalizeText } from '@stratego/helpers/text.helper'
-import { useAsyncMemo } from '@stratego/hooks/useAsyncMemo'
-import { useStorage } from '@stratego/hooks/useStorage'
+import { useStorage } from '@stratego/hooks/use-storage'
 import { defaultLocale } from '@stratego/locales'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
+import requester from 'axios'
 import classNames from 'classnames'
 import { useFormik } from 'formik'
 import type { GetStaticProps, NextPage } from 'next'
@@ -10,7 +10,7 @@ import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { type NextRouter, useRouter } from 'next/router'
+import { useRouter, type NextRouter } from 'next/router'
 import {
   Fragment,
   useCallback,
@@ -30,7 +30,10 @@ import Form from 'react-bootstrap/Form'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Row from 'react-bootstrap/Row'
 import Spinner from 'react-bootstrap/Spinner'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import * as yup from 'yup'
+import { useAsyncFn } from 'react-use'
+import { useAsyncMemo } from '@stratego/hooks/use-async-memo'
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 
@@ -68,11 +71,9 @@ const ArticleLinks: FC<ArticleLinksProps> = ({ articles = [], router }) => {
           onClick={() =>
             router.push(
               {
-                pathname: `/docs/[post]`,
-              },
-              {
                 pathname: `/docs/${id}`,
               },
+              undefined,
               {
                 shallow: true,
               }
@@ -102,17 +103,6 @@ const Documentation: NextPage<WithoutProps> = () => {
     [formId]
   )
 
-  const [foundArticles, setFoundArticles] = useState<
-    Array<{
-      id: string
-      title: string
-    }>
-  >([])
-
-  const [locallySavedArticles, setLocallySavedArticles] = useState<
-    typeof foundArticles
-  >([])
-
   const {
     errors,
     handleChange,
@@ -134,61 +124,110 @@ const Documentation: NextPage<WithoutProps> = () => {
 
   const [delayedInputCriteria, setDelayedInputCriteria] = useState('')
 
-  const [requestingResults, setRequestingState] = useState(false)
-
   const criteria = useDeferredValue(delayedInputCriteria)
+
+  const { executeRecaptcha } = useGoogleReCaptcha()
+
+  const [documentationSearch, searchDocumentationPosts] = useAsyncFn(
+    async <Mode extends boolean>(
+      searchCriteria: string,
+      defaultSearch?: Mode
+    ) => {
+      if (executeRecaptcha) {
+        const captchaToken = await executeRecaptcha('enquiryFormSubmit')
+
+        const response = await requester.post<{
+          foundArticles: Array<DocumentationPostRef>
+          defaultMode: Mode
+        }>(
+          '/api/docs/search',
+          defaultSearch ? { default: true } : { searchCriteria },
+          {
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'Accept-Language': i18n.language,
+              Authorization: captchaToken,
+            },
+          }
+        )
+
+        return response.data
+      } else {
+        return {
+          foundArticles: [],
+          defaultMode: defaultSearch,
+        } as {
+          foundArticles: Array<DocumentationPostRef>
+          defaultMode?: Mode
+        }
+      }
+    },
+    [executeRecaptcha]
+  )
+
+  const savedDefaultArticles = useMemo<Array<DocumentationPostRef>>(() => {
+    const locallySavedArticles = getStorageItem(locallySavedArticlesId)
+
+    return locallySavedArticles instanceof Array &&
+      locallySavedArticles.hasItems &&
+      locallySavedArticles.every(
+        (article) =>
+          article instanceof Object &&
+          ['id', 'title'].every((expectedProp) => expectedProp in article)
+      )
+      ? locallySavedArticles
+      : []
+  }, [getStorageItem])
+
+  const { data: defaultArticles } = useAsyncMemo(async () => {
+    const { foundArticles: $foundArticles } = await searchDocumentationPosts(
+      '',
+      true
+    )
+    return $foundArticles instanceof Array &&
+      $foundArticles.hasItems &&
+      $foundArticles.every(
+        (article) =>
+          article instanceof Object &&
+          ['id', 'title'].every((expectedProp) => expectedProp in article)
+      )
+      ? $foundArticles
+      : savedDefaultArticles
+  }, [savedDefaultArticles])
+
+  const { data: foundArticles } = useAsyncMemo(async () => {
+    const { foundArticles: $foundArticles } = await searchDocumentationPosts(
+      criteria
+    )
+    return $foundArticles instanceof Array ? $foundArticles : []
+  }, [criteria])
 
   const searchResultsState = useMemo(
     () =>
       inputCriteria
-        ? foundArticles.hasItems()
+        ? foundArticles instanceof Array && foundArticles.hasItems
           ? SearchResultsDisplayMode.Found
           : SearchResultsDisplayMode.NotFound
         : SearchResultsDisplayMode.Blank,
     [inputCriteria, foundArticles]
   )
 
-  const searchDocumentationPosts = async (
-    searchCriteria: string,
-    defaultMode?: boolean
-  ) => {
-    const response = await fetch('/api/search-docs', {
-      method: 'POST',
-      headers: {
-        'Accept-Language': i18n.language,
-      },
-      body: JSON.stringify(
-        defaultMode ? { default: true } : { searchCriteria }
-      ),
-    })
-
-    const { foundArticles: $foundArticles } = await response.json()
-
-    return $foundArticles instanceof Array ? $foundArticles : []
-  }
-
-  const { data: recommendedArticles } = useAsyncMemo<
-    typeof foundArticles
-  >(async () => {
-    const fetchedArticles = await searchDocumentationPosts('', true)
-
-    setStorageItem(locallySavedArticlesId, fetchedArticles)
-
-    return fetchedArticles instanceof Array ? fetchedArticles : []
-  }, [router.isReady, i18n.language])
-
   useEffect(() => {
-    const $locallySavedArticles = getStorageItem(locallySavedArticlesId)
-
     if (
-      $locallySavedArticles instanceof Array &&
-      $locallySavedArticles.every(
+      defaultArticles instanceof Array &&
+      defaultArticles.hasItems &&
+      defaultArticles.every(
         (article) =>
-          article instanceof Object && 'id' in article && 'title' in article
+          article instanceof Object &&
+          ['id', 'title', 'locale'].every(
+            (expectedProp) => expectedProp in article
+          )
       )
-    )
-      setLocallySavedArticles($locallySavedArticles)
-  }, [getStorageItem])
+    ) {
+      setStorageItem(locallySavedArticlesId, defaultArticles)
+    }
+  }, [defaultArticles, setStorageItem])
 
   useEffect(() => {
     const searchCriteria = new URL(location.href).searchParams.get('search')
@@ -209,27 +248,13 @@ const Documentation: NextPage<WithoutProps> = () => {
   }, [inputCriteria])
 
   useEffect(() => {
-    if (criteria && !requestingResults) {
-      setRequestingState(true)
-      searchDocumentationPosts(criteria)
-        .then(($foundArticles) => {
-          setFoundArticles($foundArticles)
-        })
-        .finally(() => setRequestingState(false))
-    } else {
-      setFoundArticles([])
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [criteria])
-
-  useEffect(() => {
     if (router.isReady) {
-      const $router = router
-      if (inputCriteria) $router.query.search = inputCriteria || undefined
-      else if ('search' in $router.query) delete $router.query.search
-      router.replace({
-        query: $router.query,
-      })
+      const query = { ...router.query }
+
+      if (inputCriteria) query.search = inputCriteria || undefined
+      else if ('search' in query) delete query.search
+
+      router.replace({ query })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputCriteria])
@@ -315,10 +340,9 @@ const Documentation: NextPage<WithoutProps> = () => {
             <ArticleLinks
               router={router}
               articles={
-                recommendedArticles instanceof Array &&
-                recommendedArticles.hasItems()
-                  ? recommendedArticles
-                  : locallySavedArticles
+                defaultArticles instanceof Array && defaultArticles.hasItems
+                  ? defaultArticles
+                  : []
               }
             />
           </Col>
@@ -327,12 +351,12 @@ const Documentation: NextPage<WithoutProps> = () => {
             lg
             className={classNames(
               'align-self-stretch bg-light rounded-2 text-center',
-              requestingResults &&
+              documentationSearch.loading &&
                 'd-flex justify-content-center align-items-center'
             )}
           >
-            {requestingResults && <Spinner size="sm" />}
-            {!requestingResults &&
+            {documentationSearch.loading && <Spinner size="sm" />}
+            {!documentationSearch.loading &&
               (searchResultsState === SearchResultsDisplayMode.Found ? (
                 <Fragment>
                   <h6 className="text-start">
