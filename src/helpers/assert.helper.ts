@@ -31,20 +31,13 @@ export const isSerializable = (item: any) => {
   return true
 }
 
-type Enumerate<
-  N extends number,
-  Acc extends number[] = []
-> = Acc['length'] extends N
-  ? Acc[number]
-  : Enumerate<N, [...Acc, Acc['length']]>
-
-type IntRange<F extends number, T extends number> = Exclude<
-  Enumerate<T>,
-  Enumerate<F>
->
-
 type SimilarityOptions = {
-  syntheticPercentage?: IntRange<0, 101>
+  /**
+   * The percentage of similarity between two strings.
+   *
+   * Is an integer or float number between 0 and 100.
+   */
+  syntheticPercentage?: number
 }
 
 const defaultSyntheticSimilarityPercentage = 0x000050
@@ -61,6 +54,15 @@ export const isSimilar = (
   criteria: string,
   options?: SimilarityOptions
 ) => {
+  const syntheticPercentage =
+    options?.syntheticPercentage ?? defaultSyntheticSimilarityPercentage
+
+  if (syntheticPercentage < 0 || syntheticPercentage > 100) {
+    throw new TypeError(
+      `The synthetic percentage must be an integer or float number between 0 and 100.`
+    )
+  }
+
   const calculateStringsSimilarity = (
     firstString: string,
     secondString: string
@@ -149,10 +151,7 @@ export const isSimilar = (
   }
 
   const validateComparison = (percentage: number) => {
-    return (
-      percentage >=
-      (options?.syntheticPercentage ?? defaultSyntheticSimilarityPercentage)
-    )
+    return percentage >= syntheticPercentage
   }
 
   return validateComparison(calculateStringsSimilarity(comparator, criteria))
