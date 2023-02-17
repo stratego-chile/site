@@ -23,13 +23,26 @@ First of all, to start developing on this project, you need to be aware that thi
 Once you have the tools indicated above, to start the development server just run:
 
 ```bash
-pnpm dev
-# or, for a local server using TLS encryption:
-pnpm dev:ssl
+$ pnpm dev
+
+# or, for a local server using TLS encryption (self-signed certificate):
+$ pnpm cert
+$ pnpm dev:ssl
 ```
 
 The application will be started in localhost:3000. Depending on your development server start command, the app will be accessible under the HTTP or HTTPS protocol.
 
-## About technologies
+## How is developed
 
-This project use TypeScript and SASS, powered by the [Next.js framework](https://nextjs.org/).
+This project use *strictly* [TypeScript](https://www.npmjs.com/package/typescript) and [SASS](https://www.npmjs.com/package/sass), powered by the [Next.js framework](https://nextjs.org/)
+
+### Other important techonologies we use
+
+- Mail templating:
+  - [pug](https://www.npmjs.com/package/pug)
+  - [pug-loader](https://www.npmjs.com/package/pug-loader)
+- Mailing: [nodemailer](https://www.npmjs.com/package/nodemailer)
+- Internationalization:
+  - [i18next](https://www.npmjs.com/package/i18next)
+  - [react-i18next](https://www.npmjs.com/package/react-i18next)
+  - [next-i18next](https://www.npmjs.com/package/next-i18next)
