@@ -93,9 +93,9 @@
     "json5": "^2.2.3",
     "markdown-it": "^13.0.1",
     "prettier": "^2.8.4",
-    "pug-plugin": "^4.9.4",
+    "pug-plugin": "^4.9.5",
     "raw-loader": "^4.0.2",
-    "sass": "^1.58.2",
+    "sass": "^1.58.3",
     "sass-loader": "^13.2.0",
     "typescript": "4.9.5",
     "webpack": "^5.75.0"
