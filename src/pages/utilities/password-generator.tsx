@@ -11,13 +11,12 @@ import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useCallback, useDeferredValue, useId, useMemo, useState } from 'react'
+import { useCallback, useEffect, useId, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
 import Tooltip from 'react-bootstrap/Tooltip'
-import { useAsyncFn } from 'react-use'
 
 type Enumerate<
   N extends number,
@@ -58,7 +57,10 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
 
   // TODO: add chars customization
   const [chars] = useState({
-    regular: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    regular: 'abcdefghijklmnopqrstuvwxyz'
+      .split('')
+      .map((char) => char.toLowerCase().concat(char.toUpperCase()))
+      .join(''),
     special: 'çñüöëïä',
     numbers: '0123456789',
     symbols: '!@#$%^&*()_+¿',
@@ -86,131 +88,134 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
     },
   }
 
-  const defaultOptions: GeneratorOptions = {
-    length: 24,
-    times: 5,
-    include: Object.keys(chars) as Array<Characters>,
-  }
+  const [usableChars, setUsableChars] = useState<Array<string>>([])
 
   const {
+    isSubmitting,
     values: optionFormValues,
     handleChange,
     handleSubmit,
-  } = useFormik({
-    initialValues: defaultOptions,
-    onSubmit: () => {},
-  })
+    submitForm,
+  } = useFormik<GeneratorOptions>({
+    initialValues: {
+      length: 24,
+      times: 5,
+      include: Object.keys(chars) as Array<Characters>,
+    },
+    onSubmit: async (options) => {
+      const { default: shuffle } = await import('@stdlib/random/shuffle')
 
-  const options = useDeferredValue(optionFormValues)
-  //#endregion
+      const passwords: Array<string> = []
 
-  const usableChars = useMemo(
-    () =>
-      options.include
-        .map((charGroup) => chars[charGroup])
-        .flatMap((characters) => characters.split('')),
-    [chars, options.include]
-  )
+      while (passwords.length < options.times) {
+        const digest = shuffle(usableChars) as Array<string>
 
-  const [, generatePassword] = useAsyncFn(async () => {
-    const { default: shuffle } = await import('@stdlib/random/shuffle')
-    const $generatedPasswords: Array<string> = []
-    for (const digest of new Array<Array<string>>(options.times).fill(
-      usableChars
-    )) {
-      const mixedShuffle = shuffle(digest)
-      let generatedPassword = String()
+        let password = String()
 
-      while (
-        generatedPassword === String() ||
-        $generatedPasswords.includes(generatedPassword)
-      ) {
-        generatedPassword = new Array(options.length)
-          .fill(mixedShuffle)
-          .map(
-            (characters) =>
-              characters[Math.floor(Math.random() * characters.length)]
-          )
-          .join('')
+        do
+          password = new Array<Array<string>>(options.length)
+            .fill(digest)
+            .map(
+              (characters) =>
+                characters[Math.floor(Math.random() * characters.length)]
+            )
+            .join('')
+        while (passwords.includes(password))
+
+        passwords.push(password)
       }
 
-      $generatedPasswords.push(generatedPassword)
-    }
-    setGeneratedPasswords($generatedPasswords)
-  }, [usableChars, options])
+      setGeneratedPasswords(passwords)
+    },
+  })
+
+  useEffect(() => {
+    setUsableChars(
+      optionFormValues.include
+        .map((charGroup) => chars[charGroup])
+        .flatMap((characters) => characters.split(''))
+    )
+  }, [chars, optionFormValues.include])
+  //#endregion
 
   return (
     <Layout
-      pageTitle={capitalizeText(t('list.0.title'), 'simple')}
+      pageTitle={capitalizeText(t`list.0.title`, 'simple')}
       showNavigationOptions
     >
       <Container className="my-5">
         <Row className="mb-5">
           <Col className={LayoutStyles.autoFormat}>
             <h1 className="fw-bold">
-              {capitalizeText(t('list.0.title'), 'simple')}
+              {capitalizeText(t`list.0.title`, 'simple')}
             </h1>
-            <small>{t('list.0.subtitle')}</small>
+            <small>{t`list.0.subtitle`}</small>
           </Col>
         </Row>
-        <Row>
-          <Col xs={12} lg={3}>
+        <Row className="gap-4">
+          <Col xs={12} lg={4}>
             <Form onSubmit={handleSubmit}>
               <Row className="gap-4">
                 <Col xs={12}>
                   <Form.Group controlId={getControlId('include')}>
-                    <Form.Label>{t('list.0.include')}</Form.Label>
+                    <Form.Label>{t`list.0.include`}</Form.Label>
                     {Object.entries(chars).map(([key, charArray], index) => (
-                      <div key={index} className="d-flex align-items-center">
-                        <OverlayTrigger
-                          trigger={['click', 'hover']}
-                          overlay={
-                            <Popover body>
-                              <p>{t('list.0.availableChars')}</p>
-                              <Table bordered size="sm">
-                                <tbody>
-                                  {(($charArray) => {
-                                    const $rows = []
-                                    const segmentLength = 10
-                                    for (
-                                      let i = 0;
-                                      i < $charArray.length;
-                                      i += segmentLength
-                                    ) {
-                                      $rows.push(
-                                        <tr key={i} className="border-bottom-0">
-                                          {$charArray
-                                            .slice(i, i + segmentLength)
-                                            .map((char, $index) => (
-                                              <td
-                                                key={$index}
-                                                className="text-center border-bottom"
-                                              >
-                                                {char}
-                                              </td>
-                                            ))}
-                                        </tr>
-                                      )
-                                    }
-                                    return $rows
-                                  })(charArray.split(''))}
-                                </tbody>
-                              </Table>
-                            </Popover>
-                          }
-                        >
-                          <FontAwesomeIcon icon={faCircleQuestion} />
-                        </OverlayTrigger>
-                        &ensp;
+                      <div key={index} className="d-flex align-items-start">
                         <Form.Check
                           disabled={index === 0}
                           name="include"
                           type="checkbox"
-                          label={t(`list.0.${key}`)}
+                          label={
+                            <span>
+                              {t(`list.0.${key}`)}{' '}
+                              <OverlayTrigger
+                                trigger={['click', 'hover']}
+                                overlay={
+                                  <Popover body>
+                                    <p>{t`list.0.availableChars`}</p>
+                                    <Table bordered size="sm">
+                                      <tbody>
+                                        {(($charArray) => {
+                                          const $rows = []
+                                          const segmentLength = 10
+                                          for (
+                                            let i = 0;
+                                            i < $charArray.length;
+                                            i += segmentLength
+                                          ) {
+                                            $rows.push(
+                                              <tr
+                                                key={i}
+                                                className="border-bottom-0"
+                                              >
+                                                {$charArray
+                                                  .slice(i, i + segmentLength)
+                                                  .map((char, $index) => (
+                                                    <td
+                                                      key={$index}
+                                                      className="text-center border-bottom"
+                                                    >
+                                                      {char}
+                                                    </td>
+                                                  ))}
+                                              </tr>
+                                            )
+                                          }
+                                          return $rows
+                                        })(charArray.split(''))}
+                                      </tbody>
+                                    </Table>
+                                  </Popover>
+                                }
+                              >
+                                <FontAwesomeIcon icon={faCircleQuestion} />
+                              </OverlayTrigger>
+                            </span>
+                          }
                           value={key}
                           onChange={handleChange}
                           checked={optionFormValues.include.includes(
-                            key as keyof typeof chars
+                            key as Characters
                           )}
                         />
                       </div>
@@ -220,7 +225,7 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
                 <Col xs={12}>
                   <Form.Group controlId={getControlId('times')}>
                     <Form.Label>
-                      {t('list.0.times')} ({options.times})
+                      {t`list.0.times`} ({optionFormValues.times})
                     </Form.Label>
                     <Form.Range
                       name="times"
@@ -235,7 +240,7 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
                 <Col xs={12}>
                   <Form.Group controlId={getControlId('length')}>
                     <Form.Label>
-                      {t('list.0.length')} ({options.length})
+                      {t`list.0.length`} ({optionFormValues.length})
                     </Form.Label>
                     <Form.Range
                       name="length"
@@ -250,15 +255,16 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
               </Row>
             </Form>
           </Col>
-          <Col xs={12} lg className="bg-light rounded-2 py-3">
+          <Col xs={12} lg className="">
             <Row className="gap-4">
               <Col xs={12} lg={4}>
                 <Button
                   variant="info"
                   className="fw-bold text-light"
-                  onClick={generatePassword}
+                  onClick={submitForm}
+                  disabled={isSubmitting}
                 >
-                  {t('list.0.generate')}
+                  {t`list.0.generate`}
                 </Button>
               </Col>
               <Col xs={12}>
@@ -277,13 +283,13 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
                           <OverlayTrigger
                             placement="left"
                             trigger="focus"
-                            overlay={<Tooltip>{t('list.0.copied')}</Tooltip>}
+                            overlay={<Tooltip>{t`list.0.copied`}</Tooltip>}
                           >
                             <Button
                               className="d-inline-block"
                               variant="link"
                               size="sm"
-                              title={t('list.0.copy') satisfies string}
+                              title={t`list.0.copy` satisfies string}
                               onClick={() =>
                                 navigator.clipboard.writeText(password)
                               }

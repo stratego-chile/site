@@ -11,6 +11,8 @@ declare type ResponseBody<
 
 declare type AvailableLocales = 'es-CL' | 'en-US' | 'pt-BR'
 
+declare type SecuritySection = 'audit' | 'consulting'
+
 declare type DocumentationPostType = 'default' | 'kb' | 'guide'
 
 declare type DocumentationPost<T = DocumentationPostType> = {
