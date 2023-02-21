@@ -6,18 +6,23 @@ import { capitalizeText } from '@stratego/helpers/text.helper'
 import { defaultLocale } from '@stratego/locales'
 import HomeStyles from '@stratego/styles/modules/Home.module.sass'
 import classNames from 'classnames'
-import { type GetStaticProps, type NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import Button from 'react-bootstrap/Button'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Image from 'react-bootstrap/Image'
-import Row from 'react-bootstrap/Row'
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
+
+const Button = dynamic(() => import('react-bootstrap/Button'))
+
+const Container = dynamic(() => import('react-bootstrap/Container'))
+
+const Row = dynamic(() => import('react-bootstrap/Row'))
+
+const Col = dynamic(() => import('react-bootstrap/Col'))
+
+const Image = dynamic(() => import('react-bootstrap/Image'))
 
 const ShowOnScroll = dynamic(
   () => import('@stratego/components/animations/show-on-scroll')
@@ -29,7 +34,6 @@ const DynamicContactForm = dynamic(
     loading: ({ isLoading, error }) => (
       <LoadingPlaceholder loading={isLoading} error={error} />
     ),
-    ssr: false,
   }
 )
 
