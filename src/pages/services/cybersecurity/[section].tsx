@@ -1,5 +1,5 @@
 import LoadingPlaceholder from '@stratego/components/shared/loading-placeholder'
-import { defaultLocale } from '@stratego/locales'
+import { defaultLocale, localesList } from '@stratego/locales'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
@@ -23,11 +23,11 @@ const CybersecuritySection: NextPage<WithoutProps> = () => {
 export const getStaticPaths: GetStaticPaths<{
   section: SecuritySection
 }> = async () => ({
-  paths: Array.from(
-    new Set<SecuritySection>(['audit', 'consulting']).values()
-  ).map((section) => ({
-    params: { section },
-  })),
+  paths: Array.from(new Set<SecuritySection>(['audit', 'consulting']).values())
+    .map((section) =>
+      localesList.map((locale) => ({ params: { section }, locale }))
+    )
+    .flatMap((section) => section),
   fallback: false,
 })
 
