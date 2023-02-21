@@ -38,7 +38,7 @@ const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
 
   const [subsection, setSubsection] = useState<SecuritySection>()
 
-  const [selectingSubsecion, selectSubsection] = useTransition()
+  const [selectingSubsection, selectSubsection] = useTransition()
 
   const { t } = useTranslation()
 
@@ -78,7 +78,7 @@ const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
   )
 
   useEffect(() => {
-    if (!selectingSubsecion && subsection)
+    if (!selectingSubsection && subsection)
       selectSubsection(() => {
         const index = subsections.findIndex(($subsection) =>
           isSimilar(
