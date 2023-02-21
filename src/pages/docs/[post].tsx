@@ -9,22 +9,25 @@ import { defaultLocale } from '@stratego/locales'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import requester from 'axios'
 import classNames from 'classnames'
-import { type GetServerSideProps, type NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import { useAsyncFn } from 'react-use'
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'), {
   loading: () => <LoadingPlaceholder />,
 })
+
+const Container = dynamic(() => import('react-bootstrap/Container'))
+
+const Row = dynamic(() => import('react-bootstrap/Row'))
+
+const Col = dynamic(() => import('react-bootstrap/Col'))
 
 const GoBackButton = dynamic(
   () => import('@stratego/components/shared/go-back-button')
