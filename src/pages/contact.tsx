@@ -6,11 +6,14 @@ import { type GetServerSideProps, type NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
+
+const Container = dynamic(() => import('react-bootstrap/Container'))
+
+const Row = dynamic(() => import('react-bootstrap/Row'))
+
+const Col = dynamic(() => import('react-bootstrap/Col'))
 
 const ContactForm = dynamic(
   () => import('@stratego/components/forms/contact-form'),
