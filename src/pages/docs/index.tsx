@@ -11,7 +11,7 @@ import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useRouter, type NextRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import {
   Fragment,
   useCallback,
@@ -20,14 +20,14 @@ import {
   useId,
   useMemo,
   useState,
-  type FC,
 } from 'react'
 import Fade from 'react-bootstrap/Fade'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import ListGroup from 'react-bootstrap/ListGroup'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import { useAsyncFn } from 'react-use'
+
+const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 
 const Container = dynamic(() => import('react-bootstrap/Container'))
 
@@ -39,7 +39,9 @@ const Badge = dynamic(() => import('react-bootstrap/Badge'))
 
 const Spinner = dynamic(() => import('react-bootstrap/Spinner'))
 
-const Layout = dynamic(() => import('@stratego/components/shared/layout'))
+const ArticleLinks = dynamic(
+  () => import('@stratego/components/misc/docs-list')
+)
 
 const locallySavedArticlesId = 'recommendedArticles'
 
@@ -52,35 +54,6 @@ enum SearchResultsDisplayMode {
   NotFound,
   Found,
   Searching,
-}
-
-type ArticleLinksProps = {
-  router: NextRouter
-  articles: Array<{
-    id: string
-    title: string
-  }>
-}
-
-const ArticleLinks: FC<ArticleLinksProps> = ({ articles = [], router }) => {
-  const { t } = useTranslation()
-
-  return (
-    <ListGroup as="ol" numbered>
-      {articles.map(({ id, title }, key) => (
-        <Link key={key} href={`/docs/${id}`} passHref legacyBehavior>
-          <ListGroup.Item
-            action
-            as="li"
-            className="pe-pointer text-start"
-            disabled={!router.isReady}
-          >
-            {capitalizeText(t(title), 'simple')}
-          </ListGroup.Item>
-        </Link>
-      ))}
-    </ListGroup>
-  )
 }
 
 const SEARCH_CRITERIA_DELAY = 1000
@@ -159,19 +132,9 @@ const Documentation: NextPage<WithoutProps> = () => {
     [executeRecaptcha]
   )
 
-  const savedDefaultArticles = useMemo<Array<DocumentationPostRef>>(() => {
-    const locallySavedArticles = getStorageItem(locallySavedArticlesId)
-
-    return locallySavedArticles instanceof Array &&
-      locallySavedArticles.hasItems &&
-      locallySavedArticles.every(
-        (article) =>
-          article instanceof Object &&
-          ['id', 'title'].every((expectedProp) => expectedProp in article)
-      )
-      ? locallySavedArticles
-      : []
-  }, [getStorageItem])
+  const [savedDefaultArticles, setSavedDefaultArticles] = useState<
+    Array<DocumentationPostRef>
+  >([])
 
   const { data: defaultArticles } = useAsyncMemo(async () => {
     const { foundArticles: $foundArticles } = await searchDocumentationPosts(
@@ -186,8 +149,8 @@ const Documentation: NextPage<WithoutProps> = () => {
           ['id', 'title'].every((expectedProp) => expectedProp in article)
       )
       ? $foundArticles
-      : savedDefaultArticles
-  }, [savedDefaultArticles])
+      : []
+  }, [])
 
   const { data: foundArticles } = useAsyncMemo(async () => {
     if (inputCriteria !== criteria) return []
@@ -210,6 +173,21 @@ const Documentation: NextPage<WithoutProps> = () => {
   )
 
   useEffect(() => {
+    const locallySavedArticles = getStorageItem(locallySavedArticlesId)
+
+    if (
+      locallySavedArticles instanceof Array &&
+      locallySavedArticles.hasItems &&
+      locallySavedArticles.every(
+        (article) =>
+          article instanceof Object &&
+          ['id', 'title'].every((expectedProp) => expectedProp in article)
+      )
+    )
+      setSavedDefaultArticles(locallySavedArticles)
+  }, [getStorageItem])
+
+  useEffect(() => {
     if (
       defaultArticles instanceof Array &&
       defaultArticles.hasItems &&
@@ -220,9 +198,8 @@ const Documentation: NextPage<WithoutProps> = () => {
             (expectedProp) => expectedProp in article
           )
       )
-    ) {
+    )
       setStorageItem(locallySavedArticlesId, defaultArticles)
-    }
   }, [defaultArticles, setStorageItem])
 
   useEffect(() => {
@@ -235,22 +212,20 @@ const Documentation: NextPage<WithoutProps> = () => {
   }, [setValues])
 
   useEffect(() => {
+    if (router.isReady) {
+      const query = { ...router.query }
+
+      if (inputCriteria)
+        query.search = inputCriteria ? inputCriteria.trim() : undefined
+      else if ('search' in query) delete query.search
+
+      router.replace({ query }, undefined, { shallow: true })
+    }
     if (inputCriteria) {
       const searchTimeout = setTimeout(() => {
         setDelayedInputCriteria(inputCriteria)
       }, SEARCH_CRITERIA_DELAY)
       return () => clearTimeout(searchTimeout)
-    }
-  }, [inputCriteria])
-
-  useEffect(() => {
-    if (router.isReady) {
-      const query = { ...router.query }
-
-      if (inputCriteria) query.search = inputCriteria || undefined
-      else if ('search' in query) delete query.search
-
-      router.replace({ query }, undefined, { shallow: true })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputCriteria])
@@ -338,7 +313,7 @@ const Documentation: NextPage<WithoutProps> = () => {
               articles={
                 defaultArticles instanceof Array && defaultArticles.hasItems
                   ? defaultArticles
-                  : []
+                  : savedDefaultArticles
               }
             />
           </Col>
