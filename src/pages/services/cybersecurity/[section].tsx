@@ -1,5 +1,5 @@
 import LoadingPlaceholder from '@stratego/components/shared/loading-placeholder'
-import { defaultLocale, localesList } from '@stratego/locales
+import { defaultLocale, localesList } from '@stratego/locales'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
