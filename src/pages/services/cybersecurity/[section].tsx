@@ -1,25 +1,12 @@
 import LoadingPlaceholder from '@stratego/components/shared/loading-placeholder'
 import { defaultLocale } from '@stratego/locales'
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { Fragment } from 'react'
-import { useSearchParam } from 'react-use'
-
-type Section = 'audit' | 'consulting'
-
-const ErrorPage = dynamic(
-  () => import('@stratego/components/shared/error-page'),
-  {
-    loading: ({ isLoading, error }) => (
-      <LoadingPlaceholder loading={isLoading} error={error} />
-    ),
-  }
-)
 
 const SectionLayout = dynamic(
-  () => import('@stratego/pages/services/cybersecurity/(layout)'),
+  () => import('@stratego/components/misc/cybersecurity-section-layout'),
   {
     loading: ({ isLoading, error }) => (
       <LoadingPlaceholder loading={isLoading} error={error} />
@@ -30,25 +17,21 @@ const SectionLayout = dynamic(
 const CybersecuritySection: NextPage<WithoutProps> = () => {
   const router = useRouter()
 
-  const sections: Array<Section> = ['audit', 'consulting']
-
-  const subsection = useSearchParam('subsection')
-
-  return (sections as Array<string>).includes(
-    String(router.query.section).toLowerCase()
-  ) ? (
-    <Fragment>
-      <SectionLayout
-        section={router.query.section as Section}
-        subsection={subsection ?? ''}
-      />
-    </Fragment>
-  ) : (
-    <ErrorPage statusCode={404} showGoBackButton />
-  )
+  return <SectionLayout section={router.query.section as SecuritySection} />
 }
 
-export const getServerSideProps: GetServerSideProps<WithoutProps> = async ({
+export const getStaticPaths: GetStaticPaths<{
+  section: SecuritySection
+}> = async () => ({
+  paths: Array.from(
+    new Set<SecuritySection>(['audit', 'consulting']).values()
+  ).map((section) => ({
+    params: { section },
+  })),
+  fallback: false,
+})
+
+export const getStaticProps: GetStaticProps<WithoutProps> = async ({
   locale,
 }) => ({
   props: {

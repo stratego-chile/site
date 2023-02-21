@@ -7,23 +7,25 @@ import classNames from 'classnames'
 import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import PropTypes from 'prop-types'
 import {
   useCallback,
   useEffect,
   useMemo,
-  useRef,
   useState,
+  useTransition,
   type FC,
 } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
 
 type SectionLayoutProps = {
-  section: string
-  subsection: string
+  section: SecuritySection
 }
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
+
+const SubsectionItem = dynamic(
+  () => import('@stratego/components/misc/service-subsection')
+)
 
 const Container = dynamic(() => import('react-bootstrap/Container'))
 
@@ -31,76 +33,12 @@ const Row = dynamic(() => import('react-bootstrap/Row'))
 
 const Col = dynamic(() => import('react-bootstrap/Col'))
 
-const SubsectionItem: FC<{
-  itemKey: number
-  scrollInto?: boolean
-  section: SectionLayoutProps['section']
-  subsection: SectionLayoutProps['subsection']
-  onSelection: (key: number) => void
-}> = ({ itemKey, scrollInto, section, subsection, onSelection }) => {
-  const contentRef = useRef<HTMLDivElement>(null)
-
-  const { t } = useTranslation()
-
-  const scrollIntoElement = useCallback(() => {
-    contentRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-    })
-  }, [contentRef])
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (scrollInto) {
-        scrollIntoElement()
-      }
-    }, 250)
-    return () => clearTimeout(timeout)
-  }, [scrollInto, scrollIntoElement])
-
-  return (
-    <Accordion.Item key={itemKey} eventKey={String(itemKey)}>
-      <Accordion.Header
-        onClick={() => {
-          scrollIntoElement()
-          onSelection(itemKey)
-        }}
-      >
-        {t(`sections:security.services.${section}.modules.${subsection}.title`)}
-      </Accordion.Header>
-      <Accordion.Body ref={contentRef}>
-        {((content) =>
-          content instanceof Array ? (
-            content.map((fragment, fragmentKey) => (
-              <p key={fragmentKey}>{fragment}</p>
-            ))
-          ) : (
-            <p>{content}</p>
-          ))(
-          t(
-            `sections:security.services.${section}.modules.${subsection}.description`,
-            {
-              returnObjects: true,
-            }
-          )
-        )}
-      </Accordion.Body>
-    </Accordion.Item>
-  )
-}
-
-SubsectionItem.propTypes = {
-  itemKey: PropTypes.number.isRequired,
-  scrollInto: PropTypes.bool,
-  section: PropTypes.string.isRequired,
-  subsection: PropTypes.string.isRequired,
-  onSelection: PropTypes.func.isRequired,
-}
-
-SubsectionItem.displayName = 'CybersecuritySubsectionItem'
-
-const SectionLayout: FC<SectionLayoutProps> = ({ section, subsection }) => {
+const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
   const router = useRouter()
+
+  const [subsection, setSubsection] = useState<SecuritySection>()
+
+  const [selectingSubsecion, selectSubsection] = useTransition()
 
   const { t } = useTranslation()
 
@@ -113,7 +51,7 @@ const SectionLayout: FC<SectionLayoutProps> = ({ section, subsection }) => {
     [section, t]
   )
 
-  const [activeSubsections, setActiveSubsections] = useState<Array<number>>([])
+  const [activeSubsections, setActiveSubsections] = useState<Array<string>>([])
 
   const subsections = useMemo(
     () =>
@@ -125,33 +63,46 @@ const SectionLayout: FC<SectionLayoutProps> = ({ section, subsection }) => {
     [section, t]
   )
 
-  const handleHashChange = useCallback(() => {
-    if (subsection) {
-      const index = subsections.findIndex(($subsection) =>
-        isSimilar(
-          kebabcase($subsection).toLowerCase(),
-          subsection.toLowerCase(),
-          { syntheticPercentage: 95 }
-        )
-      )
-      setActiveSubsections([index])
-    }
-  }, [subsection, subsections])
+  const toggleSubsection = useCallback(
+    (eventKey: string) => {
+      const $activeSubsections = [...activeSubsections]
+      const activeSubsection = $activeSubsections.indexOf(String(eventKey))
 
-  const updateOpenedSubsections = useCallback(
-    (eventKey: number) => {
-      const $activeSubsections = activeSubsections.slice()
-      if ($activeSubsections.includes(eventKey))
-        $activeSubsections.splice($activeSubsections.indexOf(eventKey), 1)
-      else $activeSubsections.push(eventKey)
+      if (activeSubsection !== -1)
+        $activeSubsections.splice(activeSubsection, 1)
+      else $activeSubsections.push(String(eventKey))
+
       setActiveSubsections($activeSubsections)
     },
     [activeSubsections]
   )
 
   useEffect(() => {
-    handleHashChange()
-  }, [handleHashChange, router.asPath])
+    if (!selectingSubsecion && subsection)
+      selectSubsection(() => {
+        const index = subsections.findIndex(($subsection) =>
+          isSimilar(
+            kebabcase($subsection).toLowerCase(),
+            subsection.toLowerCase(),
+            { syntheticPercentage: 100 }
+          )
+        )
+        if (index >= 0) setActiveSubsections([String(index)])
+        else setActiveSubsections(['0'])
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subsection, subsections])
+
+  useEffect(() => {
+    if (router.isReady) {
+      const {
+        query: { subsection: $subsection },
+      } = router
+      if ($subsection) {
+        setSubsection($subsection.toString() as SecuritySection)
+      }
+    }
+  }, [router, router.isReady])
 
   return (
     <Layout
@@ -204,7 +155,7 @@ const SectionLayout: FC<SectionLayoutProps> = ({ section, subsection }) => {
             {subsections.hasItems && (
               <Accordion
                 className="mt-5"
-                activeKey={activeSubsections?.map(($subsection) =>
+                activeKey={activeSubsections.map(($subsection) =>
                   String($subsection)
                 )}
                 alwaysOpen
@@ -212,11 +163,11 @@ const SectionLayout: FC<SectionLayoutProps> = ({ section, subsection }) => {
                 {subsections.map(($subsection, key) => (
                   <SubsectionItem
                     key={key}
-                    itemKey={key}
-                    scrollInto={activeSubsections.at(0) === key}
+                    itemKey={String(key)}
+                    scrollInto={activeSubsections.at(0) === String(key)}
                     section={section}
                     subsection={$subsection}
-                    onSelection={updateOpenedSubsections}
+                    onSelection={toggleSubsection}
                   />
                 ))}
               </Accordion>
