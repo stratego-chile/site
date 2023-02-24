@@ -8,9 +8,9 @@ import type { NextApiHandler } from 'next'
 
 const ALLOWED_METHODS: Array<Method> = ['GET']
 
-const handle: NextApiHandler<DocumentationPostRef | undefined> = async (
-  ...hooks
-) => {
+const handle: NextApiHandler<
+  Stratego.Common.ResponseBody<Stratego.Documentation.PostRef | undefined>
+> = async (...hooks) => {
   endpoint(ALLOWED_METHODS, ...hooks, async (request, response) => {
     const captchaToken = request.headers.authorization
 
@@ -18,7 +18,7 @@ const handle: NextApiHandler<DocumentationPostRef | undefined> = async (
       throw new Error('Captcha token invalid')
 
     const locale = request.headers['accept-language'] as
-      | AvailableLocales
+      | Stratego.Common.Locale
       | undefined
 
     const { id } = request.query
@@ -45,10 +45,13 @@ const handle: NextApiHandler<DocumentationPostRef | undefined> = async (
 
     const item = items?.at(0) ?? undefined
 
-    const docRef = item ? (unmarshall(item) as DocumentationPost) : undefined
+    const docRef = item
+      ? (unmarshall(item) as Stratego.Documentation.Post)
+      : undefined
 
-    response.status(200).json(
-      docRef?.availableLocales.includes(locale ?? defaultLocale)
+    response.status(200).json({
+      status: 'OK',
+      result: docRef?.availableLocales.includes(locale ?? defaultLocale)
         ? {
             id: docRef.refId,
             title:
@@ -58,8 +61,8 @@ const handle: NextApiHandler<DocumentationPostRef | undefined> = async (
                 docRef.availableLocales.indexOf(locale ?? defaultLocale)
               ],
           }
-        : undefined
-    )
+        : undefined,
+    })
   })
 }
 

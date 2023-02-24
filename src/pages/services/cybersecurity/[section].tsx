@@ -17,13 +17,19 @@ const SectionLayout = dynamic(
 const CybersecuritySection: NextPage<WithoutProps> = () => {
   const router = useRouter()
 
-  return <SectionLayout section={router.query.section as SecuritySection} />
+  return (
+    <SectionLayout
+      section={router.query.section as Stratego.Services.SecuritySection}
+    />
+  )
 }
 
 export const getStaticPaths: GetStaticPaths<{
-  section: SecuritySection
+  section: Stratego.Services.SecuritySection
 }> = async () => ({
-  paths: Array.from(new Set<SecuritySection>(['audit', 'consulting']).values())
+  paths: Array.from(
+    new Set<Stratego.Services.SecuritySection>(['audit', 'consulting']).values()
+  )
     .map((section) =>
       localesList.map((locale) => ({ params: { section }, locale }))
     )

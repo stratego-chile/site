@@ -49,23 +49,24 @@ const DocumentationPost: NextPage<WithoutProps> = () => {
       if (executeRecaptcha) {
         const captchaToken = await executeRecaptcha('enquiryFormSubmit')
 
-        const response = await requester.get<DocumentationPostRef>(
-          `/api/docs/${id}`,
-          {
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-              'Accept-Language': i18n.language,
-              Authorization: captchaToken,
-            },
-          }
-        )
+        const response = await requester.get<
+          Stratego.Common.ResponseBody<
+            Stratego.Documentation.PostRef | undefined
+          >
+        >(`/api/docs/${id}`, {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Accept-Language': i18n.language,
+            Authorization: captchaToken,
+          },
+        })
 
-        return response.data instanceof Object &&
+        return response.data.result instanceof Object &&
           ['id', 'title', 'locale'].every(
-            (expectedProp) => expectedProp in response.data
+            (expectedProp) => expectedProp in response.data.result!
           )
-          ? (response.data as DocumentationPostRef)
+          ? (response.data.result as Stratego.Documentation.PostRef)
           : undefined
       }
       return undefined
