@@ -1,42 +1,50 @@
-import { faCircleQuestion } from '@fortawesome/free-regular-svg-icons/faCircleQuestion'
 import { faCopy } from '@fortawesome/free-solid-svg-icons/faCopy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import type {
+  PasswordGeneratorFormProps,
+  PasswordGeneratorRef,
+} from '@stratego/components/forms/password-generator-form'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { defaultLocale } from '@stratego/locales'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import classNames from 'classnames'
-import { useFormik } from 'formik'
 import type { GetStaticProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useCallback, useEffect, useId, useState } from 'react'
+import {
+  forwardRef,
+  PropsWithRef,
+  useCallback,
+  useRef,
+  useState,
+  type FC,
+  type Ref,
+} from 'react'
 import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Popover from 'react-bootstrap/Popover'
 import Tooltip from 'react-bootstrap/Tooltip'
 
-type Enumerate<
-  N extends number,
-  Acc extends number[] = []
-> = Acc['length'] extends N
-  ? Acc[number]
-  : Enumerate<N, [...Acc, Acc['length']]>
+const PasswordGeneratorFormWrapper = dynamic(
+  () => import('@stratego/components/forms/password-generator-form'),
+  {
+    ssr: false,
+  }
+)
 
-type IntRange<F extends number, T extends number> = Exclude<
-  Enumerate<T>,
-  Enumerate<F>
->
+const PasswordGeneratorFormWrapperForwarded: FC<
+  PropsWithRef<
+    PasswordGeneratorFormProps & {
+      ref: Ref<PasswordGeneratorRef>
+    }
+  >
+> = forwardRef((props, ref) => {
+  return <PasswordGeneratorFormWrapper {...props} forwardedRef={ref} />
+})
 
-type Characters = 'regular' | 'special' | 'numbers' | 'symbols'
-
-type GeneratorOptions = {
-  length: IntRange<8, 65>
-  times: IntRange<1, 21>
-  include: Array<Characters>
-}
+PasswordGeneratorFormWrapperForwarded.displayName =
+  'PasswordGeneratorFormWrapper'
 
 const Container = dynamic(() => import('react-bootstrap/Container'))
 
@@ -51,92 +59,21 @@ const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 const PasswordGenerator: NextPage<WithoutProps> = () => {
   const { t } = useTranslation('utils')
 
+  const passwordGeneratorRef = useRef<PasswordGeneratorRef>(null)
+
+  const [generatingPasswords, setGeneratingPasswordsState] =
+    useState<boolean>(false)
+
+  const [digest, setDigest] = useState<Array<string>>([])
+
   const [generatedPasswords, setGeneratedPasswords] = useState<Array<string>>(
     []
   )
 
-  // TODO: add chars customization
-  const [chars] = useState({
-    regular: 'abcdefghijklmnopqrstuvwxyz'
-      .split('')
-      .map((char) => char.toLowerCase().concat(char.toUpperCase()))
-      .join(''),
-    special: 'çñüöëïä',
-    numbers: '0123456789',
-    symbols: '!@#$%^&*()_+¿',
-  } as Record<Characters, string>)
-
-  //#region password generation options form
-  const formId = useId()
-
-  const getControlId = useCallback(
-    (ref: string) => formId.concat('-', ref),
-    [formId]
-  )
-
-  const optionsSpec = {
-    length: {
-      min: 8,
-      max: 64,
-    },
-    times: {
-      min: 1,
-      max: 20,
-    },
-    includes: {
-      minLength: 1,
-    },
-  }
-
-  const [usableChars, setUsableChars] = useState<Array<string>>([])
-
-  const {
-    isSubmitting,
-    values: optionFormValues,
-    handleChange,
-    handleSubmit,
-    submitForm,
-  } = useFormik<GeneratorOptions>({
-    initialValues: {
-      length: 24,
-      times: 5,
-      include: Object.keys(chars) as Array<Characters>,
-    },
-    onSubmit: async (options) => {
-      const { default: shuffle } = await import('@stdlib/random/shuffle')
-
-      const passwords: Array<string> = []
-
-      while (passwords.length < options.times) {
-        const digest = shuffle(usableChars) as Array<string>
-
-        let password = String()
-
-        do
-          password = new Array<Array<string>>(options.length)
-            .fill(digest)
-            .map(
-              (characters) =>
-                characters[Math.floor(Math.random() * characters.length)]
-            )
-            .join('')
-        while (passwords.includes(password))
-
-        passwords.push(password)
-      }
-
-      setGeneratedPasswords(passwords)
-    },
-  })
-
-  useEffect(() => {
-    setUsableChars(
-      optionFormValues.include
-        .map((charGroup) => chars[charGroup])
-        .flatMap((characters) => characters.split(''))
-    )
-  }, [chars, optionFormValues.include])
-  //#endregion
+  const generatePasswords = useCallback(() => {
+    if (passwordGeneratorRef.current?.generatePasswords)
+      passwordGeneratorRef.current.generatePasswords()
+  }, [passwordGeneratorRef])
 
   return (
     <Layout
@@ -154,115 +91,21 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
         </Row>
         <Row className="gap-4">
           <Col xs={12} lg={4}>
-            <Form onSubmit={handleSubmit}>
-              <Row className="gap-4">
-                <Col xs={12}>
-                  <Form.Group controlId={getControlId('include')}>
-                    <Form.Label>{t`list.0.include`}</Form.Label>
-                    {Object.entries(chars).map(([key, charArray], index) => (
-                      <div key={index} className="d-flex align-items-start">
-                        <Form.Check
-                          disabled={index === 0}
-                          name="include"
-                          type="checkbox"
-                          label={
-                            <span>
-                              {t(`list.0.${key}`)}{' '}
-                              <OverlayTrigger
-                                trigger={['click', 'hover']}
-                                overlay={
-                                  <Popover body>
-                                    <p>{t`list.0.availableChars`}</p>
-                                    <Table bordered size="sm">
-                                      <tbody>
-                                        {(($charArray) => {
-                                          const $rows = []
-                                          const segmentLength = 10
-                                          for (
-                                            let i = 0;
-                                            i < $charArray.length;
-                                            i += segmentLength
-                                          ) {
-                                            $rows.push(
-                                              <tr
-                                                key={i}
-                                                className="border-bottom-0"
-                                              >
-                                                {$charArray
-                                                  .slice(i, i + segmentLength)
-                                                  .map((char, $index) => (
-                                                    <td
-                                                      key={$index}
-                                                      className="text-center border-bottom"
-                                                    >
-                                                      {char}
-                                                    </td>
-                                                  ))}
-                                              </tr>
-                                            )
-                                          }
-                                          return $rows
-                                        })(charArray.split(''))}
-                                      </tbody>
-                                    </Table>
-                                  </Popover>
-                                }
-                              >
-                                <FontAwesomeIcon icon={faCircleQuestion} />
-                              </OverlayTrigger>
-                            </span>
-                          }
-                          value={key}
-                          onChange={handleChange}
-                          checked={optionFormValues.include.includes(
-                            key as Characters
-                          )}
-                        />
-                      </div>
-                    ))}
-                  </Form.Group>
-                </Col>
-                <Col xs={12}>
-                  <Form.Group controlId={getControlId('times')}>
-                    <Form.Label>
-                      {t`list.0.times`} ({optionFormValues.times})
-                    </Form.Label>
-                    <Form.Range
-                      name="times"
-                      onChange={handleChange}
-                      value={optionFormValues.times}
-                      step={1}
-                      min={optionsSpec.times.min}
-                      max={optionsSpec.times.max}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col xs={12}>
-                  <Form.Group controlId={getControlId('length')}>
-                    <Form.Label>
-                      {t`list.0.length`} ({optionFormValues.length})
-                    </Form.Label>
-                    <Form.Range
-                      name="length"
-                      onChange={handleChange}
-                      value={optionFormValues.length}
-                      step={1}
-                      min={optionsSpec.length.min}
-                      max={optionsSpec.length.max}
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-            </Form>
+            <PasswordGeneratorFormWrapperForwarded
+              ref={passwordGeneratorRef}
+              onGenerationStateChange={setGeneratingPasswordsState}
+              onPasswordGeneration={setGeneratedPasswords}
+              onDigestUpdate={(newDigest) => setDigest(newDigest.split(''))}
+            />
           </Col>
           <Col xs={12} lg className="">
             <Row className="gap-4">
               <Col xs={12} lg={4}>
                 <Button
-                  variant="info"
                   className="fw-bold text-light"
-                  onClick={submitForm}
-                  disabled={isSubmitting}
+                  size="sm"
+                  onClick={generatePasswords}
+                  disabled={!digest.hasItems || generatingPasswords}
                 >
                   {t`list.0.generate`}
                 </Button>

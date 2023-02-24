@@ -4,16 +4,23 @@
       "title": "Generador de contraseñas",
       "subtitle": "Cualquier contraseña generada no es almacenada ni compartida, con ninguno de nuestros activos de almacenamiento ni terceros.",
       "include": "Incluir",
-      "availableChars": "Caracteres disponibles",
+      "availableLetters": "Caracteres disponibles",
       "times": "Veces",
       "length": "Largo de la contraseña",
-      "regular": "Letras (minúsculas y mayúsculas)",
+      "regular": "Letras regulares",
       "special": "Letras especiales",
       "numbers": "Números",
       "symbols": "Símbolos",
+      "whiteSpaces": "Espacios en blanco",
+      "case": "Mayúsculas y minúsculas",
+      "lower": "Incluir letras minúsculas",
+      "upper": "Incluir letras mayúsculas",
+      "symbolsWeight": "Proporción de símbolos",
       "generate": "Generar contraseñas",
       "copy": "Copiar",
-      "copied": "Copiado"
+      "copied": "Copiado",
+      "letters": "Letras",
+      "result": "Resultado"
     }
   ],
   "footNote": "Revisa el <redirect>código fuente</redirect>."
