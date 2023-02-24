@@ -18,7 +18,7 @@ import {
 import Accordion from 'react-bootstrap/Accordion'
 
 type SectionLayoutProps = {
-  section: SecuritySection
+  section: Stratego.Services.SecuritySection
 }
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
@@ -36,7 +36,8 @@ const Col = dynamic(() => import('react-bootstrap/Col'))
 const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
   const router = useRouter()
 
-  const [subsection, setSubsection] = useState<SecuritySection>()
+  const [subsection, setSubsection] =
+    useState<Stratego.Services.SecuritySection>()
 
   const [selectingSubsection, selectSubsection] = useTransition()
 
@@ -99,7 +100,9 @@ const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
         query: { subsection: $subsection },
       } = router
       if ($subsection) {
-        setSubsection($subsection.toString() as SecuritySection)
+        setSubsection(
+          $subsection.toString() as Stratego.Services.SecuritySection
+        )
       }
     }
   }, [router, router.isReady])

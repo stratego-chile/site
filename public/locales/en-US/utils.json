@@ -4,16 +4,23 @@
       "title": "Password generator",
       "subtitle": "Any passwords generated are not stored or shared with any of our storage services or third parties.",
       "include": "Include",
-      "availableChars": "Available characters",
+      "availableLetters": "Available letters",
       "times": "Times",
       "length": "Password length",
-      "regular": "Regular letters (uppercase and lowercase)",
+      "regular": "Regular letters",
       "special": "Special letters",
       "numbers": "Numbers",
       "symbols": "Symbols",
+      "whiteSpaces": "White spaces",
+      "case": "Letters case",
+      "lower": "Include lower case letters",
+      "upper": "Include upper case letters",
+      "symbolsWeight": "Symbols proportion",
       "generate": "Generate passwords",
       "copy": "Copy",
-      "copied": "Copied"
+      "copied": "Copied",
+      "letters": "Letters",
+      "result": "Result"
     }
   ],
   "footNote": "See the <redirect>source code</redirect>."

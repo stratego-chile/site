@@ -11,6 +11,23 @@
     "submit": "unexpected error when trying to send your information.",
     "unknown": "unknown server error. please try again later."
   },
+  "controls": {
+    "cancel": "cancel",
+    "submit": "submit",
+    "close": "close",
+    "back": "go back",
+    "next": "next",
+    "previous": "previous",
+    "save": "save",
+    "edit": "edit",
+    "delete": "delete",
+    "add": "add",
+    "remove": "remove",
+    "confirm": "confirm",
+    "search": "search",
+    "clear": "clear",
+    "update": "update"
+  },
   "cookies": {
     "disclaimer": {
       "text": "this site uses cookies to allow you to use some features and improve your experience. By continuing to browse the site, you are agreeing to our use of cookies.",

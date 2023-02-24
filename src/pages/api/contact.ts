@@ -12,7 +12,9 @@ import { type LocalsObject } from 'pug'
 
 const ALLOWED_METHODS: Array<Method> = ['POST']
 
-const handler: NextApiHandler<ResponseBody<undefined>> = async (...hooks) => {
+const handler: NextApiHandler<Stratego.Common.ResponseBody<undefined>> = async (
+  ...hooks
+) => {
   endpoint(ALLOWED_METHODS, ...hooks, async (request, response) => {
     const captchaToken = request.headers.authorization
 
@@ -23,16 +25,16 @@ const handler: NextApiHandler<ResponseBody<undefined>> = async (...hooks) => {
 
     const providedLocale =
       'accept-language' in request.headers &&
-      (request.headers['accept-language']! as AvailableLocales)
+      (request.headers['accept-language']! as Stratego.Common.Locale)
 
     const locale =
       providedLocale && providedLocale in localesList
         ? providedLocale
-        : (defaultLocale as AvailableLocales)
+        : (defaultLocale as Stratego.Common.Locale)
 
     // Prevents the unnecessary import of unused locales
     const translation: typeof defaultTranslation =
-      locale === (defaultLocale as AvailableLocales)
+      locale === (defaultLocale as Stratego.Common.Locale)
         ? defaultTranslation
         : (await import(`@stratego/mail/i18n/${locale}.json`)).default
 

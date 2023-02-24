@@ -102,10 +102,12 @@ const Documentation: NextPage<WithoutProps> = () => {
       if (executeRecaptcha) {
         const captchaToken = await executeRecaptcha('enquiryFormSubmit')
 
-        const response = await requester.post<{
-          foundArticles: Array<DocumentationPostRef>
-          defaultMode: Mode
-        }>(
+        const response = await requester.post<
+          Stratego.Common.ResponseBody<{
+            foundArticles: Array<Stratego.Documentation.PostRef>
+            defaultMode?: boolean
+          }>
+        >(
           '/api/docs/search',
           defaultSearch ? { default: true } : { searchCriteria },
           {
@@ -118,46 +120,60 @@ const Documentation: NextPage<WithoutProps> = () => {
           }
         )
 
-        return response.data
-      } else {
-        return {
-          foundArticles: [],
-          defaultMode: defaultSearch,
-        } as {
-          foundArticles: Array<DocumentationPostRef>
-          defaultMode?: Mode
-        }
+        if (response.data.result) return response.data.result
+      }
+      return {
+        foundArticles: [],
+        defaultMode: defaultSearch,
+      } as {
+        foundArticles: Array<Stratego.Documentation.PostRef>
+        defaultMode?: Mode
       }
     },
     [executeRecaptcha]
   )
 
   const [savedDefaultArticles, setSavedDefaultArticles] = useState<
-    Array<DocumentationPostRef>
+    Array<Stratego.Documentation.PostRef>
   >([])
 
-  const { data: defaultArticles } = useAsyncMemo(async () => {
-    const { foundArticles: $foundArticles } = await searchDocumentationPosts(
-      '',
-      true
-    )
-    return $foundArticles instanceof Array &&
-      $foundArticles.hasItems &&
-      $foundArticles.every(
+  const filterArticles = (
+    assumedArticlesList: Array<any>
+  ): Array<Stratego.Documentation.PostRef> => {
+    return assumedArticlesList instanceof Array &&
+      assumedArticlesList.hasItems &&
+      assumedArticlesList.every(
         (article) =>
           article instanceof Object &&
-          ['id', 'title'].every((expectedProp) => expectedProp in article)
+          ['id', 'title', 'locale'].every(
+            (expectedProp) => expectedProp in article
+          )
       )
-      ? $foundArticles
+      ? assumedArticlesList
       : []
+  }
+
+  const { data: defaultArticles } = useAsyncMemo(async () => {
+    const { foundArticles: $foundArticles = [] } =
+      await searchDocumentationPosts('', true)
+
+    console.log('defaultArticles:', $foundArticles)
+
+    return filterArticles($foundArticles)
   }, [])
 
   const { data: foundArticles } = useAsyncMemo(async () => {
     if (inputCriteria !== criteria) return []
-    const { foundArticles: $foundArticles } = await searchDocumentationPosts(
+
+    const { foundArticles: $foundArticles } = (await searchDocumentationPosts(
       criteria
-    )
-    return $foundArticles instanceof Array ? $foundArticles : []
+    )) ?? {
+      foundArticles: [],
+    }
+
+    console.log('foundArticles:', $foundArticles)
+
+    return filterArticles($foundArticles)
   }, [inputCriteria, criteria])
 
   const searchResultsState = useMemo(
