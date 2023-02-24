@@ -11,6 +11,23 @@
     "submit": "error inesperado al intentar enviar su información.",
     "unknown": "error desconocido en el servidor. Intente nuevamente más tarde."
   },
+  "controls": {
+    "cancel": "cancelar",
+    "submit": "enviar",
+    "close": "cerrar",
+    "back": "volver",
+    "next": "siguiente",
+    "previous": "anterior",
+    "save": "guardar",
+    "edit": "editar",
+    "delete": "eliminar",
+    "add": "agregar",
+    "remove": "remover",
+    "confirm": "confirmar",
+    "search": "buscar",
+    "clear": "limpiar",
+    "update": "actualizar"
+  },
   "cookies": {
     "disclaimer": {
       "text": "este sitio utiliza cookies para permitirle utilizar algunas funciones y mejorar su experiencia. Al continuar navegando por el sitio, usted acepta nuestro uso de cookies.",
