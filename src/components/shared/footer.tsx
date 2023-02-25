@@ -35,10 +35,10 @@ const Footer: NextPage<WithoutProps> = () => {
           <Row
             className={classNames(
               'd-flex justify-content-center justify-content-lg-between',
-              'pt-5 py-lg-5 mb-2 mb-lg-5 gap-5'
+              'py-lg-5 mb-lg-5 mb-2 gap-5 pt-5'
             )}
           >
-            <Col xs={12} lg="auto" className="order-2 order-lg-1">
+            <Col xs={12} lg="auto" className="order-lg-1 order-2">
               <Image
                 fluid
                 className="d-block mx-auto mb-5"
@@ -47,7 +47,7 @@ const Footer: NextPage<WithoutProps> = () => {
                 alt={process.env.BRAND_NAME}
               />
               <address>
-                <div className="d-flex flex-column text-center text-lg-start">
+                <div className="d-flex flex-column text-lg-start text-center">
                   {contactData.map(({ icon, text, linkPrefix, link }, key) => (
                     <Link
                       key={key}
@@ -60,7 +60,7 @@ const Footer: NextPage<WithoutProps> = () => {
                             : router.asPath
                           : link ?? router.asPath
                       }
-                      className="d-grid mb-3 text-decoration-none"
+                      className="d-grid text-decoration-none mb-3"
                       style={{ color: 'inherit' }}
                       target={link ? '_blank' : undefined}
                       rel={link ? 'noreferrer noopener' : undefined}
@@ -101,12 +101,12 @@ const Footer: NextPage<WithoutProps> = () => {
         </Container>
         <Navbar variant="dark" bg="transparent" expand>
           <Container className="d-grid d-lg-flex justify-content-center justify-content-lg-between px-lg-1">
-            <Navbar.Text className="px-2 order-2 order-lg-1">
+            <Navbar.Text className="px-2 order-lg-1 order-2">
               2022 - {new Date().getFullYear()}
               {String.fromCharCode(174).surround(' ')}
               {process.env.BRAND_JURIDICAL_NAME}
             </Navbar.Text>
-            <Nav className="d-block d-lg-flex text-center order-1 order-lg-2">
+            <Nav className="d-block d-lg-flex order-lg-2 order-1 text-center">
               <Link href="/privacy-policy" passHref legacyBehavior>
                 <Nav.Link as="a">
                   {capitalizeText(t`sections:privacyPolicy.title`, 'simple')}

@@ -27,7 +27,7 @@ const LettersTable: FC<LettersTableProps> = ({
             $rows.push(
               <tr key={i} className="border-bottom-0">
                 {lettersList.slice(i, i + rowLength).map((letter, $index) => (
-                  <td key={$index} className="text-center border-bottom">
+                  <td key={$index} className="border-bottom text-center">
                     {letter}
                   </td>
                 ))}

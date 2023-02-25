@@ -1,14 +1,17 @@
-import { type LinkSpec } from '@stratego/data/navigation-links'
-import Link, { LinkProps } from 'next/link'
-import { PropsWithChildren, type FC } from 'react'
+import type { LinkSpec } from '@stratego/data/navigation-links'
+import Link, { type LinkProps } from 'next/link'
+import PropTypes from 'prop-types'
+import { FC, PropsWithChildren } from 'react'
 
-const NavBarLink: FC<
-  PropsWithChildren<
-    Partial<LinkProps> & {
-      link: LinkSpec
-    }
-  >
-> = ({ link, children, ...linkProps }) => {
+type NavBarLinkProps = Partial<LinkProps> & {
+  link: LinkSpec
+}
+
+const NavBarLink: FC<PropsWithChildren<NavBarLinkProps>> = ({
+  link,
+  children,
+  ...linkProps
+}) => {
   return (
     <Link
       {...linkProps}
@@ -24,6 +27,12 @@ const NavBarLink: FC<
       {children}
     </Link>
   )
+}
+
+NavBarLink.displayName = 'NavBarLink'
+
+NavBarLink.propTypes = {
+  link: PropTypes.object.isRequired as PropTypes.Validator<LinkSpec>,
 }
 
 export default NavBarLink

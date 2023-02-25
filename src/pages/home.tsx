@@ -59,7 +59,7 @@ const Home: NextPage<WithoutProps> = () => {
               )}
             >
               <Row className="d-flex align-items-center">
-                <Col className="text-center text-lg-start order-2 order-lg-1">
+                <Col className="text-lg-start order-lg-1 order-2 text-center">
                   <div className={classNames(HomeStyles.sectionContent)}>
                     <span className="fs-2 d-none d-lg-inline">
                       {capitalizeText(
@@ -76,7 +76,7 @@ const Home: NextPage<WithoutProps> = () => {
                       {t`sections:home.fragments.emphasisTitles.presentation.title.emphasis`.toLowerCase()}
                     </span>
                   </div>
-                  <p className="text-shadow my-4 fs-5">
+                  <p className="text-shadow fs-5 my-4">
                     {capitalizeText(
                       t`sections:home.fragments.emphasisTitles.presentation.subtitle`,
                       'simple'
@@ -94,7 +94,7 @@ const Home: NextPage<WithoutProps> = () => {
                     </Button>
                   </Link>
                 </Col>
-                <Col xs={12} lg="auto" className="order-1 order-lg-2">
+                <Col xs={12} lg="auto" className="order-lg-2 order-1">
                   <ShowOnScroll direction="left">
                     <Image
                       src="/images/figure-0.png"
@@ -123,7 +123,7 @@ const Home: NextPage<WithoutProps> = () => {
             <Container>
               <Row
                 className={classNames(
-                  'd-flex align-items-center text-center text-lg-start gap-3'
+                  'd-flex align-items-center text-lg-start gap-3 text-center'
                 )}
               >
                 <Col xs={12} lg="auto">
@@ -141,7 +141,7 @@ const Home: NextPage<WithoutProps> = () => {
                       {t`sections:home.fragments.emphasisTitles.aboutUs.title.emphasis`}
                     </span>
                   </div>
-                  <p className="text-shadow my-4 fs-6">
+                  <p className="text-shadow fs-6 my-4">
                     {capitalizeText(
                       t`sections:home.fragments.emphasisTitles.aboutUs.subtitle`,
                       'simple'
@@ -166,10 +166,10 @@ const Home: NextPage<WithoutProps> = () => {
               <Row
                 className={classNames(
                   'd-flex align-items-center justify-content-around gap-3 py-5',
-                  'text-center text-lg-start'
+                  'text-lg-start text-center'
                 )}
               >
-                <Col className="order-2 order-lg-1 gy-5" xs={12} lg>
+                <Col className="order-lg-1 gy-5 order-2" xs={12} lg>
                   <h1 className={classNames(HomeStyles.sectionContentNegative)}>
                     {capitalizeText(
                       t`sections:home.fragments.emphasisTitles.modules.title.regular`,
@@ -194,7 +194,7 @@ const Home: NextPage<WithoutProps> = () => {
                     </Button>
                   </Link>
                 </Col>
-                <Col xs={12} lg className="order-1 order-lg-2">
+                <Col xs={12} lg className="order-lg-2 order-1">
                   <ShowOnScroll direction="left">
                     <Image src="/images/figure-2.png" alt="" fluid />
                   </ShowOnScroll>
@@ -214,7 +214,7 @@ const Home: NextPage<WithoutProps> = () => {
         <Row className="pb-5">
           <Col className="pb-5">
             <Container className="pb-5">
-              <Row className="text-center mb-5">
+              <Row className="mb-5 text-center">
                 <Col>
                   <h1 className={HomeStyles.sectionContentNegative}>
                     {capitalizeText(
@@ -238,8 +238,8 @@ const Home: NextPage<WithoutProps> = () => {
                   >
                     <div
                       className={classNames(
-                        'h-100 p-5 rounded-4 text-center',
-                        'bg-opacity-75 bg-light-gray text-dark-blue',
+                        'h-100 rounded-4 p-5 text-center',
+                        'bg-light-gray text-dark-blue bg-opacity-75',
                         HomeStyles.serviceBox
                       )}
                     >
@@ -256,7 +256,7 @@ const Home: NextPage<WithoutProps> = () => {
           </Col>
         </Row>
       </Container>
-      <Container className="d-flex flex-column gap-5 mb-5 py-5">
+      <Container className="d-flex flex-column mb-5 gap-5 py-5">
         <Row>
           <Col className="text-center">
             <h1 className={HomeStyles.sectionContent}>

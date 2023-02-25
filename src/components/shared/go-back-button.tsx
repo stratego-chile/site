@@ -20,7 +20,7 @@ const GoBackButton: FC<GoBackButtonProps> = ({
 
   return (
     <Button
-      className="mx-auto rounded-pill text-decoration-none"
+      className="rounded-pill text-decoration-none mx-auto"
       variant={variant}
       onClick={() => router.back()}
     >

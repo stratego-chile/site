@@ -10,10 +10,12 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 
-const NavBarLinks: FC<{
+type NavBarLinksProps = {
   links?: Array<LinkSpec>
   mode?: 'root' | 'embed'
-}> = ({ links = [], mode = 'root' }) => {
+}
+
+const NavBarLinks: FC<NavBarLinksProps> = ({ links = [], mode = 'root' }) => {
   const togglerId = useId()
 
   const { t } = useTranslation()
@@ -45,7 +47,7 @@ const NavBarLinks: FC<{
                 navbar
                 align="start"
                 drop={mode === 'embed' ? 'end' : undefined}
-                className={classNames(mode === 'embed' && 'px-3 px-xl-2')}
+                className={classNames(mode === 'embed' && 'px-xl-2 px-3')}
               >
                 <Dropdown.Toggle
                   as={Nav.Link}

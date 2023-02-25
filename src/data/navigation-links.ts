@@ -120,6 +120,10 @@ export const navbarLinks: Array<LinkSpec> = [
         text: 'sections:utils.list.0.title',
         href: '/utilities/password-generator',
       },
+      {
+        text: 'sections:utils.list.1.title',
+        href: '/utilities/password-strength-checker',
+      },
     ],
   },
   {

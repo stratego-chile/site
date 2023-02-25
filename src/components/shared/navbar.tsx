@@ -51,22 +51,25 @@ const NavBar: FC<NavBarProps> = ({
       >
         <Container className="px-xl-1">
           <Link href="/home" legacyBehavior passHref>
-            <Navbar.Brand className="d-flex fw-bold py-3 px-2 gap-3">
+            <Navbar.Brand className="d-flex fw-bold gap-3 py-3 px-2">
               <Image
                 className={classNames('d-block', NavbarStyles.brandImage)}
-                src={getAssetPath('logo-colored.svg')}
+                src={getAssetPath('logo-white.svg')}
                 alt={process.env.BRAND_NAME}
                 fluid
               />
               {brandDepartment && (
-                <span
-                  className={classNames(
-                    'fw-normal border-xl-start ps-xl-3 text-wrap',
-                    NavbarStyles.brandDepartment
-                  )}
-                >
-                  {capitalizeText(brandDepartment, 'simple')}
-                </span>
+                <Fragment>
+                  <div className="vr d-none d-xl-inline-block" />
+                  <span
+                    className={classNames(
+                      'fw-normal text-wrap',
+                      NavbarStyles.brandDepartment
+                    )}
+                  >
+                    {capitalizeText(brandDepartment, 'simple')}
+                  </span>
+                </Fragment>
               )}
             </Navbar.Brand>
           </Link>
@@ -75,7 +78,7 @@ const NavBar: FC<NavBarProps> = ({
           </Navbar.Toggle>
           {showNavigationOptions && (
             <Navbar.Collapse>
-              <Nav className="ms-auto px-2 px-xl-0 pb-4 pb-xl-0 gap-4 row-gap-2 fw-semibold text-center">
+              <Nav className="ms-auto px-xl-0 pb-xl-0 row-gap-2 fw-semibold gap-4 px-2 pb-4 text-center">
                 <NavBarLinks links={links} />
                 <Nav.Item className="d-inline-flex align-items-center mx-auto">
                   <Link href="/contact" passHref legacyBehavior>
@@ -106,7 +109,7 @@ const NavBar: FC<NavBarProps> = ({
           sticky="top"
         >
           <Container className="px-xl-1 fw-semibold">
-            <Nav className="gap-4 row-gap-2">
+            <Nav className="row-gap-2 gap-4">
               <NavBarLinks links={subLinks} />
             </Nav>
           </Container>

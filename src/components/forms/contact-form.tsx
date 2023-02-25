@@ -406,7 +406,7 @@ const ContactForm: FC<WithoutProps> = () => {
         </Row>
       )}
       <Row className="mt-4">
-        <Col xs={12} className="text-center text-lg-end">
+        <Col xs={12} className="text-lg-end text-center">
           <Button
             type="submit"
             className="text-light rounded-pill"
