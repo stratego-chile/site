@@ -64,7 +64,7 @@ const CookiesDisclaimer: FC<WithoutProps> = () => {
             <Col
               xs="12"
               lg
-              className="d-inline-flex text-center text-lg-start align-items-center"
+              className="d-inline-flex text-lg-start align-items-center text-center"
             >
               <span className="fs-5">
                 {capitalizeText(t`common:cookies.disclaimer.text`, 'simple')}
@@ -73,7 +73,7 @@ const CookiesDisclaimer: FC<WithoutProps> = () => {
             <Col
               xs="12"
               lg="auto"
-              className="d-inline-flex gap-2 py-3 justify-content-center"
+              className="d-inline-flex justify-content-center gap-2 py-3"
             >
               <Button className="text-light" onClick={handleCookiesAcceptance}>
                 {capitalizeText(

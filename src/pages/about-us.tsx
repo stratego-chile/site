@@ -30,7 +30,7 @@ const AboutUs: NextPage<WithoutProps> = () => {
       pageTitle={capitalizeText(t`sections:aboutUs.title`, 'simple')}
       showNavigationOptions
     >
-      <Container className="d-flex flex-column gap-5 mb-5 py-5">
+      <Container className="d-flex flex-column mb-5 gap-5 py-5">
         <Row className="justify-content-between align-items-center">
           {(
             t('sections:aboutUs.content', {

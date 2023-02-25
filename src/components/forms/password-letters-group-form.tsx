@@ -100,7 +100,7 @@ const PasswordGeneratorLettersGroupForm: FC<
         </Col>
       </Row>
       <Row>
-        <Col className="d-flex gap-2 justify-content-end">
+        <Col className="d-flex justify-content-end gap-2">
           <Button size="sm" type="submit" className="text-light">
             {capitalizeText(t`common:controls.update`, 'simple')}
           </Button>

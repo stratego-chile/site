@@ -33,7 +33,7 @@ const ErrorPage: FC<ErrorPageProps> = ({
       )}
     >
       <Row className="d-flex flex-grow-1 align-self-stretch align-content-center">
-        <Col className="d-flex flex-column text-center gap-4">
+        <Col className="d-flex flex-column gap-4 text-center">
           <span className="d-flex flex-column">
             {statusCode && <span className="fs-1 fw-bolder">{statusCode}</span>}
             <span className="fs-3 fw-semibold text-secondary">

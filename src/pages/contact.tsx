@@ -33,7 +33,7 @@ const Contact: NextPage<WithoutProps> = () => {
       pageTitle={capitalizeText(t`sections:contact.title`, 'simple')}
       showNavigationOptions
     >
-      <Container className="d-flex flex-column gap-5 mb-5 py-5">
+      <Container className="d-flex flex-column mb-5 gap-5 py-5">
         <Row>
           <Col>
             <h1>{capitalizeText(t`sections:contact.form.title`, 'simple')}</h1>
