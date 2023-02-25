@@ -247,6 +247,9 @@
     "list": [
       {
         "title": "Password generator"
+      },
+      {
+        "title": "Password strength checker"
       }
     ]
   }

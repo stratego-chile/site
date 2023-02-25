@@ -17,10 +17,29 @@
       "upper": "Include upper case letters",
       "symbolsWeight": "Symbols proportion",
       "generate": "Generate passwords",
+      "check": "Check password strength",
       "copy": "Copy",
       "copied": "Copied",
       "letters": "Letters",
       "result": "Result"
+    },
+    {
+      "title": "Password strength checker",
+      "subtitle": "Check the strength of your password.",
+      "label": "Type a password to check",
+      "diversityType": {
+        "title": "Contains",
+        "lowercase": "Lowercase letters",
+        "uppercase": "Uppercase letters",
+        "number": "Numbers",
+        "symbol": "Symbols"
+      },
+      "strength": [
+        "Too weak password",
+        "Weak password",
+        "Medium password",
+        "Strong password"
+      ]
     }
   ],
   "footNote": "See the <redirect>source code</redirect>."

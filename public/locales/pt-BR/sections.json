@@ -247,6 +247,9 @@
     "list": [
       {
         "title": "Gerador de senha"
+      },
+      {
+        "title": "Verificador da força da senha"
       }
     ]
   }
