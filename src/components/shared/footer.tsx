@@ -35,7 +35,7 @@ const Footer: NextPage<WithoutProps> = () => {
           <Row
             className={classNames(
               'd-flex justify-content-center justify-content-lg-between',
-              'pt-5 py-lg-5 mb-2 mb-lg-5 gap-5'
+              'py-lg-5 mb-lg-5 mb-2 gap-5 pt-5'
             )}
           >
             <Col xs={12} lg="auto" className="order-2 order-lg-1">
