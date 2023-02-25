@@ -12,6 +12,9 @@ $deep-dark-blue: #001A2E;
 // Custom light colors
 $light-gray: #EBEBEB;
 
+// Other custom colors
+$deep-red: #B00020;
+
 // # Define color palette
 $palette: (
   primary: $primary,
@@ -19,6 +22,7 @@ $palette: (
   success: $success,
   dark-blue: $dark-blue,
   deep-dark-blue: $deep-dark-blue,
+  deep-red: $deep-red,
   light-gray: $light-gray,
   transparent: transparent,
 );
