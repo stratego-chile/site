@@ -148,7 +148,7 @@ const PasswordStrengthChecker: NextPage<WithoutProps> = () => {
                               <ListGroup.Item
                                 key={key}
                                 variant="secondary"
-                                className="d-inline-flex p-0 border-0 gap-1 align-items-center"
+                                className="d-inline-flex align-items-center gap-1 border-0 p-0"
                               >
                                 <FontAwesomeIcon
                                   className="text-success bg-light rounded-circle"
