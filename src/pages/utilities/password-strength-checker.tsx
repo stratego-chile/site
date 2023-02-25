@@ -125,7 +125,7 @@ const PasswordStrengthChecker: NextPage<WithoutProps> = () => {
                   offset: 3,
                   span: 6,
                 }}
-                className="d-inline-flex flex-column gap-4 align-self-end"
+                className="d-inline-flex flex-column align-self-end gap-4"
               >
                 {typeof passwordStrength !== 'undefined' && (
                   <Fragment>
