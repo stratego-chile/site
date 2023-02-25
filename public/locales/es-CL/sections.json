@@ -247,6 +247,9 @@
     "list": [
       {
         "title": "Generador de contraseñas"
+      },
+      {
+        "title": "Validador de contraseñas"
       }
     ]
   }

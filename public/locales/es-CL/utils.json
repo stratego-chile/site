@@ -17,10 +17,29 @@
       "upper": "Incluir letras mayúsculas",
       "symbolsWeight": "Proporción de símbolos",
       "generate": "Generar contraseñas",
+      "check": "Verificar seguridad de la contraseña",
       "copy": "Copiar",
       "copied": "Copiado",
       "letters": "Letras",
       "result": "Resultado"
+    },
+    {
+      "title": "Validador de contraseñas",
+      "subtitle": "Revisa la fortaleza de tu contraseña.",
+      "label": "Ingresa tu contraseña a continuación",
+      "diversityType": {
+        "title": "Contiene",
+        "lowercase": "Letras minúsculas",
+        "uppercase": "Letras mayúsculas",
+        "number": "Números",
+        "symbol": "Símbolos"
+      },
+      "strength": [
+        "Seguridad muy baja",
+        "Seguridad baja",
+        "Seguridad media",
+        "Seguridad alta"
+      ]
     }
   ],
   "footNote": "Revisa el <redirect>código fuente</redirect>."

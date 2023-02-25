@@ -17,10 +17,29 @@
       "upper": "Incluir letras maiúsculas",
       "symbolsWeight": "Proporção de símbolos",
       "generate": "Gerar senhas",
+      "check": "Verificar força da senha",
       "copy": "Cópia",
       "copied": "Copiando",
       "letters": "Cartas",
       "result": "Resultado"
+    },
+    {
+      "title": "Verificador da força da senha",
+      "subtitle": "Verifique a força da senha digitada e veja se ela é segura o suficiente para ser usada.",
+      "label": "Digite uma senha para verificar",
+      "diversityType": {
+        "title": "Contém",
+        "lowercase": "Letras minúsculas",
+        "uppercase": "Letras maiúsculas",
+        "number": "Números",
+        "symbol": "Símbolos"
+      },
+      "strength": [
+        "Senha muito fraca",
+        "Senha fraca",
+        "Senha razoável",
+        "Senha forte"
+      ]
     }
   ],
   "footNote": "Veja o <redirect>código da fonte</redirect>."

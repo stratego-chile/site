@@ -1,3 +1,4 @@
+import { faCheckToSlot } from '@fortawesome/free-solid-svg-icons/faCheckToSlot'
 import { faCopy } from '@fortawesome/free-solid-svg-icons/faCopy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type {
@@ -123,23 +124,42 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
                           )}
                         >
                           <small className="font-monospace">{password}</small>
-                          <OverlayTrigger
-                            placement="left"
-                            trigger="focus"
-                            overlay={<Tooltip>{t`list.0.copied`}</Tooltip>}
-                          >
-                            <Button
-                              className="d-inline-block"
-                              variant="link"
-                              size="sm"
-                              title={t`list.0.copy` satisfies string}
-                              onClick={() =>
-                                navigator.clipboard.writeText(password)
-                              }
+                          <span>
+                            <Link
+                              href={{
+                                pathname:
+                                  '/utilities/password-strength-checker',
+                                query: {
+                                  check:
+                                    Buffer.from(password).toString('base64'),
+                                },
+                              }}
+                              title={t`list.0.check` satisfies string}
+                              target="_blank"
+                              passHref
                             >
-                              <FontAwesomeIcon icon={faCopy} />
-                            </Button>
-                          </OverlayTrigger>
+                              <Button variant="link" size="sm">
+                                <FontAwesomeIcon icon={faCheckToSlot} />
+                              </Button>
+                            </Link>
+                            <OverlayTrigger
+                              placement="left"
+                              trigger="focus"
+                              overlay={<Tooltip>{t`list.0.copied`}</Tooltip>}
+                            >
+                              <Button
+                                className="d-inline-block"
+                                variant="link"
+                                size="sm"
+                                title={t`list.0.copy` satisfies string}
+                                onClick={() =>
+                                  navigator.clipboard.writeText(password)
+                                }
+                              >
+                                <FontAwesomeIcon icon={faCopy} />
+                              </Button>
+                            </OverlayTrigger>
+                          </span>
                         </th>
                       </tr>
                     ))}

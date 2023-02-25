@@ -28,6 +28,7 @@ specifiers:
   '@webdiscus/pug-loader': ^2.10.2
   axios: 1.3.4
   bootstrap: ^5.2.3
+  check-password-strength: ^2.0.7
   classnames: ^2.3.2
   coffeescript: ^2.7.0
   cross-env: ^7.0.3
@@ -93,6 +94,7 @@ dependencies:
   '@vercel/analytics': 0.1.10_react@18.2.0
   axios: 1.3.4
   bootstrap: 5.2.3_@popperjs+core@2.11.6
+  check-password-strength: 2.0.7
   classnames: 2.3.2
   date-fns: 2.29.3
   detect-emoji-support: 0.1.7
@@ -2928,6 +2930,10 @@ packages:
 
   /character-reference-invalid/2.0.1:
     resolution: {integrity: sha512-iBZ4F4wRbyORVsu0jPV7gXkOsGYjGHPmAyv+HiHG8gi5PtC9KI2j1+v8/tlibRvjoWX027ypmG/n0HtO5t7unw==}
+    dev: false
+
+  /check-password-strength/2.0.7:
+    resolution: {integrity: sha512-VyklBkB6dOKnCIh63zdVr7QKVMN9/npwUqNAXxWrz8HabVZH/n/d+lyNm1O/vbXFJlT/Hytb5ouYKYGkoeZirQ==}
     dev: false
 
   /chokidar/3.5.3:
