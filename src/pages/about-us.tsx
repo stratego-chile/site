@@ -1,3 +1,4 @@
+import { getAssetPath } from '@stratego/helpers/static-resources.helper'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { defaultLocale } from '@stratego/locales'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
@@ -17,9 +18,10 @@ const AboutUs: NextPage<WithoutProps> = () => {
   const { t } = useTranslation('sections')
 
   const images: Record<string, string | Array<string>> = {
-    '1': 'bakertilly-logo-black.svg',
-    '2': 'corfo-logo-blue.svg',
-    '3': ['chrysalis-logo.png', 'chrysalis-pucv-logo.svg'],
+    0: getAssetPath('logo-colored-bg.svg'),
+    1: '/images/bakertilly-logo-black.svg',
+    2: '/images/corfo-logo-blue.svg',
+    3: ['/images/chrysalis-logo.png', '/images/chrysalis-pucv-logo.svg'],
   }
 
   return (
@@ -46,7 +48,7 @@ const AboutUs: NextPage<WithoutProps> = () => {
                     <Col key={imageKey} xs={12} lg={5}>
                       <Image
                         className="d-inline-flex mt-5 mb-4"
-                        src={`/images/${image}`}
+                        src={image}
                         key={imageKey}
                         alt=""
                         style={{
@@ -60,7 +62,7 @@ const AboutUs: NextPage<WithoutProps> = () => {
                   <Col xs={12} lg={5}>
                     <Image
                       className="d-inline-flex mt-5 mb-4"
-                      src={`/images/${$image}`}
+                      src={$image}
                       alt=""
                       style={{
                         width: '45rem',
