@@ -76,7 +76,7 @@ const PasswordStrengthChecker: NextPage<WithoutProps> = () => {
       pageTitle={capitalizeText(t`list.1.title` satisfies string, 'simple')}
       showNavigationOptions
     >
-      <Container className="d-flex flex-column gap-4 my-5">
+      <Container className="d-flex flex-column my-5 gap-4">
         <Row>
           <Col className={LayoutStyles.autoFormat}>
             <h1 className="fw-bold">
