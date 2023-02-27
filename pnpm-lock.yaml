@@ -49,7 +49,7 @@ specifiers:
   eslint-plugin-react-hooks: ^4.6.0
   express: ^4.18.2
   formik: ^2.2.9
-  framer-motion: ^9.1.7
+  framer-motion: ^10.0.1
   i18next: ^22.4.10
   json5: ^2.2.3
   language-flag-colors: ^2.1.2
@@ -100,7 +100,7 @@ dependencies:
   detect-emoji-support: 0.1.7
   enhanced-resolve: 5.12.0
   formik: 2.2.9_react@18.2.0
-  framer-motion: 9.1.7_biqbaboplfbrettd7655fr4n2y
+  framer-motion: 10.0.1_biqbaboplfbrettd7655fr4n2y
   i18next: 22.4.10
   language-flag-colors: 2.1.2
   lodash.isplainobject: 4.0.6
@@ -4333,8 +4333,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /framer-motion/9.1.7_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-nKxBkIO4IPkMEqcBbbATxsVjwPYShKl051yhBv9628iAH6JLeHD0siBHxkL62oQzMC1+GNX73XtPjgP753ufuw==}
+  /framer-motion/10.0.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-/N7gBA9gH8PkStyNQ67P/lx8UhL/7Y8z9Ku7FfgOF77sSG8wu8781kX7I5ZUgflRRtQXo8qH4Rev23004G1zcQ==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
