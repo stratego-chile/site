@@ -58,7 +58,7 @@ const NavBarLinks: FC<NavBarLinksProps> = ({
                     {capitalizeText(t(link.text).toLowerCase(), 'simple')}
                   </Dropdown.Header>
                 ) : (
-                  <span className="fw-normal mt-2 mb-n2">
+                  <span className="fw-normal mb-n2 mt-2">
                     {capitalizeText(t(link.text).toLowerCase(), 'simple')}:
                   </span>
                 )}
