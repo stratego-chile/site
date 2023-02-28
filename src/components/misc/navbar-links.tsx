@@ -5,7 +5,8 @@ import { capitalizeText } from '@stratego/helpers/text.helper'
 import classNames from 'classnames'
 import { useTranslation } from 'next-i18next'
 import PropTypes from 'prop-types'
-import { Fragment, useId, type FC } from 'react'
+import { Fragment, type PropsWithChildren, useId, type FC } from 'react'
+import Accordion from 'react-bootstrap/Accordion'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
@@ -13,36 +14,66 @@ import Navbar from 'react-bootstrap/Navbar'
 type NavBarLinksProps = {
   links?: Array<LinkSpec>
   mode?: 'root' | 'embed'
+  orientation?: 'vertical' | 'horizontal'
 }
 
-const NavBarLinks: FC<NavBarLinksProps> = ({ links = [], mode = 'root' }) => {
+const NavBarLinks: FC<NavBarLinksProps> = ({
+  links = [],
+  mode = 'root',
+  orientation = 'horizontal',
+}) => {
   const togglerId = useId()
 
   const { t } = useTranslation()
 
+  const Wrapper: FC<PropsWithChildren<WithoutProps>> = (props) => {
+    return orientation === 'vertical' ? (
+      <div
+        {...props}
+        className={classNames(
+          'd-flex flex-column',
+          'align-items-start justify-content-start',
+          'w-100 gap-4 py-2 px-0 fw-bold'
+        )}
+      />
+    ) : (
+      <Fragment {...props} />
+    )
+  }
+
   return (
-    <Fragment>
+    <Wrapper>
       {links.map((link, key) => (
         <Fragment key={key}>
           {link.subLinks ? (
             link.label ? (
               <Fragment>
-                <Dropdown.Header
-                  className={classNames(
-                    'd-flex align-items-center py-1',
-                    'fw-bold'
-                  )}
-                >
-                  {capitalizeText(t(link.text).toLowerCase(), 'simple')}
-                </Dropdown.Header>
-                <NavBarLinks links={link.subLinks} mode="embed" />
+                {orientation === 'horizontal' ? (
+                  <Dropdown.Header
+                    className={classNames(
+                      'd-flex align-items-center py-1',
+                      'fw-bold'
+                    )}
+                  >
+                    {capitalizeText(t(link.text).toLowerCase(), 'simple')}
+                  </Dropdown.Header>
+                ) : (
+                  <span className="fw-normal mt-2 mb-n2">
+                    {capitalizeText(t(link.text).toLowerCase(), 'simple')}:
+                  </span>
+                )}
+                <NavBarLinks
+                  links={link.subLinks}
+                  mode="embed"
+                  orientation={orientation}
+                />
                 {links.reduce(
                   (counter, linkSpec) =>
                     !linkSpec.href && !linkSpec.subLinks ? ++counter : counter,
                   0
                 ) > 1 && <Dropdown.Divider />}
               </Fragment>
-            ) : (
+            ) : orientation === 'horizontal' ? (
               <Dropdown
                 navbar
                 align="start"
@@ -90,6 +121,50 @@ const NavBarLinks: FC<NavBarLinksProps> = ({ links = [], mode = 'root' }) => {
                   )}
                 </Dropdown.Menu>
               </Dropdown>
+            ) : (
+              <Accordion
+                className="d-flex flex-column w-100 justify-content-between border-0 p-0 my-0"
+                flush
+                alwaysOpen
+              >
+                <Accordion.Item eventKey={String(key)} className="">
+                  <Accordion.Button
+                    className={classNames(
+                      'd-flex justify-content-between border-0 p-0',
+                      'fw-bold text-dark bg-transparent box-shadow-none'
+                    )}
+                  >
+                    {mode === 'root'
+                      ? capitalizeText(t(link.text).toLowerCase(), 'simple')
+                      : t(link.text)}
+                  </Accordion.Button>
+                  <Accordion.Body className="ps-2 pe-0 py-0">
+                    {link.subLinks.map((subLink, subLinkKey) =>
+                      subLink.href ? (
+                        <NavBarLink
+                          key={subLinkKey}
+                          link={subLink}
+                          scroll={false}
+                          className={classNames(
+                            'd-flex flex-column justify-content-between px-0 border-0 py-3',
+                            'text-secondary text-decoration-none my-2'
+                          )}
+                        >
+                          {t(subLink.text)}
+                        </NavBarLink>
+                      ) : (
+                        <Fragment key={subLinkKey}>
+                          <NavBarLinks
+                            links={[subLink]}
+                            mode="embed"
+                            orientation={orientation}
+                          />
+                        </Fragment>
+                      )
+                    )}
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
             )
           ) : link.href ? (
             <NavBarLink link={link} passHref legacyBehavior scroll={false}>
@@ -104,7 +179,7 @@ const NavBarLinks: FC<NavBarLinksProps> = ({ links = [], mode = 'root' }) => {
           )}
         </Fragment>
       ))}
-    </Fragment>
+    </Wrapper>
   )
 }
 
@@ -123,11 +198,13 @@ export const lazySubLink = recursiveCall(function () {
 NavBarLinks.propTypes = {
   links: PropTypes.arrayOf(lazySubLink),
   mode: PropTypes.oneOf(['root', 'embed']),
+  orientation: PropTypes.oneOf(['vertical', 'horizontal']),
 }
 
 NavBarLinks.defaultProps = {
   links: [],
   mode: 'root',
+  orientation: 'horizontal',
 }
 
 NavBarLinks.displayName = 'NavBarLinks'
