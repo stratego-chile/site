@@ -5,6 +5,7 @@ import { FC, PropsWithChildren } from 'react'
 
 type NavBarLinkProps = Partial<LinkProps> & {
   link: LinkSpec
+  className?: string
 }
 
 const NavBarLink: FC<PropsWithChildren<NavBarLinkProps>> = ({
