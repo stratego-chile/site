@@ -101,7 +101,7 @@ const Footer: NextPage<WithoutProps> = () => {
         </Container>
         <Navbar variant="dark" bg="transparent" expand>
           <Container className="d-grid d-lg-flex justify-content-center justify-content-lg-between px-lg-1">
-            <Navbar.Text className="px-2 order-lg-1 order-2 text-xl-start text-center">
+            <Navbar.Text className="order-lg-1 text-xl-start order-2 px-2 text-center">
               2022 - {new Date().getFullYear()}
               <br className="d-inline d-xl-none my-3" />
               {String.fromCharCode(174).surround(' ')}
