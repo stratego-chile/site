@@ -101,23 +101,24 @@ const Footer: NextPage<WithoutProps> = () => {
         </Container>
         <Navbar variant="dark" bg="transparent" expand>
           <Container className="d-grid d-lg-flex justify-content-center justify-content-lg-between px-lg-1">
-            <Navbar.Text className="px-2 order-lg-1 order-2">
+            <Navbar.Text className="px-2 order-lg-1 order-2 text-xl-start text-center">
               2022 - {new Date().getFullYear()}
+              <br className="d-inline d-xl-none my-3" />
               {String.fromCharCode(174).surround(' ')}
               {process.env.BRAND_JURIDICAL_NAME}
             </Navbar.Text>
             <Nav className="d-block d-lg-flex order-lg-2 order-1 text-center">
-              <Link href="/privacy-policy" passHref legacyBehavior>
+              <Link href="/about/privacy-policy" passHref legacyBehavior>
                 <Nav.Link as="a">
                   {capitalizeText(t`sections:privacyPolicy.title`, 'simple')}
                 </Nav.Link>
               </Link>
-              <Link href="/cookies" passHref legacyBehavior>
+              <Link href="/about/cookies" passHref legacyBehavior>
                 <Nav.Link as="a">
                   {capitalizeText(t`sections:cookies.title`, 'simple')}
                 </Nav.Link>
               </Link>
-              <Link href="/legal" passHref legacyBehavior>
+              <Link href="/about/legal" passHref legacyBehavior>
                 <Nav.Link as="a">
                   {capitalizeText(t`sections:legal.title`, 'simple')}
                 </Nav.Link>
@@ -127,23 +128,35 @@ const Footer: NextPage<WithoutProps> = () => {
                   {capitalizeText(t`sections:contact.title`, 'simple')}
                 </Nav.Link>
               </Link>
-              <Nav.Link
-                className="d-inline-flex d-lg-block"
+              <Link
                 href="https://github.com/stratego-chile"
-                target="_blank"
-                rel="noreferrer noopener"
+                passHref
+                legacyBehavior
               >
-                <FontAwesomeIcon icon={faGithub} />
-              </Nav.Link>
-              <Nav.Link
-                className="d-inline-flex d-lg-block"
+                <Nav.Link
+                  className="d-inline-flex d-lg-block"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  active={false}
+                >
+                  <FontAwesomeIcon icon={faGithub} fixedWidth />
+                </Nav.Link>
+              </Link>
+              <Link
                 href="https://github.com/stratego-chile/site"
-                target="_blank"
-                rel="noreferrer noopener"
-                title={capitalizeText(t`common:seeSourceCode`, 'simple')}
+                passHref
+                legacyBehavior
               >
-                <FontAwesomeIcon icon={faCode} />
-              </Nav.Link>
+                <Nav.Link
+                  className="d-inline-flex d-lg-block"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  active={false}
+                  title={capitalizeText(t`common:seeSourceCode`, 'simple')}
+                >
+                  <FontAwesomeIcon icon={faCode} fixedWidth />
+                </Nav.Link>
+              </Link>
             </Nav>
           </Container>
         </Navbar>
