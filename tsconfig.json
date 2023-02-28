@@ -24,7 +24,7 @@
     "incremental": true,
     "typeRoots": [
       "node_modules/@types",
-      "types/modules",
+      "types/modules"
     ]
   },
   "include": [
