@@ -4,6 +4,7 @@ files:
   - src/**/*.{tsx,ts,json}
 ignorePaths:
   - src/data/dial-codes.ts
+  - src/data/countries-dial-codes.json
 dictionaryDefinitions:
   - name: spanish
     path: ./node_modules/@cspell/dict-es-es/Spanish.trie.gz

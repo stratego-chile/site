@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "anti-trojan-source"],
   "extends": [
     "next/core-web-vitals",
     "airbnb-typescript",
@@ -17,16 +17,15 @@
     "import/extensions": "off",
     "import/no-extraneous-dependencies": "off",
     "block-scoped-var": "error",
-    "no-var": "error"
+    "no-var": "error",
+    "anti-trojan-source/no-bidi": "error"
   },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
       "parserOptions": {
         "ecmaVersion": 12,
-        "project": [
-          "./tsconfig.json"
-        ]
+        "project": ["./tsconfig.json"]
       }
     }
   ]
