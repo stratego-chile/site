@@ -131,7 +131,7 @@ const NavBarLinks: FC<NavBarLinksProps> = ({
                   <Accordion.Button
                     className={classNames(
                       'd-flex justify-content-between border-0 p-0',
-                      'fw-bold text-dark bg-transparent box-shadow-none'
+                      'fw-bold text-dark box-shadow-none bg-transparent'
                     )}
                   >
                     {mode === 'root'
