@@ -146,7 +146,7 @@ const NavBarLinks: FC<NavBarLinksProps> = ({
                           link={subLink}
                           scroll={false}
                           className={classNames(
-                            'd-flex flex-column justify-content-between px-0 border-0 py-3',
+                            'd-flex flex-column justify-content-between border-0 px-0 py-3',
                             'text-secondary text-decoration-none my-2'
                           )}
                         >
