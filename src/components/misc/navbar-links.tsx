@@ -123,7 +123,7 @@ const NavBarLinks: FC<NavBarLinksProps> = ({
               </Dropdown>
             ) : (
               <Accordion
-                className="d-flex flex-column w-100 justify-content-between border-0 p-0 my-0"
+                className="d-flex flex-column w-100 justify-content-between my-0 border-0 p-0"
                 flush
                 alwaysOpen
               >
