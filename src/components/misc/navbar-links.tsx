@@ -33,7 +33,7 @@ const NavBarLinks: FC<NavBarLinksProps> = ({
         className={classNames(
           'd-flex flex-column',
           'align-items-start justify-content-start',
-          'w-100 gap-4 py-2 px-0 fw-bold'
+          'w-100 fw-bold gap-4 py-2 px-0'
         )}
       />
     ) : (
