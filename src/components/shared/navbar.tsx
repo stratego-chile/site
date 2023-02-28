@@ -9,7 +9,7 @@ import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
-import { Fragment, useMemo, type FC } from 'react'
+import { Fragment, useState, type FC } from 'react'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
@@ -18,6 +18,10 @@ import Navbar from 'react-bootstrap/Navbar'
 import NavBarLinks, {
   lazySubLink,
 } from '@stratego/components/misc/navbar-links'
+
+const MobileSidebar = dynamic(
+  import('@stratego/components/misc/mobile-sidebar')
+)
 
 type NavBarProps = {
   showNavigationOptions?: boolean
@@ -38,7 +42,7 @@ const NavBar: FC<NavBarProps> = ({
 }) => {
   const { t } = useTranslation(['common', 'sections'])
 
-  const links = useMemo<Array<LinkSpec>>(() => navbarLinks, [])
+  const [collapsed, setCollapsed] = useState<boolean>(true)
 
   return (
     <Fragment>
@@ -47,7 +51,6 @@ const NavBar: FC<NavBarProps> = ({
         bg={theme}
         expand="xxl"
         className="position-static"
-        style={{ zIndex: 1050 }}
       >
         <Container className="px-xl-1">
           <Link href="/home" legacyBehavior passHref>
@@ -73,31 +76,36 @@ const NavBar: FC<NavBarProps> = ({
               )}
             </Navbar.Brand>
           </Link>
-          <Navbar.Toggle className="border-0">
-            <FontAwesomeIcon icon={faBars} />
-          </Navbar.Toggle>
           {showNavigationOptions && (
-            <Navbar.Collapse>
-              <Nav className="ms-auto px-xl-0 pb-xl-0 row-gap-2 fw-semibold gap-4 px-2 pb-4 text-center">
-                <NavBarLinks links={links} />
-                <Nav.Item className="d-inline-flex align-items-center mx-auto">
-                  <Link href="/contact" passHref legacyBehavior>
-                    <Button
-                      variant="primary"
-                      className="rounded-pill fw-semibold text-light px-4"
-                    >
-                      {capitalizeText(t`common:contactUs`, 'simple')}
-                    </Button>
-                  </Link>
-                </Nav.Item>
-                <Nav.Item className="d-inline-flex align-items-center mx-auto">
-                  <LanguageSelector
-                    theme="transparent"
-                    className="text-light"
-                  />
-                </Nav.Item>
-              </Nav>
-            </Navbar.Collapse>
+            <Fragment>
+              <Navbar.Toggle
+                className="border-0"
+                onClick={() => setCollapsed(($collapsed) => !$collapsed)}
+              >
+                <FontAwesomeIcon icon={faBars} />
+              </Navbar.Toggle>
+              <Navbar.Collapse className="d-none d-xxl-inline-flex">
+                <Nav className="ms-auto px-xl-0 pb-xl-0 row-gap-2 fw-semibold gap-4 px-2 pb-4 text-center">
+                  <NavBarLinks links={navbarLinks} />
+                  <Nav.Item className="d-inline-flex align-items-center mx-auto">
+                    <Link href="/contact" passHref legacyBehavior>
+                      <Button
+                        variant="primary"
+                        className="rounded-pill fw-semibold text-light px-4"
+                      >
+                        {capitalizeText(t`common:contactUs`, 'simple')}
+                      </Button>
+                    </Link>
+                  </Nav.Item>
+                  <Nav.Item className="d-inline-flex align-items-center mx-auto">
+                    <LanguageSelector
+                      theme="transparent"
+                      className="text-light"
+                    />
+                  </Nav.Item>
+                </Nav>
+              </Navbar.Collapse>
+            </Fragment>
           )}
         </Container>
       </Navbar>
@@ -115,6 +123,7 @@ const NavBar: FC<NavBarProps> = ({
           </Container>
         </Navbar>
       )}
+      <MobileSidebar show={!collapsed} onClose={() => setCollapsed(true)} />
     </Fragment>
   )
 }

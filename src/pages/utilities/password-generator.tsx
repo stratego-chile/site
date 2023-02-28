@@ -123,8 +123,10 @@ const PasswordGenerator: NextPage<WithoutProps> = () => {
                             'fw-normal'
                           )}
                         >
-                          <small className="font-monospace">{password}</small>
-                          <span>
+                          <small className="font-monospace text-nowrap order-xl-1 order-2">
+                            {password}
+                          </small>
+                          <span className="text-nowrap order-xl-2 order-1">
                             <Link
                               href={{
                                 pathname:
