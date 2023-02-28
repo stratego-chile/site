@@ -94,7 +94,7 @@ const Footer: NextPage<WithoutProps> = () => {
                 </div>
               </address>
             </Col>
-            <Col xs="auto" className="order-1 order-lg-2">
+            <Col xs="auto" className="order-lg-2 order-1">
               <LanguageSelector theme="light" />
             </Col>
           </Row>
