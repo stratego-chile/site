@@ -21,8 +21,8 @@
     "cert": "coffee scripts/deploy-cert.coffee"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.296.0",
-    "@aws-sdk/util-dynamodb": "^3.296.0",
+    "@aws-sdk/client-dynamodb": "^3.297.0",
+    "@aws-sdk/util-dynamodb": "^3.297.0",
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-brands-svg-icons": "^6.3.0",
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
