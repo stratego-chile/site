@@ -150,16 +150,33 @@ const PasswordGeneratorForm = forwardRef<
 
       const passwords: Array<string> = []
 
+      /**
+       * Get a secure pseudo-random float between 0 and 1
+       */
+      const getSecurePseudoRandomFloat = () => {
+        return (
+          window.crypto.getRandomValues(new Uint32Array(1))[0] /
+          /**
+           * Now we divide the value by the maximum possible value
+           * for a 32-bit unsigned integer
+           */
+          4294967295
+        )
+      }
+
       while (passwords.length < options.times) {
         const digest = shuffle(usableLetters.split('')) as Array<string>
 
-        let password = String()
+        let password: string
 
         do
           password = new Array<Array<string>>(options.length)
             .fill(digest)
             .map(
-              (letters) => letters[Math.floor(Math.random() * letters.length)]
+              (letters) =>
+                letters[
+                  Math.floor(getSecurePseudoRandomFloat() * letters.length)
+                ]
             )
             .join('')
         while (passwords.includes(password))
