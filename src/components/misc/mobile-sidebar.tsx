@@ -3,7 +3,6 @@ import { navbarLinks } from '@stratego/data/navigation-links'
 import { getAssetPath } from '@stratego/helpers/static-resources.helper'
 import NavbarStyles from '@stratego/styles/modules/Navbar.module.sass'
 import classNames from 'classnames'
-import type { FC } from 'react'
 import Image from 'react-bootstrap/Image'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 
@@ -12,7 +11,10 @@ type MobileSidebarProps = {
   onClose?: () => void
 }
 
-const MobileSidebar: FC<MobileSidebarProps> = ({ show = false, onClose }) => {
+const MobileSidebar: React.FC<MobileSidebarProps> = ({
+  show = false,
+  onClose,
+}) => {
   return (
     <Offcanvas show={show} onHide={onClose} placement="end" className="pt-2">
       <Offcanvas.Header closeButton>

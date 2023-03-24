@@ -2,7 +2,6 @@ import { capitalizeText } from '@stratego/helpers/text.helper'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 import { type NextRouter } from 'next/router'
-import { type FC } from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
 
 type ArticleLinksProps = {
@@ -13,7 +12,10 @@ type ArticleLinksProps = {
   router: NextRouter
 }
 
-const ArticleLinks: FC<ArticleLinksProps> = ({ articles = [], router }) => {
+const ArticleLinks: React.FC<ArticleLinksProps> = ({
+  articles = [],
+  router,
+}) => {
   const { t } = useTranslation()
 
   return (

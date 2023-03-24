@@ -4,14 +4,13 @@ import { capitalizeText } from '@stratego/helpers/text.helper'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
-import { type FC } from 'react'
-import { Button } from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
 
 type GoBackButtonProps = {
   variant?: string
 }
 
-const GoBackButton: FC<GoBackButtonProps> = ({
+const GoBackButton: React.FC<GoBackButtonProps> = ({
   variant = 'outline-dark-blue',
 }) => {
   const router = useRouter()

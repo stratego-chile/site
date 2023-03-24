@@ -6,6 +6,7 @@ import { checkCaptchaToken } from '@stratego/pages/api/(captcha)'
 import endpoint from '@stratego/pages/api/(endpoint)'
 import template from '@stratego/templates/contact.pug'
 import type { Method } from 'axios'
+import { StatusCodes } from 'http-status-codes'
 import type { NextApiHandler } from 'next'
 import mailer, { type SendMailOptions } from 'nodemailer'
 import { type LocalsObject } from 'pug'
@@ -20,7 +21,7 @@ const handler: NextApiHandler<Stratego.Common.ResponseBody<undefined>> = async (
 
     if (!captchaToken || !(await checkCaptchaToken(captchaToken)))
       return response
-        .status(403)
+        .status(StatusCodes.FORBIDDEN)
         .json({ status: 'ERROR', message: 'Captcha token invalid' })
 
     const providedLocale =
@@ -123,7 +124,7 @@ const handler: NextApiHandler<Stratego.Common.ResponseBody<undefined>> = async (
 
     await mailTransporter.sendMail(mailOptions)
 
-    response.status(200).json({
+    response.status(StatusCodes.OK).json({
       status: 'OK',
     })
   })

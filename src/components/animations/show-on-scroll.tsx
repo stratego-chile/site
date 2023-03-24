@@ -1,12 +1,6 @@
 import { motion, useAnimation, useInView } from 'framer-motion'
 import PropTypes from 'prop-types'
-import {
-  useEffect,
-  useRef,
-  useState,
-  type FC,
-  type PropsWithChildren,
-} from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 type ShowOnScrollProps = {
   direction?: 'left' | 'right' | 'top' | 'bottom'
@@ -19,7 +13,7 @@ enum DisplayState {
   SHOWN,
 }
 
-const ShowOnScroll: FC<PropsWithChildren<ShowOnScrollProps>> = ({
+const ShowOnScroll: React.FC<React.PropsWithChildren<ShowOnScrollProps>> = ({
   children,
   direction = 'right',
   placementDiff = 45,

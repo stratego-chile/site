@@ -7,7 +7,6 @@ import {
   useRef,
   useState,
   useTransition,
-  type FC,
 } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
 
@@ -16,7 +15,7 @@ type SectionLayoutProps = {
   subsection: string
 }
 
-const SubsectionItem: FC<{
+const SubsectionItem: React.FC<{
   itemKey: string
   scrollInto?: boolean
   section: SectionLayoutProps['section']

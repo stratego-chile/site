@@ -2,7 +2,7 @@ import { CookieConsent, usableCookies } from '@stratego/helpers/cookies.helper'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import addDays from 'date-fns/addDays'
 import { useTranslation } from 'next-i18next'
-import { useCallback, useEffect, useState, type FC } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
@@ -10,7 +10,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas'
 import Row from 'react-bootstrap/Row'
 import { useCookies } from 'react-cookie'
 
-const CookiesDisclaimer: FC<WithoutProps> = () => {
+const CookiesDisclaimer: React.FC<WithoutProps> = () => {
   const [consentCookie, setConsentCookie] = useCookies([usableCookies.consent])
 
   const { t } = useTranslation('common')

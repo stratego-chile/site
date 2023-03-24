@@ -2,7 +2,7 @@ import { capitalizeText } from '@stratego/helpers/text.helper'
 import { useFormik } from 'formik'
 import { useTranslation } from 'next-i18next'
 import PropTypes from 'prop-types'
-import { useEffect, useState, type FC } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import * as Yup from 'yup'
 
@@ -14,7 +14,7 @@ type PasswordGeneratorLettersGroupFormProps = {
   onCancel?: () => void
 }
 
-const PasswordGeneratorLettersGroupForm: FC<
+const PasswordGeneratorLettersGroupForm: React.FC<
   PasswordGeneratorLettersGroupFormProps
 > = ({ onCancel, lettersGroupSpec, onLettersGroupSpecChange }) => {
   const { t } = useTranslation('utils')

@@ -4,16 +4,22 @@ import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import PropTypes from 'prop-types'
-import { useMemo, useRef, type FC } from 'react'
+import { useMemo, useRef } from 'react'
+import type { ButtonProps } from 'react-bootstrap/Button'
 import { useWindowScroll } from 'react-use'
 
 type ToTopButtonProps = {
   show?: boolean
 }
 
-const Button = dynamic(() => import('react-bootstrap/Button'))
+const Button = dynamic(
+  () =>
+    import('react-bootstrap/Button') as unknown as Promise<
+      React.ComponentType<React.HTMLAttributes<HTMLElement> & ButtonProps>
+    >
+)
 
-const ToTopButton: FC<ToTopButtonProps> = ({ show = true }) => {
+const ToTopButton: React.FC<ToTopButtonProps> = ({ show = true }) => {
   const { y: scrollPosition } = useWindowScroll()
 
   const showReturnToTopButtonRef = useRef<HTMLDivElement>(null)

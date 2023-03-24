@@ -1,4 +1,4 @@
-import { type LinkSpec } from '@stratego/data/navigation-links'
+import type { LinkSpec } from '@stratego/data/navigation-links'
 import {
   DEFAULT_PAGE_DESCRIPTION,
   DEFAULT_TITLE,
@@ -9,14 +9,7 @@ import classNames from 'classnames'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import PropTypes from 'prop-types'
-import {
-  useEffect,
-  useState,
-  type DetailedHTMLProps,
-  type FC,
-  type HTMLAttributes,
-  type PropsWithChildren,
-} from 'react'
+import { useEffect, useState } from 'react'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -37,9 +30,12 @@ export type LayoutProps = {
   defaultGrid?: boolean
   showNavigationOptions?: boolean
   showReturnToTopButton?: boolean
-} & DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+} & React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>
 
-const Layout: FC<PropsWithChildren<LayoutProps>> = ({
+const Layout: React.FC<React.PropsWithChildren<LayoutProps>> = ({
   pageTitle,
   pageDescription,
   brandDepartment,

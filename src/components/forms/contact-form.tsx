@@ -16,7 +16,6 @@ import {
   useId,
   useMemo,
   useState,
-  type FC,
 } from 'react'
 import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
@@ -48,7 +47,7 @@ type ContactSubmitResponse =
 
 const MAX_MESSAGE_LENGTH = 200
 
-const ContactForm: FC<WithoutProps> = () => {
+const ContactForm: React.FC<WithoutProps> = () => {
   const { t, i18n } = useTranslation('sections')
 
   const [submitMessage, setSubmitMessage] = useState<{

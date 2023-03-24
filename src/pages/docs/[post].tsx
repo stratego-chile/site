@@ -9,6 +9,7 @@ import { defaultLocale } from '@stratego/locales'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import requester from 'axios'
 import classNames from 'classnames'
+import { StatusCodes } from 'http-status-codes'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -16,6 +17,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
+import type { ContainerProps } from 'react-bootstrap/Container'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import { useAsyncFn } from 'react-use'
 
@@ -23,7 +25,12 @@ const Layout = dynamic(() => import('@stratego/components/shared/layout'), {
   loading: () => <LoadingPlaceholder />,
 })
 
-const Container = dynamic(() => import('react-bootstrap/Container'))
+const Container = dynamic(
+  () =>
+    import('react-bootstrap/Container') as unknown as Promise<
+      React.ComponentType<React.HTMLAttributes<HTMLElement> & ContainerProps>
+    >
+)
 
 const Row = dynamic(() => import('react-bootstrap/Row'))
 
@@ -173,7 +180,7 @@ const DocumentationPost: NextPage<WithoutProps> = () => {
         <Container className="d-flex flex-column flex-grow-1 my-5">
           <Row className="flex-grow-1 align-items-center justify-content-center">
             <Col>
-              <ErrorPage statusCode={404} relativeHeight />
+              <ErrorPage statusCode={StatusCodes.NOT_FOUND} relativeHeight />
             </Col>
           </Row>
         </Container>

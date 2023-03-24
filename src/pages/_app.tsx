@@ -1,8 +1,11 @@
-import { config as FontAwesomeConfig } from '@fortawesome/fontawesome-svg-core'
+// Import global styles
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import '@stratego/styles/_global.sass'
+
+// Import app modules
+import { config as FontAwesomeConfig } from '@fortawesome/fontawesome-svg-core'
 import { showConsoleWarnings } from '@stratego/helpers/console.helper'
 import '@stratego/polyfills'
-import '@stratego/styles/_global.sass'
 import { Analytics } from '@vercel/analytics/react'
 import { appWithTranslation } from 'next-i18next'
 import { type AppProps } from 'next/app'

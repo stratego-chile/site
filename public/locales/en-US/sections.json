@@ -86,6 +86,12 @@
     "content": [
       {
         "title": "About us",
+        "images": [
+          {
+            "path": "logo-colored-bg.svg",
+            "type": "external"
+          }
+        ],
         "description": [
           "We are a cybersecurity and technological development company, with great experience in the national and international market, whose base responds to the great team that composes it.",
           "We are permanently seeking to develop and enhance innovative services that impact many businesses.",
@@ -95,18 +101,40 @@
       },
       {
         "title": "Alliance with Baker Tilly",
+        "images": [
+          {
+            "path": "/images/bakertilly-logo-black.svg",
+            "type": "local"
+          }
+        ],
         "description": [
           "We work side by side in partnership with Baker Tilly, a global professional services firm in auditing, tax advisory, consulting and outsourcing, from where we have been able to enhance our services, developing a deeper understanding of the risks faced by various industries and companies."
         ]
       },
       {
         "title": "Projects financed by Corfo",
+        "images": [
+          {
+            "path": "/images/corfo-logo-blue.svg",
+            "type": "local"
+          }
+        ],
         "description": [
           "Our projects have been awarded innovation funds in Corfo, including a seed capital fund, which aims to promote innovation in products and services and the Crea y Valida fund, which supports the development of technological services, from the prototype to its technical validation at industrial and commercial level, incorporating stages of Research and Development (R+D+I)."
         ]
       },
       {
         "title": "Chrisalys Incubator",
+        "images": [
+          {
+            "path": "/images/chrysalis-logo.png",
+            "type": "local"
+          },
+          {
+            "path": "/images/chrysalis-pucv-logo.svg",
+            "type": "local"
+          }
+        ],
         "description": [
           "We participated in the Chrisalys incubation program for a whole year, receiving a great development experience."
         ]

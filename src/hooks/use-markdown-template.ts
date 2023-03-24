@@ -1,14 +1,5 @@
-import { type MDXRemoteProps } from 'next-mdx-remote'
-import {
-  createElement,
-  type DependencyList,
-  Fragment,
-  type ReactNode,
-  useEffect,
-  useMemo,
-  useState,
-  type FC,
-} from 'react'
+import type { MDXRemoteProps } from 'next-mdx-remote'
+import { createElement, Fragment, useEffect, useMemo, useState } from 'react'
 import { useRemoteContent } from '@stratego/hooks/use-remote-content'
 import { useAsyncMemo } from '@stratego/hooks/use-async-memo'
 import RemarkUnwrapImages from 'remark-unwrap-images'
@@ -17,7 +8,7 @@ import dynamic from 'next/dynamic'
 interface LoadingState extends Boolean {}
 interface IsFound extends Boolean {}
 
-type MarkdownTemplateFetch = [ReactNode, LoadingState, IsFound]
+type MarkdownTemplateFetch = [React.ReactNode, LoadingState, IsFound]
 
 type MarkdownTemplateConfig = {
   templatePath?: string | URL
@@ -25,12 +16,13 @@ type MarkdownTemplateConfig = {
 }
 
 const MDXRemote = dynamic(
-  async () => (await import('next-mdx-remote')).MDXRemote as FC<MDXRemoteProps>
+  async () =>
+    (await import('next-mdx-remote')).MDXRemote as React.FC<MDXRemoteProps>
 )
 
 export const useMarkdownTemplate = (
   config?: MarkdownTemplateConfig,
-  deps: DependencyList = []
+  deps: React.DependencyList = []
 ): MarkdownTemplateFetch => {
   const templatePath = useMemo(
     () => config?.templatePath || 'about:blank',
@@ -48,7 +40,7 @@ export const useMarkdownTemplate = (
     [...deps]
   )
 
-  const [compiledContent, setContent] = useState<ReactNode>(null)
+  const [compiledContent, setContent] = useState<React.ReactNode>(null)
 
   const { data: content } = useAsyncMemo(async () => {
     if (template instanceof ReadableStream && !template.locked) {

@@ -10,17 +10,16 @@ import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
 import PropTypes from 'prop-types'
 import {
-  forwardRef,
   Fragment,
+  forwardRef,
   useCallback,
   useDeferredValue,
   useEffect,
   useImperativeHandle,
   useMemo,
   useState,
-  type FC,
-  type Ref,
 } from 'react'
+import type { ButtonProps } from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
@@ -30,7 +29,12 @@ const Row = dynamic(() => import('react-bootstrap/Row'))
 
 const Col = dynamic(() => import('react-bootstrap/Col'))
 
-const Button = dynamic(() => import('react-bootstrap/Button'))
+const Button = dynamic(
+  () =>
+    import('react-bootstrap/Button') as unknown as Promise<
+      React.ComponentType<React.HTMLAttributes<HTMLElement> & ButtonProps>
+    >
+)
 
 const PasswordGeneratorLettersGroupModal = dynamic(
   () => import('@stratego/components/modals/password-letters-group-modal')
@@ -506,9 +510,9 @@ PasswordGeneratorForm.propTypes = {
   onPasswordGeneration: PropTypes.func,
 }
 
-const PasswordGeneratorFormWrapper: FC<
+const PasswordGeneratorFormWrapper: React.FC<
   PasswordGeneratorFormProps & {
-    forwardedRef: Ref<PasswordGeneratorRef>
+    forwardedRef: React.Ref<PasswordGeneratorRef>
   }
 > = ({ forwardedRef, ...props }) => {
   return <PasswordGeneratorForm {...props} ref={forwardedRef} />

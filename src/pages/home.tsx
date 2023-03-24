@@ -11,12 +11,24 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
+import type { ButtonProps } from 'react-bootstrap'
+import type { ContainerProps } from 'react-bootstrap/Container'
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 
-const Button = dynamic(() => import('react-bootstrap/Button'))
+const Button = dynamic(
+  () =>
+    import('react-bootstrap/Button') as unknown as Promise<
+      React.ComponentType<React.HTMLAttributes<HTMLElement> & ButtonProps>
+    >
+)
 
-const Container = dynamic(() => import('react-bootstrap/Container'))
+const Container = dynamic(
+  () =>
+    import('react-bootstrap/Container') as unknown as Promise<
+      React.ComponentType<React.HTMLAttributes<HTMLElement> & ContainerProps>
+    >
+)
 
 const Row = dynamic(() => import('react-bootstrap/Row'))
 

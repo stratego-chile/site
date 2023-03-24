@@ -1,11 +1,4 @@
-import {
-  type DependencyList,
-  useCallback,
-  useState,
-  useMemo,
-  useEffect,
-  useDebugValue,
-} from 'react'
+import { useCallback, useState, useMemo, useEffect, useDebugValue } from 'react'
 
 const RECOMMENDED_DEPS_LENGTH = 3
 
@@ -17,7 +10,7 @@ const RECOMMENDED_DEPS_LENGTH = 3
  */
 export const useAsyncMemo = <T = unknown>(
   promiseFunction: () => Promise<T>,
-  deps: DependencyList
+  deps: React.DependencyList
 ) => {
   const [data, setData] = useState<T>()
   const [errorReason, setErrorReason] = useState<Error>()

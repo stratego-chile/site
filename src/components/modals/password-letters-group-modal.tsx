@@ -1,6 +1,5 @@
 import PasswordGeneratorLettersGroupForm from '@stratego/components/forms/password-letters-group-form'
 import PropTypes from 'prop-types'
-import { type FC } from 'react'
 import Modal from 'react-bootstrap/Modal'
 
 type PasswordGeneratorLettersGroupModalProps = {
@@ -12,7 +11,7 @@ type PasswordGeneratorLettersGroupModalProps = {
   onCancel?: () => void
 }
 
-const PasswordGeneratorLettersGroupModal: FC<
+const PasswordGeneratorLettersGroupModal: React.FC<
   PasswordGeneratorLettersGroupModalProps
 > = ({
   onCancel,

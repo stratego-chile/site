@@ -6,7 +6,7 @@ import { getNativeName } from 'language-flag-colors/bin/functions/getNativeName'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
-import { Fragment, useCallback, useId, type FC } from 'react'
+import { Fragment, useCallback, useId } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
 
 type LanguageSelectorProps = {
@@ -14,7 +14,7 @@ type LanguageSelectorProps = {
   className?: string
 }
 
-const LanguageSelector: FC<LanguageSelectorProps> = ({
+const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   theme = 'light',
   className,
 }) => {

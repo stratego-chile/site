@@ -1,4 +1,4 @@
-import axios from 'axios'
+import requester from 'axios'
 
 export const checkCaptchaToken = async (token: string) => {
   const destinationURL = new URL(process.env.CAPTCHA_VERIFIER_API)
@@ -6,7 +6,7 @@ export const checkCaptchaToken = async (token: string) => {
   destinationURL.searchParams.append('secret', process.env.CAPTCHA_SECRET)
   destinationURL.searchParams.append('response', token)
 
-  const { data } = await axios.post<{
+  const { data } = await requester.post<{
     success: boolean
     score: number
     action: string
