@@ -2,7 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@stratego/*": ["src/*"]
+      "@stratego/*": [
+        "src/*"
+      ]
     },
     "target": "es5",
     "lib": [
@@ -33,5 +35,7 @@
     "**/*.tsx",
     "types/**.d.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
