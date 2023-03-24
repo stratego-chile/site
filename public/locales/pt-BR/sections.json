@@ -86,6 +86,12 @@
     "content": [
       {
         "title": "Sobre nós",
+        "images": [
+          {
+            "path": "logo-colored-bg.svg",
+            "type": "external"
+          }
+        ],
         "description": [
           "Somos uma empresa de segurança cibernética e desenvolvimento tecnológico, com grande experiência no mercado nacional e internacional, com base na grande equipe humana que a compõe",
           "Estamos constantemente buscando desenvolver e aprimorar serviços inovadores que impactam muitas empresas",
@@ -95,18 +101,40 @@
       },
       {
         "title": "Aliança com a Baker Tilly",
+        "images": [
+          {
+            "path": "/images/bakertilly-logo-black.svg",
+            "type": "local"
+          }
+        ],
         "description": [
           "Trabalhamos lado a lado em parceria com a Baker Tilly, uma empresa global de serviços profissionais em auditoria, assessoria fiscal, consultoria e terceirização, de onde temos sido capazes de melhorar nossos serviços, desenvolvendo um entendimento mais profundo dos riscos enfrentados por várias indústrias e empresas."
         ]
       },
       {
         "title": "Projetos financiados pela Corfo",
+        "images": [
+          {
+            "path": "/images/corfo-logo-blue.svg",
+            "type": "local"
+          }
+        ],
         "description": [
           "Nossos projetos receberam fundos de inovação na Corfo, incluindo um fundo de capital semente, que visa promover a inovação em produtos e serviços e o fundo Crea y Valida, que apóia o desenvolvimento de serviços tecnológicos, desde o protótipo até sua validação técnica em nível industrial e comercial, incorporando etapas de Pesquisa e Desenvolvimento (I+D+I)."
         ]
       },
       {
         "title": "Incubadora Chrisalys",
+        "images": [
+          {
+            "path": "/images/chrysalis-logo.png",
+            "type": "local"
+          },
+          {
+            "path": "/images/chrysalis-pucv-logo.svg",
+            "type": "local"
+          }
+        ],
         "description": [
           "Participamos do programa de incubação da Chrisalys durante um ano inteiro, recebendo uma grande experiência de desenvolvimento."
         ]
