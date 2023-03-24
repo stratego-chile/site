@@ -4,6 +4,7 @@ import { defaultLocale } from '@stratego/locales'
 import { checkCaptchaToken } from '@stratego/pages/api/(captcha)'
 import endpoint from '@stratego/pages/api/(endpoint)'
 import type { Method } from 'axios'
+import { StatusCodes } from 'http-status-codes'
 import type { NextApiHandler } from 'next'
 
 const ALLOWED_METHODS: Array<Method> = ['GET']
@@ -49,7 +50,7 @@ const handle: NextApiHandler<
       ? (unmarshall(item) as Stratego.Documentation.Post)
       : undefined
 
-    response.status(200).json({
+    response.status(StatusCodes.OK).json({
       status: 'OK',
       result: docRef?.availableLocales.includes(locale ?? defaultLocale)
         ? {
