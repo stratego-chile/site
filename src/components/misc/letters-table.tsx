@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useMemo, type FC } from 'react'
+import { useMemo } from 'react'
 import Table from 'react-bootstrap/Table'
 
 type LettersTableProps = {
@@ -7,7 +7,7 @@ type LettersTableProps = {
   rowLength?: number
 }
 
-const LettersTable: FC<LettersTableProps> = ({
+const LettersTable: React.FC<LettersTableProps> = ({
   rowLength: $rowLength = 10,
   letters = '',
 }) => {

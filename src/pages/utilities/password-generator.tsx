@@ -14,30 +14,38 @@ import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import {
-  forwardRef,
-  PropsWithRef,
-  useCallback,
-  useRef,
-  useState,
-  type FC,
-  type Ref,
-} from 'react'
+import { forwardRef, useCallback, useRef, useState } from 'react'
+import { ContainerProps } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
 
 const PasswordGeneratorFormWrapper = dynamic(
-  () => import('@stratego/components/forms/password-generator-form'),
+  import('@stratego/components/forms/password-generator-form'),
   {
     ssr: false,
   }
 )
 
-const PasswordGeneratorFormWrapperForwarded: FC<
-  PropsWithRef<
+const Container = dynamic(
+  () =>
+    import('react-bootstrap/Container') as unknown as Promise<
+      React.ComponentType<React.HTMLAttributes<HTMLElement> & ContainerProps>
+    >
+)
+
+const Row = dynamic(import('react-bootstrap/Row'))
+
+const Col = dynamic(import('react-bootstrap/Col'))
+
+const Table = dynamic(import('react-bootstrap/Table'))
+
+const Layout = dynamic(import('@stratego/components/shared/layout'))
+
+const PasswordGeneratorFormWrapperForwarded: React.FC<
+  React.PropsWithRef<
     PasswordGeneratorFormProps & {
-      ref: Ref<PasswordGeneratorRef>
+      ref: React.Ref<PasswordGeneratorRef>
     }
   >
 > = forwardRef((props, ref) => {
@@ -46,16 +54,6 @@ const PasswordGeneratorFormWrapperForwarded: FC<
 
 PasswordGeneratorFormWrapperForwarded.displayName =
   'PasswordGeneratorFormWrapper'
-
-const Container = dynamic(() => import('react-bootstrap/Container'))
-
-const Row = dynamic(() => import('react-bootstrap/Row'))
-
-const Col = dynamic(() => import('react-bootstrap/Col'))
-
-const Table = dynamic(() => import('react-bootstrap/Table'))
-
-const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 
 const PasswordGenerator: NextPage<WithoutProps> = () => {
   const { t } = useTranslation('utils')

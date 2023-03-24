@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-import { type FC } from 'react'
 import Alert from 'react-bootstrap/Alert'
 import Spinner from 'react-bootstrap/Spinner'
 
@@ -8,7 +7,7 @@ type LoadingPlaceholderProps = {
   error?: Error | null
 }
 
-const LoadingPlaceholder: FC<LoadingPlaceholderProps> = ({
+const LoadingPlaceholder: React.FC<LoadingPlaceholderProps> = ({
   loading = true,
   error,
 }) => {

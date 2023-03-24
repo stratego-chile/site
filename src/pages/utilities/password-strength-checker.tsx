@@ -18,6 +18,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Fragment, useEffect, useState } from 'react'
 import Alert from 'react-bootstrap/Alert'
+import type { ButtonProps } from 'react-bootstrap/Button'
+import type { ContainerProps } from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import ListGroup from 'react-bootstrap/ListGroup'
@@ -26,13 +28,21 @@ type PasswordStrengthId = 0 | 1 | 2 | 3
 
 const Layout = dynamic(import('@stratego/components/shared/layout'))
 
-const Container = dynamic(import('react-bootstrap/Container'))
+const Container = dynamic(
+  import('react-bootstrap/Container') as unknown as Promise<
+    React.ComponentType<React.HTMLAttributes<HTMLElement> & ContainerProps>
+  >
+)
 
 const Row = dynamic(import('react-bootstrap/Row'))
 
 const Col = dynamic(import('react-bootstrap/Col'))
 
-const Button = dynamic(import('react-bootstrap/Button'))
+const Button = dynamic(
+  import('react-bootstrap/Button') as unknown as Promise<
+    React.ComponentType<React.HTMLAttributes<HTMLElement> & ButtonProps>
+  >
+)
 
 const PasswordStrengthChecker: NextPage<WithoutProps> = () => {
   const router = useRouter()

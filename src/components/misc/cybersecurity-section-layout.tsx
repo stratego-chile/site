@@ -7,14 +7,8 @@ import classNames from 'classnames'
 import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-  useTransition,
-  type FC,
-} from 'react'
+import { useCallback, useEffect, useMemo, useState, useTransition } from 'react'
+import type { ContainerProps } from 'react-bootstrap'
 import Accordion from 'react-bootstrap/Accordion'
 
 type SectionLayoutProps = {
@@ -27,13 +21,18 @@ const SubsectionItem = dynamic(
   () => import('@stratego/components/misc/service-subsection')
 )
 
-const Container = dynamic(() => import('react-bootstrap/Container'))
+const Container = dynamic(
+  () =>
+    import('react-bootstrap/Container') as unknown as Promise<
+      React.ComponentType<React.HTMLAttributes<HTMLElement> & ContainerProps>
+    >
+)
 
 const Row = dynamic(() => import('react-bootstrap/Row'))
 
 const Col = dynamic(() => import('react-bootstrap/Col'))
 
-const SectionLayout: FC<SectionLayoutProps> = ({ section }) => {
+const SectionLayout: React.FC<SectionLayoutProps> = ({ section }) => {
   const router = useRouter()
 
   const [subsection, setSubsection] =

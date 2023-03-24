@@ -1,11 +1,11 @@
 import NavBarLink from '@stratego/components/misc/navbar-link'
-import { type LinkSpec } from '@stratego/data/navigation-links'
+import type { LinkSpec } from '@stratego/data/navigation-links'
 import { recursiveCall } from '@stratego/helpers/functions.helper'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import classNames from 'classnames'
 import { useTranslation } from 'next-i18next'
 import PropTypes from 'prop-types'
-import { Fragment, type PropsWithChildren, useId, type FC } from 'react'
+import { Fragment, useId } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Nav from 'react-bootstrap/Nav'
@@ -17,7 +17,7 @@ type NavBarLinksProps = {
   orientation?: 'vertical' | 'horizontal'
 }
 
-const NavBarLinks: FC<NavBarLinksProps> = ({
+const NavBarLinks: React.FC<NavBarLinksProps> = ({
   links = [],
   mode = 'root',
   orientation = 'horizontal',
@@ -26,7 +26,7 @@ const NavBarLinks: FC<NavBarLinksProps> = ({
 
   const { t } = useTranslation()
 
-  const Wrapper: FC<PropsWithChildren<WithoutProps>> = (props) => {
+  const Wrapper: React.FC<React.PropsWithChildren<WithoutProps>> = (props) => {
     return orientation === 'vertical' ? (
       <div
         {...props}

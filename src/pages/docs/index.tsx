@@ -21,23 +21,41 @@ import {
   useMemo,
   useState,
 } from 'react'
-import Fade from 'react-bootstrap/Fade'
+import type { BadgeProps } from 'react-bootstrap/Badge'
 import Button from 'react-bootstrap/Button'
+import type { ContainerProps } from 'react-bootstrap/Container'
+import Fade from 'react-bootstrap/Fade'
 import Form from 'react-bootstrap/Form'
+import type { SpinnerProps } from 'react-bootstrap/Spinner'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import { useAsyncFn } from 'react-use'
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 
-const Container = dynamic(() => import('react-bootstrap/Container'))
+const Container = dynamic(
+  () =>
+    import('react-bootstrap/Container') as unknown as Promise<
+      React.ComponentType<React.HTMLAttributes<HTMLElement> & ContainerProps>
+    >
+)
 
 const Row = dynamic(() => import('react-bootstrap/Row'))
 
 const Col = dynamic(() => import('react-bootstrap/Col'))
 
-const Badge = dynamic(() => import('react-bootstrap/Badge'))
+const Badge = dynamic(
+  () =>
+    import('react-bootstrap/Badge') as unknown as Promise<
+      React.ComponentType<React.HTMLAttributes<HTMLElement> & BadgeProps>
+    >
+)
 
-const Spinner = dynamic(() => import('react-bootstrap/Spinner'))
+const Spinner = dynamic(
+  () =>
+    import('react-bootstrap/Spinner') as unknown as Promise<
+      React.ComponentType<React.HTMLAttributes<HTMLElement> & SpinnerProps>
+    >
+)
 
 const ArticleLinks = dynamic(
   () => import('@stratego/components/misc/docs-list')

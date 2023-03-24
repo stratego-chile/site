@@ -2,14 +2,20 @@ import LoadingPlaceholder from '@stratego/components/shared/loading-placeholder'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { defaultLocale } from '@stratego/locales'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
-import { type GetServerSideProps, type NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
+import type { ContainerProps } from 'react-bootstrap/Container'
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
 
-const Container = dynamic(() => import('react-bootstrap/Container'))
+const Container = dynamic(
+  () =>
+    import('react-bootstrap/Container') as unknown as Promise<
+      React.ComponentType<React.HTMLAttributes<HTMLElement> & ContainerProps>
+    >
+)
 
 const Row = dynamic(() => import('react-bootstrap/Row'))
 

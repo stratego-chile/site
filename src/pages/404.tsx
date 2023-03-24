@@ -1,5 +1,6 @@
 import { defaultLocale } from '@stratego/locales'
-import { type GetStaticProps } from 'next'
+import { StatusCodes } from 'http-status-codes'
+import type { GetStaticProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 
@@ -7,8 +8,8 @@ const ErrorPage = dynamic(
   () => import('@stratego/components/shared/error-page')
 )
 
-const NotFoundPage = () => {
-  return <ErrorPage statusCode={404} />
+const NotFoundPage: NextPage = () => {
+  return <ErrorPage statusCode={StatusCodes.NOT_FOUND} />
 }
 
 export const getStaticProps: GetStaticProps<WithoutProps> = async ({

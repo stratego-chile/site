@@ -1,4 +1,4 @@
-import { useState, type DependencyList } from 'react'
+import { useState } from 'react'
 import { useAsyncMemo } from '@stratego/hooks/use-async-memo'
 
 interface Fetching extends Boolean {}
@@ -10,7 +10,7 @@ type RemoteContentHookConfig = {
 
 export const useRemoteContent = (
   config: RemoteContentHookConfig,
-  deps: DependencyList = []
+  deps: React.DependencyList = []
 ): {
   content?: ReadableStream<Uint8Array> | null
   fetching: Fetching

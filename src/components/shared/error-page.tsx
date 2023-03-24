@@ -1,24 +1,30 @@
 import GoBackButton from '@stratego/components/shared/go-back-button'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import classNames from 'classnames'
+import { StatusCodes } from 'http-status-codes'
 import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
 import PropTypes from 'prop-types'
-import type { FC } from 'react'
+import type { ContainerProps } from 'react-bootstrap/Container'
 
-const Container = dynamic(() => import('react-bootstrap/Container'))
+const Container = dynamic(
+  () =>
+    import('react-bootstrap/Container') as unknown as Promise<
+      React.ComponentType<React.HTMLAttributes<HTMLElement> & ContainerProps>
+    >
+)
 
 const Row = dynamic(() => import('react-bootstrap/Row'))
 
 const Col = dynamic(() => import('react-bootstrap/Col'))
 
 type ErrorPageProps = {
-  statusCode?: number
+  statusCode?: StatusCodes
   showGoBackButton?: boolean
   relativeHeight?: boolean
 }
 
-const ErrorPage: FC<ErrorPageProps> = ({
+const ErrorPage: React.FC<ErrorPageProps> = ({
   statusCode,
   showGoBackButton = true,
   relativeHeight = false,

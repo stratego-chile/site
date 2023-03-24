@@ -9,7 +9,7 @@ import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
-import { Fragment, useState, type FC } from 'react'
+import { Fragment, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
@@ -34,7 +34,7 @@ const LanguageSelector = dynamic(
   () => import('@stratego/components/shared/language-selector')
 )
 
-const NavBar: FC<NavBarProps> = ({
+const NavBar: React.FC<NavBarProps> = ({
   showNavigationOptions,
   theme = 'dark-blue',
   brandDepartment,

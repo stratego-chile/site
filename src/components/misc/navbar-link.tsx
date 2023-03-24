@@ -1,14 +1,13 @@
 import type { LinkSpec } from '@stratego/data/navigation-links'
 import Link, { type LinkProps } from 'next/link'
 import PropTypes from 'prop-types'
-import { FC, PropsWithChildren } from 'react'
 
 type NavBarLinkProps = Partial<LinkProps> & {
   link: LinkSpec
   className?: string
 }
 
-const NavBarLink: FC<PropsWithChildren<NavBarLinkProps>> = ({
+const NavBarLink: React.FC<React.PropsWithChildren<NavBarLinkProps>> = ({
   link,
   children,
   ...linkProps
