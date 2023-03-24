@@ -1,5 +1,8 @@
 # Stratego Site
 
+[![CircleCI](https://circleci.com/gh/stratego-chile/site/tree/main.svg?style=svg)](https://circleci.com/gh/stratego-chile/site/tree/main)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/04f20d4c36154742a4d97119f7a88038)](https://app.codacy.com/gh/stratego-chile/site/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
 This project is licensed under the [MIT License](https://github.com/stratego-chile/site/blob/main/LICENSE)
 
 ## Motivation
