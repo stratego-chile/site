@@ -175,8 +175,6 @@ const Documentation: NextPage<WithoutProps> = () => {
     const { foundArticles: $foundArticles = [] } =
       await searchDocumentationPosts('', true)
 
-    console.log('defaultArticles:', $foundArticles)
-
     return filterArticles($foundArticles)
   }, [])
 
@@ -188,8 +186,6 @@ const Documentation: NextPage<WithoutProps> = () => {
     )) ?? {
       foundArticles: [],
     }
-
-    console.log('foundArticles:', $foundArticles)
 
     return filterArticles($foundArticles)
   }, [inputCriteria, criteria])
