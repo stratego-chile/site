@@ -1,13 +1,16 @@
 import CountriesDialCodesData from '@stratego/data/countries-dial-codes.json'
 
-type CountryDialCodesSpec =
-  | [string, string, string]
-  | [string, string, string, number]
-  | [string, string, string, number, Array<string>]
+type CountryDialCodesSpec = [
+  name: string,
+  iso2: string,
+  dialCode: string,
+  priority: number | undefined,
+  areaCodes: Array<string> | undefined
+]
 
-const countries = CountriesDialCodesData as Array<CountryDialCodesSpec>
+const countriesDialCodes = CountriesDialCodesData as Array<CountryDialCodesSpec>
 
-const dialCodeSpecs = countries.map(
+const dialCodeSpecs = countriesDialCodes.map(
   ([name, iso2, dialCode, priority, areaCodes]) => ({
     name,
     iso2,
