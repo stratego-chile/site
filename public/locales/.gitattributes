@@ -1,5 +1,0 @@
-* text=auto
-* text encoding=utf-8
-* text eol=lf
-# GitHub Linguist Override
-*.json linguist-language=JSON
