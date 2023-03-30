@@ -4,7 +4,6 @@ import { defaultLocale, localesList } from '@stratego/locales'
 import { checkCaptchaToken } from '@stratego/pages/api/(captcha)'
 import endpoint from '@stratego/pages/api/(endpoint)'
 import template from '@stratego/templates/contact.pug'
-import type { Method } from 'axios'
 import { StatusCodes } from 'http-status-codes'
 import i18next from 'i18next'
 import i18nextBackend from 'i18next-fs-backend'
@@ -13,12 +12,10 @@ import mailer, { type SendMailOptions } from 'nodemailer'
 import path from 'path'
 import type { LocalsObject } from 'pug'
 
-const ALLOWED_METHODS: Array<Method> = ['POST']
-
 const handler: NextApiHandler<Stratego.Common.ResponseBody<undefined>> = async (
   ...hooks
 ) => {
-  endpoint(ALLOWED_METHODS, ...hooks, async (request, response) => {
+  endpoint(['POST'], ...hooks, async (request, response) => {
     const captchaToken = request.headers.authorization
 
     if (!captchaToken || !(await checkCaptchaToken(captchaToken)))
