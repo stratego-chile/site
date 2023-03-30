@@ -1,7 +1,9 @@
 // @ts-check
 const path = require('path')
 
-const devMode = process.env.NODE_ENV !== 'production'
+const isDebugging = process.env.NODE_ENV !== 'production'
+
+const isBrowserContextActive = typeof window !== 'undefined'
 
 /**
  * @type {import('next-i18next').UserConfig}
@@ -27,10 +29,10 @@ const nextI18NextConfig = {
     transKeepBasicHtmlNodesFor: ['br', 'strong', 'a', 'b', 'u', 'small', 'sup', 'sub'],
     useSuspense: false,
   },
-  localePath: typeof window === 'undefined'
+  localePath: !isBrowserContextActive
     ? path.resolve('.', 'public', 'locales')
     : '/locales',
-  reloadOnPrerender: devMode,
+  reloadOnPrerender: isDebugging,
 }
 
 module.exports = nextI18NextConfig
