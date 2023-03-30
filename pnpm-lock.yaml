@@ -70,6 +70,9 @@ dependencies:
   i18next:
     specifier: ^22.4.13
     version: 22.4.13
+  i18next-fs-backend:
+    specifier: ^2.1.1
+    version: 2.1.1
   language-flag-colors:
     specifier: ^2.1.2
     version: 2.1.2

@@ -95,6 +95,8 @@ const ContactForm: React.FC<WithoutProps> = () => {
     (values: ContactData, helpers: FormikHelpers<ContactData>) => {
       if (!executeRecaptcha) return
 
+      setSubmitMessage(undefined)
+
       executeRecaptcha('enquiryFormSubmit').then((captchaToken) => {
         helpers.setSubmitting(true)
 
@@ -184,7 +186,10 @@ const ContactForm: React.FC<WithoutProps> = () => {
 
   // When the form is submitted successfully, reset the form values and mark all fields as untouched
   useEffect(() => {
-    if (submitMessage?.type === 'success') {
+    if (
+      submitMessage?.type === 'success' &&
+      process.env.NODE_ENV !== 'development'
+    ) {
       setValues({
         ...initialValues,
         phonePrefix:
