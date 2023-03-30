@@ -95,6 +95,8 @@ const ContactForm: React.FC<WithoutProps> = () => {
     (values: ContactData, helpers: FormikHelpers<ContactData>) => {
       if (!executeRecaptcha) return
 
+      setSubmitMessage(undefined)
+
       executeRecaptcha('enquiryFormSubmit').then((captchaToken) => {
         helpers.setSubmitting(true)
 
