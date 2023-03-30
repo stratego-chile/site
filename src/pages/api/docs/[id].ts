@@ -3,16 +3,13 @@ import { unmarshall } from '@aws-sdk/util-dynamodb'
 import { defaultLocale } from '@stratego/locales'
 import { checkCaptchaToken } from '@stratego/pages/api/(captcha)'
 import endpoint from '@stratego/pages/api/(endpoint)'
-import type { Method } from 'axios'
 import { StatusCodes } from 'http-status-codes'
 import type { NextApiHandler } from 'next'
-
-const ALLOWED_METHODS: Array<Method> = ['GET']
 
 const handle: NextApiHandler<
   Stratego.Common.ResponseBody<Stratego.Documentation.PostRef | undefined>
 > = async (...hooks) => {
-  endpoint(ALLOWED_METHODS, ...hooks, async (request, response) => {
+  endpoint(['GET'], ...hooks, async (request, response) => {
     const captchaToken = request.headers.authorization
 
     if (!captchaToken || !(await checkCaptchaToken(captchaToken)))

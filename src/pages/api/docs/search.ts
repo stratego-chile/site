@@ -4,7 +4,6 @@ import { isSerializable, isSimilar } from '@stratego/helpers/assert.helper'
 import { defaultLocale } from '@stratego/locales'
 import { checkCaptchaToken } from '@stratego/pages/api/(captcha)'
 import endpoint from '@stratego/pages/api/(endpoint)'
-import type { Method } from 'axios'
 import { StatusCodes } from 'http-status-codes'
 import type { NextApiHandler } from 'next'
 
@@ -19,15 +18,13 @@ type SearchRequest = Exclusive<
   }
 >
 
-const ALLOWED_METHODS: Array<Method> = ['POST']
-
 const handle: NextApiHandler<
   Stratego.Common.ResponseBody<{
     foundArticles: Array<Stratego.Documentation.PostRef>
     defaultMode: boolean
   }>
 > = async (...hooks) => {
-  endpoint(ALLOWED_METHODS, ...hooks, async (request, response) => {
+  endpoint(['POST'], ...hooks, async (request, response) => {
     if (!isSerializable(request.body)) throw new TypeError('Wrong payload')
 
     const captchaToken = request.headers.authorization
