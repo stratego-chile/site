@@ -25,7 +25,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Row from 'react-bootstrap/Row'
 import Spinner from 'react-bootstrap/Spinner'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
-import * as yup from 'yup'
+import * as Yup from 'yup'
 
 type ContactData = {
   name: string
@@ -77,20 +77,18 @@ const ContactForm: React.FC<WithoutProps> = () => {
 
   const { executeRecaptcha } = useGoogleReCaptcha()
 
-  const validationSchema = yup.object({
-    name: yup.string().required('validation:required'),
-    surname: yup.string().required('validation:required'),
-    phonePrefix: yup.string().required('validation:required'),
-    phoneNumber: yup
-      .string()
+  const validationSchema = Yup.object({
+    name: Yup.string().required('validation:required'),
+    surname: Yup.string().required('validation:required'),
+    phonePrefix: Yup.string().required('validation:required'),
+    phoneNumber: Yup.string()
       .matches(phoneFormatSpec, 'validation:invalidPhoneNumber')
       .required('validation:required'),
-    businessName: yup.string().required('validation:required'),
-    email: yup
-      .string()
+    businessName: Yup.string().required('validation:required'),
+    email: Yup.string()
       .email('validation:email')
       .required('validation:required'),
-    message: yup.string(),
+    message: Yup.string(),
   })
 
   const handleSubmission = useCallback(
