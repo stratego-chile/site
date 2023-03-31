@@ -1,6 +1,7 @@
-import { DynamoDBClient, ScanCommand } from '@aws-sdk/client-dynamodb'
+import { ScanCommand } from '@aws-sdk/client-dynamodb'
 import { unmarshall } from '@aws-sdk/util-dynamodb'
 import { isSerializable, isSimilar } from '@stratego/helpers/assert.helper'
+import { getDynamoCommandItems } from '@stratego/helpers/dynamo.helper'
 import { defaultLocale } from '@stratego/locales'
 import { checkCaptchaToken } from '@stratego/pages/api/(captcha)'
 import endpoint from '@stratego/pages/api/(endpoint)'
@@ -42,15 +43,7 @@ const handle: NextApiHandler<
     const { searchCriteria, default: isDefault } =
       searchRequest as SearchRequest
 
-    const dynamoClient = new DynamoDBClient({
-      region: process.env.AWS_REGION,
-      credentials: {
-        accessKeyId: process.env.DOCS_DYNAMODB_ACCESS_KEY_ID,
-        secretAccessKey: process.env.DOCS_DYNAMODB_SECRET_ACCESS_KEY,
-      },
-    })
-
-    const { Items: items } = await dynamoClient.send(
+    const items = await getDynamoCommandItems(
       new ScanCommand({
         TableName: process.env.DOCS_DYNAMODB_TABLE,
       })
