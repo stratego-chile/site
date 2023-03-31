@@ -1,8 +1,7 @@
-import LoadingPlaceholder from '@stratego/components/shared/loading-placeholder'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { defaultLocale } from '@stratego/locales'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
@@ -22,12 +21,7 @@ const Row = dynamic(() => import('react-bootstrap/Row'))
 const Col = dynamic(() => import('react-bootstrap/Col'))
 
 const ContactForm = dynamic(
-  () => import('@stratego/components/forms/contact-form'),
-  {
-    loading: ({ isLoading, error }) => (
-      <LoadingPlaceholder loading={isLoading} error={error} />
-    ),
-  }
+  () => import('@stratego/components/forms/contact-form')
 )
 
 const Contact: NextPage<WithoutProps> = () => {
@@ -58,7 +52,7 @@ const Contact: NextPage<WithoutProps> = () => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<WithoutProps> = async ({
+export const getStaticProps: GetStaticProps<WithoutProps> = async ({
   locale,
 }) => ({
   props: {
