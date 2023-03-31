@@ -1,5 +1,6 @@
-import { DynamoDBClient, QueryCommand } from '@aws-sdk/client-dynamodb'
+import { QueryCommand } from '@aws-sdk/client-dynamodb'
 import { unmarshall } from '@aws-sdk/util-dynamodb'
+import { getDynamoCommandItems } from '@stratego/helpers/dynamo.helper'
 import { defaultLocale } from '@stratego/locales'
 import { checkCaptchaToken } from '@stratego/pages/api/(captcha)'
 import endpoint from '@stratego/pages/api/(endpoint)'
@@ -23,15 +24,7 @@ const handle: NextApiHandler<
 
     if (!(typeof id === 'string')) throw new TypeError('"id" is undefined')
 
-    const dynamoClient = new DynamoDBClient({
-      region: process.env.AWS_REGION,
-      credentials: {
-        accessKeyId: process.env.DOCS_DYNAMODB_ACCESS_KEY_ID,
-        secretAccessKey: process.env.DOCS_DYNAMODB_SECRET_ACCESS_KEY,
-      },
-    })
-
-    const { Items: items } = await dynamoClient.send(
+    const items = await getDynamoCommandItems(
       new QueryCommand({
         TableName: process.env.DOCS_DYNAMODB_TABLE,
         KeyConditionExpression: 'refId = :refId',
