@@ -37,6 +37,7 @@ analyze
 
 # typescript
 *.tsbuildinfo
+next-env.d.ts
 
 # workspace editor
 .vscode
