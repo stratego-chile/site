@@ -7,7 +7,7 @@ import {
 import requester from 'axios'
 import emojiSupport from 'detect-emoji-support'
 import { useFormik, type FormikHelpers } from 'formik'
-import { getCountryCode } from 'language-flag-colors/bin/functions/getCountryCode'
+import { getCountryCode } from 'language-flag-colors'
 import { useTranslation } from 'next-i18next'
 import {
   useCallback,
