@@ -31,9 +31,6 @@ dependencies:
   '@stdlib/string':
     specifier: ^0.0.14
     version: 0.0.14
-  '@types/prop-types':
-    specifier: ^15.7.5
-    version: 15.7.5
   '@vercel/analytics':
     specifier: 1.0.1
     version: 1.0.1
@@ -147,6 +144,9 @@ devDependencies:
   '@types/nodemailer':
     specifier: ^6.4.7
     version: 6.4.7
+  '@types/prop-types':
+    specifier: ^15.7.5
+    version: 15.7.5
   '@types/pug':
     specifier: ^2.0.6
     version: 2.0.6
