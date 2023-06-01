@@ -1,33 +1,43 @@
+---
 version: 2.1
+
 orbs:
-  node:
-    executors:
-      default:
-        docker:
-          - image: cimg/node:18.16.0
-    commands:
-      install:
-        description: "Install PNPM and repo dependencies"
-        steps:
-          - run:
-              name: Install PNPM
-              command: npm install -g pnpm
-          - run:
-              name: Install dependencies
-              command: pnpm install
+  node: circleci/node@5.1.0
+
 jobs:
-  test:
+  install-node:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - node/install:
+          install-yarn: false
+          node-version: '18.16'
+      - run: node --version
+
+  install-pnpm:
+    executor: node/default
+    steps:
+      - checkout
+      - run:
+          name: "Install PNPM globally"
+          command: npm install -g pnpm
+
+  lint:
     executor: node/default
     description: "Run tests"
     steps:
       - checkout
       - run:
-          name: Install local dependencies
+          name: "Install local dependencies"
           command: pnpm install
       - run:
-          name: Check linting
+          name: "Check linting"
           command: pnpm lint
+
 workflows:
   test:
     jobs:
-      - test
+      - install-node
+      - install-pnpm
+      - lint
