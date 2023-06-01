@@ -21,13 +21,15 @@ jobs:
             corepack prepare pnpm@latest-8 --activate
       - run:
           name: Install Dependencies
-          command: |
-            pnpm install
+          command: pnpm install
       - save_cache:
           name: Save pnpm Package Cache
           key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
           paths:
             - node_modules
+      - run:
+          name: Lint code
+          command: pnpm lint
 
 workflows:
   test:
