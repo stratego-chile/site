@@ -29,7 +29,7 @@ export const contactData: Array<ContactFragment> = [
   },
   {
     icon: faLocationDot,
-    text: ['Padre Mariano 272', 'Oficina 302', 'Providencia, Santiago, Chile'],
-    link: 'https://www.openstreetmap.org/way/579051556#map=19/-33.42477/-70.61791',
+    text: ['Antonio Bellet 77', 'Oficina 1005', 'Providencia, Santiago, Chile'],
+    link: 'https://goo.gl/maps/rtcBk3z9Pzx6rzVt9',
   },
 ]
