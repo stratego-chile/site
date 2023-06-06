@@ -113,7 +113,7 @@ const NavBar: React.FC<NavBarProps> = ({
         <Navbar
           variant="dark"
           bg="dark-blue"
-          className={classNames('shadow')}
+          className="shadow z-1"
           sticky="top"
         >
           <Container className="px-xl-1 fw-semibold">
