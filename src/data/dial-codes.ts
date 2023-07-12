@@ -5,7 +5,7 @@ type CountryDialCodesSpec = [
   iso2: string,
   dialCode: string,
   priority: number | undefined,
-  areaCodes: Array<string> | undefined
+  areaCodes: Array<string> | undefined,
 ]
 
 const countriesDialCodes = CountriesDialCodesData as Array<CountryDialCodesSpec>

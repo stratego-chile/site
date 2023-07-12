@@ -47,7 +47,7 @@ const SectionLayout: React.FC<SectionLayoutProps> = ({ section }) => {
       t(`sections:security.services.${section}.image`, {
         returnObjects: true,
         defaultValue: '',
-      }) as string,
+      }),
     [section, t]
   )
 

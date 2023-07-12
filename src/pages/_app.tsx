@@ -11,8 +11,7 @@ import { appWithTranslation } from 'next-i18next'
 import { type AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import { useEffect } from 'react'
-import SSRProvider from 'react-bootstrap/SSRProvider'
+import { Fragment, useEffect } from 'react'
 import { Cookies, CookiesProvider } from 'react-cookie'
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 
@@ -36,7 +35,7 @@ const StrategoLandingApp = ({
   }, [])
 
   return (
-    <SSRProvider>
+    <Fragment>
       <CookiesProvider cookies={isBrowser ? undefined : new Cookies(cookies)}>
         <GoogleReCaptchaProvider
           reCaptchaKey={process.env.CAPTCHA_KEY}
@@ -53,7 +52,7 @@ const StrategoLandingApp = ({
         </GoogleReCaptchaProvider>
       </CookiesProvider>
       <Analytics />
-    </SSRProvider>
+    </Fragment>
   )
 }
 
