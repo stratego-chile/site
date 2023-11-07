@@ -81,7 +81,7 @@
     "@webdiscus/pug-loader": "^2.10.4",
     "coffeescript": "^2.7.0",
     "cross-env": "^7.0.3",
-    "cspell": "^7.0.0",
+    "cspell": "^8.0.0",
     "devcert": "^1.2.2",
     "eslint": "8.53.0",
     "eslint-config-airbnb": "^19.0.4",
