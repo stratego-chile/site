@@ -2,6 +2,7 @@ import { capitalizeText } from '@stratego/helpers/text.helper'
 import { useAsyncMemo } from '@stratego/hooks/use-async-memo'
 import { useStorage } from '@stratego/hooks/use-storage'
 import { defaultLocale } from '@stratego/locales'
+import type { DocsArticleRef } from '@stratego/schemas/docs-article'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import requester from 'axios'
 import classNames from 'classnames'
@@ -122,7 +123,7 @@ const Documentation: NextPage<WithoutProps> = () => {
 
         const response = await requester.post<
           Stratego.Common.ResponseBody<{
-            foundArticles: Array<Stratego.Documentation.PostRef>
+            foundArticles: Array<DocsArticleRef>
             defaultMode?: boolean
           }>
         >(
@@ -144,7 +145,7 @@ const Documentation: NextPage<WithoutProps> = () => {
         foundArticles: [],
         defaultMode: defaultSearch,
       } as {
-        foundArticles: Array<Stratego.Documentation.PostRef>
+        foundArticles: Array<DocsArticleRef>
         defaultMode?: Mode
       }
     },
@@ -152,12 +153,12 @@ const Documentation: NextPage<WithoutProps> = () => {
   )
 
   const [savedDefaultArticles, setSavedDefaultArticles] = useState<
-    Array<Stratego.Documentation.PostRef>
+    Array<DocsArticleRef>
   >([])
 
   const filterArticles = (
     assumedArticlesList: Array<any>
-  ): Array<Stratego.Documentation.PostRef> => {
+  ): Array<DocsArticleRef> => {
     return assumedArticlesList instanceof Array &&
       assumedArticlesList.hasItems &&
       assumedArticlesList.every(
@@ -195,10 +196,10 @@ const Documentation: NextPage<WithoutProps> = () => {
       documentationSearch.loading
         ? SearchResultsDisplayMode.Searching
         : inputCriteria
-        ? foundArticles instanceof Array && foundArticles.hasItems
-          ? SearchResultsDisplayMode.Found
-          : SearchResultsDisplayMode.NotFound
-        : SearchResultsDisplayMode.Blank,
+          ? foundArticles instanceof Array && foundArticles.hasItems
+            ? SearchResultsDisplayMode.Found
+            : SearchResultsDisplayMode.NotFound
+          : SearchResultsDisplayMode.Blank,
     [documentationSearch.loading, inputCriteria, foundArticles]
   )
 

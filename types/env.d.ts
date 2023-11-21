@@ -17,10 +17,9 @@ declare global {
 
       // App documenttion module
       DOCS_POSTS_SOURCE: string
-      DOCS_DYNAMODB_TABLE: string
-      DOCS_DYNAMODB_REGION: string
-      DOCS_DYNAMODB_ACCESS_KEY_ID: string
-      DOCS_DYNAMODB_SECRET_ACCESS_KEY: string
+      DOCS_MONGO_URI: string
+      DOCS_MONGO_DB: string
+      DOCS_MONGO_COLLECTION: string
 
       // Mailer config
       MAILER_USER: string

@@ -1,9 +1,9 @@
-declare namespace Stratego {
-  export namespace Common {
+declare module Stratego {
+  export module Common {
     export type ResponseBody<
       T extends Primitive | object = unknown,
       Status = 'OK' | 'ERROR',
-      Result = Status extends 'OK' ? T : never
+      Result = Status extends 'OK' ? T : never,
     > = {
       status: Status
       message?: string
@@ -11,36 +11,21 @@ declare namespace Stratego {
       result?: Result
     }
 
+    /**
+     * @deprecated Use Locales set instead
+     */
     export type Locale = 'es-CL' | 'en-US' | 'pt-BR'
   }
 
-  export namespace Services {
+  export module Services {
     export type SecuritySection = 'audit' | 'consulting'
   }
 
-  export namespace Documentation {
-    export type PostType = 'default' | 'kb' | 'guide'
-
-    export type Post<T = PostType> = {
-      refId: string
-      type: T
-      availableLocales: Array<AvailableLocales>
-      title: Record<AvailableLocales, string | undefined>
-      tags: Array<string>
-    }
-
-    export type PostRef = {
-      id: string
-      title: string
-      locale: Stratego.Common.Locale
-    }
-  }
-
   export namespace Utils {
-    export namespace PasswordGenerator {
+    export module PasswordGenerator {
       type Enumerate<
         N extends number,
-        Acc extends number[] = []
+        Acc extends number[] = [],
       > = Acc['length'] extends N
         ? Acc[number]
         : Enumerate<N, [...Acc, Acc['length']]>

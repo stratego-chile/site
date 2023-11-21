@@ -21,16 +21,16 @@ const ArticleLinks: React.FC<ArticleLinksProps> = ({
   return (
     <ListGroup as="ol" numbered>
       {articles.map(({ id, title }, key) => (
-        <Link key={key} href={`/docs/${id}`} passHref legacyBehavior>
-          <ListGroup.Item
-            action
-            as="li"
-            className="pe-pointer text-start"
-            disabled={!router.isReady}
-          >
-            {capitalizeText(t(title), 'simple')}
-          </ListGroup.Item>
-        </Link>
+        <ListGroup.Item
+          as={Link}
+          key={key}
+          href={`/docs/${id}`}
+          action
+          className="pe-pointer text-start"
+          disabled={!router.isReady}
+        >
+          {capitalizeText(t(title), 'simple')}
+        </ListGroup.Item>
       ))}
     </ListGroup>
   )
