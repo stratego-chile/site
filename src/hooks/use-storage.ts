@@ -24,8 +24,8 @@ export const useStorage = (storageConfig?: StorageConfig) => {
       defaultStorage
         ? defaultStorage
         : typeof window !== 'undefined'
-        ? window.localStorage
-        : undefined,
+          ? window.localStorage
+          : undefined,
     [defaultStorage]
   )
 

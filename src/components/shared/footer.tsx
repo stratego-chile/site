@@ -56,8 +56,8 @@ const Footer: NextPage<WithoutProps> = () => {
                           ? typeof text === 'string'
                             ? `${linkPrefix}:${text.replace(/\ /gi, '')}`
                             : link
-                            ? `${linkPrefix}:${link}`
-                            : router.asPath
+                              ? `${linkPrefix}:${link}`
+                              : router.asPath
                           : link ?? router.asPath
                       }
                       className="d-grid text-decoration-none mb-3"
