@@ -6,6 +6,7 @@ import { capitalizeText } from '@stratego/helpers/text.helper'
 import { useAsyncMemo } from '@stratego/hooks/use-async-memo'
 import { useMarkdownTemplate } from '@stratego/hooks/use-markdown-template'
 import { defaultLocale } from '@stratego/locales'
+import { DocsArticleRef } from '@stratego/schemas/docs-article'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import requester from 'axios'
 import classNames from 'classnames'
@@ -57,9 +58,7 @@ const DocumentationPost: NextPage<WithoutProps> = () => {
         const captchaToken = await executeRecaptcha('enquiryFormSubmit')
 
         const response = await requester.get<
-          Stratego.Common.ResponseBody<
-            Stratego.Documentation.PostRef | undefined
-          >
+          Stratego.Common.ResponseBody<DocsArticleRef | undefined>
         >(`/api/docs/${id}`, {
           headers: {
             Accept: 'application/json',
@@ -73,7 +72,7 @@ const DocumentationPost: NextPage<WithoutProps> = () => {
           ['id', 'title', 'locale'].every(
             (expectedProp) => expectedProp in response.data.result!
           )
-          ? (response.data.result as Stratego.Documentation.PostRef)
+          ? (response.data.result as DocsArticleRef)
           : undefined
       }
       return undefined

@@ -1,10 +1,13 @@
-import { ScanCommand } from '@aws-sdk/client-dynamodb'
-import { unmarshall } from '@aws-sdk/util-dynamodb'
-import { isSerializable, isSimilar } from '@stratego/helpers/assert.helper'
-import { getDynamoCommandItems } from '@stratego/helpers/dynamo.helper'
+import { isSerializable } from '@stratego/helpers/assert.helper'
+import { createDocsDBConnection } from '@stratego/helpers/docs-db.helper'
+import { Locale } from '@stratego/lib/locales'
 import { defaultLocale } from '@stratego/locales'
 import { checkCaptchaToken } from '@stratego/pages/api/(captcha)'
 import endpoint from '@stratego/pages/api/(endpoint)'
+import {
+  DocsArticleType,
+  type DocsArticleRef,
+} from '@stratego/schemas/docs-article'
 import { StatusCodes } from 'http-status-codes'
 import type { NextApiHandler } from 'next'
 
@@ -21,7 +24,7 @@ type SearchRequest = Exclusive<
 
 const handle: NextApiHandler<
   Stratego.Common.ResponseBody<{
-    foundArticles: Array<Stratego.Documentation.PostRef>
+    foundArticles: Array<DocsArticleRef>
     defaultMode: boolean
   }>
 > = async (...hooks) => {
@@ -35,62 +38,69 @@ const handle: NextApiHandler<
 
     const searchRequest = request.body as Partial<SearchRequest>
 
-    const locale = request.headers['accept-language'] as Stratego.Common.Locale
+    const localeHeader = request.headers['accept-language']
+
+    const locale = (localeHeader as Locale) ?? defaultLocale
 
     if (!('searchCriteria' in searchRequest) && !('default' in searchRequest))
-      throw new TypeError('"searchCriteria" or "default" is undefined')
+      throw new TypeError('"searchCriteria" or "default" are undefined')
 
-    const { searchCriteria, default: isDefault } =
+    const { searchCriteria = '', default: isDefault } =
       searchRequest as SearchRequest
 
-    const items = await getDynamoCommandItems(
-      new ScanCommand({
-        TableName: process.env.DOCS_DYNAMODB_TABLE,
-      })
-    )
+    const connection = await createDocsDBConnection()
 
-    const docs: Array<Stratego.Documentation.Post> = (($items) => {
-      if (
-        $items.some(
-          (item) =>
-            typeof item === 'object' &&
-            [''].every((expectedProp) => expectedProp in item)
-        )
+    const results = await connection
+      .find(
+        isDefault
+          ? {
+              type: DocsArticleType.Default,
+            }
+          : {
+              $and: [
+                {
+                  type: {
+                    $ne: DocsArticleType.Default,
+                  },
+                },
+                {
+                  $or: [
+                    {
+                      tags: {
+                        $regex: new RegExp(searchCriteria, 'i'),
+                      },
+                    },
+                    {
+                      title: {
+                        [locale]: {
+                          $regex: new RegExp(searchCriteria, 'i'),
+                        },
+                      },
+                    },
+                  ],
+                },
+              ],
+            }
       )
-        return []
-      if (!isDefault) {
-        const parsedCriteria = (searchCriteria ?? '').split(' ')
+      .toArray()
 
-        return $items.filter(({ tags }) =>
-          tags.some((tag) =>
-            parsedCriteria.some((fragment) =>
-              isSimilar(fragment.toLowerCase(), tag.toLowerCase())
-            )
-          )
-        )
-      }
-      return $items.filter(({ type }) => type === 'default')
-    })(
-      (items ?? []).map(
-        (item) => unmarshall(item) as Stratego.Documentation.Post
+    const docs = results
+      .filter(({ availableLocales }) => availableLocales.includes(locale))
+      .map(
+        (doc) =>
+          ({
+            id: doc.refId,
+            title: doc.title[locale]!,
+            locale: doc.availableLocales[
+              doc.availableLocales.indexOf(locale)
+            ] as Locale,
+          }) satisfies DocsArticleRef
       )
-    )
 
     response.status(StatusCodes.OK).json({
       status: 'OK',
       result: {
-        foundArticles: docs
-          ?.filter(({ availableLocales }) =>
-            availableLocales.includes(locale ?? defaultLocale)
-          )
-          .map(({ refId, title, availableLocales }) => ({
-            id: refId,
-            title: title[locale] ?? title[defaultLocale]!,
-            locale:
-              availableLocales[
-                availableLocales.indexOf(locale ?? defaultLocale)
-              ],
-          })),
+        foundArticles: docs,
         defaultMode: !!isDefault,
       },
     })

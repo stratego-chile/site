@@ -1,14 +1,17 @@
-import { QueryCommand } from '@aws-sdk/client-dynamodb'
-import { unmarshall } from '@aws-sdk/util-dynamodb'
-import { getDynamoCommandItems } from '@stratego/helpers/dynamo.helper'
+import { createDocsDBConnection } from '@stratego/helpers/docs-db.helper'
+import { Locales, type Locale } from '@stratego/lib/locales'
 import { defaultLocale } from '@stratego/locales'
 import { checkCaptchaToken } from '@stratego/pages/api/(captcha)'
 import endpoint from '@stratego/pages/api/(endpoint)'
+import {
+  DocsArticleSchema,
+  DocsArticleRef,
+} from '@stratego/schemas/docs-article'
 import { StatusCodes } from 'http-status-codes'
 import type { NextApiHandler } from 'next'
 
 const handle: NextApiHandler<
-  Stratego.Common.ResponseBody<Stratego.Documentation.PostRef | undefined>
+  Stratego.Common.ResponseBody<DocsArticleRef | undefined>
 > = async (...hooks) => {
   endpoint(['GET'], ...hooks, async (request, response) => {
     const captchaToken = request.headers.authorization
@@ -16,41 +19,35 @@ const handle: NextApiHandler<
     if (!captchaToken || !(await checkCaptchaToken(captchaToken)))
       throw new Error('Captcha token invalid')
 
-    const locale = request.headers['accept-language'] as
-      | Stratego.Common.Locale
-      | undefined
+    const localeHeader = request.headers['accept-language']
+
+    const locale =
+      localeHeader && Locales.has(localeHeader as Locale)
+        ? (localeHeader as Locale)
+        : defaultLocale
 
     const { id } = request.query
 
     if (!(typeof id === 'string')) throw new TypeError('"id" is undefined')
 
-    const items = await getDynamoCommandItems(
-      new QueryCommand({
-        TableName: process.env.DOCS_DYNAMODB_TABLE,
-        KeyConditionExpression: 'refId = :refId',
-        ExpressionAttributeValues: {
-          ':refId': { S: id },
-        },
-      })
-    )
+    const connection = await createDocsDBConnection()
 
-    const item = items?.at(0) ?? undefined
+    let docRef =
+      (await connection.findOne({
+        refId: id,
+      })) ?? undefined
 
-    const docRef = item
-      ? (unmarshall(item) as Stratego.Documentation.Post)
-      : undefined
+    if (!DocsArticleSchema.safeParse(docRef)) docRef = undefined
 
-    response.status(StatusCodes.OK).json({
+    response.status(docRef ? StatusCodes.OK : StatusCodes.NOT_FOUND).json({
       status: 'OK',
-      result: docRef?.availableLocales.includes(locale ?? defaultLocale)
+      result: docRef
         ? {
             id: docRef.refId,
-            title:
-              (locale && docRef.title[locale]) ?? docRef.title[defaultLocale]!,
-            locale:
-              docRef.availableLocales[
-                docRef.availableLocales.indexOf(locale ?? defaultLocale)
-              ],
+            title: docRef.title[locale]!,
+            locale: docRef.availableLocales[
+              docRef.availableLocales.indexOf(locale)
+            ] as Locale,
           }
         : undefined,
     })
