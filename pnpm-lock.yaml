@@ -85,7 +85,7 @@ dependencies:
     version: 14.0.4(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
   next-i18next:
     specifier: ^15.0.0
-    version: 15.0.0(i18next@23.7.6)(next@14.0.4)(react-i18next@13.5.0)(react@18.2.0)
+    version: 15.0.0(i18next@23.7.6)(next@14.0.4)(react-i18next@14.0.0)(react@18.2.0)
   next-mdx-remote:
     specifier: ^4.4.1
     version: 4.4.1(react-dom@18.2.0)(react@18.2.0)
@@ -114,8 +114,8 @@ dependencies:
     specifier: ^1.10.1
     version: 1.10.1(react-dom@18.2.0)(react@18.2.0)
   react-i18next:
-    specifier: ^13.5.0
-    version: 13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^14.0.0
+    version: 14.0.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
   react-use:
     specifier: ^17.4.0
     version: 17.4.0(react-dom@18.2.0)(react@18.2.0)
@@ -1045,7 +1045,7 @@ packages:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.23.4
       '@popperjs/core': 2.11.8
       '@react-aria/ssr': 3.8.0(react@18.2.0)
       '@restart/hooks': 0.4.11(react@18.2.0)
@@ -3088,7 +3088,7 @@ packages:
   /dom-helpers@5.2.1:
     resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.23.4
       csstype: 3.1.2
     dev: false
 
@@ -5653,7 +5653,7 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
-  /next-i18next@15.0.0(i18next@23.7.6)(next@14.0.4)(react-i18next@13.5.0)(react@18.2.0):
+  /next-i18next@15.0.0(i18next@23.7.6)(next@14.0.4)(react-i18next@14.0.0)(react@18.2.0):
     resolution: {integrity: sha512-9iGEU4dt1YCC5CXh6H8YHmDpmeWKjxES6XfoABxy9mmfaLLJcqS92F56ZKmVuZUPXEOLtgY/JtsnxsHYom9J4g==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -5670,7 +5670,7 @@ packages:
       i18next-fs-backend: 2.3.0
       next: 14.0.4(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
       react: 18.2.0
-      react-i18next: 13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
+      react-i18next: 14.0.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
   /next-mdx-remote@4.4.1(react-dom@18.2.0)(react@18.2.0):
@@ -6314,8 +6314,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /react-i18next@13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-CFJ5NDGJ2MUyBohEHxljOq/39NQ972rh1ajnadG9BjTk+UXbHLq4z5DKEbEQBDoIhUmmbuS/fIMJKo6VOax1HA==}
+  /react-i18next@14.0.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-OCrS8rHNAmnr8ggGRDxjakzihrMW7HCbsplduTm3EuuQ6fyvWGT41ksZpqbduYoqJurBmEsEVZ1pILSUWkHZng==}
     peerDependencies:
       i18next: '>= 23.2.3'
       react: '>= 16.8.0'
@@ -6347,7 +6347,7 @@ packages:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.23.4
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
@@ -7307,7 +7307,7 @@ packages:
     peerDependencies:
       react: '>=15.0.0'
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.23.4
       '@types/react': 18.2.45
       invariant: 2.2.4
       react: 18.2.0
