@@ -60,8 +60,8 @@ dependencies:
     specifier: ^2.4.5
     version: 2.4.5(react@18.2.0)
   framer-motion:
-    specifier: ^10.16.5
-    version: 10.16.5(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^11.0.0
+    version: 11.0.1(react-dom@18.2.0)(react@18.2.0)
   http-status-codes:
     specifier: ^2.3.0
     version: 2.3.0
@@ -3998,8 +3998,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /framer-motion@10.16.5(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-GEzVjOYP2MIpV9bT/GbhcsBNoImG3/2X3O/xVNWmktkv9MdJ7P/44zELm/7Fjb+O3v39SmKFnoDQB32giThzpg==}
+  /framer-motion@11.0.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-uLmCP5RalSZYUDHRodulsvuoHXzFVtd6UqiTtC0wlrh16EzAe6ciT2/YpHmMF3ENN0os8PXO6zJhLyB2y4Lq6A==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
