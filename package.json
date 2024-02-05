@@ -30,7 +30,7 @@
     "@popperjs/core": "^2.11.8",
     "@powership/schema": "2.3.0",
     "@stdlib/random": "^0.1.1",
-    "@stdlib/string": "^0.1.1",
+    "@stdlib/string": "^0.2.0",
     "@vercel/analytics": "1.1.2",
     "axios": "1.6.7",
     "bootstrap": "^5.3.2",
