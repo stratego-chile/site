@@ -72,8 +72,8 @@ dependencies:
     specifier: ^2.3.0
     version: 2.3.0
   language-flag-colors:
-    specifier: ^2.3.0
-    version: 2.3.0
+    specifier: ^3.0.0
+    version: 3.0.0
   lodash.isplainobject:
     specifier: ^4.0.6
     version: 4.0.6
@@ -5045,9 +5045,9 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /language-flag-colors@2.3.0:
-    resolution: {integrity: sha512-rIR12kOX5ABhvZd0Q6ePFJJ8kdWd47g9TUkxsWfl9ar/iK6tSHrejoDnJlmdOtMMIDU2RRSy1DIb5uFG6iStyA==}
-    engines: {node: '>=16'}
+  /language-flag-colors@3.0.0:
+    resolution: {integrity: sha512-5DHbtzPu4tZeIOXqk9ZVZ7AQdrIVcw8Bc4vJ7tF7+sOS7GXVveUnDSzTPKIRV7iXvXOGE6lJ1dsEJZKgLyf10A==}
+    engines: {node: '>=18'}
     dev: false
 
   /language-subtag-registry@0.3.22:
