@@ -33,8 +33,8 @@ dependencies:
     specifier: ^0.2.0
     version: 0.2.1
   '@vercel/analytics':
-    specifier: 1.1.4
-    version: 1.1.4
+    specifier: 1.2.1
+    version: 1.2.1(next@14.1.0)(react@18.2.0)
   axios:
     specifier: 1.6.7
     version: 1.6.7
@@ -2022,9 +2022,19 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /@vercel/analytics@1.1.4:
-    resolution: {integrity: sha512-CVzw3SLcPSc31tRDLLqDGqWQCv6/ylpEZnW7AYMvtvRsO2Q8hmjBVOqvo2Ok6MZnYf262O8c86LB2K9vK1/ZbQ==}
+  /@vercel/analytics@1.2.1(next@14.1.0)(react@18.2.0):
+    resolution: {integrity: sha512-ZB5gDPCQvHu0DcBbywIwMm5aY9mTV8mBl7Mmk8QD84JqBnuYbsNCDnnDuzblNjd82tDtRjAqruZ0mzNm6MAWpA==}
+    peerDependencies:
+      next: '>= 13'
+      react: ^18 || ^19
+    peerDependenciesMeta:
+      next:
+        optional: true
+      react:
+        optional: true
     dependencies:
+      next: 14.1.0(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
+      react: 18.2.0
       server-only: 0.0.1
     dev: false
 
