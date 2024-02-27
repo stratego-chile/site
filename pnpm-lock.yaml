@@ -171,7 +171,7 @@ devDependencies:
     version: 7.0.1(eslint@8.56.0)(typescript@5.3.3)
   '@webdiscus/pug-loader':
     specifier: ^2.10.5
-    version: 2.10.5(enhanced-resolve@5.15.0)(markdown-it@13.0.2)(pug@3.0.2)(webpack@5.89.0)
+    version: 2.10.6(enhanced-resolve@5.15.0)(markdown-it@13.0.2)(pug@3.0.2)(webpack@5.89.0)
   coffeescript:
     specifier: ^2.7.0
     version: 2.7.0
@@ -2168,6 +2168,30 @@ packages:
       webpack-merge: 5.10.0
     dev: true
 
+  /@webdiscus/pug-loader@2.10.6(enhanced-resolve@5.15.0)(markdown-it@13.0.2)(pug@3.0.2)(webpack@5.89.0):
+    resolution: {integrity: sha512-xo4OdkgKpinUyvPrGbQngPfqoCyGLHxL+d7TOhZAsHfJF0cKLCvrLTIMMwKaA9Lbf1QpfnBPtOqvIr4nmSbelQ==}
+    engines: {node: '>=14.15'}
+    peerDependencies:
+      enhanced-resolve: '>=5.7.0'
+      markdown-it: ^13.0.1
+      prismjs: ^1.29.0
+      pug: '>=3.0.2'
+      webpack: '>=5.32.0'
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+      prismjs:
+        optional: true
+    dependencies:
+      ansis: 1.5.6
+      enhanced-resolve: 5.15.0
+      markdown-it: 13.0.2
+      parse5: 7.1.2
+      pug: 3.0.2
+      webpack: 5.89.0
+      webpack-merge: 5.10.0
+    dev: true
+
   /@xobotyi/scrollbar-width@1.9.5:
     resolution: {integrity: sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==}
     dev: false
@@ -2269,6 +2293,11 @@ packages:
 
   /ansis@1.5.5:
     resolution: {integrity: sha512-DNctovTacxs/NfZpGo6bIGWgLd2oZsDO7RJbiYX6Ttj40LPZM1XKv9WtesH13ieOEm1GajjD+Vik2n9YnSTPdA==}
+    engines: {node: '>=12.13'}
+    dev: true
+
+  /ansis@1.5.6:
+    resolution: {integrity: sha512-vKn0k5V0oiaOClcUMNDFb7DvI3+asAozhg1wI8bLkYxV0lhfPtIuwjUa1wG9/YaUY/KwO9U2B7m0FMqzn/jXUQ==}
     engines: {node: '>=12.13'}
     dev: true
 
