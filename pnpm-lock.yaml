@@ -70,7 +70,7 @@ dependencies:
     version: 23.7.6
   i18next-fs-backend:
     specifier: ^2.3.0
-    version: 2.3.0
+    version: 2.3.1
   language-flag-colors:
     specifier: ^3.0.0
     version: 3.0.0
@@ -4539,8 +4539,8 @@ packages:
     resolution: {integrity: sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==}
     dev: false
 
-  /i18next-fs-backend@2.3.0:
-    resolution: {integrity: sha512-N0SS2WojoVIh2x/QkajSps8RPKzXqryZsQh12VoFY4cLZgkD+62EPY2fY+ZjkNADu8xA5I5EadQQXa8TXBKN3w==}
+  /i18next-fs-backend@2.3.1:
+    resolution: {integrity: sha512-tvfXskmG/9o+TJ5Fxu54sSO5OkY6d+uMn+K6JiUGLJrwxAVfer+8V3nU8jq3ts9Pe5lXJv4b1N7foIjJ8Iy2Gg==}
     dev: false
 
   /i18next@23.7.6:
@@ -5830,7 +5830,7 @@ packages:
       core-js: 3.30.2
       hoist-non-react-statics: 3.3.2
       i18next: 23.7.6
-      i18next-fs-backend: 2.3.0
+      i18next-fs-backend: 2.3.1
       next: 14.1.0(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
       react: 18.2.0
       react-i18next: 14.0.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
