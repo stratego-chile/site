@@ -106,7 +106,7 @@ dependencies:
     version: 2.9.1(@types/react@18.2.60)(react-dom@18.2.0)(react@18.2.0)
   react-cookie:
     specifier: ^6.1.1
-    version: 6.1.1(react@18.2.0)
+    version: 6.1.3(react@18.2.0)
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
@@ -1619,8 +1619,8 @@ packages:
       '@types/estree': 1.0.5
     dev: false
 
-  /@types/cookie@0.5.4:
-    resolution: {integrity: sha512-7z/eR6O859gyWIAjuvBWFzNURmf2oPBmJlfVWkwehU5nzIyjwBsTh7WMmEEV4JFnHuQ3ex4oyTvfKzcyJVDBNA==}
+  /@types/cookie@0.6.0:
+    resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
     dev: false
 
   /@types/debug@4.1.7:
@@ -2830,8 +2830,8 @@ packages:
       '@babel/parser': 7.20.3
       '@babel/types': 7.20.2
 
-  /cookie@0.5.0:
-    resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
+  /cookie@0.6.0:
+    resolution: {integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==}
     engines: {node: '>= 0.6'}
     dev: false
 
@@ -6440,15 +6440,15 @@ packages:
       warning: 4.0.3
     dev: false
 
-  /react-cookie@6.1.1(react@18.2.0):
-    resolution: {integrity: sha512-fuFRpf8LH6SfmVMowDUIRywJF5jAUDUWrm0EI5VdXfTl5bPcJ7B0zWbuYpT0Tvikx7Gs18MlvAT+P+744dUz2g==}
+  /react-cookie@6.1.3(react@18.2.0):
+    resolution: {integrity: sha512-cOToXQPdxvLfK0MH4ZFrrL3cOpDwbboKupFS96MCvrHsHMABMk48vdd1fRWkNG6F5D1JZMvoI5Y74sj8vtHGpA==}
     peerDependencies:
       react: '>= 16.3.0'
     dependencies:
       '@types/hoist-non-react-statics': 3.3.5
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
-      universal-cookie: 6.1.1
+      universal-cookie: 6.1.3
     dev: false
 
   /react-dom@18.2.0(react@18.2.0):
@@ -7574,11 +7574,11 @@ packages:
       unist-util-visit-parents: 6.0.1
     dev: false
 
-  /universal-cookie@6.1.1:
-    resolution: {integrity: sha512-33S9x3CpdUnnjwTNs2Fgc41WGve2tdLtvaK2kPSbZRc5pGpz2vQFbRWMxlATsxNNe/Cy8SzmnmbuBM85jpZPtA==}
+  /universal-cookie@6.1.3:
+    resolution: {integrity: sha512-AETYRrhpRgl9T1YtnODmQE32G81U3A+f3HO3ZeK7efbXqe3x+RNOW4RTpV0iff7zJWhGYJA6EI0Mm+w50aFTAw==}
     dependencies:
-      '@types/cookie': 0.5.4
-      cookie: 0.5.0
+      '@types/cookie': 0.6.0
+      cookie: 0.6.0
     dev: false
 
   /universalify@2.0.1:
