@@ -28,7 +28,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@popperjs/core": "^2.11.8",
-    "@powership/schema": "2.3.0",
+    "@powership/schema": "3.3.1",
     "@stdlib/random": "^0.2.0",
     "@stdlib/string": "^0.2.0",
     "@vercel/analytics": "1.2.2",
