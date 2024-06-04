@@ -41,6 +41,7 @@ const AboutUs: NextPage<WithoutProps> = () => {
               <Col xs={12} className="pt-3">
                 <h2 className="mb-4">{capitalizeText(title, 'simple')}</h2>
               </Col>
+
               {images instanceof Array &&
                 images.map((image, imageKey) => (
                   <Col key={imageKey} xs={12} lg={5}>
@@ -59,6 +60,7 @@ const AboutUs: NextPage<WithoutProps> = () => {
                     />
                   </Col>
                 ))}
+
               <Col xs={12}>
                 {description.map((paragraph, descriptionKey) => (
                   <p key={descriptionKey}>

@@ -1,6 +1,5 @@
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope'
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons/faLocationDot'
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone'
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 
@@ -9,6 +8,12 @@ type ContactFragment = {
   linkPrefix?: string
   link?: string
   text?: Array<string> | string
+}
+
+type LocationFragment = {
+  icon: string
+  link: string
+  text: Array<string>
 }
 
 export const contactData: Array<ContactFragment> = [
@@ -25,11 +30,29 @@ export const contactData: Array<ContactFragment> = [
   {
     icon: faPhone,
     linkPrefix: 'tel',
-    text: '+56 9 7793 4344',
+    text: '+56 9 9942 0188',
+  },
+]
+
+export const locationData: Array<LocationFragment> = [
+  {
+    icon: '🇨🇱',
+    text: [
+      'El Bosque Norte 0440',
+      'Oficina 1401',
+      'Las Condes, Santiago',
+      'Chile',
+    ],
+    link: 'https://maps.app.goo.gl/VzbwahrMFGpU9u1FA',
   },
   {
-    icon: faLocationDot,
-    text: ['Antonio Bellet 77', 'Oficina 1005', 'Providencia, Santiago, Chile'],
-    link: 'https://goo.gl/maps/rtcBk3z9Pzx6rzVt9',
+    icon: '🇦🇷',
+    text: [
+      'Avenida Corrientes 311',
+      'C1043',
+      'Ciudad. Autónoma de Buenos Aires',
+      'Argentina​',
+    ],
+    link: 'https://maps.app.goo.gl/vZhdMhAJytc4z3bQ8',
   },
 ]

@@ -75,13 +75,13 @@
   position: relative
   transition: all 350ms ease
   overflow: hidden
+  z-index: 0
   @media (min-width: map.get($grid-breakpoints, 'lg'))
     backdrop-filter: blur(1rem)
   p
     font-family: 'Work Sans', sans-serif
   &:hover
     color: white !important
-    cursor: help
     &::before
       top: 0
   &::before
@@ -90,3 +90,4 @@
     top: 100%
     margin: 0
     transition: inherit
+    z-index: 1 !important

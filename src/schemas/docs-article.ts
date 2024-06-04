@@ -1,7 +1,6 @@
-import { createSchema, type Infer } from '@powership/schema'
 import type { Locale } from '@stratego/lib/locales'
 import type { Document } from 'mongodb'
-import type { Merge } from 'type-fest'
+import { z } from 'zod'
 
 export enum DocsArticleType {
   Default = 'default',
@@ -9,34 +8,26 @@ export enum DocsArticleType {
   Guide = 'guide',
 }
 
-export const DocsArticleSchema = createSchema({
-  refId: 'ID',
-  type: {
-    enum: Object.values(DocsArticleType),
-  },
-  availableLocales: '[string]',
-  tags: '[string]',
-  title: 'record',
+export const DocsArticleSchema = z.object({
+  refId: z.string(),
+  type: z.nativeEnum(DocsArticleType),
+  availableLocales: z.array(z.string()),
+  tags: z.array(z.string()),
+  title: z.record(z.string().optional()),
 })
 
-export type DocsArticle = Merge<
-  Infer<typeof DocsArticleSchema>,
-  {
-    title: Record<string, string | undefined>
-  }
->
+export type DocsArticle = z.infer<typeof DocsArticleSchema> & {
+  availableLocales: Array<Locale>
+}
 
 export type DocsArticleDocument = Document & DocsArticle
 
-export const DocsArticleRefSchema = createSchema({
-  id: 'ID',
-  title: 'string',
-  locale: 'string',
+export const DocsArticleRefSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  locale: z.string(),
 })
 
-export type DocsArticleRef = Merge<
-  Infer<typeof DocsArticleRefSchema>,
-  {
-    locale: Locale
-  }
->
+export type DocsArticleRef = z.infer<typeof DocsArticleRefSchema> & {
+  locale: Locale
+}

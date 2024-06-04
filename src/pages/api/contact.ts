@@ -1,5 +1,6 @@
 import BootstrapStyles from '!!raw-loader!bootstrap/dist/css/bootstrap.min.css'
 import format from '@stdlib/string/format'
+import { Locale } from '@stratego/lib/locales'
 import { defaultLocale, localesList } from '@stratego/locales'
 import { checkCaptchaToken } from '@stratego/pages/api/(captcha)'
 import endpoint from '@stratego/pages/api/(endpoint)'
@@ -25,11 +26,10 @@ const handler: NextApiHandler<Stratego.Common.ResponseBody<undefined>> = async (
 
     const locale = ((providedLocale) => {
       return (
-        providedLocale &&
-        localesList.includes(providedLocale as Stratego.Common.Locale)
+        providedLocale && localesList.includes(providedLocale as Locale)
           ? providedLocale
           : defaultLocale
-      ) as Stratego.Common.Locale
+      ) as Locale
     })(request.headers['accept-language'] as string | undefined)
 
     const getTranslation = await i18next.use(i18nextBackend).init({

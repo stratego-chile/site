@@ -62,11 +62,13 @@ const NavBarLinks: React.FC<NavBarLinksProps> = ({
                     {capitalizeText(t(link.text).toLowerCase(), 'simple')}:
                   </span>
                 )}
+
                 <NavBarLinks
                   links={link.subLinks}
                   mode="embed"
                   orientation={orientation}
                 />
+
                 {links.reduce(
                   (counter, linkSpec) =>
                     !linkSpec.href && !linkSpec.subLinks ? ++counter : counter,
@@ -94,6 +96,7 @@ const NavBarLinks: React.FC<NavBarLinksProps> = ({
                     ? capitalizeText(t(link.text).toLowerCase(), 'simple')
                     : t(link.text)}
                 </Dropdown.Toggle>
+
                 <Dropdown.Menu renderOnMount>
                   {link.subLinks.map((subLink, subLinkKey) =>
                     subLink.href ? (
@@ -138,6 +141,7 @@ const NavBarLinks: React.FC<NavBarLinksProps> = ({
                       ? capitalizeText(t(link.text).toLowerCase(), 'simple')
                       : t(link.text)}
                   </Accordion.Button>
+
                   <Accordion.Body className="ps-2 pe-0 py-0">
                     {link.subLinks.map((subLink, subLinkKey) =>
                       subLink.href ? (

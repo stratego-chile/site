@@ -1,5 +1,8 @@
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import NavBarLinks, {
+  lazySubLink,
+} from '@stratego/components/misc/navbar-links'
 import { navbarLinks, type LinkSpec } from '@stratego/data/navigation-links'
 import { getAssetPath } from '@stratego/helpers/static-resources.helper'
 import { capitalizeText } from '@stratego/helpers/text.helper'
@@ -15,9 +18,6 @@ import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import NavBarLinks, {
-  lazySubLink,
-} from '@stratego/components/misc/navbar-links'
 
 const MobileSidebar = dynamic(
   import('@stratego/components/misc/mobile-sidebar')
@@ -76,6 +76,7 @@ const NavBar: React.FC<NavBarProps> = ({
               )}
             </Navbar.Brand>
           </Link>
+
           {showNavigationOptions && (
             <Fragment>
               <Navbar.Toggle
@@ -84,9 +85,11 @@ const NavBar: React.FC<NavBarProps> = ({
               >
                 <FontAwesomeIcon icon={faBars} />
               </Navbar.Toggle>
+
               <Navbar.Collapse className="d-none d-xxl-inline-flex">
                 <Nav className="ms-auto px-xl-0 pb-xl-0 row-gap-2 fw-semibold gap-4 px-2 pb-4 text-center">
                   <NavBarLinks links={navbarLinks} />
+
                   <Nav.Item className="d-inline-flex align-items-center mx-auto">
                     <Link href="/contact" passHref legacyBehavior>
                       <Button
@@ -97,6 +100,7 @@ const NavBar: React.FC<NavBarProps> = ({
                       </Button>
                     </Link>
                   </Nav.Item>
+
                   <Nav.Item className="d-inline-flex align-items-center mx-auto">
                     <LanguageSelector
                       theme="transparent"
@@ -109,6 +113,7 @@ const NavBar: React.FC<NavBarProps> = ({
           )}
         </Container>
       </Navbar>
+
       {subLinks.hasItems && (
         <Navbar
           variant="dark"

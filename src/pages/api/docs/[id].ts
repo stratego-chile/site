@@ -5,7 +5,7 @@ import { checkCaptchaToken } from '@stratego/pages/api/(captcha)'
 import endpoint from '@stratego/pages/api/(endpoint)'
 import {
   DocsArticleSchema,
-  DocsArticleRef,
+  type DocsArticleRef,
 } from '@stratego/schemas/docs-article'
 import { StatusCodes } from 'http-status-codes'
 import type { NextApiHandler } from 'next'
@@ -37,7 +37,7 @@ const handle: NextApiHandler<
         refId: id,
       })) ?? undefined
 
-    if (!DocsArticleSchema.safeParse(docRef)) docRef = undefined
+    if (!DocsArticleSchema.safeParse(docRef).success) docRef = undefined
 
     response.status(docRef ? StatusCodes.OK : StatusCodes.NOT_FOUND).json({
       status: 'OK',

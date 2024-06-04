@@ -1,6 +1,6 @@
 import { CookieConsent, usableCookies } from '@stratego/helpers/cookies.helper'
 import { capitalizeText } from '@stratego/helpers/text.helper'
-import addDays from 'date-fns/addDays'
+import { addDays } from 'date-fns/addDays'
 import { useTranslation } from 'next-i18next'
 import { useCallback, useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button'
