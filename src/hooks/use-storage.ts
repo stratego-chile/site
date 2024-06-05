@@ -19,7 +19,7 @@ export const useStorage = (storageConfig?: StorageConfig) => {
     parseObjects = true,
   } = storageConfig || {}
 
-  const storageAccessor = useMemo(
+  const storageAccessor: Storage | undefined = useMemo(
     () =>
       defaultStorage
         ? defaultStorage
@@ -34,6 +34,7 @@ export const useStorage = (storageConfig?: StorageConfig) => {
       const item = storageAccessor?.getItem(
         itemPrefix ? itemPrefix.concat(itemKey) : itemKey
       )
+
       return item
         ? parseObjects && isSerializable(item)
           ? JSON.parse(item)
@@ -52,17 +53,20 @@ export const useStorage = (storageConfig?: StorageConfig) => {
             ? JSON.stringify(itemValue)
             : String(itemValue)
         )
+
       return itemKey ? !!getStorageItem(itemKey) : false
     },
     [getStorageItem, itemPrefix, storageAccessor]
   )
 
-  const getStorage = useCallback(() => {
+  const getStorage: Record<string, any> = useCallback(() => {
     let storage: Record<string, any> = {}
+
     if (storageAccessor)
       Object.keys(storageAccessor).forEach((key) => {
         storage[key] = getStorageItem(key)
       })
+
     return storage
   }, [getStorageItem, storageAccessor])
 

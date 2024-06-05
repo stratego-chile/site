@@ -1,17 +1,16 @@
 // @ts-check
+const bundleAnalyzer = require('@next/bundle-analyzer')
 const path = require('path')
-const { i18n } = require('./next-i18next.config')
+const { i18n } =  require('./next-i18next.config.js')
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
+const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
   openAnalyzer: false,
 })
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  i18n: {
-    ...i18n,
-  },
+  i18n,
   reactStrictMode: true,
   poweredByHeader: false,
   sassOptions: {

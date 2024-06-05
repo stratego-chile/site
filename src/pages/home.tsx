@@ -1,7 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import LoadingPlaceholder from '@stratego/components/shared/loading-placeholder'
-import { services } from '@stratego/data/home-content'
-import { cybersecurityLinks } from '@stratego/data/navigation-links'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { defaultLocale } from '@stratego/locales'
 import HomeStyles from '@stratego/styles/modules/Home.module.sass'
@@ -10,18 +6,10 @@ import type { GetStaticProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
-import type { ButtonProps } from 'react-bootstrap'
+import { Accordion } from 'react-bootstrap'
 import type { ContainerProps } from 'react-bootstrap/Container'
 
 const Layout = dynamic(() => import('@stratego/components/shared/layout'))
-
-const Button = dynamic(
-  () =>
-    import('react-bootstrap/Button') as unknown as Promise<
-      React.ComponentType<React.HTMLAttributes<HTMLElement> & ButtonProps>
-    >
-)
 
 const Container = dynamic(
   () =>
@@ -38,15 +26,6 @@ const Image = dynamic(() => import('react-bootstrap/Image'))
 
 const ShowOnScroll = dynamic(
   () => import('@stratego/components/animations/show-on-scroll')
-)
-
-const DynamicContactForm = dynamic(
-  () => import('@stratego/components/forms/contact-form'),
-  {
-    loading: ({ isLoading, error }) => (
-      <LoadingPlaceholder loading={isLoading} error={error} />
-    ),
-  }
 )
 
 const Home: NextPage<WithoutProps> = () => {
@@ -88,24 +67,15 @@ const Home: NextPage<WithoutProps> = () => {
                       {t`sections:home.fragments.emphasisTitles.presentation.title.emphasis`.toLowerCase()}
                     </span>
                   </div>
+
                   <p className="text-shadow fs-5 my-4">
                     {capitalizeText(
                       t`sections:home.fragments.emphasisTitles.presentation.subtitle`,
                       'simple'
                     )}
                   </p>
-                  <Link
-                    href={cybersecurityLinks.at(0)!.subLinks!.at(0)!.href!}
-                    passHref
-                  >
-                    <Button
-                      variant="primary"
-                      className="rounded-pill text-light"
-                    >
-                      {capitalizeText(t`common:learnMore`, 'simple')}
-                    </Button>
-                  </Link>
                 </Col>
+
                 <Col xs={12} lg="auto" className="order-lg-2 order-1">
                   <ShowOnScroll direction="left">
                     <Image
@@ -123,6 +93,7 @@ const Home: NextPage<WithoutProps> = () => {
           </Col>
         </Row>
       </Container>
+
       <Container
         fluid
         className={classNames(
@@ -143,6 +114,7 @@ const Home: NextPage<WithoutProps> = () => {
                     <Image src="/images/figure-1.png" alt="" fluid />
                   </ShowOnScroll>
                 </Col>
+
                 <Col className="gy-5">
                   <div className={classNames(HomeStyles.sectionContentSmall)}>
                     {capitalizeText(
@@ -153,18 +125,29 @@ const Home: NextPage<WithoutProps> = () => {
                       {t`sections:home.fragments.emphasisTitles.aboutUs.title.emphasis`}
                     </span>
                   </div>
-                  <p className="text-shadow fs-6 my-4">
-                    {capitalizeText(
-                      t`sections:home.fragments.emphasisTitles.aboutUs.subtitle`,
-                      'simple'
-                    )}
-                  </p>
+
+                  <ul className="mt-5">
+                    {[
+                      'Protección de reputación y marca de su empresa',
+                      'Asegurar su continuidad operacional',
+                      'Proteger activos estratégicos: inventarios, cuentas por cobrar, activos financieros, tecnológicos etc.​',
+                      'Protección de datos de clientes​',
+                      'Cumplir con la Ley 21.459 sobre Delitos Informáticos​',
+                      'Cumplir las regulaciones de ciber-seguridad (Ley 21.663)',
+                      'Protección y capacitación de sus trabajadores​',
+                    ].map((item, index) => (
+                      <li key={index} className="px-0 py-2 fs-5">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </Col>
               </Row>
             </Container>
           </Col>
         </Row>
       </Container>
+
       <Container
         fluid
         className={classNames(
@@ -197,15 +180,8 @@ const Home: NextPage<WithoutProps> = () => {
                       'simple'
                     )}
                   </p>
-                  <Link
-                    href={cybersecurityLinks.at(0)!.subLinks!.at(0)!.href!}
-                    passHref
-                  >
-                    <Button className="rounded-pill text-light">
-                      {capitalizeText(t`common:learnMore`, 'simple')}
-                    </Button>
-                  </Link>
                 </Col>
+
                 <Col xs={12} lg className="order-lg-2 order-1">
                   <ShowOnScroll direction="left">
                     <Image src="/images/figure-2.png" alt="" fluid />
@@ -216,6 +192,7 @@ const Home: NextPage<WithoutProps> = () => {
           </Col>
         </Row>
       </Container>
+
       <Container
         fluid
         className={classNames(
@@ -228,57 +205,173 @@ const Home: NextPage<WithoutProps> = () => {
             <Container className="pb-5">
               <Row className="mb-5 text-center">
                 <Col>
-                  <h1 className={HomeStyles.sectionContentNegative}>
-                    {capitalizeText(
-                      t`sections:home.fragments.services.title.regular`,
-                      'simple'
-                    )}{' '}
-                    <span className="text-info">
-                      {t`sections:home.fragments.services.title.emphasis`}
-                    </span>
+                  <h1
+                    className={classNames(
+                      HomeStyles.sectionContentNegative,
+                      'd-inline-flex justify-items-center gap-3'
+                    )}
+                  >
+                    <span>Nuestros planes de</span>
+
+                    <span className="text-info">servicio</span>
                   </h1>
                 </Col>
               </Row>
+
               <Row className="gy-4">
-                {services.map(({ icon, title, description }, key) => (
-                  <Col
-                    key={key}
-                    xs={12}
-                    md={6}
-                    lg={4}
-                    className="align-self-stretch"
+                <Col xs={12} className="align-self-stretch">
+                  <section
+                    className={classNames(
+                      'd-flex flex-column gap-5 p-5 rounded-4',
+                      'bg-light-gray bg-opacity-75 service-box',
+                      HomeStyles.serviceBox
+                    )}
                   >
-                    <div
-                      className={classNames(
-                        'h-100 rounded-4 p-5 text-center',
-                        'bg-light-gray text-dark-blue bg-opacity-75',
-                        HomeStyles.serviceBox
-                      )}
-                    >
-                      <h1>
-                        <FontAwesomeIcon icon={icon} />
-                      </h1>
-                      <h4>{capitalizeText(t(title))}</h4>
-                      <p>{capitalizeText(t(description), 'simple')}</p>
+                    <h1>
+                      Plan de auditoría se seguridad <b>One Time</b>
+                    </h1>
+
+                    <div className="row d-flex gap-4 fs-5">
+                      <div className="col d-flex flex-column gap-4">
+                        <p>
+                          El programa de auditoría ciber-seguridad lo hemos
+                          desarrollado bajo estándares internacionales de
+                          identificación y evaluación de riesgos informáticos.
+                        </p>
+
+                        <p>
+                          Nuestra colaboración profesional permitirá desarrollar
+                          una evaluación orientada a detectar vulnerabilidades o
+                          áreas débiles que estén expuestas al Ciber Ataque.​
+                        </p>
+
+                        <h3>¿Cómo lo hacemos?</h3>
+
+                        <p>
+                          Nuestro Servicio se realiza mediante análisis remotos
+                          utilizando nuestra máquina de análisis instalada en
+                          las oficinas de los clientes, y un trabajo de campo.
+                          Con el resultado de la evaluación diagnóstica,
+                          entregamos una evaluación exhaustiva de los riesgos en
+                          la infraestructura digital y sus procesos de seguridad
+                          de la información.
+                        </p>
+                      </div>
+
+                      <div className={classNames('col')}>
+                        <Accordion
+                          defaultActiveKey={['0', '1']}
+                          alwaysOpen
+                          className="service-accordion"
+                        >
+                          <Accordion.Item eventKey="0">
+                            <Accordion.Header>
+                              ¿Qué evaluaremos?
+                            </Accordion.Header>
+
+                            <Accordion.Body>
+                              <ul>
+                                {[
+                                  'Políticas de ciber-seguridad',
+                                  'Procedimientos y Controles de Protección',
+                                  'Cumplimientos Normativos',
+                                  'Análisis de Vulnerabilidades',
+                                  'Riesgos  Tecnológicos',
+                                ].map((item, index) => (
+                                  <li key={index}>{item}</li>
+                                ))}
+                              </ul>
+                            </Accordion.Body>
+                          </Accordion.Item>
+
+                          <Accordion.Item eventKey="1">
+                            <Accordion.Header>
+                              ¿Qué entregaremos?
+                            </Accordion.Header>
+
+                            <Accordion.Body>
+                              <ul>
+                                {[
+                                  'Informe de Riesgo de Cumplimiento',
+                                  'Propuesta de mitigación de Riesgos',
+                                  'Propuesta de Planes de Continuidad del Negocio',
+                                ].map((item, index) => (
+                                  <li key={index}>{item}</li>
+                                ))}
+                              </ul>
+                            </Accordion.Body>
+                          </Accordion.Item>
+                        </Accordion>
+                      </div>
                     </div>
-                  </Col>
-                ))}
+                  </section>
+                </Col>
+
+                <Col xs={12} className="align-self-stretch">
+                  <div
+                    className={classNames(
+                      'd-flex flex-column gap-5 p-5 rounded-4',
+                      'bg-light-gray bg-opacity-75 service-box',
+                      HomeStyles.serviceBox
+                    )}
+                  >
+                    <h1>
+                      Plan de auditoría <b>Continua</b>
+                    </h1>
+
+                    <div className="row d-flex gap-4 fs-5">
+                      <div className="col d-flex flex-column gap-4">
+                        <p>
+                          Los ataques de ransomware aprovechan las
+                          vulnerabilidades mediante phishing o exploits de
+                          software, cifran datos valiosos y exigen un rescate.
+                          Incidentes de alto perfil han afectado a empresas y
+                          particulares en todo el mundo.
+                        </p>
+
+                        <p>
+                          Nuestra solución en tiempo real es vital para prevenir
+                          las infecciones por ransomware, ya que detectan y
+                          neutralizan el software malicioso, protegen los
+                          endpoints y minimizan la superficie de ataque de las
+                          ciber amenazas potenciales.
+                        </p>
+
+                        <p>La cobertura del servicio es 24/7</p>
+                      </div>
+
+                      <div className={classNames('col')}>
+                        <Accordion
+                          defaultActiveKey="0"
+                          alwaysOpen
+                          className="service-accordion"
+                        >
+                          <Accordion.Item eventKey="0">
+                            <Accordion.Header>
+                              Características del servicio
+                            </Accordion.Header>
+
+                            <Accordion.Body>
+                              <ul>
+                                {[
+                                  'Visibilidad Integral: Ofrecemos una visibilidad completa de su infraestructura de TI, lo que facilita la identificación de vulnerabilidades y la toma de decisiones informadas.',
+                                  'Análisis Profundo de Datos: Nuestra plataforma de análisis le permite explorar y analizar datos de seguridad para detectar patrones, anomalías y amenazas ocultas, brindándole información crucial para fortalecer su postura de seguridad.',
+                                  'Monitorización en Sitio: Instalamos un equipo en sus instalaciones para una vigilancia en tiempo real y una respuesta rápida ante cualquier amenaza.',
+                                  'Integración sin Problemas: Nuestra solución se integra perfectamente con sus sistemas existentes, lo que simplifica la implementación y la gestión de la seguridad.',
+                                  'Asesoría Especializada: Nuestros expertos en seguridad están disponibles para discutir los resultados y ayudarle a tomar medidas precisas para proteger su empresa.',
+                                ].map((item, index) => (
+                                  <li key={index}>{item}</li>
+                                ))}
+                              </ul>
+                            </Accordion.Body>
+                          </Accordion.Item>
+                        </Accordion>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
               </Row>
             </Container>
-          </Col>
-        </Row>
-      </Container>
-      <Container className="d-flex flex-column mb-5 gap-5 py-5">
-        <Row>
-          <Col className="text-center">
-            <h1 className={HomeStyles.sectionContent}>
-              {capitalizeText(t`sections:contact.form.title`, 'simple')}
-            </h1>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <DynamicContactForm />
           </Col>
         </Row>
       </Container>

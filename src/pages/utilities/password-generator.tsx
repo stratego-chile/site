@@ -42,13 +42,14 @@ const Table = dynamic(import('react-bootstrap/Table'))
 
 const Layout = dynamic(import('@stratego/components/shared/layout'))
 
-const PasswordGeneratorFormWrapperForwarded: React.FC<
+const PasswordGeneratorFormWrapperForwarded = forwardRef<
+  {},
   React.PropsWithRef<
     PasswordGeneratorFormProps & {
       ref: React.Ref<PasswordGeneratorRef>
     }
   >
-> = forwardRef((props, ref) => {
+>((props, ref) => {
   return <PasswordGeneratorFormWrapper {...props} forwardedRef={ref} />
 })
 

@@ -10,16 +10,16 @@ const isBrowserContextActive = typeof window !== 'undefined'
  */
 const nextI18NextConfig = {
   /**
-   * @type {Stratego.Common.Locale}
+   * @type {import('./src/lib/locales').Locale}
    */
   fallbackLng: 'es-CL',
   i18n: {
     /**
-     * @type {Array<Stratego.Common.Locale>}
+     * @type {Array<import('./src/lib/locales').Locale>}
      */
-    locales: ['es-CL', 'en-US', 'pt-BR'],
+    locales: ['es-CL'],
     /**
-     * @type {Stratego.Common.Locale}
+     * @type {import('./src/lib/locales').Locale}
      */
     defaultLocale: 'es-CL',
     localeDetection: false,

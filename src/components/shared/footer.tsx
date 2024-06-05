@@ -1,7 +1,7 @@
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub'
 import { faCode } from '@fortawesome/free-solid-svg-icons/faCode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { contactData } from '@stratego/data/contact'
+import { contactData, locationData } from '@stratego/data/contact'
 import { getAssetPath } from '@stratego/helpers/static-resources.helper'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import FooterStyles from '@stratego/styles/modules/Footer.module.sass'
@@ -18,6 +18,7 @@ import Image from 'react-bootstrap/Image'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Row from 'react-bootstrap/Row'
+import Emoji from 'a11y-react-emoji'
 
 const LanguageSelector = dynamic(
   () => import('@stratego/components/shared/language-selector')
@@ -46,6 +47,7 @@ const Footer: NextPage<WithoutProps> = () => {
                 src={getAssetPath('logo-white.svg')}
                 alt={process.env.BRAND_NAME}
               />
+
               <address>
                 <div className="d-flex flex-column text-lg-start text-center">
                   {contactData.map(({ icon, text, linkPrefix, link }, key) => (
@@ -67,7 +69,7 @@ const Footer: NextPage<WithoutProps> = () => {
                     >
                       <p
                         className={classNames(
-                          'd-inline-flex align-items-center',
+                          'd-inline-flex align-items-start',
                           'justify-content-center justify-content-lg-start',
                           'mb-0 gap-1'
                         )}
@@ -80,6 +82,7 @@ const Footer: NextPage<WithoutProps> = () => {
                           fixedWidth
                           height="1em"
                         />
+
                         {text instanceof Array
                           ? text.map((fragment, fragmentKey) => (
                               <Fragment key={fragmentKey}>
@@ -94,11 +97,47 @@ const Footer: NextPage<WithoutProps> = () => {
                 </div>
               </address>
             </Col>
-            <Col xs="auto" className="order-lg-2 order-1">
+
+            <Col
+              xs={12}
+              lg="auto"
+              className="d-flex flex-column flex-lg-row order-lg-2 order-3 gap-5"
+            >
+              {locationData.map(({ icon, text, link }, key) => (
+                <Link
+                  key={key}
+                  href={link ?? router.asPath}
+                  className="d-grid text-decoration-none"
+                  style={{ color: 'inherit' }}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <span
+                    className={classNames(
+                      'd-inline-flex align-items-start',
+                      'justify-content-center justify-content-lg-start',
+                      'mb-0 gap-3'
+                    )}
+                  >
+                    <Emoji symbol={icon} className="fs-3" />
+
+                    {text.map((fragment, fragmentKey) => (
+                      <Fragment key={fragmentKey}>
+                        {fragment}
+                        <br />
+                      </Fragment>
+                    ))}
+                  </span>
+                </Link>
+              ))}
+            </Col>
+
+            <Col xs="auto" className="order-lg-3 order-1">
               <LanguageSelector theme="light" />
             </Col>
           </Row>
         </Container>
+
         <Navbar variant="dark" bg="transparent" expand>
           <Container className="d-grid d-lg-flex justify-content-center justify-content-lg-between px-lg-1">
             <Navbar.Text className="order-lg-1 text-xl-start order-2 px-2 text-center">
@@ -107,27 +146,33 @@ const Footer: NextPage<WithoutProps> = () => {
               {String.fromCharCode(174).surround(' ')}
               {process.env.BRAND_JURIDICAL_NAME}
             </Navbar.Text>
+
             <Nav className="d-block d-lg-flex order-lg-2 order-1 text-center">
-              <Link href="/about/privacy-policy" passHref legacyBehavior>
+              {/* TODO: uncomment this section when ready */}
+              {/* <Link href="/about/privacy-policy" passHref legacyBehavior>
                 <Nav.Link as="a">
                   {capitalizeText(t`sections:privacyPolicy.title`, 'simple')}
                 </Nav.Link>
               </Link>
+
               <Link href="/about/cookies" passHref legacyBehavior>
                 <Nav.Link as="a">
                   {capitalizeText(t`sections:cookies.title`, 'simple')}
                 </Nav.Link>
               </Link>
+
               <Link href="/about/legal" passHref legacyBehavior>
                 <Nav.Link as="a">
                   {capitalizeText(t`sections:legal.title`, 'simple')}
                 </Nav.Link>
-              </Link>
+              </Link> */}
+
               <Link href="/contact" passHref legacyBehavior>
                 <Nav.Link as="a">
                   {capitalizeText(t`sections:contact.title`, 'simple')}
                 </Nav.Link>
               </Link>
+
               <Link
                 href="https://github.com/stratego-chile"
                 passHref
@@ -142,6 +187,7 @@ const Footer: NextPage<WithoutProps> = () => {
                   <FontAwesomeIcon icon={faGithub} fixedWidth />
                 </Nav.Link>
               </Link>
+
               <Link
                 href="https://github.com/stratego-chile/site"
                 passHref

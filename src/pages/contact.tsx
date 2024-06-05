@@ -20,10 +20,6 @@ const Row = dynamic(() => import('react-bootstrap/Row'))
 
 const Col = dynamic(() => import('react-bootstrap/Col'))
 
-const ContactForm = dynamic(
-  () => import('@stratego/components/forms/contact-form')
-)
-
 const Contact: NextPage<WithoutProps> = () => {
   const { t } = useTranslation()
 
@@ -33,6 +29,8 @@ const Contact: NextPage<WithoutProps> = () => {
       pageTitle={capitalizeText(t`sections:contact.title`, 'simple')}
       showNavigationOptions
     >
+      <script src="https://link.msgsndr.com/js/form_embed.js" defer />
+
       <Container className="d-flex flex-column mb-5 gap-5 py-5">
         <Row>
           <Col>
@@ -44,7 +42,31 @@ const Contact: NextPage<WithoutProps> = () => {
         </Row>
         <Row>
           <Col>
-            <ContactForm />
+            {/* FIXME: Disable temporally in favor of CRM form */}
+            {/* <ContactForm /> */}
+
+            <iframe
+              src="https://api.leadconnectorhq.com/widget/form/K9l8TpkMJ5ghvGd0Aa9V"
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 'none',
+                minHeight: '85vh',
+              }}
+              id="inline-K9l8TpkMJ5ghvGd0Aa9V"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="contacto WEB"
+              data-height="649"
+              data-layout-iframe-id="inline-K9l8TpkMJ5ghvGd0Aa9V"
+              data-form-id="K9l8TpkMJ5ghvGd0Aa9V"
+              title="contacto WEB"
+            />
           </Col>
         </Row>
       </Container>
