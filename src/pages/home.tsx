@@ -234,7 +234,7 @@ const Home: NextPage<WithoutProps> = () => {
                     <div className="row d-flex gap-4 fs-5">
                       <div className="col d-flex flex-column gap-4">
                         <p>
-                          El programa de auditoría ciberseguridad lo hemos
+                          El programa de auditoría ciber-seguridad lo hemos
                           desarrollado bajo estándares internacionales de
                           identificación y evaluación de riesgos informáticos.
                         </p>
@@ -272,7 +272,7 @@ const Home: NextPage<WithoutProps> = () => {
                             <Accordion.Body>
                               <ul>
                                 {[
-                                  'Políticas de Ciberseguridad',
+                                  'Políticas de ciber-seguridad',
                                   'Procedimientos y Controles de Protección',
                                   'Cumplimientos Normativos',
                                   'Análisis de Vulnerabilidades',
@@ -356,7 +356,7 @@ const Home: NextPage<WithoutProps> = () => {
                                 {[
                                   'Visibilidad Integral: Ofrecemos una visibilidad completa de su infraestructura de TI, lo que facilita la identificación de vulnerabilidades y la toma de decisiones informadas.',
                                   'Análisis Profundo de Datos: Nuestra plataforma de análisis le permite explorar y analizar datos de seguridad para detectar patrones, anomalías y amenazas ocultas, brindándole información crucial para fortalecer su postura de seguridad.',
-                                  'Monitoreo en Sitio: Instalamos un equipo de monitoreo avanzado en sus instalaciones para una vigilancia en tiempo real y una respuesta rápida ante cualquier amenaza.',
+                                  'Monitorización en Sitio: Instalamos un equipo en sus instalaciones para una vigilancia en tiempo real y una respuesta rápida ante cualquier amenaza.',
                                   'Integración sin Problemas: Nuestra solución se integra perfectamente con sus sistemas existentes, lo que simplifica la implementación y la gestión de la seguridad.',
                                   'Asesoría Especializada: Nuestros expertos en seguridad están disponibles para discutir los resultados y ayudarle a tomar medidas precisas para proteger su empresa.',
                                 ].map((item, index) => (
