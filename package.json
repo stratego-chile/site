@@ -50,7 +50,7 @@
     "next": "14.2.4",
     "next-i18next": "15.3.0",
     "next-mdx-remote": "5.0.0",
-    "nodemailer": "6.9.13",
+    "nodemailer": "6.9.14",
     "prop-types": "15.8.1",
     "pug": "3.0.3",
     "react": "18.3.1",
