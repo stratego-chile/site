@@ -67,7 +67,7 @@ export default function SurveyPage({ surveyId }: Props) {
 
   if (!surveySpec)
     return (
-      <Layout pageTitle="Encuestas" showNavigationOptions>
+      <Layout pageTitle="Encuesta no encontrada" showNavigationOptions>
         <Container className="my-5">
           <Row className="mb-5">
             <Col className={LayoutStyles.autoFormat}>
@@ -81,7 +81,7 @@ export default function SurveyPage({ surveyId }: Props) {
   const [elements] = surveySpec
 
   return (
-    <Layout pageTitle="Encuestas" showNavigationOptions>
+    <Layout pageTitle="Encuesta" showNavigationOptions>
       <Container className="my-5">
         <Row className="mb-5">
           <Col className={LayoutStyles.autoFormat}>
@@ -102,7 +102,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         locale: defaultLocale,
         params: {
           surveyId: surveyId.startsWith(ALIAS_PREFIX)
-            ? surveyId.slice(7)
+            ? surveyId.replace(ALIAS_PREFIX, '')
             : surveyId,
         },
       })),
