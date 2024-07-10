@@ -3,6 +3,8 @@ import { defaultLocale } from '@stratego/locales'
 import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import type { GetStaticPaths, GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Image from 'next/image'
+import Link from 'next/link'
 import Script from 'next/script'
 import { Col, Container, Row } from 'react-bootstrap'
 
@@ -31,9 +33,36 @@ const surveys = {
       () => <Script defer src="https://link.msgsndr.com/js/form_embed.js" />,
     ],
     ['desafios-de-la-ciberseguridad'],
+    {
+      title: 'Desafíos de la ciberseguridad',
+      note: 'Te invitamos a responder esta breve encuesta',
+      poweredBy: () => (
+        <div className="d-flex justify-content-center">
+          <Link
+            className="d-inline-flex gap-3 align-items-center text-decoration-none text-body-secondary"
+            href="https://www.bakertilly.cl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Socios de</span>
+
+            <Image
+              width={200}
+              height={50}
+              alt="Bakertilly"
+              src="/images/bakertilly-logo-black.svg"
+            />
+          </Link>
+        </div>
+      ),
+    },
   ],
 } satisfies {
-  [id: string]: [elements: Array<() => JSX.Element>, equivalents: Array<string>]
+  [id: string]: [
+    elements: Array<() => JSX.Element>,
+    equivalents: Array<string>,
+    helpers: { title: string; note?: string; poweredBy?: () => JSX.Element },
+  ]
 }
 
 const surveyIds = Object.entries(surveys).flatMap(([id, [, equivalents]]) =>
@@ -78,16 +107,22 @@ export default function SurveyPage({ surveyId }: Props) {
       </Layout>
     )
 
-  const [elements] = surveySpec
+  const [elements, , { note, poweredBy: PoweredBy, title }] = surveySpec
 
   return (
     <Layout pageTitle="Encuesta" showNavigationOptions>
       <Container className="my-5">
         <Row className="mb-5">
           <Col className={LayoutStyles.autoFormat}>
+            <h1>{title}</h1>
+
+            <p>{note}</p>
+
             {elements.map((element, index) => (
               <div key={index}>{element()}</div>
             ))}
+
+            {PoweredBy && <PoweredBy />}
           </Col>
         </Row>
       </Container>
