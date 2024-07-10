@@ -44,7 +44,7 @@ const surveys = {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span>Socios de</span>
+            <span>Partners de</span>
 
             <Image
               width={200}
