@@ -57,8 +57,8 @@ importers:
         specifier: 0.1.7
         version: 0.1.7
       enhanced-resolve:
-        specifier: 5.17.0
-        version: 5.17.0
+        specifier: 5.17.1
+        version: 5.17.1
       formik:
         specifier: 2.4.6
         version: 2.4.6(react@18.3.1)
@@ -173,7 +173,7 @@ importers:
         version: 7.17.0(eslint@8.57.0)(typescript@5.5.3)
       '@webdiscus/pug-loader':
         specifier: 2.11.0
-        version: 2.11.0(enhanced-resolve@5.17.0)(markdown-it@14.1.0)(pug@3.0.3)(webpack@5.93.0)
+        version: 2.11.0(enhanced-resolve@5.17.1)(markdown-it@14.1.0)(pug@3.0.3)(webpack@5.93.0)
       coffeescript:
         specifier: 2.7.0
         version: 2.7.0
@@ -1653,8 +1653,8 @@ packages:
     resolution: {integrity: sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==}
     engines: {node: '>= 4'}
 
-  enhanced-resolve@5.17.0:
-    resolution: {integrity: sha512-dwDPwZL0dmye8Txp2gzFmA6sxALaSvdRDjPH0viLcKrtlOL3tw62nWWweVD1SdILDTJrbrL6tdWVN58Wo6U3eA==}
+  enhanced-resolve@5.17.1:
+    resolution: {integrity: sha512-LMHl3dXhTcfv8gM4kEzIUeTQ+7fpdA0l2tUf34BddXPkz2A5xJ5L/Pchd5BL6rdccM9QGvu0sWZzK1Z1t4wwyg==}
     engines: {node: '>=10.13.0'}
 
   entities@4.5.0:
@@ -4923,10 +4923,10 @@ snapshots:
       '@webassemblyjs/ast': 1.12.1
       '@xtuc/long': 4.2.2
 
-  '@webdiscus/pug-loader@2.11.0(enhanced-resolve@5.17.0)(markdown-it@14.1.0)(pug@3.0.3)(webpack@5.93.0)':
+  '@webdiscus/pug-loader@2.11.0(enhanced-resolve@5.17.1)(markdown-it@14.1.0)(pug@3.0.3)(webpack@5.93.0)':
     dependencies:
       ansis: 2.0.3
-      enhanced-resolve: 5.17.0
+      enhanced-resolve: 5.17.1
       parse5: 7.1.2
       pug: 3.0.3
       webpack: 5.93.0
@@ -5522,7 +5522,7 @@ snapshots:
 
   emojis-list@3.0.0: {}
 
-  enhanced-resolve@5.17.0:
+  enhanced-resolve@5.17.1:
     dependencies:
       graceful-fs: 4.2.11
       tapable: 2.2.1
@@ -5713,7 +5713,7 @@ snapshots:
   eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0):
     dependencies:
       debug: 4.3.5
-      enhanced-resolve: 5.17.0
+      enhanced-resolve: 5.17.1
       eslint: 8.57.0
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0)
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
@@ -8054,7 +8054,7 @@ snapshots:
       acorn-import-attributes: 1.9.5(acorn@8.11.3)
       browserslist: 4.23.0
       chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.17.0
+      enhanced-resolve: 5.17.1
       es-module-lexer: 1.5.3
       eslint-scope: 5.1.1
       events: 3.3.0
