@@ -100,9 +100,9 @@
     "typescript": "5.5.4",
     "webpack": "5.93.0"
   },
-  "packageManager": "pnpm@9.6.0",
+  "packageManager": "pnpm@9.7.0",
   "volta": {
     "node": "20.16.0",
-    "pnpm": "9.6.0"
+    "pnpm": "9.7.0"
   }
 }
