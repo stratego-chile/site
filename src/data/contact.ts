@@ -24,7 +24,7 @@ export const contactData: Array<ContactFragment> = [
   },
   {
     icon: faEnvelope,
-    text: 'contact@stratego.cl',
+    text: 'marketing@stratego.cl',
     linkPrefix: 'mailto',
   },
   {
