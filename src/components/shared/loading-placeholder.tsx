@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import Alert from 'react-bootstrap/Alert'
 import Spinner from 'react-bootstrap/Spinner'
 
@@ -21,15 +20,6 @@ const LoadingPlaceholder: React.FC<LoadingPlaceholderProps> = ({
   ) : error ? (
     <Alert variant="danger">{error.toString()}</Alert>
   ) : null
-}
-
-LoadingPlaceholder.propTypes = {
-  error: PropTypes.instanceOf(Error),
-  loading: PropTypes.bool,
-}
-
-LoadingPlaceholder.defaultProps = {
-  loading: true,
 }
 
 LoadingPlaceholder.displayName = 'LoadingPlaceholder'

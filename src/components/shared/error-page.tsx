@@ -4,7 +4,6 @@ import classNames from 'classnames'
 import { StatusCodes } from 'http-status-codes'
 import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
-import PropTypes from 'prop-types'
 import type { ContainerProps } from 'react-bootstrap/Container'
 
 const Container = dynamic(
@@ -56,17 +55,6 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
       </Row>
     </Container>
   )
-}
-
-ErrorPage.propTypes = {
-  relativeHeight: PropTypes.bool,
-  showGoBackButton: PropTypes.bool,
-  statusCode: PropTypes.number,
-}
-
-ErrorPage.defaultProps = {
-  showGoBackButton: true,
-  relativeHeight: false,
 }
 
 ErrorPage.displayName = 'ErrorPage'

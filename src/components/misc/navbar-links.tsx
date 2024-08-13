@@ -1,10 +1,8 @@
 import NavBarLink from '@stratego/components/misc/navbar-link'
 import type { LinkSpec } from '@stratego/data/navigation-links'
-import { recursiveCall } from '@stratego/helpers/functions.helper'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import classNames from 'classnames'
 import { useTranslation } from 'next-i18next'
-import PropTypes from 'prop-types'
 import { Fragment, useId } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
 import Dropdown from 'react-bootstrap/Dropdown'
@@ -185,30 +183,6 @@ const NavBarLinks: React.FC<NavBarLinksProps> = ({
       ))}
     </Wrapper>
   )
-}
-
-export const lazySubLink = recursiveCall(function () {
-  return PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    label: PropTypes.string,
-    href: PropTypes.string,
-    disabled: PropTypes.bool,
-    subLinks: lazySubLink,
-    dynamicPath: PropTypes.bool,
-    dynamicTemplatePath: PropTypes.string,
-  })
-})
-
-NavBarLinks.propTypes = {
-  links: PropTypes.arrayOf(lazySubLink),
-  mode: PropTypes.oneOf(['root', 'embed']),
-  orientation: PropTypes.oneOf(['vertical', 'horizontal']),
-}
-
-NavBarLinks.defaultProps = {
-  links: [],
-  mode: 'root',
-  orientation: 'horizontal',
 }
 
 NavBarLinks.displayName = 'NavBarLinks'

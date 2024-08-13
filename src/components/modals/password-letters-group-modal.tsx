@@ -1,5 +1,4 @@
 import PasswordGeneratorLettersGroupForm from '@stratego/components/forms/password-letters-group-form'
-import PropTypes from 'prop-types'
 import Modal from 'react-bootstrap/Modal'
 
 type PasswordGeneratorLettersGroupModalProps = {
@@ -34,20 +33,5 @@ const PasswordGeneratorLettersGroupModal: React.FC<
 
 PasswordGeneratorLettersGroupModal.displayName =
   'PasswordGeneratorLettersGroupModal'
-
-PasswordGeneratorLettersGroupModal.propTypes = {
-  lettersGroupSpec: PropTypes.shape({
-    name: PropTypes.string
-      .isRequired as PropTypes.Validator<Stratego.Utils.PasswordGenerator.LettersGroup>,
-    letters: PropTypes.string.isRequired,
-    range: PropTypes.string.isRequired,
-  }).isRequired,
-  onLettersGroupSpecChange: PropTypes.func,
-  show: PropTypes.bool,
-}
-
-PasswordGeneratorLettersGroupModal.defaultProps = {
-  show: false,
-}
 
 export default PasswordGeneratorLettersGroupModal

@@ -8,7 +8,6 @@ import { capitalizeText } from '@stratego/helpers/text.helper'
 import { useFormik } from 'formik'
 import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
-import PropTypes from 'prop-types'
 import {
   Fragment,
   forwardRef,
@@ -520,12 +519,6 @@ const PasswordGeneratorForm = forwardRef<
 })
 
 PasswordGeneratorForm.displayName = 'PasswordGeneratorForm'
-
-PasswordGeneratorForm.propTypes = {
-  onDigestUpdate: PropTypes.func,
-  onGenerationStateChange: PropTypes.func,
-  onPasswordGeneration: PropTypes.func,
-}
 
 const PasswordGeneratorFormWrapper: React.FC<
   PasswordGeneratorFormProps & {

@@ -1,6 +1,5 @@
 import type { LinkSpec } from '@stratego/data/navigation-links'
 import Link, { type LinkProps } from 'next/link'
-import PropTypes from 'prop-types'
 
 type NavBarLinkProps = Partial<LinkProps> & {
   link: LinkSpec
@@ -30,9 +29,5 @@ const NavBarLink: React.FC<React.PropsWithChildren<NavBarLinkProps>> = ({
 }
 
 NavBarLink.displayName = 'NavBarLink'
-
-NavBarLink.propTypes = {
-  link: PropTypes.object.isRequired as PropTypes.Validator<LinkSpec>,
-}
 
 export default NavBarLink
