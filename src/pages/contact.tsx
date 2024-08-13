@@ -42,9 +42,6 @@ const Contact: NextPage<WithoutProps> = () => {
         </Row>
         <Row>
           <Col>
-            {/* FIXME: Disable temporally in favor of CRM form */}
-            {/* <ContactForm /> */}
-
             <iframe
               src="https://api.leadconnectorhq.com/widget/form/K9l8TpkMJ5ghvGd0Aa9V"
               style={{

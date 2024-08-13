@@ -4,7 +4,6 @@ import classNames from 'classnames'
 import { getLanguage, getNativeName } from 'language-flag-colors'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import PropTypes from 'prop-types'
 import { Fragment, useCallback, useId } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
 
@@ -84,15 +83,6 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
       </Dropdown.Menu>
     </Dropdown>
   )
-}
-
-LanguageSelector.propTypes = {
-  className: PropTypes.string,
-  theme: PropTypes.string,
-}
-
-LanguageSelector.defaultProps = {
-  theme: 'light',
 }
 
 LanguageSelector.displayName = 'LanguageSelector'

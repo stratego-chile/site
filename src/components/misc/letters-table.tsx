@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import { useMemo } from 'react'
 import Table from 'react-bootstrap/Table'
 
@@ -42,10 +41,5 @@ const LettersTable: React.FC<LettersTableProps> = ({
 }
 
 LettersTable.displayName = 'LettersTable'
-
-LettersTable.propTypes = {
-  letters: PropTypes.string,
-  rowLength: PropTypes.number,
-}
 
 export default LettersTable

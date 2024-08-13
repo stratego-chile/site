@@ -1,8 +1,6 @@
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import NavBarLinks, {
-  lazySubLink,
-} from '@stratego/components/misc/navbar-links'
+import NavBarLinks from '@stratego/components/misc/navbar-links'
 import { navbarLinks, type LinkSpec } from '@stratego/data/navigation-links'
 import { getAssetPath } from '@stratego/helpers/static-resources.helper'
 import { capitalizeText } from '@stratego/helpers/text.helper'
@@ -11,7 +9,6 @@ import classNames from 'classnames'
 import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import PropTypes from 'prop-types'
 import { Fragment, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
@@ -25,7 +22,7 @@ const MobileSidebar = dynamic(
 
 type NavBarProps = {
   showNavigationOptions?: boolean
-  theme?: string
+  theme?: 'dark-blue' | 'light-blue'
   brandDepartment?: string
   subLinks?: Array<LinkSpec>
 }
@@ -131,18 +128,6 @@ const NavBar: React.FC<NavBarProps> = ({
       <MobileSidebar show={!collapsed} onClose={() => setCollapsed(true)} />
     </Fragment>
   )
-}
-
-NavBar.propTypes = {
-  showNavigationOptions: PropTypes.bool,
-  theme: PropTypes.oneOf(['dark-blue', 'light-blue']),
-  brandDepartment: PropTypes.string,
-  subLinks: PropTypes.arrayOf(lazySubLink),
-}
-
-NavBar.defaultProps = {
-  theme: 'dark-blue',
-  subLinks: [],
 }
 
 NavBar.displayName = 'TopNavigationBar'

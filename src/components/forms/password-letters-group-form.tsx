@@ -1,7 +1,6 @@
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { useFormik } from 'formik'
 import { useTranslation } from 'next-i18next'
-import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import * as Yup from 'yup'
@@ -120,15 +119,5 @@ const PasswordGeneratorLettersGroupForm: React.FC<
 
 PasswordGeneratorLettersGroupForm.displayName =
   'PasswordGeneratorLettersGroupForm'
-
-PasswordGeneratorLettersGroupForm.propTypes = {
-  lettersGroupSpec: PropTypes.shape({
-    name: PropTypes.string
-      .isRequired as PropTypes.Validator<Stratego.Utils.PasswordGenerator.LettersGroup>,
-    letters: PropTypes.string.isRequired,
-    range: PropTypes.string.isRequired,
-  }).isRequired,
-  onLettersGroupSpecChange: PropTypes.func,
-}
 
 export default PasswordGeneratorLettersGroupForm

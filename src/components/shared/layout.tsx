@@ -8,7 +8,6 @@ import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import classNames from 'classnames'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
@@ -91,22 +90,6 @@ const Layout: React.FC<React.PropsWithChildren<LayoutProps>> = ({
       <Footer />
     </div>
   )
-}
-
-Layout.propTypes = {
-  pageTitle: PropTypes.string,
-  pageDescription: PropTypes.string,
-  brandDepartment: PropTypes.string,
-  subLinks: PropTypes.array,
-  defaultGrid: PropTypes.bool,
-  showNavigationOptions: PropTypes.bool,
-  showReturnToTopButton: PropTypes.bool,
-}
-
-Layout.defaultProps = {
-  subLinks: [],
-  showNavigationOptions: false,
-  showReturnToTopButton: true,
 }
 
 Layout.displayName = 'Layout'

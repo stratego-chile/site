@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import PropTypes from 'prop-types'
 import Button from 'react-bootstrap/Button'
 
 type GoBackButtonProps = {
@@ -29,14 +28,6 @@ const GoBackButton: React.FC<GoBackButtonProps> = ({
       </span>
     </Button>
   )
-}
-
-GoBackButton.propTypes = {
-  variant: PropTypes.string,
-}
-
-GoBackButton.defaultProps = {
-  variant: 'outline-dark-blue',
 }
 
 GoBackButton.displayName = 'GoBackButton'

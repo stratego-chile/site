@@ -211,8 +211,6 @@ const Footer: NextPage<WithoutProps> = () => {
   )
 }
 
-Footer.propTypes = {}
-
 Footer.displayName = 'Footer'
 
 export default Footer
