@@ -8,7 +8,7 @@ import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import classNames from 'classnames'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -62,12 +62,16 @@ const Layout: React.FC<React.PropsWithChildren<LayoutProps>> = ({
         <title>{title}</title>
         <meta name="description" content={description} />
       </Head>
-      <NavBar
-        showNavigationOptions={showNavigationOptions}
-        theme="dark-blue"
-        brandDepartment={brandDepartment}
-        subLinks={subLinks}
-      />
+
+      <Suspense>
+        <NavBar
+          showNavigationOptions={showNavigationOptions}
+          theme="dark-blue"
+          brandDepartment={brandDepartment}
+          subLinks={subLinks}
+        />
+      </Suspense>
+
       <div
         {...divProps}
         className={classNames(
@@ -86,8 +90,14 @@ const Layout: React.FC<React.PropsWithChildren<LayoutProps>> = ({
           children
         )}
       </div>
-      <ToTopButton show={showReturnToTopButton} />
-      <Footer />
+
+      <Suspense>
+        <Footer />
+      </Suspense>
+
+      <Suspense>
+        <ToTopButton show={showReturnToTopButton} />
+      </Suspense>
     </div>
   )
 }
