@@ -5,6 +5,7 @@ import { contactData, locationData } from '@stratego/data/contact'
 import { getAssetPath } from '@stratego/helpers/static-resources.helper'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import FooterStyles from '@stratego/styles/modules/Footer.module.sass'
+import Emoji from 'a11y-react-emoji'
 import classNames from 'classnames'
 import type { NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
@@ -18,7 +19,6 @@ import Image from 'react-bootstrap/Image'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Row from 'react-bootstrap/Row'
-import Emoji from 'a11y-react-emoji'
 
 const LanguageSelector = dynamic(
   () => import('@stratego/components/shared/language-selector')
@@ -60,7 +60,7 @@ const Footer: NextPage<WithoutProps> = () => {
                             : link
                               ? `${linkPrefix}:${link}`
                               : router.asPath
-                          : link ?? router.asPath
+                          : (link ?? router.asPath)
                       }
                       className="d-grid text-decoration-none mb-3"
                       style={{ color: 'inherit' }}
