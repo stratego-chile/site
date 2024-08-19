@@ -5,6 +5,7 @@ import { contactData, locationData } from '@stratego/data/contact'
 import { getAssetPath } from '@stratego/helpers/static-resources.helper'
 import { capitalizeText } from '@stratego/helpers/text.helper'
 import FooterStyles from '@stratego/styles/modules/Footer.module.sass'
+import Emoji from 'a11y-react-emoji'
 import classNames from 'classnames'
 import type { NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
@@ -18,7 +19,6 @@ import Image from 'react-bootstrap/Image'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Row from 'react-bootstrap/Row'
-import Emoji from 'a11y-react-emoji'
 
 const LanguageSelector = dynamic(
   () => import('@stratego/components/shared/language-selector')
@@ -36,7 +36,7 @@ const Footer: NextPage<WithoutProps> = () => {
           <Row
             className={classNames(
               'd-flex justify-content-center justify-content-lg-between',
-              'py-lg-5 mb-lg-5 mb-2 gap-5 pt-5'
+              'gap-5'
             )}
           >
             <Col xs={12} lg="auto" className="order-lg-1 order-2">
@@ -60,7 +60,7 @@ const Footer: NextPage<WithoutProps> = () => {
                             : link
                               ? `${linkPrefix}:${link}`
                               : router.asPath
-                          : link ?? router.asPath
+                          : (link ?? router.asPath)
                       }
                       className="d-grid text-decoration-none mb-3"
                       style={{ color: 'inherit' }}
@@ -101,7 +101,9 @@ const Footer: NextPage<WithoutProps> = () => {
             <Col
               xs={12}
               lg="auto"
-              className="d-flex flex-column flex-lg-row order-lg-2 order-3 gap-5"
+              className={classNames(
+                'd-flex flex-column flex-lg-row order-lg-2 order-3 gap-5'
+              )}
             >
               {locationData.map(({ icon, text, link }, key) => (
                 <Link
@@ -134,6 +136,20 @@ const Footer: NextPage<WithoutProps> = () => {
 
             <Col xs="auto" className="order-lg-3 order-1">
               <LanguageSelector theme="light" />
+            </Col>
+          </Row>
+        </Container>
+
+        <Container className="bg-transparent">
+          <Row className="d-flex justify-content-center">
+            <Col xs="auto" className="py-5">
+              <Image
+                fluid
+                src="/images/certificates/ISO-IEC_27001_2022.webp"
+                width="540"
+                height="347"
+                alt="ISO/IEC 27001:2022 Certificated"
+              />
             </Col>
           </Row>
         </Container>

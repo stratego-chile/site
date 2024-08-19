@@ -4,6 +4,7 @@
 *.png binary
 *.ico binary
 *.zip binary
+*.webp binary
 
 # GitHub Linguist Override
 *.cjs linguist-vendored

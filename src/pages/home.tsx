@@ -228,7 +228,7 @@ const Home: NextPage<WithoutProps> = () => {
                     )}
                   >
                     <h1>
-                      Plan de auditoría se seguridad <b>One Time</b>
+                      Plan de auditoría de seguridad <b>One Time</b>
                     </h1>
 
                     <div className="row d-flex gap-4 fs-5">
