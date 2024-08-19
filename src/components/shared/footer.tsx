@@ -36,7 +36,7 @@ const Footer: NextPage<WithoutProps> = () => {
           <Row
             className={classNames(
               'd-flex justify-content-center justify-content-lg-between',
-              'py-lg-5 mb-lg-5 mb-2 gap-5 pt-5'
+              'gap-5'
             )}
           >
             <Col xs={12} lg="auto" className="order-lg-1 order-2">
@@ -101,7 +101,9 @@ const Footer: NextPage<WithoutProps> = () => {
             <Col
               xs={12}
               lg="auto"
-              className="d-flex flex-column flex-lg-row order-lg-2 order-3 gap-5"
+              className={classNames(
+                'd-flex flex-column flex-lg-row order-lg-2 order-3 gap-5'
+              )}
             >
               {locationData.map(({ icon, text, link }, key) => (
                 <Link
@@ -134,6 +136,20 @@ const Footer: NextPage<WithoutProps> = () => {
 
             <Col xs="auto" className="order-lg-3 order-1">
               <LanguageSelector theme="light" />
+            </Col>
+          </Row>
+        </Container>
+
+        <Container className="bg-transparent">
+          <Row className="d-flex justify-content-center">
+            <Col xs="auto" className="py-5">
+              <Image
+                fluid
+                src="/images/certificates/ISO-IEC_27001:2022.jpg"
+                height="368"
+                width="512"
+                alt="ISO/IEC 27001:2022 Certificated"
+              />
             </Col>
           </Row>
         </Container>
