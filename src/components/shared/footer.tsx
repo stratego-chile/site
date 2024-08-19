@@ -145,9 +145,9 @@ const Footer: NextPage<WithoutProps> = () => {
             <Col xs="auto" className="py-5">
               <Image
                 fluid
-                src="/images/certificates/ISO-IEC_27001:2022.jpg"
-                height="368"
-                width="512"
+                src="/images/certificates/ISO-IEC_27001_2022.webp"
+                width="540"
+                height="347"
                 alt="ISO/IEC 27001:2022 Certificated"
               />
             </Col>
