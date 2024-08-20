@@ -30,8 +30,8 @@ importers:
         specifier: 0.2.1
         version: 0.2.1
       '@stdlib/string':
-        specifier: 0.2.1
-        version: 0.2.1
+        specifier: 0.3.1
+        version: 0.3.1
       '@vercel/analytics':
         specifier: 1.3.1
         version: 1.3.1(next@14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(react@18.3.1)
@@ -807,6 +807,11 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
+  '@stdlib/string@0.3.1':
+    resolution: {integrity: sha512-bK8j+XZ74wsHWv3j2knmPodScmSLe1dA+LogRekC/9jiI24iAphPhxqHhYFWVyrHZwCj0VjVx2FZx84z2Ar3ig==}
+    engines: {node: '>=0.10.0', npm: '>2.7.0'}
+    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
+
   '@stdlib/symbol@0.2.1':
     resolution: {integrity: sha512-FlJNAESPST/iMbKFaJILp5t3RoffCsdcsOFRnU2RaKCQ6xLs9ghJGyqU3Z7CtdAJRzHvYYEZjBwLBmxHto7QaA==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
@@ -824,6 +829,11 @@ packages:
 
   '@stdlib/utils@0.2.1':
     resolution: {integrity: sha512-+uTayofmRLASNMSvHwiLdAeYyj32A7sN0gQYI9+KyQZTDKtQxhIg6G1slnzeg/v5kqSeLTL+HAvXaLrM4AZ/sQ==}
+    engines: {node: '>=0.10.0', npm: '>2.7.0'}
+    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
+
+  '@stdlib/utils@0.3.1':
+    resolution: {integrity: sha512-5KdqdKCgCkhmWunahIzx3j8VS/C34f5YDEZLvufLI9O3a58IPBP/V2p3cBil9GPgCBmVD95xSK3v+El7f+uGDw==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -4537,6 +4547,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@stdlib/string@0.3.1':
+    dependencies:
+      '@stdlib/utils': 0.3.1
+
   '@stdlib/symbol@0.2.1':
     dependencies:
       '@stdlib/assert': 0.2.1
@@ -4587,6 +4601,8 @@ snapshots:
       debug: 2.6.9
     transitivePeerDependencies:
       - supports-color
+
+  '@stdlib/utils@0.3.1': {}
 
   '@swc/counter@0.1.3': {}
 
