@@ -27,8 +27,8 @@ importers:
         specifier: 2.11.8
         version: 2.11.8
       '@stdlib/random':
-        specifier: 0.2.1
-        version: 0.2.1
+        specifier: 0.3.1
+        version: 0.3.1
       '@stdlib/string':
         specifier: 0.2.1
         version: 0.2.1
@@ -777,6 +777,11 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
+  '@stdlib/random@0.3.1':
+    resolution: {integrity: sha512-zhgjp47LKDTROgFv2xiAP6NRexBM1Bc0JqEYRDxdayNOqlO31s/L1cpcpfe+tVFZHrvUmd13lAR6dw2SC/Osqw==}
+    engines: {node: '>=0.10.0', npm: '>2.7.0'}
+    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
+
   '@stdlib/regexp@0.2.1':
     resolution: {integrity: sha512-UC4+t10EJe1o8+7WkeOaelaqgTY0yh2o/EfGH6ZsA91T5YQbhnse8f/XVv+1xJ5xtl2DxQxd3+M/rJqYHT8hRg==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
@@ -824,6 +829,11 @@ packages:
 
   '@stdlib/utils@0.2.1':
     resolution: {integrity: sha512-+uTayofmRLASNMSvHwiLdAeYyj32A7sN0gQYI9+KyQZTDKtQxhIg6G1slnzeg/v5kqSeLTL+HAvXaLrM4AZ/sQ==}
+    engines: {node: '>=0.10.0', npm: '>2.7.0'}
+    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
+
+  '@stdlib/utils@0.3.1':
+    resolution: {integrity: sha512-5KdqdKCgCkhmWunahIzx3j8VS/C34f5YDEZLvufLI9O3a58IPBP/V2p3cBil9GPgCBmVD95xSK3v+El7f+uGDw==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -4454,6 +4464,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@stdlib/random@0.3.1':
+    dependencies:
+      '@stdlib/utils': 0.3.1
+
   '@stdlib/regexp@0.2.1':
     dependencies:
       '@stdlib/assert': 0.2.1
@@ -4587,6 +4601,8 @@ snapshots:
       debug: 2.6.9
     transitivePeerDependencies:
       - supports-color
+
+  '@stdlib/utils@0.3.1': {}
 
   '@swc/counter@0.1.3': {}
 
