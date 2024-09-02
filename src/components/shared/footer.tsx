@@ -32,7 +32,7 @@ const Footer: NextPage<WithoutProps> = () => {
   return (
     <Fragment>
       <div className={FooterStyles.wrapper}>
-        <Container className="bg-transparent">
+        <Container className="bg-transparent mt-5">
           <Row
             className={classNames(
               'd-flex justify-content-center justify-content-lg-between',
