@@ -40,6 +40,10 @@ export const navbarLinks: Array<LinkSpec> = [
       },
     ],
   },
+  {
+    text: 'Webinars',
+    href: '/webinars',
+  },
   // TODO: Uncomment when the docs initial articles are ready
   // {
   //   text: 'sections:docs.title',
