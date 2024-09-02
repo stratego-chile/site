@@ -1,10 +1,11 @@
-version: "0.2"
+version: '0.2'
 language: en, es, pt-BR
 files:
   - src/**/*.{tsx,ts,json}
 ignorePaths:
   - src/data/dial-codes.ts
   - src/data/countries-dial-codes.json
+  - src/data/webinars.json
 dictionaryDefinitions:
   - name: spanish
     path: ./node_modules/@cspell/dict-es-es/Spanish.trie.gz
@@ -41,6 +42,7 @@ words:
   - pucv
   - recaptcha
   - rehype
+  - Regístre
   - Requireable
   - stratego
   - sumn

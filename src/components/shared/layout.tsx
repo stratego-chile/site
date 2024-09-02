@@ -69,7 +69,7 @@ const Layout: React.FC<React.PropsWithChildren<LayoutProps>> = ({
         <b>Webinar: Auditorías de Ciberseguridad en las Organizaciones</b>.{' '}
         Próximo 10 de septiembre, 9:00 a 10:00 AM (Santiago de Chile) y 10:00 a
         11:00 AM (Buenos Aires, Argentina). Regístre su asistencia{' '}
-        <Link href="/webinars/auditoria-cibeseguridad-organizaciones/register">
+        <Link href="/webinars/auditoria-ciberseguridad-organizaciones/register">
           aquí
         </Link>
       </Alert>
