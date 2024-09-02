@@ -8,7 +8,9 @@ import LayoutStyles from '@stratego/styles/modules/Layout.module.sass'
 import classNames from 'classnames'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
+import Link from 'next/link'
 import { Suspense, useEffect, useState } from 'react'
+import Alert from 'react-bootstrap/Alert'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -62,6 +64,15 @@ const Layout: React.FC<React.PropsWithChildren<LayoutProps>> = ({
         <title>{title}</title>
         <meta name="description" content={description} />
       </Head>
+
+      <Alert variant="info" className="mb-0">
+        <b>Webinar: Auditorías de Ciberseguridad en las Organizaciones</b>.{' '}
+        Próximo 10 de septiembre, 9:00 a 10:00 AM (Santiago de Chile) y 10:00 a
+        11:00 AM (Buenos Aires, Argentina). Regístre su asistencia{' '}
+        <Link href="/webinars/auditoria-cibeseguridad-organizaciones/register">
+          aquí
+        </Link>
+      </Alert>
 
       <Suspense>
         <NavBar
