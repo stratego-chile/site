@@ -14,6 +14,7 @@ import Alert from 'react-bootstrap/Alert'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+import Webinars from '@stratego/data/webinars.json'
 
 const NavBar = dynamic(() => import('@stratego/components/shared/navbar'))
 
@@ -50,6 +51,23 @@ const Layout: React.FC<React.PropsWithChildren<LayoutProps>> = ({
   const [title, setTitle] = useState<string>(process.env.DEFAULT_PAGE_TITLE)
   const [description, setDescription] = useState<string>()
 
+  const closerWebinar = Webinars.sort(
+    (a, b) =>
+      new Date(a.time[0][0]).getTime() - new Date(b.time[0][0]).getTime()
+  )
+    .filter((webinar) => {
+      if (webinar.time.at(0)?.at(0)) {
+        const currentDate = new Date()
+
+        const webinarTime = new Date(webinar.time[0][0])
+
+        return currentDate <= webinarTime
+      }
+
+      return false
+    })
+    .at(0)
+
   useEffect(() => {
     setTitle(pageTitle ? getPageTitle(pageTitle) : DEFAULT_TITLE)
   }, [pageTitle])
@@ -65,14 +83,24 @@ const Layout: React.FC<React.PropsWithChildren<LayoutProps>> = ({
         <meta name="description" content={description} />
       </Head>
 
-      <Alert variant="info" className="mb-0">
-        <b>Webinar: Auditorías de Ciberseguridad en las Organizaciones</b>.{' '}
-        Próximo 10 de septiembre, 9:00 a 10:00 AM (Santiago de Chile) y 10:00 a
-        11:00 AM (Buenos Aires, Argentina). Regístre su asistencia{' '}
-        <Link href="/webinars/auditoria-ciberseguridad-organizaciones/register">
-          aquí
-        </Link>
-      </Alert>
+      {closerWebinar && (
+        <Alert variant="info" className="mb-0">
+          <div className="d-inline-flex gap-1">
+            <span>
+              <b>Webinar: {closerWebinar.title}</b>
+              &nbsp; Próximo{' '}
+              {new Date(closerWebinar.time[0][0]).toLocaleDateString()}.
+            </span>
+
+            <span>
+              Regístre su asistencia{' '}
+              <Link href={`/webinars/${closerWebinar.slugs[0]}/register`}>
+                aquí
+              </Link>
+            </span>
+          </div>
+        </Alert>
+      )}
 
       <Suspense>
         <NavBar
