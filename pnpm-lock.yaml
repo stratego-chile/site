@@ -51,11 +51,11 @@ importers:
         specifier: 2.5.1
         version: 2.5.1
       date-fns:
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       date-fns-tz:
         specifier: ^3.1.3
-        version: 3.1.3(date-fns@4.0.0)
+        version: 3.1.3(date-fns@4.1.0)
       enhanced-resolve:
         specifier: 5.17.1
         version: 5.17.1
@@ -1564,8 +1564,8 @@ packages:
     peerDependencies:
       date-fns: ^3.0.0
 
-  date-fns@4.0.0:
-    resolution: {integrity: sha512-6K33+I8fQ5otvHgLIvKK1xmMbLAh0pduyrx7dwMXKiGYeoWhmk6M3Zoak9n7bXHMJQlHq1yqmdGy1QxKddJjUA==}
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
 
   debounce@1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
@@ -5482,11 +5482,11 @@ snapshots:
       es-errors: 1.3.0
       is-data-view: 1.0.1
 
-  date-fns-tz@3.1.3(date-fns@4.0.0):
+  date-fns-tz@3.1.3(date-fns@4.1.0):
     dependencies:
-      date-fns: 4.0.0
+      date-fns: 4.1.0
 
-  date-fns@4.0.0: {}
+  date-fns@4.1.0: {}
 
   debounce@1.2.1: {}
 
