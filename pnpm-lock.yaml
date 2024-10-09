@@ -102,8 +102,8 @@ importers:
         specifier: 2.10.5
         version: 2.10.5(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-cookie:
-        specifier: 7.2.0
-        version: 7.2.0(react@18.3.1)
+        specifier: 7.2.1
+        version: 7.2.1(react@18.3.1)
       react-dom:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
@@ -2979,8 +2979,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-cookie@7.2.0:
-    resolution: {integrity: sha512-mqhPERUyfOljq5yJ4woDFI33bjEtigsl8JDJdPPeNhr0eSVZmBc/2Vdf8mFxOUktQxhxTR1T+uF0/FRTZyBEgw==}
+  react-cookie@7.2.1:
+    resolution: {integrity: sha512-UcE6njAy5UmKzU9RywIvvtbHIQydhh6JP55yVbGwQ8Tp/wSPp2HOYVZdRI55zfbkW6zQv9SEs42mS3a9cIUQ0g==}
     peerDependencies:
       react: '>= 16.3.0'
 
@@ -7196,7 +7196,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.11
 
-  react-cookie@7.2.0(react@18.3.1):
+  react-cookie@7.2.1(react@18.3.1):
     dependencies:
       '@types/hoist-non-react-statics': 3.3.5
       hoist-non-react-statics: 3.3.2
