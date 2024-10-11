@@ -65,7 +65,7 @@
   },
   "devDependencies": {
     "@cspell/dict-es-es": "3.0.0",
-    "@cspell/dict-pt-br": "2.3.0",
+    "@cspell/dict-pt-br": "2.3.3",
     "@next/bundle-analyzer": "14.2.15",
     "@types/lodash.isplainobject": "4.0.9",
     "@types/pug": "2.0.10",
