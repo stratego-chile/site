@@ -133,8 +133,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       '@cspell/dict-pt-br':
-        specifier: 2.3.0
-        version: 2.3.0
+        specifier: 2.3.3
+        version: 2.3.3
       '@next/bundle-analyzer':
         specifier: 14.2.15
         version: 14.2.15
@@ -404,8 +404,8 @@ packages:
   '@cspell/dict-powershell@5.0.8':
     resolution: {integrity: sha512-Eg64BccQp5oEJ+V/O2G27KaLWmuOL2AWMOs2470adUihOleRfW8j9XwAEGCS+JKSnDb2mksWA72Z6kDqH138IQ==}
 
-  '@cspell/dict-pt-br@2.3.0':
-    resolution: {integrity: sha512-SUR0xlvcKrNyAXwex1E0Qz4xQ+XZO/pkRSWb9ZHEHCJjGoJgs3j0e0inwX4JvcYUOPisLwh4W2NTKWr+a0NR1w==}
+  '@cspell/dict-pt-br@2.3.3':
+    resolution: {integrity: sha512-+638SWd66jVJNinJgFZLsA2uqyIncw6/rubDRBmK/UjQwTRtzf+iuFoP5TTpOsjq9kiVZ2+g+1d854wWVh6mcg==}
 
   '@cspell/dict-public-licenses@2.0.8':
     resolution: {integrity: sha512-Sup+tFS7cDV0fgpoKtUqEZ6+fA/H+XUgBiqQ/Fbs6vUE3WCjJHOIVsP+udHuyMH7iBfJ4UFYOYeORcY4EaKdMg==}
@@ -3904,7 +3904,7 @@ snapshots:
 
   '@cspell/dict-powershell@5.0.8': {}
 
-  '@cspell/dict-pt-br@2.3.0': {}
+  '@cspell/dict-pt-br@2.3.3': {}
 
   '@cspell/dict-public-licenses@2.0.8': {}
 
