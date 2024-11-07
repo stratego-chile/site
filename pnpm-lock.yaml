@@ -27,8 +27,8 @@ importers:
         specifier: 2.11.8
         version: 2.11.8
       '@stdlib/random':
-        specifier: 0.3.0
-        version: 0.3.0
+        specifier: 0.3.3
+        version: 0.3.3
       '@stdlib/string':
         specifier: 0.3.3
         version: 0.3.3
@@ -763,18 +763,8 @@ packages:
   '@rushstack/eslint-patch@1.10.4':
     resolution: {integrity: sha512-WJgX9nzTqknM393q1QJDJmoW28kUfEnybeTfVNcNAPnIx210RXm2DiXiHzfNPJNIUUb1tJnz/l4QGtJ30PgWmA==}
 
-  '@stdlib/array@0.2.1':
-    resolution: {integrity: sha512-rAwz3eZxtk0nnmqvUwK+6WVs7v2bGsEDJAHPoO4MZHeKMab9HAFjDDb/RTMCSa66o8VwOULBPoG/IFFU4JWM4g==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/array@0.3.3':
     resolution: {integrity: sha512-DaXQwdLRLmxqtu6g5jWvA+6kSHfB0HbnWe3aPGTk+5AaEUFaF9Xz7rbIdx93IAwfvOQH/aE0pCWetW5fMXbjGA==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/assert@0.2.1':
-    resolution: {integrity: sha512-wZ40sWp8Pvd5CTpLO0xA41S9W6N/RlkFqapmjZycTT82pCxmSqZT7cZ8RLmVTT+mYsvghMgz3UI5/KTSFTHtyg==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -783,18 +773,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/bigint@0.2.1':
-    resolution: {integrity: sha512-CDPr1IsXgNSe0lL595SU09x2JwmFfVGGzgDOlbo11313v+/hDeGRdbiWoKHEEH4V7f21YEbys1sDZZeD5ChKXQ==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/bigint@0.3.3':
     resolution: {integrity: sha512-F2WgGnjz/8JEmv71onXb111gXTEcRiw3NNdgjlNT8AJN2VlBb3TiD7Do5rI2ipo+QMN0S0o/6fMKZ5xVdzjsBg==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/blas@0.2.1':
-    resolution: {integrity: sha512-e6VMknSxLDyosXo0fLYHH3CtHq2f+UnQP2bX+13YSlhI5/bRIcIa92Ar9HmjCz4OH13B0OLIwwLqaunyoOT6pQ==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -803,18 +783,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/boolean@0.2.1':
-    resolution: {integrity: sha512-qMrUrw7+ArlNRqPKkPIjejHU9VE2yFBAXqZs4dMKG2moZg0h3TXN93LVvF+JUcGlmw5vlMgoudoq6cCJ0r/8Jg==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/boolean@0.3.3':
     resolution: {integrity: sha512-rYfgUSb5QKpDDFk5UW5iLDtRxPL2xy0WJxRvl/Gjkh2SBocShOMHk1vgHWZM3qHJoxcKtACz7Q3k+LOrNjXvNg==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/buffer@0.2.1':
-    resolution: {integrity: sha512-6WdposBRToAKTYXTVkm8nycnpTqmgOlcnkB8l1yelymY/5He1kBRET5A+tJrx8E3po0FG1bOCU6vPwA22h1Cig==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -823,18 +793,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/cli@0.2.1':
-    resolution: {integrity: sha512-DZn2QafvarkjcPSsBpTC64LlUzdwg47EuionawKh1SOxgDUCKplBvgDPEWnOrHI19WE5nIYM9MXBiYA+WRqVfA==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/cli@0.3.3':
     resolution: {integrity: sha512-Ax4ql11q4zZ8z49FwekuPb26iQ6oi/sOl17nQOr6lHs+9SOG0QDoTir0fZ8oCswCVoRnRlNNCaqHIavvLvCOxQ==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/complex@0.2.1':
-    resolution: {integrity: sha512-xQBXXvkKpJRkqb4xo5y7/zOek/XJI1YWsRrRzYkxps/c+DFaBiPE49zRfW7siV1wI/HqGVe75AyXqpJ+BcULNw==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -843,18 +803,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/constants@0.2.1':
-    resolution: {integrity: sha512-KlXXw3sCgtXI8WTAfJtgo2owNhfohZYyFcD8XGoQwISJIDsPl60MjiYXCku4yHD91lRk5gp+5zJUjFEu9498oA==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/constants@0.3.3':
     resolution: {integrity: sha512-LZp2lkdgaKB16HfhljiyWQDW9gsrRvkXkFH31q8s/tDlrurOhn6RDb/kHyHsvIzEcT2FNvlntBUuqdkSnEgSsw==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/fs@0.2.1':
-    resolution: {integrity: sha512-FLEcQXvGdiZ9Gcxk7TBtQn/QV07CavQu+7Us1GHljNYMKpVW27JgvQV/bolm0ebiZ/Hdwvcuk+ei/nkNFyLGrQ==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -863,18 +813,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/function@0.2.1':
-    resolution: {integrity: sha512-vECYJgvBGDAoKUkvu/M4dldZI7OYVhIms11UV0hMGfsK1CsMHPIaowqs2XqpT5+AjFVnaSitmt7jvg/tZ9nl6Q==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/function@0.3.3':
     resolution: {integrity: sha512-Wv4g2I8YFf1m0e6bP+sLeM55Xtg/kVd39ckh/N1NoYR8LfwPBqU/BTKdP2HiYEDU8pzK1ZG5f9kMytHJjvV7qw==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/iter@0.2.1':
-    resolution: {integrity: sha512-ar773X/RsYkp/Mof+foco6IevnktBniUE+NzjFD0VeR6JY0TxCtcd8/J0nYJGPKPsP9qAoGhzBU6tAd/y9XSEA==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -883,18 +823,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/math@0.2.1':
-    resolution: {integrity: sha512-uhqDhCA3RD+43MOaO5VedaIUW6j7xZfRA4/lT+eXZ6/IEVj0mNFT4N1taLV949hrMGE74xbM3hG8Dc+4gXpcEw==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/math@0.3.3':
     resolution: {integrity: sha512-X64M4ovkMOOVdEi5uMVtemGNxa6iQRgC7yaej/BiUC4mP+sfBaw5dTD7hsVPHtcLm8jUtGHALSykSJ2glwUcVg==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/napi@0.2.1':
-    resolution: {integrity: sha512-C7xDw+gcR1QjqPHoSFP8O9qoDLxk9f3mFsld4D/GUEegYPhejjeRmTqbWTuK5XhdrjKMcsWclNFyX6gkNk5xxQ==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -903,18 +833,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/ndarray@0.2.1':
-    resolution: {integrity: sha512-3zhV7XFWiHkrW7Hvr4gXbGdofMkfSp3aEK5KDXoy6m7wfDAk2cGzJQ6Ouyc1/DnDV1PvkQiy3YMMutoNj3eFlw==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/ndarray@0.3.3':
     resolution: {integrity: sha512-qvqgTxwLtz+0PvG9C6RAUkdkd+24eB3PccZNvsd7ILwPPLhcA7qNNhe6MNPLnuHnjO6Uz+yyniKOYnsdJcPN9w==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/nlp@0.2.1':
-    resolution: {integrity: sha512-XBkIRz6woTPzlV7niqtaeFnC7+Plstl7A3tTODyYSo7gLQd3srBLWWAPvOkFwmqsjvFS4Is54SQlvi+JmcsaHQ==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -923,18 +843,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/number@0.2.1':
-    resolution: {integrity: sha512-uYBqR5wZF4RfgEgknUDVePrmRBSX0lapEuou4i+fD0Prozpwp/6JY4kkSxI11ambwCgfdaAQMQr3OrBACias9w==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/number@0.3.3':
     resolution: {integrity: sha512-BltISq+j1q0GLaNZ8rPKGYyDSVlkXsFfn+0t9CXb7w+Vq07Vb3q6siwavVJNb+GAUL+NfYchGbRwi23BIZGsHw==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/object@0.2.1':
-    resolution: {integrity: sha512-G4yw42XFI3bC5JARdhWBtztH5H1fMB0Eb9iUE1wHpokS7WhQPNO+SqQ/q8CvlE1pXp0dqt0veTB+i/TYFiBOKg==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -943,18 +853,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/os@0.2.1':
-    resolution: {integrity: sha512-puGjQsbykGH/oQMS8KiGcfEXhiukthIWBMMdvhhOirCYMsi1ILXUmwRD0v3Qu2ZhvtOuwPguDaoObkijh8duTQ==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/os@0.3.3':
     resolution: {integrity: sha512-klCH/XYeximeg+PH4zJ8wrVi+yMY+ZBbLqrXMhV1ZvzfdXCw2elnEtSWzK6kMfbzadqq2RofZanJl5FzNfcBBA==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/process@0.2.1':
-    resolution: {integrity: sha512-5J9BtHWY49oauo4eTmxUaaSANesVY+10rGMEmGGq1VZfo2fNOFf7pYb6haLCWg8JuNzzRXXU5q8tYfCCVDOEeA==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -963,23 +863,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/proxy@0.2.1':
-    resolution: {integrity: sha512-hKJ20bUyvqmeSPMsojS9XekG+oYQEMZGpJFjviui8U+xuCmpHh02AHYtP3v0hfpooR93IIgxMkyDf3/M2m9uyA==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/proxy@0.3.3':
     resolution: {integrity: sha512-FfoCUpuwOd9n9a4tBS0jP0gSqzZTtoz0lb4WN5rHioDwBgV+453A+D6ZI7VytT35kZSQQoiHRzmYer7u5pUURA==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/random@0.2.1':
-    resolution: {integrity: sha512-VexY8DedZfbXvkJko5SyRYqci/HSWWfJdNO5DwT++j0Edtn4LSKZrI0RS4FnwSkvkr7hpxHMl5S4AMLkgO1CgA==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/random@0.3.0':
-    resolution: {integrity: sha512-W2sfVPYpIsDg8F+Nqr9/TjvOLQRG/hYJgtl8LJr260gX+I4phPsL3S4L0vNoi6TO/MOxnElQ/W/JIiVDXCbMpw==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -988,18 +873,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/regexp@0.2.1':
-    resolution: {integrity: sha512-UC4+t10EJe1o8+7WkeOaelaqgTY0yh2o/EfGH6ZsA91T5YQbhnse8f/XVv+1xJ5xtl2DxQxd3+M/rJqYHT8hRg==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/regexp@0.3.3':
     resolution: {integrity: sha512-H7dhYidU+ztyj6qKZWq0aExcBDi0f9QzN3HlGqo5AzTuNWB3ScvCeACb3g7h/G/ga9+Js9DlyaiBqrmyHoK+og==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/slice@0.2.1':
-    resolution: {integrity: sha512-WngBEE4c9pVn5LEluBCrhJqil5GJ2pQvFMzqd79TW1m1vkGEcoO6BCq32vc5VIJ56/GXN/7bbMy4VXP0N9WhQg==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -1008,18 +883,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/stats@0.2.1':
-    resolution: {integrity: sha512-p1RnpxbFbxcvOPWE0kqshGYCgpGhHxWbiIBo2ClPpC/3vqB+1PHRa9Ejlb7nhTmWbhK2iiIYo3U5/axNkz5ElA==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/stats@0.3.3':
     resolution: {integrity: sha512-prq0KD/Nc+VRsuuD82L8HSmmJNhroNLVc9DPHZ21e8spQurSx0SUoiScyTbZ6muMITUl0ont4AE1Ql2VoB84eQ==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/streams@0.2.1':
-    resolution: {integrity: sha512-aaSFgSahTNZL31Vqz+lNeRE/jeEtxdzzRY6PrGTxPYpLrPuknm2836yzmIOkkxxnVANY7VU1K5QbBcpO6mt2Fg==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -1028,18 +893,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/strided@0.2.1':
-    resolution: {integrity: sha512-IEpMIGGBZ5L/rQ/c7lekjvoF2RxZfDSqTwVllNJdVn+R8N/iNYW3tmaC3qlBi7mpvse0E6sCr4FKZ3rjnFyMzg==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/strided@0.3.3':
     resolution: {integrity: sha512-kKT8n/o+muU3JnvUhlSzlYi6Tvk0wJTbFBtQkLDkYMg/+MmH0iluxqQTOEqqIeBUtQ0ymfH88dsz+dKsKsRrbw==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/string@0.2.1':
-    resolution: {integrity: sha512-FV64bUBTL0nbTizFcW+IQCMrkztoC2pzFyt+YanQbMOETzhRLz8YJeoyOXB9dI1IOikEhrbZMKB+RDAUCxxQ9g==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -1048,18 +903,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/symbol@0.2.1':
-    resolution: {integrity: sha512-FlJNAESPST/iMbKFaJILp5t3RoffCsdcsOFRnU2RaKCQ6xLs9ghJGyqU3Z7CtdAJRzHvYYEZjBwLBmxHto7QaA==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/symbol@0.3.3':
     resolution: {integrity: sha512-rOFvxSUdbUulpyy4YIFfW1NLiHu/V06PyGGMu92DFJBjRwwCAfXFatJKQ9XjVlelraJgHtuHeXB/8vgOIC09IQ==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/time@0.2.1':
-    resolution: {integrity: sha512-hGyAmELnd85hiKrH0JzCPpsjaspr7kbfCQ9H/uWQnM8XH8UIYcuo3Pzvv5CgTfMZrjnipXGAi4C2i+HdUrwFww==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -1068,18 +913,8 @@ packages:
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
-  '@stdlib/types@0.3.2':
-    resolution: {integrity: sha512-4hBkuU8QNsvpoyPR3WmCP0Jq6hTuVpVnfJQKu+HRKVHKYXzsIQIt9wdW8FUm9/0GfFkVZDCc46TEkTI0bkq8vw==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
   '@stdlib/types@0.4.3':
     resolution: {integrity: sha512-9GCqS2eni2VSwa5/CCniAJ4I1eWLtvior1z6hoPJp6VTNMgW9Lh4BiI84IO0xun/0qAclJ+mTGTiCTZxZLK13A==}
-    engines: {node: '>=0.10.0', npm: '>2.7.0'}
-    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
-
-  '@stdlib/utils@0.2.1':
-    resolution: {integrity: sha512-+uTayofmRLASNMSvHwiLdAeYyj32A7sN0gQYI9+KyQZTDKtQxhIg6G1slnzeg/v5kqSeLTL+HAvXaLrM4AZ/sQ==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
 
@@ -4494,24 +4329,6 @@ snapshots:
 
   '@rushstack/eslint-patch@1.10.4': {}
 
-  '@stdlib/array@0.2.1':
-    dependencies:
-      '@stdlib/assert': 0.2.1
-      '@stdlib/blas': 0.2.1
-      '@stdlib/buffer': 0.2.1
-      '@stdlib/complex': 0.2.1
-      '@stdlib/constants': 0.2.1
-      '@stdlib/iter': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/ndarray': 0.2.1
-      '@stdlib/strided': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/symbol': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@stdlib/array@0.3.3':
     dependencies:
       '@stdlib/assert': 0.3.3
@@ -4531,32 +4348,6 @@ snapshots:
       '@stdlib/symbol': 0.3.3
       '@stdlib/types': 0.4.3
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/assert@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/boolean': 0.2.1
-      '@stdlib/cli': 0.2.1
-      '@stdlib/complex': 0.2.1
-      '@stdlib/constants': 0.2.1
-      '@stdlib/fs': 0.2.1
-      '@stdlib/function': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/ndarray': 0.2.1
-      '@stdlib/number': 0.2.1
-      '@stdlib/object': 0.2.1
-      '@stdlib/os': 0.2.1
-      '@stdlib/process': 0.2.1
-      '@stdlib/regexp': 0.2.1
-      '@stdlib/slice': 0.2.1
-      '@stdlib/streams': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/symbol': 0.2.1
-      '@stdlib/time': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -4587,29 +4378,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stdlib/bigint@0.2.1':
-    dependencies:
-      '@stdlib/utils': 0.2.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@stdlib/bigint@0.3.3':
     dependencies:
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/blas@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/napi': 0.2.1
-      '@stdlib/number': 0.2.1
-      '@stdlib/strided': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -4630,26 +4401,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stdlib/boolean@0.2.1':
-    dependencies:
-      '@stdlib/utils': 0.2.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@stdlib/boolean@0.3.3':
     dependencies:
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/buffer@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/process': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -4664,30 +4418,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stdlib/cli@0.2.1':
-    dependencies:
-      '@stdlib/string': 0.2.1
-      '@stdlib/utils': 0.2.1
-      minimist: 1.2.8
-    transitivePeerDependencies:
-      - supports-color
-
   '@stdlib/cli@0.3.3':
     dependencies:
       '@stdlib/string': 0.3.3
       '@stdlib/utils': 0.3.3
       minimist: 1.2.8
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/complex@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/number': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -4703,17 +4438,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stdlib/constants@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/complex': 0.2.1
-      '@stdlib/number': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@stdlib/constants@0.3.3':
     dependencies:
       '@stdlib/array': 0.3.3
@@ -4722,20 +4446,6 @@ snapshots:
       '@stdlib/number': 0.3.3
       '@stdlib/types': 0.4.3
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/fs@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/cli': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/object': 0.2.1
-      '@stdlib/process': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/utils': 0.2.1
-      debug: 2.6.9
     transitivePeerDependencies:
       - supports-color
 
@@ -4753,28 +4463,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stdlib/function@0.2.1':
-    dependencies:
-      '@stdlib/utils': 0.2.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@stdlib/function@0.3.3':
     dependencies:
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/iter@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/constants': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/symbol': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -4788,25 +4479,6 @@ snapshots:
       '@stdlib/symbol': 0.3.3
       '@stdlib/types': 0.4.3
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/math@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/complex': 0.2.1
-      '@stdlib/constants': 0.2.1
-      '@stdlib/function': 0.2.1
-      '@stdlib/napi': 0.2.1
-      '@stdlib/ndarray': 0.2.1
-      '@stdlib/number': 0.2.1
-      '@stdlib/strided': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/symbol': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
-      debug: 2.6.9
     transitivePeerDependencies:
       - supports-color
 
@@ -4829,36 +4501,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stdlib/napi@0.2.1':
-    dependencies:
-      '@stdlib/utils': 0.2.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@stdlib/napi@0.3.3':
     dependencies:
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/ndarray@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/bigint': 0.2.1
-      '@stdlib/boolean': 0.2.1
-      '@stdlib/buffer': 0.2.1
-      '@stdlib/complex': 0.2.1
-      '@stdlib/constants': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/number': 0.2.1
-      '@stdlib/object': 0.2.1
-      '@stdlib/proxy': 0.2.1
-      '@stdlib/slice': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/symbol': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -4884,17 +4529,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stdlib/nlp@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/random': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/utils': 0.2.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@stdlib/nlp@0.3.3':
     dependencies:
       '@stdlib/array': 0.3.3
@@ -4903,20 +4537,6 @@ snapshots:
       '@stdlib/random': 0.3.3
       '@stdlib/string': 0.3.3
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/number@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/constants': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/napi': 0.2.1
-      '@stdlib/os': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -4934,30 +4554,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stdlib/object@0.2.1':
-    dependencies:
-      '@stdlib/assert': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/utils': 0.2.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@stdlib/object@0.3.3':
     dependencies:
       '@stdlib/assert': 0.3.3
       '@stdlib/string': 0.3.3
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/os@0.2.1':
-    dependencies:
-      '@stdlib/assert': 0.2.1
-      '@stdlib/cli': 0.2.1
-      '@stdlib/fs': 0.2.1
-      '@stdlib/process': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/utils': 0.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -4969,18 +4570,6 @@ snapshots:
       '@stdlib/process': 0.3.3
       '@stdlib/string': 0.3.3
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/process@0.2.1':
-    dependencies:
-      '@stdlib/assert': 0.2.1
-      '@stdlib/buffer': 0.2.1
-      '@stdlib/cli': 0.2.1
-      '@stdlib/fs': 0.2.1
-      '@stdlib/streams': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/utils': 0.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -4996,47 +4585,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stdlib/proxy@0.2.1':
-    dependencies:
-      '@stdlib/assert': 0.2.1
-      '@stdlib/utils': 0.2.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@stdlib/proxy@0.3.3':
     dependencies:
       '@stdlib/assert': 0.3.3
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/random@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/blas': 0.2.1
-      '@stdlib/buffer': 0.2.1
-      '@stdlib/cli': 0.2.1
-      '@stdlib/constants': 0.2.1
-      '@stdlib/fs': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/object': 0.2.1
-      '@stdlib/process': 0.2.1
-      '@stdlib/stats': 0.2.1
-      '@stdlib/streams': 0.2.1
-      '@stdlib/strided': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/symbol': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
-      debug: 2.6.9
-      readable-stream: 2.3.8
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/random@0.3.0':
-    dependencies:
-      '@stdlib/utils': 0.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -5064,31 +4616,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stdlib/regexp@0.2.1':
-    dependencies:
-      '@stdlib/assert': 0.2.1
-      '@stdlib/function': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/utils': 0.2.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@stdlib/regexp@0.3.3':
     dependencies:
       '@stdlib/assert': 0.3.3
       '@stdlib/function': 0.3.3
       '@stdlib/string': 0.3.3
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/slice@0.2.1':
-    dependencies:
-      '@stdlib/assert': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -5099,23 +4632,6 @@ snapshots:
       '@stdlib/string': 0.3.3
       '@stdlib/types': 0.4.3
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/stats@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/blas': 0.2.1
-      '@stdlib/constants': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/ndarray': 0.2.1
-      '@stdlib/number': 0.2.1
-      '@stdlib/random': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/symbol': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -5136,21 +4652,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stdlib/streams@0.2.1':
-    dependencies:
-      '@stdlib/assert': 0.2.1
-      '@stdlib/buffer': 0.2.1
-      '@stdlib/cli': 0.2.1
-      '@stdlib/fs': 0.2.1
-      '@stdlib/object': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
-      debug: 2.6.9
-      readable-stream: 2.3.8
-    transitivePeerDependencies:
-      - supports-color
-
   '@stdlib/streams@0.3.3':
     dependencies:
       '@stdlib/assert': 0.3.3
@@ -5166,19 +4667,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stdlib/strided@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/complex': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/ndarray': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@stdlib/strided@0.3.3':
     dependencies:
       '@stdlib/array': 0.3.3
@@ -5189,25 +4677,6 @@ snapshots:
       '@stdlib/string': 0.3.3
       '@stdlib/types': 0.4.3
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/string@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/cli': 0.2.1
-      '@stdlib/constants': 0.2.1
-      '@stdlib/fs': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/nlp': 0.2.1
-      '@stdlib/number': 0.2.1
-      '@stdlib/process': 0.2.1
-      '@stdlib/regexp': 0.2.1
-      '@stdlib/streams': 0.2.1
-      '@stdlib/symbol': 0.2.1
-      '@stdlib/types': 0.3.2
-      '@stdlib/utils': 0.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -5232,32 +4701,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stdlib/symbol@0.2.1':
-    dependencies:
-      '@stdlib/assert': 0.2.1
-      '@stdlib/utils': 0.2.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@stdlib/symbol@0.3.3':
     dependencies:
       '@stdlib/assert': 0.3.3
       '@stdlib/utils': 0.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@stdlib/time@0.2.1':
-    dependencies:
-      '@stdlib/assert': 0.2.1
-      '@stdlib/cli': 0.2.1
-      '@stdlib/constants': 0.2.1
-      '@stdlib/fs': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/process': 0.2.1
-      '@stdlib/regexp': 0.2.1
-      '@stdlib/streams': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/utils': 0.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -5276,36 +4723,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stdlib/types@0.3.2': {}
-
   '@stdlib/types@0.4.3': {}
-
-  '@stdlib/utils@0.2.1':
-    dependencies:
-      '@stdlib/array': 0.2.1
-      '@stdlib/assert': 0.2.1
-      '@stdlib/blas': 0.2.1
-      '@stdlib/boolean': 0.2.1
-      '@stdlib/buffer': 0.2.1
-      '@stdlib/cli': 0.2.1
-      '@stdlib/constants': 0.2.1
-      '@stdlib/fs': 0.2.1
-      '@stdlib/function': 0.2.1
-      '@stdlib/math': 0.2.1
-      '@stdlib/ndarray': 0.2.1
-      '@stdlib/object': 0.2.1
-      '@stdlib/os': 0.2.1
-      '@stdlib/process': 0.2.1
-      '@stdlib/random': 0.2.1
-      '@stdlib/regexp': 0.2.1
-      '@stdlib/streams': 0.2.1
-      '@stdlib/string': 0.2.1
-      '@stdlib/symbol': 0.2.1
-      '@stdlib/time': 0.2.1
-      '@stdlib/types': 0.3.2
-      debug: 2.6.9
-    transitivePeerDependencies:
-      - supports-color
 
   '@stdlib/utils@0.3.3':
     dependencies:
