@@ -72,8 +72,8 @@ importers:
         specifier: 24.0.0
         version: 24.0.0(typescript@5.6.3)
       i18next-fs-backend:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.6.0
+        version: 2.6.0
       language-flag-colors:
         specifier: 3.2.1
         version: 3.2.1
@@ -2253,9 +2253,6 @@ packages:
 
   hyphenate-style-name@1.1.0:
     resolution: {integrity: sha512-WDC/ui2VVRrz3jOVi+XtjqkDjiVjTtFaAGiW37k6b+ohyQ5wYDOGkvCZa8+H0nx3gyvv0+BST9xuOgIyGQ00gw==}
-
-  i18next-fs-backend@2.5.0:
-    resolution: {integrity: sha512-w3mr02kewMHGfaNsTavmRV73Sv8YLz8WpFNQQR0zo3hK+lhdfxt9HCmpae6rwLTMEMhIu8TZDy4akYr1aIoCqQ==}
 
   i18next-fs-backend@2.6.0:
     resolution: {integrity: sha512-3ZlhNoF9yxnM8pa8bWp5120/Ob6t4lVl1l/tbLmkml/ei3ud8IWySCHt2lrY5xWRlSU5D9IV2sm5bEbGuTqwTw==}
@@ -6331,8 +6328,6 @@ snapshots:
   http-status-codes@2.3.0: {}
 
   hyphenate-style-name@1.1.0: {}
-
-  i18next-fs-backend@2.5.0: {}
 
   i18next-fs-backend@2.6.0: {}
 
