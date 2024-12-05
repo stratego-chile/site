@@ -94,7 +94,7 @@
     "raw-loader": "4.0.2",
     "sass": "1.82.0",
     "typescript": "5.7.2",
-    "webpack": "5.97.0"
+    "webpack": "5.97.1"
   },
   "packageManager": "pnpm@9.14.4",
   "volta": {
