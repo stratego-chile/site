@@ -99,8 +99,8 @@ importers:
         specifier: 18.3.1
         version: 18.3.1
       react-bootstrap:
-        specifier: 2.10.6
-        version: 2.10.6(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 2.10.7
+        version: 2.10.7(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-cookie:
         specifier: 7.2.2
         version: 7.2.2(react@18.3.1)
@@ -248,6 +248,10 @@ packages:
 
   '@babel/runtime@7.25.6':
     resolution: {integrity: sha512-VBj9MYyDb9tuLq7yzqjgzt6Q+IBQLrGZfdjOekyEirZPHxXWoTSGUTMrpsfi58Up73d13NfYLv8HT9vmznjzhQ==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/runtime@7.26.0':
+    resolution: {integrity: sha512-FDSOghenHTiToteC/QRlv2q3DhPZ/oOXTBoirfWNx1Cx3TMVcGWQtMMmQcSvb/JjpNeGzx8Pq/b4fKEJuWm1sw==}
     engines: {node: '>=6.9.0'}
 
   '@babel/types@7.24.6':
@@ -751,8 +755,13 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
 
-  '@restart/ui@1.9.0':
-    resolution: {integrity: sha512-M/k/ILBXbEIFn0wSGuJYqscih7gwMcnVwv44kgHZ344sjLoO2vFK8AtkMGXx2sEANDwxEPoDhjhfIDDvrvCBCA==}
+  '@restart/hooks@0.5.0':
+    resolution: {integrity: sha512-wS+h6IusJCPjTkmOOrRZxIPICD/mtFA3PRZviutoM23/b7akyDGfZF/WS+nIFk27u7JDhPE2+0GBdZxjSqHZkg==}
+    peerDependencies:
+      react: '>=16.8.0'
+
+  '@restart/ui@1.9.2':
+    resolution: {integrity: sha512-MWWqJqSyqUWWPBOOiRQrX57CBc/9CoYONg7sE+uag72GCAuYrHGU5c49vU5s4BUSBgiKNY6rL7TULqGDrouUaA==}
     peerDependencies:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
@@ -3095,8 +3104,8 @@ packages:
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
 
-  react-bootstrap@2.10.6:
-    resolution: {integrity: sha512-fNvKytSp0nHts1WRnRBJeBEt+I9/ZdrnhIjWOucEduRNvFRU1IXjZueDdWnBiqsTSJ7MckQJi9i/hxGolaRq+g==}
+  react-bootstrap@2.10.7:
+    resolution: {integrity: sha512-w6mWb3uytB5A18S2oTZpYghcOUK30neMBBvZ/bEfA+WIF2dF4OGqjzoFVMpVXBjtyf92gkmRToHlddiMAVhQqQ==}
     peerDependencies:
       '@types/react': '>=16.14.8'
       react: '>=16.14.0'
@@ -3862,6 +3871,10 @@ snapshots:
     dependencies:
       regenerator-runtime: 0.14.1
 
+  '@babel/runtime@7.26.0':
+    dependencies:
+      regenerator-runtime: 0.14.1
+
   '@babel/types@7.24.6':
     dependencies:
       '@babel/helper-string-parser': 7.24.6
@@ -4333,12 +4346,17 @@ snapshots:
       dequal: 2.0.3
       react: 18.3.1
 
-  '@restart/ui@1.9.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@restart/hooks@0.5.0(react@18.3.1)':
     dependencies:
-      '@babel/runtime': 7.25.6
+      dequal: 2.0.3
+      react: 18.3.1
+
+  '@restart/ui@1.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@babel/runtime': 7.26.0
       '@popperjs/core': 2.11.8
       '@react-aria/ssr': 3.9.4(react@18.3.1)
-      '@restart/hooks': 0.4.16(react@18.3.1)
+      '@restart/hooks': 0.5.0(react@18.3.1)
       '@types/warning': 3.0.3
       dequal: 2.0.3
       dom-helpers: 5.2.1
@@ -7363,11 +7381,12 @@ snapshots:
       schema-utils: 3.3.0
       webpack: 5.97.1
 
-  react-bootstrap@2.10.6(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-bootstrap@2.10.7(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.25.6
       '@restart/hooks': 0.4.16(react@18.3.1)
-      '@restart/ui': 1.9.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@restart/ui': 1.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@types/prop-types': 15.7.12
       '@types/react-transition-group': 4.4.10
       classnames: 2.5.1
       dom-helpers: 5.2.1
