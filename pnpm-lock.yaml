@@ -87,8 +87,8 @@ importers:
         specifier: 14.2.20
         version: 14.2.20(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.0)
       next-i18next:
-        specifier: 15.4.0
-        version: 15.4.0(i18next@24.1.0(typescript@5.7.2))(next@14.2.20(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.0))(react-i18next@15.2.0(i18next@24.1.0(typescript@5.7.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        specifier: 15.4.1
+        version: 15.4.1(i18next@24.1.0(typescript@5.7.2))(next@14.2.20(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.0))(react-i18next@15.2.0(i18next@24.1.0(typescript@5.7.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       next-mdx-remote:
         specifier: 5.0.0
         version: 5.0.0(@types/react@18.3.16)(react@18.3.1)
@@ -2849,8 +2849,8 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  next-i18next@15.4.0:
-    resolution: {integrity: sha512-TmWxoJMtFFYaj0xkAC6zyMj2knwJHygDpvQLHR6rK4mfaOlgwQObQ/fwPRgzg6etQPr26jg/a2bd/CRtSbCWjQ==}
+  next-i18next@15.4.1:
+    resolution: {integrity: sha512-n3cFqBKDpEDLXZVYD52H6k2QzLAnUSuBie02BmVpfywNZGxcNgq6QXdpVpvONQ7WkBVntPtldt867ZgtEcP1Og==}
     engines: {node: '>=14'}
     peerDependencies:
       i18next: '>= 23.7.13'
@@ -7074,10 +7074,9 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-i18next@15.4.0(i18next@24.1.0(typescript@5.7.2))(next@14.2.20(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.0))(react-i18next@15.2.0(i18next@24.1.0(typescript@5.7.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
+  next-i18next@15.4.1(i18next@24.1.0(typescript@5.7.2))(next@14.2.20(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.0))(react-i18next@15.2.0(i18next@24.1.0(typescript@5.7.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.25.6
-      '@types/hoist-non-react-statics': 3.3.5
+      '@babel/runtime': 7.26.0
       core-js: 3.38.1
       hoist-non-react-statics: 3.3.2
       i18next: 24.1.0(typescript@5.7.2)
@@ -7582,7 +7581,7 @@ snapshots:
 
   rtl-css-js@1.16.1:
     dependencies:
-      '@babel/runtime': 7.25.6
+      '@babel/runtime': 7.26.0
 
   run-parallel@1.2.0:
     dependencies:
