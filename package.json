@@ -22,10 +22,10 @@
     "cert": "coffee scripts/deploy-cert.coffee"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "6.7.1",
-    "@fortawesome/free-brands-svg-icons": "6.7.1",
-    "@fortawesome/free-regular-svg-icons": "6.7.1",
-    "@fortawesome/free-solid-svg-icons": "6.7.1",
+    "@fortawesome/fontawesome-svg-core": "6.7.2",
+    "@fortawesome/free-brands-svg-icons": "6.7.2",
+    "@fortawesome/free-regular-svg-icons": "6.7.2",
+    "@fortawesome/free-solid-svg-icons": "6.7.2",
     "@fortawesome/react-fontawesome": "0.2.2",
     "@popperjs/core": "2.11.8",
     "@stdlib/random": "0.3.3",
