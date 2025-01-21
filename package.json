@@ -34,7 +34,7 @@
     "a11y-react-emoji": "1.2.0",
     "axios": "1.7.9",
     "bootstrap": "5.3.3",
-    "check-password-strength": "2.0.10",
+    "check-password-strength": "3.0.0",
     "classnames": "2.5.1",
     "date-fns": "4.1.0",
     "date-fns-tz": "^3.1.3",
