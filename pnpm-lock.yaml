@@ -160,8 +160,8 @@ importers:
         specifier: 7.18.0
         version: 7.18.0(eslint@8.57.1)(typescript@5.7.3)
       '@webdiscus/pug-loader':
-        specifier: 2.11.0
-        version: 2.11.0(enhanced-resolve@5.18.0)(markdown-it@14.1.0)(pug@3.0.3)(webpack@5.97.1)
+        specifier: 2.11.1
+        version: 2.11.1(enhanced-resolve@5.18.0)(markdown-it@14.1.0)(pug@3.0.3)(webpack@5.97.1)
       coffeescript:
         specifier: 2.7.0
         version: 2.7.0
@@ -1175,8 +1175,8 @@ packages:
   '@webassemblyjs/wast-printer@1.14.1':
     resolution: {integrity: sha512-kPSSXE6De1XOR820C90RIo2ogvZG+c3KiHzqUoO/F34Y2shGzesfqv7o57xrxovZJH/MetF5UjroJ/R/3isoiw==}
 
-  '@webdiscus/pug-loader@2.11.0':
-    resolution: {integrity: sha512-w80tBam+dzVRbsigGfrQ+i51vhr9Tcjxi1Olpoqqu437pLChlrXx4UR2SPpe0HTup8xHMbgTXa/t5t1X87cvsg==}
+  '@webdiscus/pug-loader@2.11.1':
+    resolution: {integrity: sha512-q5Uah/pThvPrUKdxEtFSKl0xELanOfgfl1ZBymgzh8tq5XqXTJXHESRuIqEIhzMotgojArVx/ZFcfpQwzbV5Ig==}
     engines: {node: '>=16.16'}
     peerDependencies:
       enhanced-resolve: '>=5.7.0'
@@ -1257,9 +1257,9 @@ packages:
     resolution: {integrity: sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==}
     engines: {node: '>=12'}
 
-  ansis@2.0.3:
-    resolution: {integrity: sha512-tcSGX0mhuDFHsgRrT56xnZ9v2X+TOeKhJ75YopI5OBgyT7tGaG5m6BmeC+6KHjiucfBvUHehQMecHbULIAkFPA==}
-    engines: {node: '>=12.13'}
+  ansis@3.10.0:
+    resolution: {integrity: sha512-hxDKLYT7hy3Y4sF3HxI926A3urzPxi73mZBB629m9bCVF+NyKNxbwCqqm+C/YrGPtxLwnl6d8/ZASCsz6SyvJA==}
+    engines: {node: '>=16'}
 
   anti-trojan-source@1.4.1:
     resolution: {integrity: sha512-DruSp30RgiEW36/n5+e2RtJf2W57jBS01YHvH8SL1vSFIpIeArfreTCxelHPMEhGLpk/BZUeA3uWt5AeTCHq9g==}
@@ -3108,8 +3108,8 @@ packages:
     resolution: {integrity: sha512-ayCKvm/phCGxOkYRSCM82iDwct8/EonSEgCSxWxD7ve6jHggsFl4fZVQBPRNgQoKiuV/odhFrGzQXZwbifC8Rg==}
     engines: {node: '>=8'}
 
-  parse5@7.1.2:
-    resolution: {integrity: sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw==}
+  parse5@7.2.1:
+    resolution: {integrity: sha512-BuBYQYlv1ckiPdQi/ohiivi9Sagc9JG+Ozs0r7b/0iK3sKmrb0b9FdWdBbOdx6hBCM/F9Ir82ofnBhtZOjCRPQ==}
 
   path-exists@4.0.0:
     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}
@@ -3935,9 +3935,9 @@ packages:
     engines: {node: '>= 10.13.0'}
     hasBin: true
 
-  webpack-merge@5.10.0:
-    resolution: {integrity: sha512-+4zXKdx7UnO+1jaN4l2lHVD+mFvnlZQP/6ljaJVb4SZiwIKeUnrT5l0gkT8z+n4hKpC+jpOv6O9R+gLtag7pSA==}
-    engines: {node: '>=10.0.0'}
+  webpack-merge@6.0.1:
+    resolution: {integrity: sha512-hXXvrjtx2PLYx4qruKl+kyRSLc52V+cCvMxRjmKwoA+CBbbF5GfIBtR6kCvl0fYGqTUPKB+1ktVmTHqMOzgCBg==}
+    engines: {node: '>=18.0.0'}
 
   webpack-sources@3.2.3:
     resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
@@ -5289,14 +5289,14 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@xtuc/long': 4.2.2
 
-  '@webdiscus/pug-loader@2.11.0(enhanced-resolve@5.18.0)(markdown-it@14.1.0)(pug@3.0.3)(webpack@5.97.1)':
+  '@webdiscus/pug-loader@2.11.1(enhanced-resolve@5.18.0)(markdown-it@14.1.0)(pug@3.0.3)(webpack@5.97.1)':
     dependencies:
-      ansis: 2.0.3
+      ansis: 3.10.0
       enhanced-resolve: 5.18.0
-      parse5: 7.1.2
+      parse5: 7.2.1
       pug: 3.0.3
       webpack: 5.97.1
-      webpack-merge: 5.10.0
+      webpack-merge: 6.0.1
     optionalDependencies:
       markdown-it: 14.1.0
 
@@ -5354,7 +5354,7 @@ snapshots:
 
   ansi-styles@6.2.1: {}
 
-  ansis@2.0.3: {}
+  ansis@3.10.0: {}
 
   anti-trojan-source@1.4.1:
     dependencies:
@@ -7689,7 +7689,7 @@ snapshots:
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.2.4
 
-  parse5@7.1.2:
+  parse5@7.2.1:
     dependencies:
       entities: 4.5.0
 
@@ -8684,7 +8684,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  webpack-merge@5.10.0:
+  webpack-merge@6.0.1:
     dependencies:
       clone-deep: 4.0.1
       flat: 5.0.2
