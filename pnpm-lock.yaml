@@ -87,8 +87,8 @@ importers:
         specifier: 14.2.23
         version: 14.2.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0)
       next-i18next:
-        specifier: 15.4.1
-        version: 15.4.1(i18next@24.2.2(typescript@5.7.3))(next@14.2.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0))(react-i18next@15.4.0(i18next@24.2.2(typescript@5.7.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        specifier: 15.4.2
+        version: 15.4.2(i18next@24.2.2(typescript@5.7.3))(next@14.2.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0))(react-i18next@15.4.0(i18next@24.2.2(typescript@5.7.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       next-mdx-remote:
         specifier: 5.0.0
         version: 5.0.0(@types/react@18.3.18)(react@18.3.1)
@@ -974,6 +974,9 @@ packages:
 
   '@types/hoist-non-react-statics@3.3.5':
     resolution: {integrity: sha512-SbcrWzkKBw2cdwRTwQAswfpB9g9LJWfjtUeW/jvNwbhC8cpmmNYVePa+ncbUe0rGTQ7G3Ff6mYUN2VMfLVr+Sg==}
+
+  '@types/hoist-non-react-statics@3.3.6':
+    resolution: {integrity: sha512-lPByRJUer/iN/xa4qpyL0qmL11DqNW81iU/IG1S3uvRUq4oKagz8VCxZjiWkumgt66YT3vOdDgZ0o32sGKtCEw==}
 
   '@types/js-cookie@2.2.7':
     resolution: {integrity: sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==}
@@ -2988,8 +2991,8 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  next-i18next@15.4.1:
-    resolution: {integrity: sha512-n3cFqBKDpEDLXZVYD52H6k2QzLAnUSuBie02BmVpfywNZGxcNgq6QXdpVpvONQ7WkBVntPtldt867ZgtEcP1Og==}
+  next-i18next@15.4.2:
+    resolution: {integrity: sha512-zgRxWf7kdXtM686ecGIBQL+Bq0+DqAhRlasRZ3vVF0TmrNTWkVhs52n//oU3Fj5O7r/xOKkECDUwfOuXVwTK/g==}
     engines: {node: '>=14'}
     peerDependencies:
       i18next: '>= 23.7.13'
@@ -5062,6 +5065,11 @@ snapshots:
       '@types/unist': 3.0.2
 
   '@types/hoist-non-react-statics@3.3.5':
+    dependencies:
+      '@types/react': 18.3.18
+      hoist-non-react-statics: 3.3.2
+
+  '@types/hoist-non-react-statics@3.3.6':
     dependencies:
       '@types/react': 18.3.18
       hoist-non-react-statics: 3.3.2
@@ -7522,9 +7530,10 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-i18next@15.4.1(i18next@24.2.2(typescript@5.7.3))(next@14.2.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0))(react-i18next@15.4.0(i18next@24.2.2(typescript@5.7.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
+  next-i18next@15.4.2(i18next@24.2.2(typescript@5.7.3))(next@14.2.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0))(react-i18next@15.4.0(i18next@24.2.2(typescript@5.7.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.26.0
+      '@types/hoist-non-react-statics': 3.3.6
       core-js: 3.38.1
       hoist-non-react-statics: 3.3.2
       i18next: 24.2.2(typescript@5.7.3)
