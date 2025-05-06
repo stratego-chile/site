@@ -33,7 +33,7 @@
     "@vercel/analytics": "1.5.0",
     "a11y-react-emoji": "1.2.0",
     "axios": "1.9.0",
-    "bootstrap": "5.3.5",
+    "bootstrap": "5.3.6",
     "check-password-strength": "3.0.0",
     "classnames": "2.5.1",
     "date-fns": "4.1.0",
