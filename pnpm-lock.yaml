@@ -69,8 +69,8 @@ importers:
         specifier: 2.3.0
         version: 2.3.0
       i18next:
-        specifier: 25.1.1
-        version: 25.1.1(typescript@5.8.3)
+        specifier: 25.1.2
+        version: 25.1.2(typescript@5.8.3)
       i18next-fs-backend:
         specifier: 2.6.0
         version: 2.6.0
@@ -88,7 +88,7 @@ importers:
         version: 14.2.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.87.0)
       next-i18next:
         specifier: 15.4.2
-        version: 15.4.2(i18next@25.1.1(typescript@5.8.3))(next@14.2.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.87.0))(react-i18next@15.5.1(i18next@25.1.1(typescript@5.8.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3))(react@18.3.1)
+        version: 15.4.2(i18next@25.1.2(typescript@5.8.3))(next@14.2.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.87.0))(react-i18next@15.5.1(i18next@25.1.2(typescript@5.8.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3))(react@18.3.1)
       next-mdx-remote:
         specifier: 5.0.0
         version: 5.0.0(@types/react@18.3.21)(react@18.3.1)
@@ -112,7 +112,7 @@ importers:
         version: 1.10.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-i18next:
         specifier: 15.5.1
-        version: 15.5.1(i18next@25.1.1(typescript@5.8.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3)
+        version: 15.5.1(i18next@25.1.2(typescript@5.8.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3)
       react-use:
         specifier: 17.6.0
         version: 17.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2378,8 +2378,8 @@ packages:
   i18next-fs-backend@2.6.0:
     resolution: {integrity: sha512-3ZlhNoF9yxnM8pa8bWp5120/Ob6t4lVl1l/tbLmkml/ei3ud8IWySCHt2lrY5xWRlSU5D9IV2sm5bEbGuTqwTw==}
 
-  i18next@25.1.1:
-    resolution: {integrity: sha512-FZcp3vk3PXc8onasbsWYahfeDIWX4LkKr4vd01xeXrmqyNXlVNtVecEIw2K1o8z3xYrHMcd1bwYQub+3g7zqCw==}
+  i18next@25.1.2:
+    resolution: {integrity: sha512-SP63m8LzdjkrAjruH7SCI3ndPSgjt4/wX7ouUUOzCW/eY+HzlIo19IQSfYA9X3qRiRP1SYtaTsg/Oz/PGsfD8w==}
     peerDependencies:
       typescript: ^5
     peerDependenciesMeta:
@@ -6834,7 +6834,7 @@ snapshots:
 
   i18next-fs-backend@2.6.0: {}
 
-  i18next@25.1.1(typescript@5.8.3):
+  i18next@25.1.2(typescript@5.8.3):
     dependencies:
       '@babel/runtime': 7.26.10
     optionalDependencies:
@@ -7632,17 +7632,17 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-i18next@15.4.2(i18next@25.1.1(typescript@5.8.3))(next@14.2.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.87.0))(react-i18next@15.5.1(i18next@25.1.1(typescript@5.8.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3))(react@18.3.1):
+  next-i18next@15.4.2(i18next@25.1.2(typescript@5.8.3))(next@14.2.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.87.0))(react-i18next@15.5.1(i18next@25.1.2(typescript@5.8.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.26.10
       '@types/hoist-non-react-statics': 3.3.6
       core-js: 3.38.1
       hoist-non-react-statics: 3.3.2
-      i18next: 25.1.1(typescript@5.8.3)
+      i18next: 25.1.2(typescript@5.8.3)
       i18next-fs-backend: 2.6.0
       next: 14.2.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.87.0)
       react: 18.3.1
-      react-i18next: 15.5.1(i18next@25.1.1(typescript@5.8.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3)
+      react-i18next: 15.5.1(i18next@25.1.2(typescript@5.8.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3)
 
   next-mdx-remote@5.0.0(@types/react@18.3.21)(react@18.3.1):
     dependencies:
@@ -8004,11 +8004,11 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  react-i18next@15.5.1(i18next@25.1.1(typescript@5.8.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3):
+  react-i18next@15.5.1(i18next@25.1.2(typescript@5.8.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3):
     dependencies:
       '@babel/runtime': 7.26.10
       html-parse-stringify: 3.0.1
-      i18next: 25.1.1(typescript@5.8.3)
+      i18next: 25.1.2(typescript@5.8.3)
       react: 18.3.1
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
