@@ -126,8 +126,8 @@ importers:
         specifier: 1.6.1
         version: 1.6.1
       zod:
-        specifier: 3.25.4
-        version: 3.25.4
+        specifier: 3.25.6
+        version: 3.25.6
     devDependencies:
       '@cspell/dict-es-es':
         specifier: 3.0.3
@@ -4107,8 +4107,8 @@ packages:
   yup@1.6.1:
     resolution: {integrity: sha512-JED8pB50qbA4FOkDol0bYF/p60qSEDQqBD0/qeIrUCG1KbPBIQ776fCUNb9ldbPcSTxA69g/47XTo4TqWiuXOA==}
 
-  zod@3.25.4:
-    resolution: {integrity: sha512-7zz8qNtVv37yCd8OeUW37PMXrR0K/zg+6vw+Z2FJ2+oozVdRbFKldkCoqxd9nJflDrx2ZkjUJrPF2DMj+L4pBQ==}
+  zod@3.25.6:
+    resolution: {integrity: sha512-kA1wikWvfsP+z3L6mzUJJRQz1Y28BR0Bu/MTWeYbfaFJ8c+OLOt1Bb8d4V3Mk1480H+poPYG6BjS/I4kJ1U8WA==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -8969,6 +8969,6 @@ snapshots:
       toposort: 2.0.2
       type-fest: 2.19.0
 
-  zod@3.25.4: {}
+  zod@3.25.6: {}
 
   zwitch@2.0.4: {}
