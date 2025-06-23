@@ -90,7 +90,7 @@
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "5.2.0",
     "markdown-it": "14.1.0",
-    "prettier": "3.5.3",
+    "prettier": "3.6.0",
     "raw-loader": "4.0.2",
     "sass": "1.89.2",
     "typescript": "5.8.3",
