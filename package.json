@@ -64,7 +64,7 @@
     "zod": "3.25.75"
   },
   "devDependencies": {
-    "@cspell/dict-es-es": "3.0.3",
+    "@cspell/dict-es-es": "3.0.4",
     "@cspell/dict-pt-br": "2.4.0",
     "@next/bundle-analyzer": "14.2.30",
     "@types/lodash.isplainobject": "4.0.9",
