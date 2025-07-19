@@ -130,8 +130,8 @@ importers:
         version: 3.25.76
     devDependencies:
       '@cspell/dict-es-es':
-        specifier: 3.0.5
-        version: 3.0.5
+        specifier: 3.0.6
+        version: 3.0.6
       '@cspell/dict-pt-br':
         specifier: 2.4.1
         version: 2.4.1
@@ -336,8 +336,8 @@ packages:
   '@cspell/dict-en_us@4.4.15':
     resolution: {integrity: sha512-mhWaLui5aq0pgM4oIqAJNbOW/wQG3epe4nu22eqYTLQN+ztdzyn7aFpE+9yTtZTNvldK0xtN7jgk2mtHZ9w+1A==}
 
-  '@cspell/dict-es-es@3.0.5':
-    resolution: {integrity: sha512-lQRKkfQJEfaD+xDqKrmchX6LhbjiQFjGxgD7kjhVLaplkLR+KsqvhW0Bcz3otFTtFuPmuzNRNtKpVrzrNRi+TA==}
+  '@cspell/dict-es-es@3.0.6':
+    resolution: {integrity: sha512-92SfrrL/CwdA8RIHHYPUKoD0+ocbNZVGc85PMEiZF4WmeaYVdDFr6FDVPycLjqDlOrZTat7NYx0xbZBuSzSMZw==}
 
   '@cspell/dict-filetypes@3.0.13':
     resolution: {integrity: sha512-g6rnytIpQlMNKGJT1JKzWkC+b3xCliDKpQ3ANFSq++MnR4GaLiifaC4JkVON11Oh/UTplYOR1nY3BR4X30bswA==}
@@ -4349,7 +4349,7 @@ snapshots:
 
   '@cspell/dict-en_us@4.4.15': {}
 
-  '@cspell/dict-es-es@3.0.5': {}
+  '@cspell/dict-es-es@3.0.6': {}
 
   '@cspell/dict-filetypes@3.0.13': {}
 
