@@ -60,7 +60,7 @@
     "react-use": "17.6.0",
     "remark-unwrap-images": "4.0.1",
     "uuid": "10.0.0",
-    "yup": "1.6.1",
+    "yup": "1.7.0",
     "zod": "3.25.76"
   },
   "devDependencies": {
