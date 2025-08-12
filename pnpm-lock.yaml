@@ -161,7 +161,7 @@ importers:
         version: 7.18.0(eslint@8.57.1)(typescript@5.8.3)
       '@webdiscus/pug-loader':
         specifier: 2.11.1
-        version: 2.11.1(enhanced-resolve@5.18.3)(markdown-it@14.1.0)(pug@3.0.3)(webpack@5.101.0)
+        version: 2.11.1(enhanced-resolve@5.18.3)(markdown-it@14.1.0)(pug@3.0.3)(webpack@5.101.1)
       coffeescript:
         specifier: 2.7.0
         version: 2.7.0
@@ -212,7 +212,7 @@ importers:
         version: 3.6.2
       raw-loader:
         specifier: 4.0.2
-        version: 4.0.2(webpack@5.101.0)
+        version: 4.0.2(webpack@5.101.1)
       sass:
         specifier: 1.90.0
         version: 1.90.0
@@ -220,8 +220,8 @@ importers:
         specifier: 5.8.3
         version: 5.8.3
       webpack:
-        specifier: 5.101.0
-        version: 5.101.0
+        specifier: 5.101.1
+        version: 5.101.1
 
 packages:
 
@@ -4064,8 +4064,8 @@ packages:
     resolution: {integrity: sha512-yd1RBzSGanHkitROoPFd6qsrxt+oFhg/129YzheDGqeustzX0vTZJZsSsQjVQC4yzBQ56K55XU8gaNCtIzOnTg==}
     engines: {node: '>=10.13.0'}
 
-  webpack@5.101.0:
-    resolution: {integrity: sha512-B4t+nJqytPeuZlHuIKTbalhljIFXeNRqrUGAQgTGlfOl2lXXKXw+yZu6bicycP+PUlM44CxBjCFD6aciKFT3LQ==}
+  webpack@5.101.1:
+    resolution: {integrity: sha512-rHY3vHXRbkSfhG6fH8zYQdth/BtDgXXuR2pHF++1f/EBkI8zkgM5XWfsC3BvOoW9pr1CvZ1qQCxhCEsbNgT50g==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     peerDependencies:
@@ -5421,13 +5421,13 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@xtuc/long': 4.2.2
 
-  '@webdiscus/pug-loader@2.11.1(enhanced-resolve@5.18.3)(markdown-it@14.1.0)(pug@3.0.3)(webpack@5.101.0)':
+  '@webdiscus/pug-loader@2.11.1(enhanced-resolve@5.18.3)(markdown-it@14.1.0)(pug@3.0.3)(webpack@5.101.1)':
     dependencies:
       ansis: 3.10.0
       enhanced-resolve: 5.18.3
       parse5: 7.2.1
       pug: 3.0.3
-      webpack: 5.101.0
+      webpack: 5.101.1
       webpack-merge: 6.0.1
     optionalDependencies:
       markdown-it: 14.1.0
@@ -8135,11 +8135,11 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
-  raw-loader@4.0.2(webpack@5.101.0):
+  raw-loader@4.0.2(webpack@5.101.1):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 5.101.0
+      webpack: 5.101.1
 
   react-bootstrap@2.10.10(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
@@ -8700,14 +8700,14 @@ snapshots:
 
   tapable@2.2.1: {}
 
-  terser-webpack-plugin@5.3.11(webpack@5.101.0):
+  terser-webpack-plugin@5.3.11(webpack@5.101.1):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       jest-worker: 27.5.1
       schema-utils: 4.3.2
       serialize-javascript: 6.0.2
       terser: 5.31.6
-      webpack: 5.101.0
+      webpack: 5.101.1
 
   terser@5.31.6:
     dependencies:
@@ -9019,7 +9019,7 @@ snapshots:
 
   webpack-sources@3.3.3: {}
 
-  webpack@5.101.0:
+  webpack@5.101.1:
     dependencies:
       '@types/eslint-scope': 3.7.7
       '@types/estree': 1.0.8
@@ -9043,7 +9043,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.2
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.11(webpack@5.101.0)
+      terser-webpack-plugin: 5.3.11(webpack@5.101.1)
       watchpack: 2.4.2
       webpack-sources: 3.3.3
     transitivePeerDependencies:
