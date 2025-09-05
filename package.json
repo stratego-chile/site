@@ -59,7 +59,7 @@
     "react-i18next": "15.7.3",
     "react-use": "17.6.0",
     "remark-unwrap-images": "4.0.1",
-    "uuid": "10.0.0",
+    "uuid": "12.0.0",
     "yup": "1.7.0",
     "zod": "3.25.76"
   },
