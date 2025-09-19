@@ -63,8 +63,8 @@ importers:
         specifier: 2.4.6
         version: 2.4.6(react@18.3.1)
       framer-motion:
-        specifier: 12.23.13
-        version: 12.23.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 12.23.16
+        version: 12.23.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       http-status-codes:
         specifier: 2.3.0
         version: 2.3.0
@@ -2211,8 +2211,8 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
 
-  framer-motion@12.23.13:
-    resolution: {integrity: sha512-OMF57Xh0fuTXfJQPtCieYGeU9Fam4SxqPLVz78YI7ATRFrfz8SARtqr1+qv56cX45kPFcIEfkUorVfxlOsjcUg==}
+  framer-motion@12.23.16:
+    resolution: {integrity: sha512-N81A8hiHqVsexOzI3wzkibyLURW1nEJsZaRuctPhG4AdbbciYu+bKJq9I2lQFzAO4Bx3h4swI6pBbF/Hu7f7BA==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -6734,7 +6734,7 @@ snapshots:
       tiny-warning: 1.0.3
       tslib: 2.6.3
 
-  framer-motion@12.23.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  framer-motion@12.23.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       motion-dom: 12.23.12
       motion-utils: 12.23.6
