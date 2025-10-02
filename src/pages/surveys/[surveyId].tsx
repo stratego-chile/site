@@ -57,9 +57,9 @@ const surveys = {
   ],
 } satisfies {
   [id: string]: [
-    elements: Array<() => JSX.Element>,
+    elements: Array<() => React.JSX.Element>,
     equivalents: Array<string>,
-    helpers: { title: string; note?: string; poweredBy?: () => JSX.Element },
+    helpers: { title: string; note?: string; poweredBy?: () => React.JSX.Element },
   ]
 }
 
