@@ -187,8 +187,8 @@ importers:
         specifier: 10.1.8
         version: 10.1.8(eslint@8.57.1)
       eslint-plugin-anti-trojan-source:
-        specifier: 1.1.1
-        version: 1.1.1
+        specifier: 1.1.2
+        version: 1.1.2
       eslint-plugin-import:
         specifier: 2.32.0
         version: 2.32.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
@@ -2063,8 +2063,8 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
 
-  eslint-plugin-anti-trojan-source@1.1.1:
-    resolution: {integrity: sha512-gWDuG2adNNccwRM+2/Q3UHqV1DgrAUSpSi/Tdnx2Ybr0ndWMSBn7lt4AbxdPuFSEs2OAokX/vdIHbBbTLzWspw==}
+  eslint-plugin-anti-trojan-source@1.1.2:
+    resolution: {integrity: sha512-nFpOvnLedNiTM6U8x+tjP8IX8EzyGrp9niCZV1QoAWEBBn5cbK08lhkm1Anb4/40cn4JFDer8N0VkblH8laVEw==}
 
   eslint-plugin-import@2.32.0:
     resolution: {integrity: sha512-whOE1HFo/qJDyX4SnXzP4N6zOWn79WhnCUY/iDR0mPfQZO8wcYE4JClzI2oZrhBnnMUCBCHZhO6VQyoBU95mZA==}
@@ -6624,7 +6624,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-anti-trojan-source@1.1.1:
+  eslint-plugin-anti-trojan-source@1.1.2:
     dependencies:
       anti-trojan-source: 1.4.1
 
