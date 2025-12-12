@@ -66,7 +66,7 @@
   "devDependencies": {
     "@cspell/dict-es-es": "3.0.8",
     "@cspell/dict-pt-br": "2.4.2",
-    "@next/bundle-analyzer": "14.2.33",
+    "@next/bundle-analyzer": "14.2.35",
     "@types/lodash.isplainobject": "4.0.9",
     "@types/pug": "2.0.10",
     "@types/react": "19.2.7",
@@ -81,7 +81,7 @@
     "eslint": "8.57.1",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "18.0.0",
-    "eslint-config-next": "14.2.33",
+    "eslint-config-next": "14.2.35",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-anti-trojan-source": "1.1.2",
     "eslint-plugin-import": "2.32.0",
