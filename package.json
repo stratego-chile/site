@@ -56,7 +56,7 @@
     "react-cookie": "8.0.1",
     "react-dom": "19.2.1",
     "react-google-recaptcha-v3": "1.11.0",
-    "react-i18next": "16.4.1",
+    "react-i18next": "16.5.0",
     "react-use": "17.6.0",
     "remark-unwrap-images": "4.0.1",
     "uuid": "10.0.0",
