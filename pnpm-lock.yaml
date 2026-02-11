@@ -161,7 +161,7 @@ importers:
         version: 7.18.0(eslint@8.57.1)(typescript@5.8.3)
       '@webdiscus/pug-loader':
         specifier: 2.11.1
-        version: 2.11.1(enhanced-resolve@5.19.0)(markdown-it@14.1.0)(pug@3.0.3)(webpack@5.105.1)
+        version: 2.11.1(enhanced-resolve@5.19.0)(markdown-it@14.1.1)(pug@3.0.3)(webpack@5.105.1)
       coffeescript:
         specifier: 2.7.0
         version: 2.7.0
@@ -205,8 +205,8 @@ importers:
         specifier: 6.1.1
         version: 6.1.1(eslint@8.57.1)
       markdown-it:
-        specifier: 14.1.0
-        version: 14.1.0
+        specifier: 14.1.1
+        version: 14.1.1
       prettier:
         specifier: 3.8.1
         version: 3.8.1
@@ -2970,8 +2970,8 @@ packages:
     resolution: {integrity: sha512-o5vL7aDWatOTX8LzaS1WMoaoxIiLRQJuIKKe2wAw6IeULDHaqbiqiggmx+pKvZDb1Sj+pE46Sn1T7lCqfFtg1Q==}
     engines: {node: '>=16'}
 
-  markdown-it@14.1.0:
-    resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
+  markdown-it@14.1.1:
+    resolution: {integrity: sha512-BuU2qnTti9YKgK5N+IeMubp14ZUKUUw7yeJbkjtosvHiP0AZ5c8IAgEMk79D0eC8F23r4Ac/q8cAIFdm2FtyoA==}
     hasBin: true
 
   math-intrinsics@1.1.0:
@@ -5760,7 +5760,7 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@xtuc/long': 4.2.2
 
-  '@webdiscus/pug-loader@2.11.1(enhanced-resolve@5.19.0)(markdown-it@14.1.0)(pug@3.0.3)(webpack@5.105.1)':
+  '@webdiscus/pug-loader@2.11.1(enhanced-resolve@5.19.0)(markdown-it@14.1.1)(pug@3.0.3)(webpack@5.105.1)':
     dependencies:
       ansis: 3.10.0
       enhanced-resolve: 5.19.0
@@ -5769,7 +5769,7 @@ snapshots:
       webpack: 5.105.1
       webpack-merge: 6.0.1
     optionalDependencies:
-      markdown-it: 14.1.0
+      markdown-it: 14.1.1
 
   '@xobotyi/scrollbar-width@1.9.5': {}
 
@@ -7750,7 +7750,7 @@ snapshots:
 
   markdown-extensions@2.0.0: {}
 
-  markdown-it@14.1.0:
+  markdown-it@14.1.1:
     dependencies:
       argparse: 2.0.1
       entities: 4.5.0
