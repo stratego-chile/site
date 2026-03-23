@@ -93,7 +93,7 @@
     "prettier": "3.8.1",
     "raw-loader": "4.0.2",
     "sass": "1.98.0",
-    "typescript": "5.8.3",
+    "typescript": "6.0.2",
     "webpack": "5.105.4"
   },
   "packageManager": "pnpm@10.32.1",
