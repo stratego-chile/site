@@ -69,8 +69,8 @@ importers:
         specifier: 2.3.0
         version: 2.3.0
       i18next:
-        specifier: 26.0.2
-        version: 26.0.2(typescript@5.8.3)
+        specifier: 26.0.3
+        version: 26.0.3(typescript@5.8.3)
       i18next-fs-backend:
         specifier: 2.6.3
         version: 2.6.3
@@ -88,7 +88,7 @@ importers:
         version: 14.2.35(@babel/core@7.28.4)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0)
       next-i18next:
         specifier: 15.4.3
-        version: 15.4.3(i18next@26.0.2(typescript@5.8.3))(next@14.2.35(@babel/core@7.28.4)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0))(react-i18next@17.0.1(i18next@26.0.2(typescript@5.8.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.8.3))(react@19.2.4)
+        version: 15.4.3(i18next@26.0.3(typescript@5.8.3))(next@14.2.35(@babel/core@7.28.4)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0))(react-i18next@17.0.1(i18next@26.0.3(typescript@5.8.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.8.3))(react@19.2.4)
       next-mdx-remote:
         specifier: 6.0.0
         version: 6.0.0(@types/react@19.2.14)(react@19.2.4)
@@ -112,7 +112,7 @@ importers:
         version: 1.11.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-i18next:
         specifier: 17.0.1
-        version: 17.0.1(i18next@26.0.2(typescript@5.8.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.8.3)
+        version: 17.0.1(i18next@26.0.3(typescript@5.8.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.8.3)
       react-use:
         specifier: 17.6.0
         version: 17.6.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -4109,8 +4109,8 @@ packages:
   i18next-fs-backend@2.6.3:
     resolution: {integrity: sha512-/5aW996nbolGh/qVU9urjAJ2QiXpiyGuhG8x/ZvvZQ3bMlrK+ouUdD6whS4e+sU9CCdUIzl7x/heEjsBh/3xtw==}
 
-  i18next@26.0.2:
-    resolution: {integrity: sha512-WsK0SdP+7tGzsxpT+Us1s2nvOyx657DatBodaNZe4KcPTPYzkVfRKUygN69mB+sCbbnifRuKz+Ya5JRzd8DNHw==}
+  i18next@26.0.3:
+    resolution: {integrity: sha512-1571kXINxHKY7LksWp8wP+zP0YqHSSpl/OW0Y0owFEf2H3s8gCAffWaZivcz14rMkOvn3R/psiQxVsR9t2Nafg==}
     peerDependencies:
       typescript: ^5 || ^6
     peerDependenciesMeta:
@@ -11680,7 +11680,7 @@ snapshots:
 
   i18next-fs-backend@2.6.3: {}
 
-  i18next@26.0.2(typescript@5.8.3):
+  i18next@26.0.3(typescript@5.8.3):
     dependencies:
       '@babel/runtime': 7.29.2
     optionalDependencies:
@@ -12741,17 +12741,17 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-i18next@15.4.3(i18next@26.0.2(typescript@5.8.3))(next@14.2.35(@babel/core@7.28.4)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0))(react-i18next@17.0.1(i18next@26.0.2(typescript@5.8.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.8.3))(react@19.2.4):
+  next-i18next@15.4.3(i18next@26.0.3(typescript@5.8.3))(next@14.2.35(@babel/core@7.28.4)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0))(react-i18next@17.0.1(i18next@26.0.3(typescript@5.8.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.8.3))(react@19.2.4):
     dependencies:
       '@babel/runtime': 7.28.4
       '@types/hoist-non-react-statics': 3.3.6
       core-js: 3.38.1
       hoist-non-react-statics: 3.3.2
-      i18next: 26.0.2(typescript@5.8.3)
+      i18next: 26.0.3(typescript@5.8.3)
       i18next-fs-backend: 2.6.3
       next: 14.2.35(@babel/core@7.28.4)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0)
       react: 19.2.4
-      react-i18next: 17.0.1(i18next@26.0.2(typescript@5.8.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.8.3)
+      react-i18next: 17.0.1(i18next@26.0.3(typescript@5.8.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.8.3)
 
   next-mdx-remote@6.0.0(@types/react@19.2.14)(react@19.2.4):
     dependencies:
@@ -13775,11 +13775,11 @@ snapshots:
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
 
-  react-i18next@17.0.1(i18next@26.0.2(typescript@5.8.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.8.3):
+  react-i18next@17.0.1(i18next@26.0.3(typescript@5.8.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.8.3):
     dependencies:
       '@babel/runtime': 7.29.2
       html-parse-stringify: 3.0.1
-      i18next: 26.0.2(typescript@5.8.3)
+      i18next: 26.0.3(typescript@5.8.3)
       react: 19.2.4
       use-sync-external-store: 1.6.0(react@19.2.4)
     optionalDependencies:
