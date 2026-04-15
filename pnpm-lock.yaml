@@ -161,7 +161,7 @@ importers:
         version: 7.18.0(eslint@8.57.1)(typescript@5.8.3)
       '@webdiscus/pug-loader':
         specifier: 2.11.1
-        version: 2.11.1(enhanced-resolve@5.20.1)(markdown-it@14.1.1)(pug@3.0.4)(webpack@5.106.1)
+        version: 2.11.1(enhanced-resolve@5.20.1)(markdown-it@14.1.1)(pug@3.0.4)(webpack@5.106.2)
       coffeescript:
         specifier: 2.7.0
         version: 2.7.0
@@ -212,7 +212,7 @@ importers:
         version: 3.8.3
       raw-loader:
         specifier: 4.0.2
-        version: 4.0.2(webpack@5.106.1)
+        version: 4.0.2(webpack@5.106.2)
       sass:
         specifier: 1.99.0
         version: 1.99.0
@@ -220,8 +220,8 @@ importers:
         specifier: 5.8.3
         version: 5.8.3
       webpack:
-        specifier: 5.106.1
-        version: 5.106.1
+        specifier: 5.106.2
+        version: 5.106.2
 
 packages:
 
@@ -6757,8 +6757,8 @@ packages:
   webpack-virtual-modules@0.6.2:
     resolution: {integrity: sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ==}
 
-  webpack@5.106.1:
-    resolution: {integrity: sha512-EW8af29ak8Oaf4T8k8YsajjrDBDYgnKZ5er6ljWFJsXABfTNowQfvHLftwcepVgdz+IoLSdEAbBiM9DFXoll9w==}
+  webpack@5.106.2:
+    resolution: {integrity: sha512-wGN3qcrBQIFmQ/c0AiOAQBvrZ5lmY8vbbMv4Mxfgzqd/B6+9pXtLo73WuS1dSGXM5QYY3hZnIbvx+K1xxe6FyA==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     peerDependencies:
@@ -9462,13 +9462,13 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@xtuc/long': 4.2.2
 
-  '@webdiscus/pug-loader@2.11.1(enhanced-resolve@5.20.1)(markdown-it@14.1.1)(pug@3.0.4)(webpack@5.106.1)':
+  '@webdiscus/pug-loader@2.11.1(enhanced-resolve@5.20.1)(markdown-it@14.1.1)(pug@3.0.4)(webpack@5.106.2)':
     dependencies:
       ansis: 3.10.0
       enhanced-resolve: 5.20.1
       parse5: 7.2.1
       pug: 3.0.4
-      webpack: 5.106.1
+      webpack: 5.106.2
       webpack-merge: 6.0.1
     optionalDependencies:
       markdown-it: 14.1.1
@@ -12615,8 +12615,7 @@ snapshots:
 
   mime-db@1.52.0: {}
 
-  mime-db@1.54.0:
-    optional: true
+  mime-db@1.54.0: {}
 
   mime-types@2.1.35:
     dependencies:
@@ -13704,11 +13703,11 @@ snapshots:
   range-parser@1.2.1:
     optional: true
 
-  raw-loader@4.0.2(webpack@5.106.1):
+  raw-loader@4.0.2(webpack@5.106.2):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 5.106.1
+      webpack: 5.106.2
 
   rc9@2.1.2:
     dependencies:
@@ -14527,13 +14526,13 @@ snapshots:
       - react-native-b4a
     optional: true
 
-  terser-webpack-plugin@5.3.17(webpack@5.106.1):
+  terser-webpack-plugin@5.3.17(webpack@5.106.2):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.31.6
-      webpack: 5.106.1
+      webpack: 5.106.2
 
   terser@5.31.6:
     dependencies:
@@ -15140,7 +15139,7 @@ snapshots:
   webpack-virtual-modules@0.6.2:
     optional: true
 
-  webpack@5.106.1:
+  webpack@5.106.2:
     dependencies:
       '@types/eslint-scope': 3.7.7
       '@types/estree': 1.0.8
@@ -15158,13 +15157,12 @@ snapshots:
       events: 3.3.0
       glob-to-regexp: 0.4.1
       graceful-fs: 4.2.11
-      json-parse-even-better-errors: 2.3.1
       loader-runner: 4.3.1
-      mime-types: 2.1.35
+      mime-db: 1.54.0
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.0
-      terser-webpack-plugin: 5.3.17(webpack@5.106.1)
+      terser-webpack-plugin: 5.3.17(webpack@5.106.2)
       watchpack: 2.5.1
       webpack-sources: 3.3.4
     transitivePeerDependencies:
