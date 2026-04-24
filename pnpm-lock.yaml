@@ -72,8 +72,8 @@ importers:
         specifier: 26.0.6
         version: 26.0.6(typescript@5.8.3)
       i18next-fs-backend:
-        specifier: 2.6.4
-        version: 2.6.4
+        specifier: 2.6.5
+        version: 2.6.5
       language-flag-colors:
         specifier: 3.2.1
         version: 3.2.1
@@ -4101,8 +4101,8 @@ packages:
   hyphenate-style-name@1.1.0:
     resolution: {integrity: sha512-WDC/ui2VVRrz3jOVi+XtjqkDjiVjTtFaAGiW37k6b+ohyQ5wYDOGkvCZa8+H0nx3gyvv0+BST9xuOgIyGQ00gw==}
 
-  i18next-fs-backend@2.6.4:
-    resolution: {integrity: sha512-lzbUnowXYd5RFO8flpQhd9khYWNgrzwtxHw1kktJCiTRBaAEiLB2t9EPSXRj8qlC7WcEgFDIsmBUixyludcznw==}
+  i18next-fs-backend@2.6.5:
+    resolution: {integrity: sha512-+7HBrlaj3UFnNC9HqiXaIlNkwNINYkgQ2PS4h7qW/WGHC9/+OU9Xi0/tdvjjXATw3YCcpmNV7S3zDD9e10pTWg==}
 
   i18next@26.0.6:
     resolution: {integrity: sha512-A4U6eCXodIbrhf8EarRurB9/4ebyaurH4+fu4gig9bqxmpSt+fCAFm/GpRQDcN1Xzu/LdFCx4nYHsnM1edIIbg==}
@@ -11676,7 +11676,7 @@ snapshots:
 
   hyphenate-style-name@1.1.0: {}
 
-  i18next-fs-backend@2.6.4: {}
+  i18next-fs-backend@2.6.5: {}
 
   i18next@26.0.6(typescript@5.8.3):
     dependencies:
@@ -12742,7 +12742,7 @@ snapshots:
       core-js: 3.38.1
       hoist-non-react-statics: 3.3.2
       i18next: 26.0.6(typescript@5.8.3)
-      i18next-fs-backend: 2.6.4
+      i18next-fs-backend: 2.6.5
       next: 14.2.35(@babel/core@7.28.4)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(sass@1.99.0)
       react: 19.2.5
       react-i18next: 17.0.4(i18next@26.0.6(typescript@5.8.3))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(typescript@5.8.3)
