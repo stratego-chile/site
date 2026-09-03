@@ -57,7 +57,7 @@
     "react-dom": "19.2.5",
     "react-google-recaptcha-v3": "1.11.0",
     "react-i18next": "17.0.6",
-    "react-use": "17.6.0",
+    "react-use": "17.6.1",
     "remark-unwrap-images": "4.0.1",
     "uuid": "10.0.0",
     "yup": "1.7.1",
